@@ -1,0 +1,11 @@
+INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
+
+# include the MPI library
+INCLUDE_DIRECTORIES("${MPI_INCLUDE_PATH}")
+
+# add STXXL includes path
+INCLUDE_DIRECTORIES("${STXXL_INCLUDE_DIRS}")
+
+#build a executable program
+ADD_EXECUTABLE(lcpa_mpi lcpa_mpi.cpp)
+TARGET_LINK_LIBRARIES(lcpa_mpi ${STXXL_LIBRARIES} ${MPI_LIBARIES})
