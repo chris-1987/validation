@@ -1,1 +1,0 @@
-/usr/bin/c++    -W -Wall -fopenmp -std=c++11 -O3    CMakeFiles/mytest1.dir/mytest1.cpp.o  -o mytest1 -rdynamic 
