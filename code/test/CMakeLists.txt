@@ -1,0 +1,5 @@
+INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
+
+
+# test1
+ADD_EXECUTABLE(mytest1 mytest1.cpp)

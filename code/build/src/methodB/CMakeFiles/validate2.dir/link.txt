@@ -1,0 +1,1 @@
+/usr/bin/c++    -W -Wall -fopenmp -std=c++11 -O3    CMakeFiles/validate2.dir/validate2.cpp.o  -o validate2 -rdynamic 

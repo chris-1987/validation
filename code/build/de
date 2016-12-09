@@ -1,0 +1,12 @@
+In file included from /home/chris/validation/code/src/methodA/validate.h:18:0,
+                 from /home/chris/validation/code/src/methodA/validate.cpp:2:
+/home/chris/validation/code/src/methodA/../common/tuples.h: In function ‘std::ostream& operator<<(std::ostream&, const Sixtuple<T1, T2, T3, T4, T5, T6>&)’:
+/home/chris/validation/code/src/methodA/../common/tuples.h:320:2: warning: no return statement in function returning non-void [-Wreturn-type]
+  }
+  ^
+In file included from /home/chris/validation/code/src/methodB/validate2.h:18:0,
+                 from /home/chris/validation/code/src/methodB/validate2.cpp:1:
+/home/chris/validation/code/src/methodB/../common/tuples.h: In function ‘std::ostream& operator<<(std::ostream&, const Sixtuple<T1, T2, T3, T4, T5, T6>&)’:
+/home/chris/validation/code/src/methodB/../common/tuples.h:320:2: warning: no return statement in function returning non-void [-Wreturn-type]
+  }
+  ^
