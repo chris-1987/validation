@@ -10,37 +10,20 @@
 ///////////////////////////////////////////////////////////
 
 
-#ifndef COMMON_H
-#define COMMON_H
+#ifndef __COMMON_H
+#define __COMMON_H
 
 #include "namespace.h"
 
 #include "types.h"
 
-#include "stxxl/bits/common/uint_types.h"
-
-#include "stxxl/bits/io/syscall_file.h"
-
-#include "stxxl/vector"
-
-#include "stxxl/bits/containers/sorter.h"
-
-#include "stxxl/bits/containers/priority_queue.h"
-
 #include <string>
-
-#include <fstream>
-
-#include <climits>
-
-#include <cassert>
 
 static const size_t MAX_MEM = 3 * 1024 * 1024 * 1024ull; ///< available RAM 
 
-static const size_t K_512 = 512 * 1024; ///< 512K
+static const size_t K_512 = 512 * 1024; ///< 512 K
 
 static const size_t M_512 = K_512 * 1024; ///< 512 M
-
 
 
 #endif // common_h

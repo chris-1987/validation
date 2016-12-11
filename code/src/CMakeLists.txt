@@ -1,11 +1,10 @@
 INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}")
 
-# add stxxl includes path
-INCLUDE_DIRECTORIES("${STXXL_INCLUDE_DIRS}")
+# method A
+add_subdirectory(ma)
 
-add_subdirectory(methodA)
-
-add_subdirectory(methodB)
+# method B
+add_subdirectory(mb)
 
 
 
