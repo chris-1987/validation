@@ -67,7 +67,7 @@ private:
 	/// \param _cnt number of elements
 	/// \param _f descriptor
 	template<typename value_type>
-	void read_from_file(value_type* _des, const uint64& _cnt, const std::FILE *_f);
+	uint64 read_from_file(value_type* _des, const uint64& _cnt, const std::FILE *_f);
 
 
 	/// \brief read data from a disk file specified by the name, close the file after the operation.
@@ -76,7 +76,7 @@ private:
 	/// \param _cnt number of elements
 	/// \param _fn filename
 	template<typename value_type>
-	void read_from_file(value_type* _des, const uint64& _cnt, const std::string& _fn);
+	uint64 read_from_file(value_type* _des, const uint64& _cnt, const std::string& _fn);
 
 	/// \brief read data from a disk file, beginning at the specified offset
 	///
@@ -193,13 +193,6 @@ void BasicIO::write_to_file(const value_type* _src, const uint64& _cnt, std::FIL
 
 	uint64 cnt_ret = std::fwrite(_src, sizeof(value_type), _cnt, _f);
 
-	if (cnt_ret != _cnt) {
-
-		std::cerr << "fwrite failed.\n";
-		
-		std::exit(EXIT_FAILURE):
-	}
-
 	return;
 }
 
@@ -218,32 +211,25 @@ void BasicIO::write_to_file(const value_type* _src, const uint64& _cnt, const st
 
 
 template<typename value_type>
-void BasicIO::read_from_file(value_type* _des, const uint64& _cnt, const std::FILE *_f) {
+uint64 BasicIO::read_from_file(value_type* _des, const uint64& _cnt, const std::FILE *_f) {
 
 	uint64 cnt_ret = std::fread(_des, sizeof(value_type), _cnt, _f);
 
-	if (cnt_ret != _cnt) {
-
-		std::cerr << "fread failed.\n";
-
-		std::exit(EXIT_FAILURE);
-	}
-
-	return;
+	return cnt_ret;
 }
 
 
 
 template<typename value_type>
-void BasicIO::read_from_file(value_type* _des, const uint64& _cnt, const std::string& _fn) {
+uint64 BasicIO::read_from_file(value_type* _des, const uint64& _cnt, const std::string& _fn) {
 
 	std::FILE* f = file_open_nobuf(_fn, "r");
 
-	read_from_file<value_type>(_des, _cnt, f);
+	uint64 cnt_ret = read_from_file<value_type>(_des, _cnt, f);
 
 	std::fclose(f);
 
-	return;
+	return cnt_ret;
 }
 
 
