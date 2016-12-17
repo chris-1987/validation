@@ -13,7 +13,7 @@
 #ifndef __ASYNC_STREAM_WRITER_H
 #define __ASYNC_STREAM_WRITER_H
 
-#include "../common/common.h"
+#include "common/common.h"
 
 #include "basicio.h"
 

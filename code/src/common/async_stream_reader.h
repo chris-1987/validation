@@ -12,7 +12,7 @@
 #ifndef __ASYNC_STREAM_READER_H
 #define __ASYNC_STREAM_READER_H
 
-#include "../common/common.h"
+#include "common.h"
 
 #include "basicio.h"
 

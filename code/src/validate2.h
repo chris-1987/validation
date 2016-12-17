@@ -10,12 +10,8 @@
 ///////////////////////////////////////////////////////////
 
 
-#ifndef VALIDATE_H
-#define VALIDATE_H
-
-#include "../common/common.h"
-#include "../common/types.h"
-#include "../common/tuples.h"
+#ifndef VALIDATE2_H
+#define VALIDATE2_H
 
 
 

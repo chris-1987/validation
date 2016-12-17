@@ -12,12 +12,10 @@
 #ifndef __BASICIO_H
 #define __BASICIO_H
 
-NAMESPACE_UTILITY_BEG
-
 /// \brief synchronous read operations
 class BasicIO {
-private:
 
+public:
 	/// \brief open file in specific mode
 	///
 	/// \param _fn filename
@@ -28,7 +26,7 @@ private:
 	///
 	/// \param _fn filename
 	/// \param _mode mode
-	static std::FILE* file_open_nobuf(const std::stream _fn, const std::string _mode);
+	static std::FILE* file_open_nobuf(const std::string _fn, const std::string _mode);
 
 	/// \brief return file size in bytes
 	///
@@ -95,6 +93,7 @@ private:
 	/// \param _fn filename
 	template<typename value_type>
 	void read_at_offset(value_type* _des, const uint64& _offset, const uint64& _cnt, const std::string& _fn);
+
 };
 
 
@@ -113,7 +112,7 @@ std::FILE* BasicIO::file_open(const std::string _fn, const std::string _mode) {
 }
 	
 
-std::FILE* BasicIO::file_open_nobuf(const std::stream _fn, const std::string _mode) {
+std::FILE* BasicIO::file_open_nobuf(const std::string _fn, const std::string _mode) {
 
 	std::FILE* f = std::fopen(_fn.c_str(), _mode.c_str());
 
@@ -143,13 +142,6 @@ uint64 BasicIO::file_size(const std::string _fn) {
 	std::fseek(f, 0, SEEK_END);
 
 	uint64 size = std::ftell(f);
-
-	if (size < 0) {
-
-		std::perror(_fn.c_str());
-
-		std::exit(EXIT_FAILURE):
-	}
 
 	std::fclose(f);
 
@@ -254,7 +246,5 @@ void BasicIO::read_at_offset(value_type* _des, const uint64& _offset, const uint
 
 	return;
 }	
-
-NAMESPACE_UTILITY_END
 
 #endif // __SYNCIO_H

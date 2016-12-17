@@ -19,3 +19,6 @@
 #define NAMESPACE_UTILITY_BEG namespace utility {
 
 #define NAMESPACE_UTILITY_END }
+
+
+#endif

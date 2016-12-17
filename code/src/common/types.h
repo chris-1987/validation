@@ -15,8 +15,12 @@
 #define __TYPES_H
 
 #include <iostream>
+
 #include <limits>
+
 #include <cstdint>
+
+#include "stxxl/bits/common/uint_types.h"
 
 #include "namespace.h"
 
@@ -71,255 +75,230 @@ using int_type = typename choose_int_types<my_pointer_size>::int_type;
 
 using uint_type = typename choose_int_types<my_pointer_size>::uint_type;
 
-/// \brief self-defined uint pair
-/// 
-/// uint40(8 + 32) or uint48(16 + 32)
-template<typename T>
-class uint_pair{
 
-private:
-	typedef uint32 low_type; ///< type of low part, uint32
-
-	typedef uint32 high_type; ///< type of high part, uint8 or uint16
-
-	low_type low; ///< low part
-
-	high_type high; ///< high part
-
-	/// \brief default ctor
-	uint_pair() : low(0), high(0) {}
-
-	/// \brief component ctor
-	uint_pair(const T1& _low, const T2& _high) : low(_low), high(_high) {}
-
-	/// \brief copy ctor
-	uint40(const uint_pair& _a) : low(_a.low), high(_a.high) {}
-
-	/// \brief convert from int32
-	uint40(const int32& _a) : low(_a.low), high(0) {}
-
-	/// \brief convert from uint32
-	uint40(const uint32& _a) : low(_a.low), high(0) {}
-
-	/// \brief convert from uint64
-	uint40(const uint64& _a) : low (_a & 0xFFFFFFFF), high ((_a >> 32) & std::numeric_limits<T>::max()) {}
-
-	/// \brief implicitly convert to uint64
-	operator uint64_t() const {
-
-		return ((static_cast<uint64>(high) << 32) | (static_cast<uint64>(low));
-	}
-
-	/// \brief check equality
-	bool operator == (const uint40& _a) const{
-	
-		return (low == _a.low) && (high == _a.high);
-	}
-
-	/// \brief check inequality
-	bool operator != (const uint40& _a) const {
-
-		return (low != _a.low) || (high != _a.high);
-	}
-
-	/// \brief prefix increment
-	void operator++() {
-
-		if (low == std::numeric_limits<uint32>::max()) {
-
-			low = 0;
-
-			++high;
-		}
-
-		else {
-
-			++low;
-		}
-
-		return;
-	}
-
-	/// \brief prefix decrement
-	void operator--() {
-
-		if (low == std::numeric_limits<uint32>::min()) {
-
-			low = std::numeric_limits<uint32>::max();
-
-			--high;
-		}
-		else {
-
-			--low;
-		}
-
-		return;	
-	}
-	
-	/// \brief less-than
-	bool operator < (const uint_pair& _a) {
-
-		return (high < _a.high) || (high == _a.high && low < _a.low);
-	}
-
-	/// \brief no-greater-than
-	bool operator <= (const uint_pair& _a) {
-
-		return (high < _a.high) || (high == _a.high && low <= _a.low);
-	}
-
-	/// \brief greater-than
-	bool operator > (const uint_pair& _a) {
-
-		return (high > _a.high) || (high == _a.high && low > _a.low);
-	}
-
-	/// \brief no-lesser-than
-	bool operator >= (const uint_pair& _a) {
-
-		return (high > _a.high) || (high == _a.high && low >= _a.low);
-	}
-
-}__attribute__((packed));
-
-
-using uint40 = uint_pair<uint8>; // 40-bit integer
-
-using uint48 = uint_pair<uint16>; // 48-bit integer
-
-
-/// \brief uint128 (64 + 64)
-class uint128{
-
-private:
-	
-	uint64 low; ///< low part
-
-	uint64 high; ///< high part
+//
+class uint40 {
 
 public:
-
-	/// \brief default ctor
-	uint128() : low(0), high(0) {} 
-
-	/// \brief component ctor
-	uint128(const uint64& _low, const uint64& _high) : low(_low), high(_high) {}
-		
-	/// \brief copy ctor
-	uint128(const uint128& _a) : low(_a.low), high(_a.high) {}
 	
-	/// \brief convert from int32
-	uint128(const int32& _a) : low(_a), high(0) {}
+	typedef uint32 low_type;
 
-	/// \brief convert from uint32
-	uint128(const uint32& _a) : low(_a), high(0) {}
+	typedef uint8 high_type;
 
-	/// \brief convert from uint64
-	uint128(const uint64& _a) : low(_a), high(0) {}
+private: 
+	low_type low;
 
-	/// \brief bitwise leftward-shift, side-effect
-	void operator <<= (const uint8 _bitnum) {
+	high_type high;
 
-		high <<= _bitnum;
+  public:
+    uint40() {}
+    uint40(std::uint32_t l, std::uint8_t h) : low(l), high(h) {}
+    uint40(const uint40& a) : low(a.low), high(a.high) {}
+    uint40(const std::int32_t& a) : low(a), high(0) {}
+    uint40(const std::uint32_t& a) : low(a), high(0) {}
+    uint40(const std::uint64_t& a) : low(a & 0xFFFFFFFF), high((a >> 32) & 0xFF) {}
+    uint40(const std::int64_t& a) : low(a & 0xFFFFFFFFL), high((a >> 32) & 0xFF) {}
 
-		high |= low >> (64 - _bitnum);
+	// set high part
+	void set_high(const uint8& _high) {
 
-		low <<= _bitnum;
-
-		return;
+		high = _high;
 	}
 
-	/// \brief bitwise leftward-shift, non-side-effect
-	uint128 operator << (const uint8 _bitnum) {
-		
-		static uint128 res = 0;
+	// set low part
+	void set_low(const uint32& _low) {
 
-		res.high = high << _bitnum;
-
-		res.high |= low >> (64 - _bitnum);
-
-		res.low = low << _bitnum;
-
-		return;
+		low = _low;
 	}
 
-	/// \brief get value of high part		
-	uint64 getHigh() const {
+	//
+	void set(const uint32& _low, const uint8 _high) {
 
-		return high;
-	}	
+		low = _low;
 
-	/// \brief get value of low part
-	uint64 getLow() const {
+		high = _high;
+	}
+
+	//
+	uint32 get_low() {
 
 		return low;
 	}
 
-}__attribute__((packed));
+	//
+	uint8 get_high() {
+
+		return high;
+	}
+
+    inline operator uint64_t() const { return (((std::uint64_t)high) << 32) | (std::uint64_t)low;  }
+    inline bool operator == (const uint40& b) const { return (low == b.low) && (high == b.high); }
+    inline bool operator != (const uint40& b) const { return (low != b.low) || (high != b.high); }
+} __attribute__((packed));
 
 
 
-namespace std{
 
-/// \brief numeric_limits for uint40
-template<>
-class numeric_limits<uint40>{
+
+
+class uint128{
+
+private:
+
+	uint64 low; //!< lower part, uint64
+
+	uint64 high; //!< higher part, uint64
 
 public:
 
-	/// \brief return min value
-	static uint40 min() {
+	//data member
+	static const size_t digits = 128; //!< number of digits/bits, 128
 
-		return uint40(std::numeric_limits<uint32>::min(), std::numeric_limits<uint8>::min());
+	static const size_t bytes = 16; //!< number of bytes, 16
+
+	
+	//function memeber
+
+	//! default ctor
+	uint128() : low(0), high(0) {}
+		
+	//! initialized from lower and higher parts
+	uint128(const uint64 & _low, const uint64 & _high) :  low(_low), high(_high) {}
+
+	//! copy ctor
+	uint128(const uint128 & _a) : low(_a.low), high(_a.high) {}
+	
+	//! initialized from an unsigned int
+	uint128(const uint32 & _a) : low (_a), high(0) {}
+
+	//! initialized from anint, a >= 0
+	uint128(const int32 & _a) : low (_a), high(0) {}
+
+	//! initialized from an unsigned long int
+	uint128(const uint64 & _a) : low(_a), high(0) {}
+
+	//! bitwise shift, _bits bits leftward, self revision
+	void operator <<= (const uint8 _bits) {
+
+		high <<= _bits;
+
+		high |= low >> (64 - _bits);
+
+		low <<= _bits;
 	}
 
-	/// \brief return max value
-	static uint40 max() {
-
-		return uint40(std::numeric_limits<uint32>::max(), std::numeric_limits<uint8>::max());
+	//! bitwise or
+	void operator |= (const uint8 _ch) {
+		
+		low |= _ch;
 	}
-};
 
-/// \brief numeric_limits for uint48
+	//! biwise shift, _bits bits leftward	
+	uint128 operator << (const uint8 _bits) {
+		
+		static uint128 res = 0;
+
+		res.high = high << _bits;
+		
+		res.high |= low >> (64 - _bits);
+
+		res.low = low << _bits;
+
+		return res;	
+	}
+
+	//! bitwise and
+	uint128 operator & (const uint128 & _b) const{
+		
+		static uint128 res = 0;
+
+		res.high = high & _b.high;
+
+		res.low = low & _b.low;
+
+		return res;
+	}
+
+	//! check equality
+	bool operator == (const uint128 & b) const {
+
+		return ((low == b.low) && (high == b.high));
+	}
+
+	//! check inequality
+	bool operator != (const uint128 & b) const {
+
+		return ((low != b.low) || (high != b.high)); //or ! operator ==()
+	}	
+
+
+	static uint128 min() {
+		
+		static uint128 min_val = uint128(std::numeric_limits<uint64>::min(), std::numeric_limits<uint64>::min());
+
+		return min_val;
+	}	
+
+	static uint128 max() {
+
+		static uint128 max_val = uint128(std::numeric_limits<uint64>::max(), std::numeric_limits<uint64>::max());
+		
+		return max_val;
+	}	
+
+	friend std::ostream & operator << (std::ostream & _os, const uint128 & _a) {
+
+		_os << "high: " << _a.high << " low: " << _a.low << std::endl;
+
+		return _os;
+	}
+
+	uint64 get_high() const{
+	
+		return high;
+	}
+
+	uint64 get_low() const{
+		
+		return low;
+	}
+}__attribute__ ((packed));
+
+
+
+namespace std {
+
+
 template<>
-class numeric_limits<uint48>{
+class numeric_limits<uint40> {
+  public:
+    static uint40 min() {
+      return uint40(std::numeric_limits<std::uint32_t>::min(),
+          std::numeric_limits<std::uint8_t>::min());
+    }
 
-public:
-
-	/// \brief return min value
-	static uint48 min() {
-
-		return uint48(std::numeric_limits<uint32>::min(), std::numeric_limits<uint16>::min());
-	}
-
-	/// \brief return max value
-	static uint48 max() {
-
-		return uint48(std::numeric_limits<uint32>::max(), std::numeric_limits<uint16>::max());
-	}
+    static uint40 max() {
+      return uint40(std::numeric_limits<std::uint32_t>::max(),
+          std::numeric_limits<std::uint8_t>::max());
+    }
 };
 
-/// \brief numeric_limits for uint128
 template<>
 class numeric_limits<uint128>{
 
 public:
 
-	/// \brief return min value
 	static uint128 min() {
-
-		return uint128(std::numeric_limits<uint64>::min(), std::numeric_limits<uint64>::min());
+		
+		return uint128::min();
 	}
 
-	/// \brief return max value
 	static uint128 max() {
-
-		return uint128(std::numeric_limits<uint64>::max(), std::numeric_limits<uint64>::max());
+	
+		return uint128::max();
 	}
+
 };
 
 }
-
-
 #endif // _TYPES_H
