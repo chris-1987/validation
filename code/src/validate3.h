@@ -2,9 +2,8 @@
 /// Copyright (c) 2016, Sun Yat-sen University,
 /// All rights reserved
 /// \file validate2.h
-/// \brief Use external memory sorter to validate sa and lcp based on karp-rabin finger-printing function
-///  
-/// Different
+/// \brief Using induced-sorting method and Karp-Rabin fingerprinting function to 
+/// validate suffix and LCP arrays
 ///
 /// \author Yi Wu
 /// \date 2016.12
@@ -17,6 +16,8 @@
 #include "common/common.h"
 
 /// \brief A suffix and LCP array validater
+///
+/// \note only support O(1) alphabet 
 template<typename alphabet_type, typename size_type, typename offset_type> 
 class Validator2{
 	

@@ -21,8 +21,11 @@
 
 #include "common/widget.h"
 
+#include "stxxl/timer"
+
 #define TEST_1
 
+#define STATISTICS_COLLECTION
 
 /// \brief validate suffix and LCP arrays using Karp-Rarbin finger-printing function
 template<typename alphabet_type, typename size_type, typename offset_type>
@@ -141,11 +144,20 @@ public:
 	/// Parition sa and lcp into multiple block
 	/// Tackle each piece individually.
 	bool run() {
+	
+#ifdef STATISTICS_COLLECTION
 
 		stxxl::stats *Stats = stxxl::stats::get_instance();
 
+		stxxl::stats_data Stats_begin(*Stats);
+
 		stxxl::block_manager* bm = stxxl::block_manager::get_instance();
-	
+
+		stxxl::timer Timer1;
+
+		Timer1.start();
+#endif	
+
 		typedef std::pair<size_type, offset_type> pair_type;
 
 		uint64 block_capacity = (MAIN_MEM_AVAIL) / (sizeof(size_type) + sizeof(offset_type)) / 3;
@@ -156,6 +168,13 @@ public:
 
 		pair_type* pair3_block = new pair_type[block_capacity]; // (sa[i] + lcp[i + 1] - 1, i)
 
+#ifdef STATISTICS_COLLECTION
+
+		Timer1.stop();
+
+		std::cerr << "Timer 1: " << Timer1.seconds() << " seconds " << Timer1.mseconds() << " mseconds.\n";
+#endif
+
 		//
 		uint64 items_toread = m_len;
 		
@@ -164,6 +183,14 @@ public:
 		uint64 block_id = 0;
 
 		while (items_toread > 0) {
+
+#ifdef STATISTICS_COLLECTION
+
+			stxxl::timer Timer2;
+
+			Timer2.start();
+
+#endif
 
 			uint64 item_num = (items_toread >= block_capacity) ? block_capacity : items_toread;
 
@@ -194,15 +221,15 @@ public:
 
 				pair1_block[j].second = j;
 
-				// pair2_block stores (sa[j] + lcp[j] - 1, j)
-				pair2_block[j].first = *(*sa_reader) + *(*lcp_reader) - 1;
+				// pair2_block stores (sa[j] + lcp[j], j)
+				pair2_block[j].first = *(*sa_reader) + *(*lcp_reader);
 
 				pair2_block[j].second = j;
 
-				// pair3_block stores (sa[j] + lcp[j + 1] - 1, j)
+				// pair3_block stores (sa[j] + lcp[j + 1], j)
 				++(*lcp_reader);
 
-				pair3_block[j].first = *(*sa_reader) + *(*lcp_reader) - 1; 
+				pair3_block[j].first = *(*sa_reader) + *(*lcp_reader); 
 
 				pair3_block[j].second = j;
 
@@ -219,7 +246,7 @@ public:
 				pair1_block[item_num - 1].second = item_num - 1;
 
 				// pair2_block stores (sa[j] + lcp[j], j)
-				pair2_block[item_num - 1].first = *(*sa_reader) + *(*lcp_reader) - 1;
+				pair2_block[item_num - 1].first = *(*sa_reader) + *(*lcp_reader);
 
 				pair2_block[item_num - 1].second = item_num - 1;
 
@@ -237,6 +264,18 @@ public:
 
 			delete lcp_reader; delete lcp; delete lcp_file;
 
+#ifdef STATISTICS_COLLECTION
+
+			Timer2.stop();
+
+			std::cerr << "Timer 2: " << Timer2.seconds() << " seconds " << Timer2.mseconds() << " mseconds.\n";
+		
+			stxxl::timer Timer3;
+
+			Timer3.start();
+
+#endif
+
 			// check block
 			bool is_right = check_block(pair1_block, pair2_block, pair3_block, item_num, block_id, block_capacity, items_toread == item_num);
 
@@ -248,7 +287,18 @@ public:
 			items_read += item_num;
 
 			block_id++;
+
+
+#ifdef STATISTICS_COLLECTION
+
+			Timer3.stop();
+
+			std::cerr << "Timer 3: " << Timer3.seconds() << " seconds " << Timer3.mseconds() << " mseconds.\n";
+		
+#endif
 		}
+
+		std::cerr << (stxxl::stats_data(*Stats) - Stats_begin);
 
 		std::cerr << "MAIN_MEM_AVAIL: " << MAIN_MEM_AVAIL << std::endl;
 
@@ -258,11 +308,21 @@ public:
 
 		std::cerr << "peak disk use per ch: " << bm->get_maximum_allocation() / m_len << std::endl;
 
+		std::cerr << "block num: " << block_id + 1 << std::endl;
+
 		return true;
 	}
 
 	/// \brief check an sa/lcp block
 	bool check_block(std::pair<size_type, uint32>* _pair1_block, std::pair<size_type, uint32>* _pair2_block, std::pair<size_type, uint32>* _pair3_block, const uint64& _item_num, const uint64& _block_id, const uint64& _block_capacity, const bool _is_rightmost) {
+
+#ifdef STATISTICS_COLLECTION
+
+		stxxl::timer Timer4;
+
+		Timer4.start();
+
+#endif
 
 		// sort pairs by first component
 		std::sort(_pair1_block, _pair1_block + _item_num, PairLess1st<std::pair<size_type, uint32>>());
@@ -270,6 +330,18 @@ public:
 		std::sort(_pair2_block, _pair2_block + _item_num, PairLess1st<std::pair<size_type, uint32>>());
 
 		std::sort(_pair3_block, _pair3_block + _item_num - (_is_rightmost ? 1 : 0), PairLess1st<std::pair<size_type, uint32>>());
+
+#ifdef STATISTICS_COLLECTION
+
+		Timer4.stop();
+
+		std::cerr << "Timer 4: " << Timer4.seconds() << " seconds " << Timer4.mseconds() << " mseconds.\n";
+
+		stxxl::timer Timer5;
+
+		Timer5.start();
+		
+#endif
 
 		// read input string to iteratilvey compute fingerprints
 		stxxl::syscall_file t_file(m_t_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
@@ -283,23 +355,18 @@ public:
 		
 		uint64 j1 = 0, j2 = 0, j3 = 0;
 
-		for (uint64 i = 0; i < m_len - 1; ++i) {
+		for (uint64 i = 0; i < m_len; ++i) {
 
 			// store fp[0,i - 1] and set ch = 0
-			while (i == _pair1_block[j1].first) {
+			while (j1 < _item_num && i == _pair1_block[j1].first) {
 
 				_pair1_block[j1].first.set(fp, 0); // reuse high/low part to store ch/fp
 			
 				++j1;
 			}
 
-			// compute fp[0, i]
-			fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*t_reader + 1)) % P); // t_reader + 1 to gurantee non-zero
-
-			++t_reader;
-
 			// store fp[0, i] and ch = *t_reader
-			while (i == _pair2_block[j2].first) {
+			while (j2 < _item_num && i == _pair2_block[j2].first) {
 
 				_pair2_block[j2].first.set(fp, *t_reader);
 
@@ -307,34 +374,35 @@ public:
 			}				
 
 			// store fp[0, i] and ch = *t_reader
-			while (i == _pair3_block[j3].first) {
+			while (j3 < _item_num - (_is_rightmost ? 1 : 0) && i == _pair3_block[j3].first) {
 
 				_pair3_block[j3].first.set(fp, *t_reader);
 
 				++j3;
 			}
+
+			// compute fp[0, i]
+			fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*t_reader + 1)) % P); // t_reader + 1 to gurantee non-zero
+
+			++t_reader;
 		}
 
-		// special case i = m_len - 1
-		while (m_len - 1 == _pair1_block[j1].first) {
+		// special case: m_len
+		while (j1 < _item_num) {
 
 			_pair1_block[j1].first.set(fp, 0); // reuse high/low part to store ch/fp
 			
 			++j1;
 		}
 
-		fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*t_reader + 1)) % P); // t_reader + 1 to gurantee non-zero
-
-		++t_reader;
-
-		while (m_len - 1 == _pair2_block[j2].first) {
+		while (j2 < _item_num) {
 
 			_pair2_block[j2].first.set(fp, std::numeric_limits<typename size_type::high_type>::max());
 
 			++j2;
 		}				
 
-		while (m_len - 1 == _pair3_block[j3].first) {
+		while (j3 < _item_num - (_is_rightmost ? 1 : 0)) {
 
 			_pair3_block[j3].first.set(fp, std::numeric_limits<typename size_type::high_type>::max());
 
@@ -342,13 +410,19 @@ public:
 		}
 
 		//
-		assert(j1 == _item_num);
-	
-		assert(j2 == _item_num);
-
-		assert(j3 == _item_num - (_is_rightmost ? 1 : 0));
-
 		assert(t_reader.empty() == true);
+
+#ifdef STATISTICS_COLLECTION
+
+		Timer5.stop();
+
+		std::cerr << "Timer 5: " << Timer5.seconds() << " seconds " << Timer5.mseconds() << " mseconds.\n";
+
+		stxxl::timer Timer6;
+
+		Timer6.start();
+		
+#endif
 
 		// sort pairs back to original order 
 		std::sort(_pair1_block, _pair1_block + _item_num, PairLess2nd<std::pair<size_type, uint32>>());
@@ -357,6 +431,17 @@ public:
 
 		std::sort(_pair3_block, _pair3_block + _item_num - (_is_rightmost ? 1 : 0), PairLess2nd<std::pair<size_type, uint32>>());
 
+
+#ifdef STATISTICS_COLLECTION
+
+		Timer6.stop();
+
+		std::cerr << "Timer 6: " << Timer6.seconds() << " seconds " << Timer6.mseconds() << " mseconds.\n";
+
+		stxxl::timer Timer7;
+
+		Timer7.start();		
+#endif
 
 		// check result
 		alphabet_type pre_ch;
@@ -438,6 +523,14 @@ public:
 		}
 		
 		//assert(lcp_reader.empty() == true);
+
+#ifdef STATISTICS_COLLECTION
+
+		Timer7.stop();
+
+		std::cerr << "Timer 7: " << Timer7.seconds() << " seconds " << Timer7.mseconds() << " mseconds.\n";
+
+#endif
 
 		return true;
 	}	
