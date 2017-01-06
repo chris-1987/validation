@@ -16,6 +16,8 @@
 
 #include "common.h"
 
+#include "stxxl/sorter"
+
 /// \brief sort pair by 1st component in ascending order
 template<typename pair_type>
 struct PairLess1st{
@@ -39,10 +41,66 @@ struct PairLess2nd{
 };
 
 /// \brief template for vector
-template<typename T>
+template<typename value_type>
 struct ExVector {
 
-	typedef typename stxxl::VECTOR_GENERATOR<T, 8 / sizeof(T) + 1, 2, K_512 * sizeof(T)>::result vector;
+	typedef typename stxxl::VECTOR_GENERATOR<value_type, 8 / sizeof(value_type) + 1, 2, K_512 * sizeof(value_type)>::result vector;
+};
+
+/// \brief function object for comparing tuples by their first component in ascending order
+template<typename tuple_type>
+struct tuple_less_comparator_1st{
+
+	bool operator()(const tuple_type& _a, const tuple_type& _b) const {
+
+		return _a.first < _b.first;
+	}
+
+	/// \brief min value
+	tuple_type min_value() const {
+
+		return tuple_type::min_value();
+	}
+
+	/// \brief max value
+	tuple_type max_value() const {
+
+		return tuple_type::max_value();
+	}
+	
+};
+
+/// \brief function object for comparing tuples by their first two component in ascending order
+template<typename tuple_type>
+struct tuple_less_comparator_2nd{
+
+	bool operator()(const tuple_type& _a, const tuple_type& _b) const {
+
+		if (_a.first == _b.first) return _a.second < _b.second;
+
+		return _a.first < _b.first;
+	}
+
+	/// \brief min value
+	tuple_type min_value() const {
+
+		return tuple_type::min_value();
+	}
+
+	/// \brief max value
+	tuple_type max_value() const {
+
+		return tuple_type::max_value();
+	}
+};
+
+/// \brief template for sorter
+template<typename tuple_type, typename tuple_comparator_type>
+struct ExTupleSorter{
+
+	typedef typename stxxl::sorter<tuple_type, tuple_comparator_type> sorter;
+	
+	typedef tuple_comparator_type comparator;	
 };
 
 #endif

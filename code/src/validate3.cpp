@@ -1,4 +1,6 @@
-#include "validate2.h"
+#include "validate3.h"
+
+char* prog_name;
 
 int main(int argc, char **argv) {
 
@@ -15,10 +17,10 @@ int main(int argc, char **argv) {
 	std::string lcp_fn(argv[3]);
 
 	//
-	Validate2<uint8, uint40> validate2(t_fn, sa_fn, lcp_fn);
+	Validate3<uint8, uint40> validate3(t_fn, sa_fn, lcp_fn);
 
 	// check
-	if (false == validate2.run()) {
+	if (false == validate3.run()) {
 
 		std::cerr << "check--failed\n";
 	}

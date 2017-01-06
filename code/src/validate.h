@@ -4,9 +4,10 @@
 /// \file validate.h
 /// \brief first method for validating suffix and LCP arrays
 ///
-/// Given suffix and LCP arrays, validate their correctness using Karp-Rabin Finger-printing function.
+/// Given suffix and LCP arrays, validate their correctness using external memory sorts and Karp-Rabin Finger-printing function.
 ///
-/// \note The alphabet is assumed to be constant
+/// The alphabet of input string is assumed to be O(1) or O(n).
+///
 /// \author Yi Wu
 /// \date 2016.12
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

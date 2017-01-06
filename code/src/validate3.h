@@ -1,66 +1,140 @@
 ////////////////////////////////////////////////////////////
 /// Copyright (c) 2016, Sun Yat-sen University,
 /// All rights reserved
-/// \file validate2.h
-/// \brief Using induced-sorting method and Karp-Rabin fingerprinting function to 
-/// validate suffix and LCP arrays
+/// \file validate3.h
+/// \brief validate sa and lcp using external memory sorts and Karp-rabin finger-print function.
+///  
+/// \note The alphaber size of the input string is assumed to be O(1) or O(n).
+/// \note This is the first method reported in xxx.
 ///
 /// \author Yi Wu
 /// \date 2016.12
 ///////////////////////////////////////////////////////////
 
 
-#ifndef VALIDATE2_H
-#define VALIDATE2_H
+#ifndef VALIDATE3_H
+
+#define VALIDATE3_H
 
 #include "common/common.h"
 
-/// \brief A suffix and LCP array validater
+#include "common/tuples.h"
+
+#include "common/widget.h"
+
+#include "common/basicio.h"
+
+#define TEST_VALIDATE3
+
+/// \brief validate sa and lcp using Karp-Rabin fingerprinting function
 ///
-/// \note only support O(1) alphabet 
-template<typename alphabet_type, typename size_type, typename offset_type> 
-class Validator2{
-	
+/// type of elements in the input string and suffix/LCP array are specified by alphabet_type and size_type, respectively.
+template<typename alphabet_type, typename size_type>
+class Validate3{
+
 private:
 
-	typedef typename ExVector<size_type>::vector size_vector_type;
+	/// \brief store (R % P)^1, (R % P)^2, (R % P)^4, ...
+	struct RInterval{
+	
+		fpa_type* m_data;
+	
+		uint64 m_num;
+	
+		/// \brief constructor
+		RInterval(uint64 _len) {
+	
+			m_num = 1;
+	
+			while(_len) {
+	
+				++m_num;
+	
+				_len /= 2;
+			}
+	
+			m_data = new fpa_type[m_num];
+	
+			m_data[0] =  R % P;
+	
+			for(uint64 i = 1; i < m_num; ++i) {
+	
+				m_data[i] = static_cast<fpa_type>((static_cast<fpb_type>(m_data[i - 1]) * m_data[i - 1]) % P);
+			}
+		
+			return;
+		}
 
+		/// \brief get fpInterval
+		fpa_type compute(uint64 _interval) {
+
+			fpa_type ret = 1;
+				
+			for (uint64 i = 0; i < m_num; ++i) {
+	
+				if (_interval % 2) {
+	
+					ret = static_cast<fpa_type>((static_cast<fpb_type>(ret) * m_data[i]) % P);
+				}
+	
+				_interval = _interval / 2;
+	
+				if (_interval == 0) break;
+			}
+	
+			return ret;
+		}	
+	};
+
+private:
+
+	std::string m_t_fn; ///< filename for intput string
+
+	std::string m_sa_fn; ///< filename for suffix array	
+
+	std::string m_lcp_fn; ///< filename for LCP array
+
+	uint64 m_len; ////< length of input string/SA/LCP
+
+	RInterval* m_rinterval; ///< pointer to RInterval object
+
+private:
+
+	// alias
+	//
 	typedef typename ExVector<alphabet_type>::vector alphabet_vector_type;
 
-	typedef std::pair<size_type, size_type> pair_type;
+	typedef typename ExVector<size_type>::vector size_vector_type;	
 
-	typedef PairLess1st<pair_type> pair_comparator_type;
+	// sort by 1st component
+	typedef pair<size_type, size_type> pair1_type;
 
-	typedef typename ExTupleAscSorter<pair_type, pair_comparator_type>::sorter pair_sorter_type;
+	typedef tuple_less_comparator_1st<pair1_type> pair1_comparator_type;
 
-	typedef std::pair<size_type, fpa_type> pair_type2;
+	typedef typename ExTupleSorter<pair1_type, pair1_comparator_type>::sorter pair1_sorter_type;
 
-	typedef PairLess1st<pair_type> pair_comparator_type2;
+	// sort by 1st component
+	typedef pair<size_type, fpa_type> pair2_type;
 
-	typedef typename ExTupleAscSorter<pair_type2, Pair_comparator_type2>::sorter pair_sorter_type2;
+	typedef tuple_less_comparator_1st<pair2_type> pair2_comparator_type;
 
-	typedef typename ExVector<fpa_type>::vector fpa_vector_type;
+	typedef typename ExTupleSorter<pair2_type, pair2_comparator_type>::sorter pair2_sorter_type;
 
-private:
-	
-	std::string m_t_fn; ///< t file name
+	// sort by 1st component
+	typedef triple<size_type, fpa_type, uint16> triple_type;
 
-	std::string m_sa_fn; ///< sa file name
+	typedef tuple_less_comparator_1st<triple_type> triple_comparator_type;
 
-	std::string m_lcp_fn; ///< lcp file name
+	typedef typename ExTupleSorter<triple_type, triple_comparator_type>::sorter triple_sorter_type;
 
-	uint64 m_len; ///< number of elements in t/sa/lcp
-	
-	uint64 m_lms_num; ///< number of LMS 
-
-	size_vector_type* m_sa_lms;
-
-	size_vector_type* m_lcp_lms;
-	
 public:
 
 	/// \brief constructor
-	Validator2(const std::string& _t_fn, const std::string& _sa_fn, const std::string& _lcp_fn) {
+	///
+	/// \param _t_fn  input string
+	/// \param _sa_fn suffix array
+	/// \param _lcp_fn lcp array
+	Validate3(const std::string& _t_fn, const std::string& _sa_fn, const std::string& _lcp_fn) {
 
 		m_t_fn = _t_fn;
 
@@ -68,529 +142,253 @@ public:
 
 		m_lcp_fn = _lcp_fn;
 
-		m_len = BasicIO::file_size(m_t_fn) / sizeof(alphabet_type);
+		m_len = BasicIO::file_size(_t_fn) / sizeof(alphabet_type);
 
-		///use karp rabin method to validate suffix and LCP arrays for LMS suffixes
-		checkLMS();		
-
-	}
-
-	/// \brief run checking process
-	void run() {
-
-		/// step 1: use karp-rabin method to validate lms_sa and lms_lcp
-		checkLMS();
+		m_rinterval = new RInterval(m_len);
 	}
 
 
-	/// \brief check lms_sa and lms_lcp
+	/// \brief core part of the program
 	///
-	/// use karp-rabin finger-print function to validate lms_sa and lms_lcp
-	/// Given the input string of n characters, we check lms_sa and lms_lcp by two different methods in the following two cases:
-	/// case (1) if n / (MEM_AVAIL / sizeof(size_type) /3) * 1 + sizeof(size_type * 2 >  
-	void check_lms() {
+	bool run() {
 
-		// step 1
-		retrieve_lms();
+		//
+		stxxl::stats *Stats = stxxl::stats::get_instance();
+
+		stxxl::stats_data Stats_begin(*Stats);
+
+		stxxl::block_manager *bm = stxxl::block_manager::get_instance();
+
+		stxxl::timer Timer;
+
+		Timer.start();
+
+		// step 1: fetch fp[0, sa[i] - 1]	
+		pair2_sorter_type* sorter1 = fetch_fp();
+
+		// step 2: fetch fp[0, sa[i] +lcp[i] - 1]
+		triple_sorter_type* sorter2 = fetch_fp_ch_cur();
+
+		// step 3: fetch fp[0, sa[i - 1] + lcp[i] - 1]
+		triple_sorter_type* sorter3 = fetch_fp_ch_pre();
+
+		// step 4: check the result
+		bool res = check(sorter1, sorter2, sorter3);
+
+		delete sorter1; sorter1 = nullptr;
+
+		delete sorter2; sorter2 = nullptr;
+
+		delete sorter3; sorter3 = nullptr;
+
+
+		//
+		Timer.stop();
+		
+		std::cerr << "elapsed time: " << Timer.seconds() << " seconds " << Timer.mseconds() << "mseconds.\n";
+	
+		std::cerr << (stxxl::stats_data(*Stats) - Stats_begin);
+
+		std::cerr << "MAIN_MEM_AVAIL: " << MAIN_MEM_AVAIL << std::endl;
+
+		std::cerr << "total IO volume: " << Stats->get_written_volume() + Stats->get_read_volume() << std::endl;
+
+		std::cerr << "IO volume per ch: " << (Stats->get_written_volume() + Stats->get_read_volume()) / m_len << std::endl;
+
+		std::cerr << "peak disk use per ch: " << bm->get_maximum_allocation() / m_len << std::endl;
+		
 
 		
-		// step 2
-		if (true) { // use block-parition method in RAM
-
-
-			check_lms_method1();
-		}
-		else { // use external sorting method
-
-			check_lms_method2();
-		}
+		return res;
 	}
 
+	/// \brief fetch fp[0, sa[i] - 1]
 	///
-	void retrieve_lms() {
+	pair2_sorter_type* fetch_fp() {
 
-		typedef std::pair<size_type, size_type> pair_type;
-
-		typedef TupleGreatCompartor1st<pair_type> pair_great_comparator_type;
-
-		typedef ExTupleDescSorter<pair_type, pair_great_comparator_type> pair_great_sorter_type;
+		// sort <sa[i], i> by 1st component to produce isa
+		pair1_sorter_type* pair1_sorter = new pair1_sorter_type(pair1_comparator_type(), MAIN_MEM_AVAIL / 4);
 
 		stxxl::syscall_file* sa_file = new stxxl::syscall_file(m_sa_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
-			
+
 		size_vector_type* sa = new size_vector_type(sa_file);
-			
-		typename size_vector_type::bufreader_type* sa_reader = new typename size_vector_type::bufreader_type(*sa);
 
-		pair_great_sorter_type *pair_great_sorter = new pair_great_sorter_type(pair_great_comparator_type(), MEM_AVAIL / 2);
+		typename size_vector_type::bufreader_type *sa_reader = new typename size_vector_type::bufreader_type(*sa);
+		
+		for (uint64 idx = 1; !sa_reader->empty();  ++(*sa_reader), ++idx) {
 
-		for (uint64 i = 1; sa_reader->empty(); ++(*sa_reader), ++i) { // start couting from 1
-
-			pair_great_sorter->push(pair_type(*(*sa_reader), i));
+			pair1_sorter->push(pair1_type(*(*sa_reader), idx));		
 		}
 
-		pair_great_sorter->sort();
+		delete sa_reader; sa_reader = nullptr;
 
-		// 
-		typedef TupleLessComparator2nd<pair_type> pair_less_comparator_type;
+		delete sa; sa = nullptr;
 
-		typedef ExTupleAscSorter<pair_type, pair_less_comparator_type> pair_less_sorter_type;
+		delete sa_file; sa_file = nullptr;
+
+		pair1_sorter->sort();
+		
+		// scan t iteratively to compute fingerprints
+		pair2_sorter_type* pair2_sorter = new pair2_sorter_type(pair2_comparator_type(), MAIN_MEM_AVAIL / 4);
 
 		stxxl::syscall_file* t_file = new stxxl::syscall_file(m_t_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
 
 		alphabet_vector_type* t = new alphabet_vector_type(t_file);
 
-		typename alphabet_vector_type::bufreader_reverse_type* t_reverse_reader = new typename alphabet_vector_type::bufreader_reverse_type(*t);
+		typename alphabet_vector_type::bufreader_type *t_reader = new typename alphabet_vector_type::bufreader_type(*t);
 
-		pair_less_sorter_type* pair_less_sorter = new pair_less_sorter_type(pair_less_comparator_type(), MAX_AVAIL / 2);
+		fpa_type fp = 0;
 
-		//
-		m_lms_num = 0;
-	
-		alphabet_type pre_ch = *(*t_reverse_reader);
+		for (; !t_reader->empty(); ++(*t_reader), ++(*pair1_sorter)) {
 
-		uint8 pre_ch_type = L_TYPE, cur_ch_type;
+			const pair1_type& tuple = *(*pair1_sorter);
+		
+			pair2_sorter->push(pair2_type(tuple.second, fp));
 
-		++(*t_reverse_reader);
-
-		for (; t_reverse->reader->empty(); ++(*t_reverse->reader), ++(*pair_great_sorter)) {
-
-			
-			const alphabet_type& cur_ch = *(*t_reverse_reader);
-
-			cur_ch_type = (cur_ch < pre_ch || (cur_ch == pre_ch && pre_ch_type == S_TYPE) ? S_TYPE : L_TYPE;
-
-			if (cur_ch_type == L_TYPE && pre_ch_type == S_TYPE) {
-				
-				pair_less_sorter->push(pair_type(*(*pair_great_sorter));				
-				
-				++m_lms_num;
-			}
-
-			pre_ch = cur_ch;
-
-			pre_ch_type = cur_ch_type;
+			fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*(*t_reader) + 1)) % P); // plus 1 to avoid equal to 0
 		}
 
-		delete t_reverse_reader; t_reverse_reader = nullptr;
+		delete t_reader; t_reader = nullptr;
 
 		delete t; t = nullptr;
 
 		delete t_file; t_file = nullptr;
 
-		delete pair_great_sorter; pair_great_sorter = nullptr;
+		delete pair1_sorter; pair1_sorter = nullptr;
 
-		pair_less_sorter->sort();
+		pair2_sorter->sort();
 
-		stxxl::syscall_file* lcp_file = new stxxl::syscall_file(m_lcp_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
+		return pair2_sorter;	
+	}
+
+	/// \brief fetch fp[0, sa[i] + lcp[i] - 1] and t[sa[i] + lcp[i]]
+	///
+	triple_sorter_type* fetch_fp_ch_cur() {
+
+		// sort (sa[i] + lcp[i], i) by i
+		pair1_sorter_type* pair1_sorter = new pair1_sorter_type(pair1_comparator_type(), MAIN_MEM_AVAIL / 4);
 		
+		stxxl::syscall_file* sa_file = new stxxl::syscall_file(m_sa_fn, stxxl::syscall_file::DIRECT | stxxl::syscall_file::RDWR);
+
+		size_vector_type* sa = new size_vector_type(sa_file);
+
+		typename size_vector_type::bufreader_type* sa_reader = new typename size_vector_type::bufreader_type(*sa);
+
+		stxxl::syscall_file* lcp_file = new stxxl::syscall_file(m_lcp_fn, stxxl::syscall_file::DIRECT | stxxl::syscall_file::RDWR);
+
 		size_vector_type* lcp = new size_vector_type(lcp_file);
 
-		typename size_vector_type::bufreader_revers_type* lcp_reader = new typename size_vector_type::bufreader_rerversetype(*lcp);
+		typename size_vector_type::bufreader_type* lcp_reader = new typename size_vector_type::bufreader_type(*lcp);
 
-		m_sa_lms = new size_vector_type(); m_sa_lms->resize(m_lms_num);
+		++(*sa_reader), ++(*lcp_reader);
 
-		typename size_vector_type::bufwriter_type* sa_lms_writer(*m_sa_lms);
+		for (uint64 idx = 1; !sa_reader->empty(); ++(*sa_reader), ++(*lcp_reader), ++idx) {
 
-		m_lcp_lms = new size_vector_type(); m_lcp_lms->resize(m_lms_num);
-	
-		typename size_vector_type::bufwriter_type* lcp_lms_writer(*m_lcp_lms);
+			pair1_sorter->push(pair1_type(*(*sa_reader) + *(*lcp_reader), idx));
+		}
 
-		size_type lcp_range_min = std::numeric:limits<size_type>::max();
+		delete sa_reader; sa_reader = nullptr;
 
-		size_type pos = 1;
+		delete sa; sa = nullptr;
 
-		while (!pair_less_sorter->empty()) {
+		delete sa_file; sa_file = nullptr;
 
-			while((*pair_less_sorter)->second != pos) {
+		delete lcp_reader; lcp_reader = nullptr;
+		
+		delete lcp; lcp = nullptr;
 
-				++(*lcp_reader);
-				
+		delete lcp_file; lcp_file = nullptr;
+
+		pair1_sorter->sort();
+
+		// scan t iteratively to compute fingeprints in need
+		triple_sorter_type* triple_sorter = new triple_sorter_type(triple_comparator_type(), MAIN_MEM_AVAIL / 4);
+
+		stxxl::syscall_file* t_file = new stxxl::syscall_file(m_t_fn, stxxl::syscall_file::DIRECT | stxxl::syscall_file::RDWR);
+
+		alphabet_vector_type* t = new alphabet_vector_type(t_file);
+
+		typename alphabet_vector_type::bufreader_type* t_reader = new typename alphabet_vector_type::bufreader_type(*t);
+
+		fpa_type fp = 0;
+
+		uint16 ch;
+
+		for (uint64 pos = 0; !pair1_sorter->empty(); ++(*pair1_sorter)) {
+
+			const pair1_type& tuple = *(*pair1_sorter);
+
+			while (pos != tuple.first) {
+
+				fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*(*t_reader) + 1)) % P); // fp[0, tuple.first - 1]
+
+				++(*t_reader);
+
 				++pos;
 			}
 
-			lcp_range_min = std::min(*(*lcp_reader), lcp_range_min);
+			ch = (m_len == pos) ? std::numeric_limits<uint16>::max() : (*(*t_reader));
 
-			(*sa_lms_writer) << (*pair_less_sorter)->first;	
-
-			(*lcp_lms_writer) << lcp_range_min;
-
-			lcp_range_min = std::numeric_limits<size_type>::max();
-
-			++(*pair_less_comparator);
+			triple_sorter->push(triple_type(tuple.second, fp, ch));
 		}
 
-		(*sa_lms_writer).finish();
+		delete t_reader; t_reader = nullptr;
 
-		(*lcp_lms_writer).finis();
+		delete t; t = nullptr;
 
-		delete sa_lms_writer; sa_lms_writer = nullptr;
+		delete t_file; t_file = nullptr;
 
-		delete lcp_lms_writer; lcp_lms_writer = nullptr;
+		delete pair1_sorter; pair1_sorter = nullptr;
 
-		delete pair_less_comparator; pair_less_comparator = nullptr; 
+		triple_sorter->sort();
+
+		return triple_sorter;
+	}
+
+	/// \brief fetch fp[0, sa[i - 1] + lcp[i] - 1] and t[sa[i - 1] + lcp[i]]
+	///
+	triple_sorter_type* fetch_fp_ch_pre() {
+
+		// sort (sa[i - 1] + lcp[i], i) by i
+		pair1_sorter_type* pair1_sorter = new pair1_sorter_type(pair1_comparator_type(), MAIN_MEM_AVAIL / 4);
+		
+		stxxl::syscall_file* sa_file = new stxxl::syscall_file(m_sa_fn, stxxl::syscall_file::DIRECT | stxxl::syscall_file::RDWR);
+
+		size_vector_type* sa = new size_vector_type(sa_file);
+
+		typename size_vector_type::bufreader_type* sa_reader = new typename size_vector_type::bufreader_type(*sa);
+
+		stxxl::syscall_file* lcp_file = new stxxl::syscall_file(m_lcp_fn, stxxl::syscall_file::DIRECT | stxxl::syscall_file::RDWR);
+
+		size_vector_type* lcp = new size_vector_type(lcp_file);
+
+		typename size_vector_type::bufreader_type* lcp_reader = new typename size_vector_type::bufreader_type(*lcp);
+
+		++(*lcp_reader); // skip the leftmost lcp
+
+		for (uint64 idx = 1; !lcp_reader->empty(); ++(*sa_reader), ++(*lcp_reader), ++idx) {
+
+			pair1_sorter->push(pair1_type(*(*sa_reader) + *(*lcp_reader), idx));
+		}
+
+		delete sa_reader; sa_reader = nullptr;
+
+		delete sa; sa = nullptr;
+
+		delete sa_file; sa_file = nullptr;
 
 		delete lcp_reader; lcp_reader = nullptr;
-
-		delete lcp;
-
-		delete lcp_file;
-	}
-
-
-	/// \brief check sa_lms and lcp_lms using block-paritioning method
-	void check_lms_method1() {
-
-		typedef std::pair<size_type, offset_type> pair_type;
-
-		uint64 block_capacity = MAIN_MEM_AVAIL / sizeof(size_type) / 3;
 		
-		uint64 block_num = m_lms_num / block_capacity + (m_lms_num % block_capacity) ? 1 : 0;
+		delete lcp; lcp = nullptr;
 
-		pair_type* pair1_block = new pair_type[block_capacity];
+		delete lcp_file; lcp_file = nullptr;
 
-		pair_type* pair2_block = new pair_type[block_capacity];
+		pair1_sorter->sort();
 
-		pair_type* pair3_block = new pair_type[block_capacity];
+		// scan t to iteratively compute fingeprints in need
+		triple_sorter_type* triple_sorter = new triple_sorter_type(triple_comparator_type(), MAIN_MEM_AVAIL / 4);
 
-		uint64 items_toread = m_lms_num;
-
-		uint64 items_read = 0;
-
-		uint64 block_id = 0;
-
-		while (items_toread > 0) {
-
-			stxxl::timer Timer2;
-
-			Timer2.start();
-
-			uint64 item_num = (items_toread >= block_capacity) ? block_capacity : items_toread;
-
-			typename size_vector_type::const_iterator sa_lms_beg = m_sa_lms->begin() + items_read;
-
-			typename size_vector_type::const_iterator sa_lms_end = sa_lms_beg + item_num;
-
-			typename size_vector_type::bufreader_type* sa_lms_reader = new typename size_vector_type::bufreader_type(sa_beg, sa_end, 2ul);
-
-			typename size_vector_type::const_iterator lcp_beg = m_lcp_lms->begin() + items_read;
-
-			typename size_vector_type::const_iterator lcp_end = lcp_beg + item_num;
-
-			typename size_vector_type::bufreader_type* lcp_lms_reader = new typename size_vector_type::bufreader_type(lcp_beg, lcp_end, 2ul);
-
-			for (uint32 j = 0; j < item_num - ((items_toread == item_num) ? 1 : 0); ++j) {
-
-				pair1_block[j].first = *(*sa_lms_reader);
-
-				pair1_block[j].second = j;
-
-				pair2_block[j].first = *(*sa_lms_reader) + *(*lcp_lms_reader);
-
-				pair2_block[j].second = j;
-
-				++(*lcp_lms_reader);
-
-				pair3_block[j].first = *(*sa_lms_reader) + *(*lcp_lms_reader);
-			
-				pair3_block[j].second = j;
-
-				++(*sa_lms_reader);
-			}
-			
-			// special case: in the rightmost block, lcp_lms[item_num] doesn't exist
-			if (items_toread == item_num) {
-
-				pair1_block[item_num - 1].first = *(*sa_lms_reader);
-
-				pair1_block[item_num - 1].second = item_num - 1;
-
-				pair2_block[item_num - 1].first = *(*sa_lms_reader) + *(*lcp_lms_reader);
-
-				pair2_block[item_num - 1].second = item_num - 1;
-			}
-		
-			++(*lcp_lms_reader);
-
-			assert(sa_lms_reader->empty() == true);
-
-			assert(lcp_lms_reader->empty() == true);
-
-			delete sa_lms_reader; 
-
-			delete lcp_lms_reader;
-		
-			bool is_right = check_block(pair1_block, pair2_block, pair3_block, item_num, block_id, block_capacity, items_toread == item_num);
-
-			items_toread -= item_num;
-
-			items_read += item_num;
-
-			block_id++;
-		}
-
-		return true;
-	}
-
-	bool check_block(std::pair<size_type, offset_type>* _pair1_block, std::pair<size_type, offset_type>* _pair2_block, std::pair<size_type, offset_type>* _pair3_block, const uint64& _item_num, const uint64& _block_id, const uint64& _block_capacity, const bool _is_rightmost) {
-
-		typedef std::pair<size_type, offset_type> pair_type;
-
-		std::sort(_pair1_block, _pair1_block + _item_num, PairLess1st<std::pair<size_type, offset_type>>());
-
-		std::sort(_pair2_block, _pair2_block + _item_num, PairLess1st<std::pair<size_type, offset_type>>());
-
-		std::sort(_pair3_block, _pair3_block + _item_num - (_is_rightmost ? 1 : 0), PairLess1st<std::pair<size_type, offset_type>>());
-
-		stxxl::syscall_file t_file(m_t_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
-
-		alphabet_vector_type t(&t_file);
-
-		typename alphabet_vector_type::bufreader_type t_reader(t);
-
-		//
-		fpa_type fp = 0;
-		
-		uint64 j1 = 0, j2 = 0, j3 = 0;
-
-		for (uint64 i = 0; i < m_lms_num; ++i) {
-
-			while (j1 < m_lms_num && i == _pair1_block[j1].first) {
-
-				_pair1_block[j1].first.set(fp, 0);
-
-				++j1;
-			}
-
-			while (j2 < m_lms_num && i == _pair2_block[j2].first) {
-
-				_pair2_block[j2].first.set(fp, 0);
-
-				++j2;
-			}
-
-			while (j3 < m_lms_num && i == _pair3_block[j3].first) {
-
-				_pair3_block[j3].first.set(fp, 0);
-
-				++j3;
-			}
-
-			fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*t_reader + 1)) % P);
-
-			++t_reader;
-		}
-
-		// special case
-		while (j1 < m_lms_num) {
-
-			_pair1_block[j1].first.set(fp, 0);
-
-			++j1;
-		}
-
-		while (j2 < m_lms_num) {
-
-			_pair2_block[j2].first.set(fp, std::numeric_limits<typename size_type::high_type>::max());
-
-			++j1;
-		}
-
-		while (j3 < m_lms_num - (_is_rightmost ? 1 : 0)) {
-
-			_pair3_block[j3].first.set(fp, std::numeric_limits<typename size_type::high_type>::max());
-		}
-		
-		//
-		assert(t_reader.empty() == true);
-
-		std::sort(_pair1_block, _pair1_block + _item_num, PairLess2nd<pair_type>());
-
-		std::sort(_pair2_block, _pair2_block + _item_num, PairLess2nd<pair_type>());
-
-		std::sort(_pair3_block, _pair3_block + _item_num - (_is_rightmost ? 1 : 0), PairLess2nd<pair_type>());
-
-		// check result
-		alphabet_type pre_ch;
-
-		fpa_type fp_interval, pre_fp_interval;
-
-		//
-		typename size_vector_type::const_iterator lcp_lms_beg = lcp_lms->begin();
-
-		typename size_vector_type::const_iterator lcp_lms_end = lcp_lms_beg + _item_num + (_is_rightmost ? 0 : 1);
-
-		typename size_vector_type::bufreader_type lcp_lms_reader(lcp_beg, lcp_end, 2ul);
-
-		// check first pair 
-		if (0 == _block_id) {
-
-			pre_ch = _pair3_block[0].first.get_high();
-
-			++lcp_lms_reader;
-
-			pre_fp_interval = static_cast<fpa_type>(((static_cast<fpb_type>(_pair3_block[0].first.get_low()) - static_cast<fpb_type>(_pair1_block[0].first.get_low()) * m_rinterval->compute(*lcp_lms_reader) % P) + P) % P);
-		}
-		else {
-
-			pre_ch = m_pre_ch;
-
-			pre_fp_interval = m_pre_fp_interval;
-		}
-
-		// if leftmost block, skip checking leftmost lcp
-		for (uint64 i = ((_block_id == 0) ? 1 : 0); i < _item_num - (_is_rightmost ? 1 : 0); ++i) {
-
-			if (pre_ch == pair2_block[i].first.get_high()) {
-
-				return false;
-			}
-
-			fp_interval = static_cast<fpa_type>(((static_cast<fpb_type>(pair2_block[i].first.get_low()) - static_cast<fpb_type>(_pair1_block[i].first.get_low()) * m_rinterval->compute(*lcp_lms_reader) % P) + P) % P);
-
-			if (fp_interval != pre_fp_interval) {
-
-				return false;
-			}
-
-			pre_ch = _pair3_block[i].first.get_high();
-
-			++lcp_reader;
-
-			pre_fp_interval = static_cast<fpa_type>(((static_cast<fpb_type>(_pair3_block[i].first.get_low()) - static_cast<fpb_type>(_pair1_block[i].first.get_low()) * m_rinterval->compute(*lcp_lms_reader) % P) + P) % P);
-		}
-
-		if (_is_rightmost) {
-
-			if (pre_ch == _pair2_block[_item_num - 1].first.get_high()) return false;
-
-
-			fp_interval = static_cast<fpa_type>(((static_cast<fpb_type>(_pair2_block[_item_num - 1].first.get_low()) - static_cast<fpb_type>(_pair1_block[_item_num - 1].first.get_low()) * m_rinterval->compute(*lcp_lms_reader) % P) + P) % P);
-
-			if (fp_interval != pre_fp_interval) return false;
-
-			++lcp_reader;
-		}
-		else {
-
-			m_pre_ch = pre_ch;
-
-			m_pre_fp_interval = pre_fp_interval;
-		}
-
-		return true;
-	}
-
-
-	/// \brief check sa_lms and lcp_lms using external memory sorting method
-	void check_lms_method2() {
-
-		// step 1: compute fp[0, sa_lms[i] - 1] 
-		pair_sorter_type* pair_sorter1 = new pair_sorter_type(pair_comparator_type, MEM_AVAIL / 4);		
-
-		{
-			typename size_type_vector::bufreader_type* sa_lms_reader = new typename size_vector_type::bufreader_type(*m_sa_lms);
-	
-			for (T i = 0; !sa_lms_reader->empty(); ++(*sa_lms_reader), ++i) {// T[0] must not be lms, thus let i start from 0
-	
-				pair_sorter1->push(pair_type(*(*sa_lms_reader)), i);
-			}
-	
-			assert(sa_lms_reader->empty() == true);
-
-			delete sa_lms_reader; sa_lms_reader = nullptr;
-	
-			pair_sorter1->sort();
-		}
-
-		pair_sorter_type2* pair_sorter2 = new pair_sorter_type2(pair_comparator_type2(), MEM_AVAIL / 4); 
-		
-		compute_fp(pair_sorter1, pair_sorter2); 
-
-		delete pair_sorter1; pair_sorter1 = nullptr;
-
-
-		// step 2: compute fp[0, sa_lms[i] + lcp_lms[i] - 1]
-		pair_sorter_type* pair_sorter3 = new pair_sorter_type(pair_comparator_type, MEM_AVAIL / 4);
-
-		{
-			typename size_type_vector::bufreader_type* sa_lms_reader = new typename size_vector_type::bufreader_type(*m_sa_lms);
-
-			typename size_type_vector::bufreader_type* lcp_lms_reader = new typename size_vector_type::bufreader_type(*m_lcp_lms);
-	
-			for (T i = 0; ! sa_lms_reader->empty(); ++(*sa_lms_reader), ++(*lcp_lms_reader), ++i) {
-	
-				pair_sorter3->push(pair_type(*(*sa_lms_reader) + *(*lcp_lms_reader)), i);
-			}
-
-			assert(lcp_lms_reader->empty() == true);
-
-			assert(sa_lms_reader->empty() == true);
-
-			delete sa_lms_reader; sa_lms_reader = nullptr;
-
-			delete lcp_lms_reader; lcp_lms_reader = nullptr;
-
-			pair_sorter3->sort();
-		}
-		
-		pair_sorter_type2* pair_sorter4 = new pair_sorter_type2(pair_comparator_type2(), MEM_AVAIL / 4);
-	
-		compute_fp_ch(pair_sorter3, pair_sorter4);
-
-		delete pair_sorter3; pair_sorter3 = nullptr;
-
-		// step 4: compute fp[0, sa[i] + lcp[i + 1] - 1]
-		pair_sorter_type* pair_sorter5 = new pair_sorter_type(pair_comparator_type, MEM_AVAIL / 4);
-
-		{
-			typename size_type_vector::bufreader_type* sa_lms_reader = new typename size_vector_type::bufreader_type(*m_sa_lms);
-
-			typename size_type_vector::bufreader_type* lcp_lms_reader = new typename size_vector_type::bufreader_type(*m_lcp_lms);
-	
-			++(*lcp_lms_reader); // forward one element
-		
-			for (T i = 0; !lcp_lms_reader->empty(); ++(*sa_lms_reader), ++(*lcp_lms_reader), ++i) {
-	
-				pair_sorter5->push(pair_type(*(*sa_lms_reader) + *(*lcp_lms_reader)), i);
-			}
-			
-			++(*sa_lms_reader);
-
-			assert(lcp_lms_reader->empty() == true);
-
-			assert(sa_lms_reader->empty() == true);
-
-			delete sa_lms_reader; sa_lms_reader = nullptr;
-
-			delete lcp_lms_reader; lcp_lms_reader = nullptr;
-
-			pair_sorter5->sort();
-		}
-		
-		pair_sorter_type2* pair_sorter6 = new pair_sorter_type(pair_comparator_type(), MEM_AVAIL / 4);
-
-		compute_fp_ch(pair_sorter5, pair_sorter6);
-
-		delete pair_sorter5; pair_sorter5 = nullptr;
-	
-		//
-		check_fp_ch(pair_sorter2, pair_sorter4, pair_sorter6);
-
-		delete pair_sorter2; pair_sorter2 = nullptr;
-
-		delete pair_sorter4; pair_sorter4 = nullptr;
-
-		delete pair_sorter6; pair_sorter6 = nullptr;
-
-		return;
-	}
-
-
-	/// \brief 
-	void compute_fp(pair_sorter_type* _pair_sorter1, pair_sorter_type2* _pair_sorter2){
-
-		// scan input T rightward, iteratively compute fp[0, i] and retrieve required fingerprints
-		stxxl::syscall_file* t_file = new stxxl::syscall_file(m_t_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
+		stxxl::syscall_file* t_file = new stxxl::syscall_file(m_t_fn, stxxl::syscall_file::DIRECT | stxxl::syscall_file::RDWR);
 
 		alphabet_vector_type* t = new alphabet_vector_type(t_file);
 
@@ -598,56 +396,24 @@ public:
 
 		fpa_type fp = 0;
 
+		uint16 ch;
 
-		for (T pos = 0; !t_reader.empty(); ++(*t_reader), ++pos) {
+		for (uint64 pos = 0; !pair1_sorter->empty(); ++(*pair1_sorter)) {
 
-			while ((*_pair_sorter1)->first == pos) {
+			const pair1_type& tuple = *(*pair1_sorter);
 
-				_pair_sorter2->push(pair_type2(fp, (*_pair_sorter)->second));
-			}		
+			while (pos != tuple.first) {
 
-			fp = static_cast<fpa_type>((static_cast<fpa_typb>(fp) * R + (*(*t_reader) + 1)) % P);
-		}
+				fp = static_cast<fpa_type>((static_cast<fpb_type>(fp) * R + (*(*t_reader) + 1)) % P);
 
-		// t[m_len - 1] is L_TYPE (right before the sentinel), thus not an LMS as well.
+				++(*t_reader);
 
-		delete t_reader; t_reader = nullptr;
+				++pos;
+			}
 
-		delete t; t = nullptr;
+			ch = (m_len == pos) ? std::numeric_limits<uint16>::max() : (*(*t_reader));
 
-		delete t_file; t_file = nullptr;
-
-		_pair2_sorter2->sort();
-
-		retuurn;
-	} 
-
-	/// \brief 
-	void compute_fp_ch(pair_sorter_type* _pair_sorter1, pair_sorter_type* _pair_sorter2){
-
-		// scan input T rightward, iteratively compute fp[0, i] and retrieve required fingerprints
-		stxxl::syscall_file* t_file = new stxxl::syscall_file(m_t_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
-
-		alphabet_vector_type* t = new alphabet_vector_type(t_file);
-
-		typename alphabet_vector_type::bufreader_type* t_reader = new typename alphabet_vector_type::bufreader_type(*t);
-
-		fpa_type fp = 0;
-
-		for (T pos = 0; !t_reader.empty(); ++(*t_reader), ++pos) {
-
-			while ((*_pair_sorter1)->first == pos) {
-
-				_pair_sorter2->push(pair_type2(size_type(fp, *t_reader), (*_pair_sorter)->second));
-			}		
-
-			fp = static_cast<fpa_type>((static_cast<fpa_typb>(fp) * R + (*(*t_reader) + 1)) % P);
-		}
-
-		// sa[i] + lcp[i] = m_len or sa[i] + lcp[i + 1] = m_len
-		while (!_pair_sorter1->empty()) {
-
-			_pair_sorter2->push(pair_type2(size_type(fp, std::numeric_limits<alphabet_type>::max(), (*_pair_sorter)->second));
+			triple_sorter->push(triple_type(tuple.second, fp, ch));
 		}
 
 		delete t_reader; t_reader = nullptr;
@@ -656,62 +422,82 @@ public:
 
 		delete t_file; t_file = nullptr;
 
-		_pair2_sorter2->sort();
+		delete pair1_sorter; pair1_sorter = nullptr;
 
-		return;
-	} 	
+		triple_sorter->sort();
 
-	// 
-	void diff_fp_ch(pair_sorter_type2* _pair_sorter1, pair_sorter_type* _pair_sorter2, pair_sorter_type* _pair_sorter3){
+		return triple_sorter;
+	}
 
-		typename size_vector_type::bufreader_type *lms_reader = new typename size_vector_type(*m_lcp_lms);
+	/// \brief compare range fingerprints and ending characters to check the result
+	///
+	bool check(pair2_sorter_type* _sorter1, triple_sorter_type* _sorter2, triple_sorter_type* _sorter3) {
 
-		fpa_type fp_interval1, fp_interval2;
+		bool isRight = true;
 
-		uint8 ch1, ch2;
+		stxxl::syscall_file* lcp_file = new stxxl::syscall_file(m_lcp_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
+
+		size_vector_type* lcp = new size_vector_type(lcp_file);
+
+		typename size_vector_type::bufreader_type* lcp_reader = new typename size_vector_type::bufreader_type(*lcp);
+
+		fpa_type fp_ival1, fp_ival2;
+
+		uint16 ch1, ch2;
 
 		size_type cur_lcp;
 
-		++(*_pair_sorter2); // skip sa[0] + lcp[0]
+		++(*lcp_reader); // skip the leftmost lcp value
 
-		++(*lcp_lms_reader); // skip lcp[0]
+		cur_lcp = *(*lcp_reader);
 
-		cur_lcp = *(*lcp_lms_reader);
+		fp_ival2 = static_cast<fpa_type>(((*_sorter3)->second - (static_cast<fpb_type>((*_sorter1)->second) * m_rinterval->compute(cur_lcp)) % P + P) % P);
 
+		ch2 = (*_sorter3)->third;
 
-		fp_interval2 = static_cast<fpa_type>(((*_pair_sorter3)->first.get_low() - (static_cast<fpb_type>((*_pair_sorter1)->first) * m_rinterval->compute(cur_lcp)) % P + P) % P);
+		++(*_sorter3), ++(*_sorter1);
 
-		ch2 = (*_pair_sorter3)->first.get_low();
+		for (; !_sorter3->empty(); ++(*_sorter3), ++(*_sorter2), ++(*_sorter1)) {
 
-		++(*_pair_sorter1);
+			fp_ival1 = static_cast<fpa_type>(((*_sorter2)->second - (static_cast<fpb_type>((*_sorter1)->second) * m_rinterval->compute(cur_lcp)) % P + P) % P);
 
-		++(*_pair_sorter3);
+			ch1 = (*_sorter2)->third;
 
-		for (size_t idx = 1; !_pair_sorter1->empty(); ++idx, ++(_pair_sorter), ++(_pair2_sorter), ++(_pair3_sorter)) {
+			if (fp_ival1 != fp_ival2 || ch1 == ch2) {
+			
+				isRight = false;
 
+				break;
+			}
 
-			fpInterval1 = static_cast<fpa_type>(((*_pair_sorter2)->first - 
+			++(*lcp_reader);
+
+			cur_lcp = *(*lcp_reader);
+
+			fp_ival2 = static_cast<fpa_type>(((*_sorter3)->second - (static_cast<fpb_type>((*_sorter1)->second) * m_rinterval->compute(cur_lcp)) % P + P) % P);
+
+			ch2 = (*_sorter3)->third;
 		}
 
-			 
-	}
-
-	// 
-	void check_fp_ch(fpa_vector_type* _fp_interval_vec, alphabet_vector_type* _ch_vec, fpa_vector_type* _fp_interval_vec2, alphabet_vector_type* _ch_vec2) {
-
-		fpa_vector_type::bufreader_type fp_reader1(*_fp_interval_vec);
-
-		alphabet_vector_type::bufreader_type ch_reader1(*_ch_vec);
-
-		fpa_vector_type::bufreader_type fp_reader2(*_fp_interval_vec2);
-
-		alphabet_vector_type::bufreader_type ch_reader2(*_ch_vec2);
-
+		// check final pair
+		fp_ival1 = static_cast<fpa_type>(((*_sorter2)->second - (static_cast<fpb_type>((*_sorter1)->second) * m_rinterval->compute(cur_lcp)) % P + P) % P);
+	
+		ch1 = (*_sorter2)->third;
+	
+		if (fp_ival1 != fp_ival2 || ch1 == ch2) {
 				
-		
+			isRight = false;
+		}
+
+		delete lcp_reader; lcp_reader = nullptr;
+
+		delete lcp; lcp = nullptr;
+
+		delete lcp_file; lcp_file = nullptr;
+
+		return isRight;
 	}
 
 };
 
-
-#endif // VALIDATE2_H
+#endif // LCPA_EM_H
