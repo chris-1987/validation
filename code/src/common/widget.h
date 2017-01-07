@@ -70,6 +70,29 @@ struct tuple_less_comparator_1st{
 	
 };
 
+/// \brief function object for comparing tuples by their first component in ascending order
+template<typename tuple_type>
+struct tuple_great_comparator_1st{
+
+	bool operator()(const tuple_type& _a, const tuple_type& _b) const {
+
+		return _a.first > _b.first;
+	}
+
+	/// \brief min value
+	tuple_type min_value() const {
+
+		return tuple_type::max_value();
+	}
+
+	/// \brief max value
+	tuple_type max_value() const {
+
+		return tuple_type::min_value();
+	}
+	
+};
+
 /// \brief function object for comparing tuples by their first two component in ascending order
 template<typename tuple_type>
 struct tuple_less_comparator_2nd{

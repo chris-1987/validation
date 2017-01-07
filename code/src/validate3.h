@@ -166,14 +166,22 @@ public:
 		// step 1: fetch fp[0, sa[i] - 1]	
 		pair2_sorter_type* sorter1 = fetch_fp();
 
+		std::cerr << "here1 \n" << std::endl;
+
 		// step 2: fetch fp[0, sa[i] +lcp[i] - 1]
 		triple_sorter_type* sorter2 = fetch_fp_ch_cur();
+
+		std::cerr << "here2 \n" << std::endl;
 
 		// step 3: fetch fp[0, sa[i - 1] + lcp[i] - 1]
 		triple_sorter_type* sorter3 = fetch_fp_ch_pre();
 
+		std::cerr << "here3 \n" << std::endl;
+
 		// step 4: check the result
 		bool res = check(sorter1, sorter2, sorter3);
+
+		std::cerr << "here4 \n" << std::endl;
 
 		delete sorter1; sorter1 = nullptr;
 

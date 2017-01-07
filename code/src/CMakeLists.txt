@@ -16,3 +16,7 @@ TARGET_LINK_LIBRARIES(validate2 ${STXXL_LIBRARIES})
 ADD_EXECUTABLE(validate3 validate3.cpp)
 TARGET_LINK_LIBRARIES(validate3 ${STXXL_LIBRARIES})
 
+#build the executable for validate4 (validate3 + induced sorting + RMQ)
+ADD_EXECUTABLE(validate4 validate4.cpp)
+TARGET_LINK_LIBRARIES(validate4 ${STXXL_LIBRARIES})
+

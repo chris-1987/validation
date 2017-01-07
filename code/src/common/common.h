@@ -43,7 +43,9 @@ static const uint_type MAIN_MEM_AVAIL = 3 * 1024 * 1024 * 1024ull;
 
 static const uint_type BUFF_MEM_AVAIL = 8 * 1024 * 1024ull; // 8 mb for buffer
 
+static const uint8 L_TYPE = 0;
 
+static const uint8 S_TYPE = 1;
 //static const uint_type MAIN_MEM_AVAIL = 1024 * 1024; // 3 gb for run
 
 //static const uint_type MAIN_MEM_AVAIL = 150; // 3 gb for run
