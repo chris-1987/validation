@@ -79,28 +79,112 @@ private:
 
 	typedef typename ExTupleSorter<pair3_type, pair3_comparator_type>::sorter pair3_sorter_type;
 
-	/// \brief bucket information
-	struct BktInfo{
-	
-		std::vector<uint64> l_bkt_size; ///< size of l-type buckets in sa
-		
-		std::vector<uint64> s_bkt_size; ///< size of s-type buckets in sa
+	/// \brief bucket information	
+	std::vector<uint64> bkt_size; ///< bucket size
 
-		std::vector<uint64> lms_bkt_size; ///< size of lms-type buckets in sa
+	/// \brief retrieve next character
+	template<bool rightward>
+	struct RetrieveCh{
 
-		BktInfo() {
+		alphabet_type cur_ch;
 
-			l_bkt_size.resize(std::numeric_limits<alphabet_type>::max());
+		alphabet_type last_ch;
 
-			s_bkt_size.resize(std::numeric_limits<alphabet_type>::max());
+		alphabet_type next_ch;
 
-			lms_bkt_size.resize(std::numeric_limits<alphabet_type>::max());
+		std::vector<uint64> bkt_toscan; ///< number of elements to scan in each bucket
+
+		std::vector<uint64> bkt_scanned; ///< number of elements scanned in each bucket
+
+		std::vector<uint64> bkt_ch; ///< character of each bucket
+
+		uint64 bkt_idx; ///< index of the bucket currently being scanned
+
+		uint64 bkt_num; ///< at most std::numeric_limits<alphabet_type>::max() + 1
+
+		uint64 total_toscan; ///< number of elements to scan
+
+		uint64 total_scanned; ///< number of scanned elements 
+
+		RetrieveCh(const std::vector<uint64>& _bkt_size) {
+
+			// set total_toscan & bkt_toscan & bktnum
+			bkt_num = 0;
+
+			total_toscan = 0;
+
+			for (alphabet_type i = 0; i <= std::numeric_limits<alphabet_type>::max(); ++i) {
+				
+				if (_bkt_size[i] != 0) {
+
+					bkt_toscan->push_back(_bkt_size[i]);
+
+					bkt_ch->push_back(i);
+
+					bkt_num++;
+
+					total_toscan += _bkt_size[i];
+				}
+			}
+			
+			// initialize total_scanned & bkt_scanned
+			bkt_scanned.resize(bkt_toscan.size());
+
+			total_scanned = 0;
+
+			// initialize cur_ch & bkt_idx
+			cur_ch = (rightward == true) ? bkt_ch[0] : bkt_ch[bktnum - 1];
+
+			bkt_idx = (rightward == true) ? 0 : (bkt_num - 1);
+		}
+
+		/// \brief get the head character of currently scanned suffix
+		alphabet_type operator*(){
+
+			return cur_ch;
+		}
+
+		/// \brief get the head character of the suffix to be scanned (rightward)
+		///
+		/// \note call the function after confirming the existence of characters remained to scan
+		alphabet_type operator++() {
+
+			// move forward, plus one
+			bkt_scanned[bkt_idx]++;
+
+			total_scanned++;
+
+			// check if current bucket is finished read
+			if (bkt_toscan[bkt_idx] == bkt_scanned[bkt_idx]) {
+
+				if (rightward) {
+			
+					bkt_idx++;
+				}
+				else {
+
+					bkt_idx--;
+				}
+
+				// check if there still exists a bucket to be scanned
+				if (!empty()) { // bkt_idx is valid
+
+					cur_ch = bkt_ch[bkt_idx];
+				}
+			}
+		}
+
+		/// \brief check if all the buckets have been scanned
+		///
+		bool empty() {
+
+			return total_scanned == total_toscan;	
 		}
 	};
 
 	/// \brief validate sa_lms & lcp_lms following the same idea adopted in validator3.h/validator3.cpp 
+	///
 	struct LMSValidate{
-
 	private:
 
 		/// \brief store (R % P)^1, (R % P)^2, (R % P)^4, ...
@@ -663,9 +747,18 @@ private:
 
 	uint64 m_len; 
 
-	BktInfo bkt_info;
+	std::vector<uint64> m_l_bkt_size; ///< record size for each L-type bucket 
 
-	
+	std::vector<uint64> m_s_bkt_size; ///< record size for each S-type bucket
+
+	std::vector<uint64> m_lms_bkt_size; ///< record size for each LMS-type bucket
+
+	pair3_sorter_type* m_lms_pre_sorter; ///< sort preceding information for lms-type suffixes
+
+	triple2_sorter_type* m_l_pre_sorter; ///< sort preceding information for l-type suffixes
+
+	triple2_sorter_type* m_s_pre_sorter; ///< sort preceding information for s-type suffixes
+	`
 
 public:
 	/// \brief constructor
@@ -679,6 +772,12 @@ public:
 		m_lcp_fn = _lcp_fn;
 
 		m_len = BasicIO::file_size(_t_fn) / sizeof(alphabet_type);
+
+		m_l_bkt_size.resize(std::numeric_limits<alphabet_type>::max() + 1);
+
+		m_s_bkt_size.resize(std::numeric_limits<alphabet_type>::max() + 1);
+
+		m_lms_bkt_size.resize(std::numeric_limits<alphabet_type>::max() + 1);
 	}
 
 	/// \brief core part of the program
@@ -725,7 +824,7 @@ public:
 	void compute_bwt() {
 		
 		// produce isa
-		pair1_less_sorter_type* pair1_less_sorter = new pair1_less_sorter_type(pair1_less_comparator_type(), MAIN_MEM_AVAIL / 4);
+		pair1_great_sorter_type* pair1_great_sorter = new pair1_great_sorter_type(pair1_great_comparator_type(), MAIN_MEM_AVAIL / 4);
 
 		stxxl::syscall_file* sa_file = new stxxl::syscall_file(m_sa_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
 
@@ -735,7 +834,7 @@ public:
 
 		for (uint64 idx = 1; !sa_reader->empty(); ++(*sa_reader), ++idx) {
 
-			pair1_less_sorter->push(pair1_type(*(*sa_reader), idx));
+			pair1_great_sorter->push(pair1_type(*(*sa_reader), idx));
 		}
 		
 		delete sa_reader; sa_reader = nullptr;
@@ -744,14 +843,14 @@ public:
 
 		delete sa_file; sa_file = nullptr;
 
-		pair1_less_sorter->sort();
+		pair1_great_sorter->sort();
 		
 		// scan t to collect pre_ch & pre_t for L/S/LMS suffixes 
-		triple2_sorter_type* triple2_sorter1 = new triple2_sorter_type(triple2_comparator_type(), MAIN_MEM_AVAIL / 4);
+		m_l_pre_sorter = new triple2_sorter_type(triple2_comparator_type(), MAIN_MEM_AVAIL / 4);
 
-		triple2_sorter_type* triple2_sorter2 = new triple2_sorter_type(triple2_comparator_type(), MAIN_MEM_AVAIL / 4);
+		m_s_pre_sorter = new triple2_sorter_type(triple2_comparator_type(), MAIN_MEM_AVAIL / 4);
 
-			
+		m_lms_pre_sorter = new pair3_sorter_type(pair3_comparator_type(), MAIN_MEM_AVAIL / 4); 
 
 		stxxl::syscall_file* t_file = new stxxl::syscall_file(m_t_fn, stxxl::syscall_file::RDWR | stxxl::syscall_file::DIRECT);
 
@@ -779,18 +878,23 @@ public:
 
 				if (cur_type == L_TYPE) { // find a LMS
 
-					bkt_info->s_bkt_size[last_ch]++;
+					m_lms_pre_sorter->push(pair3_type((*pair1_great_sorter)->second, cur_ch); // last_ch is LMS-type
 
-					
+					m_s_pre_sorter->push(triple2_type((*pair1_great_sorter)->second, cur_ch, cur_type)); // last_ch is also S-type
+
+					m_s_bkt_size[last_ch]++; // collect bucket information
 				}
 				else {
 
-					bkt_info->lms_bkt_size[last_ch]++;
+					m_s_pre_sorter->push(triple2_type((*pair1_great_sorter)->second, cur_ch, cur_type)); // last_ch is S-type
+
+					m_lms_bkt_size[last_ch]++; // collect bucket information
 				}
 			}
 			else {
+				m_l_pre_sorter->push(triple2_type((*pair1_great_sorter)->second, cur_ch, cur_type)); // last_ch is L-type
 
-				bkt_info->l_bkt_size[last_ch]++;
+				m_l_bkt_size[last_ch]++; // collect bucket information
 			}
 
 			++(*t_rev_reader);
@@ -800,22 +904,55 @@ public:
 			last_type = cur_type;
 		}
 
-		// leftmost is not a LMS
+		// leftmost is not a LMS, collect bucket information
+		// we assume the preceding character is a sentinel and denote it by 0
 		if (last_type == S_TYPE) {
 
-			bkt_info->s_bkt_size[last_ch]++;
+			m_s_pre_sorter->push(triple2_type((*pair1_great_sorter)->second, 0, SENTINEL_TYPE));
+
+			m_s_bkt_size[last_ch]++;
 		}
 		else {
+			m_l_pre_sorter->push(triple2_type((*pair1_great_sorter)->second, 0, SENTINEL_TYPE));
 
-			bkt_info->l_bkt_size[last_ch]++;
+			m_l_bkt_size[last_ch]++;
 		}
+
+		delete t_rev_reader; t_rev_reader = nullptr;
+
+		delete t; t = nullptr;
+
+		delete pair1_great_sorter; pair1_great_sorter = nullptr;
+
+		m_lms_pre_sorter->sort();
+	
+		m_s_pre_sorter->sort();
+
+		m_l_pre_sorter->sort();
 	}
 
+	/// \brief compute the LCP of two suffixes (indicated by their starting positions) by literally comparing their characters
+	///
+	void bruteforce_compute_lcp(const uint64& _pos1, const uint64& _pos2) {
+
+	
+	}
 
 	/// \brief check SA_L/LCP_L 
 	///
 	bool check_l() {
 
+		bool isRight = true;
+
+		RetrieveCh<true> retrieve_lms_ch(m_lms_bkt_size);
+
+		RetrieveCh<true> retrieve_l_ch(m_l_bkt_size);
+	
+		uint8 cur_ch;
+
+		// assume there exists a sentinel on the right side
+		// its preceding character is an L-type 
+				
 				
 
 		return true;
