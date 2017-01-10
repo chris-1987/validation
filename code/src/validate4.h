@@ -83,6 +83,7 @@ private:
 	std::vector<uint64> bkt_size; ///< bucket size
 
 	/// \brief retrieve next character
+	///
 	template<bool rightward>
 	struct RetrieveCh{
 
@@ -180,6 +181,92 @@ private:
 
 			return total_scanned == total_toscan;	
 		}
+	};
+
+	/// \brief check induced
+	///
+	template<bool rightward>
+	CheckInduced{
+
+		const std::vector<size_vector_type::const_iterator> m_sa_bkt_iter;
+
+		const std::vector<size_vector_type::const_iterator> m_lcp_bkt_iter;
+
+		const std::vector<size_vector_type::const_reverse_iterator> m_sa_bkt_riter; 
+
+		const std::vector<size_vector_type::const_reverse_iterator> m_lcp_bkt_riter;
+
+		/// \brief ctor
+		CheckInduced(const size_vector_type* _sa, const size_vector_type* _lcp, const std::vector<uint64>& _bkt_size) {
+
+			if (rightward == true) {
+
+				uint64 offset = 0;
+
+				m_sa_bkt_iter.resize(_bkt_size.size());
+				
+				m_lcp_bkt_iter.resize(_bkt_size.size());
+
+				for (uint64 i = 0; i < _bkt_size.size(); ++i) {
+
+					m_sa_bkt_iter[i] = _sa->begin() + offset;
+
+					m_lcp_bkt_iter[i] = _lcp->begin() + offset;
+
+					offset += _bkt_size[i];
+				}
+			}
+			else {
+
+				uint64 offset = 0;
+
+				m_sa_bkt_riter.resize(_bkt_size.size());
+
+				m_lcp_bkt_riter.resize(_bkt_size.size());
+
+				for (uint64 i = _bkt_size.size() - 1; i >= 0; --i) {
+
+					m_sa_bkt_riter[i] = _sa->rbegin() + offset;
+
+					m_lcp_bkt_riter[i] = _lcp->rbegin() + offset;
+
+					offset += _bkt_size[i];
+				}
+			}	
+
+			
+		}
+
+		/// \brief
+		/// 
+		std::pair<size_type, size_type> get(const alphabet_type _ch) {
+
+			if (rightward) {
+
+				return std::pair<size_type, size_type>(*m_sa_bkt_iter[_ch], *m_lcp_bkt_iter[_ch]);
+			}
+			else {
+			
+				return std::pair<size_type, size_type>(*m_lcp_bkt_riter[_ch], *m_lcp_bkt_riter[_ch]);
+			}
+		}	
+
+		/// \brief
+		///
+		void forward(const alphabet_type _ch) {
+		
+			if (rightward) {
+	
+				m_sa_bkt_iter[_ch]++, m_lcp_bkt_iter[_ch]++;
+			}
+			else {
+
+				m_sa_bkt_riter[_ch]++, m_lcp_bkt_riter[_ch]++;
+			}
+		}
+
+		/// \brief
+		///
 	};
 
 	/// \brief validate sa_lms & lcp_lms following the same idea adopted in validator3.h/validator3.cpp 
