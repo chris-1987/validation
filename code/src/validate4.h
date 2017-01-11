@@ -79,8 +79,182 @@ private:
 
 	typedef typename ExTupleSorter<pair3_type, pair3_comparator_type>::sorter pair3_sorter_type;
 
-	/// \brief bucket information	
 	std::vector<uint64> bkt_size; ///< bucket size
+
+	/// \brief scan SA during the inducing process
+	///
+	/// \note only record non-empty buckets in m_bkt_size & m_bkt_ch
+	template<bool rightward>
+	struct Scan{
+		
+		size_vector_type::const_iterator m_lms_it;
+
+		size_vector_type::const_iterator m_l_it;
+
+		size_vector_type::const_iterator m_s_it;
+
+		size_vector_type::const_reverse_iterator m_s_rit;
+
+		std::vector<uin64> m_l_bkt_size;
+
+		std::vector<alphabet_type> m_bkt_ch;
+
+		uint64 m_bkt_idx;
+
+		Scan(const std::vector<uint64> _bkt_size) 
+
+			for (uint64 i = 0; i < _bkt_size.size(); ++i) {
+
+				if (_bkt_size[i] != 0) {
+
+					m_bkt_size.push(_bkt_size[i]);
+
+					m_bkt_ch.push(static_cast<alphabet_type>(i));
+				}	
+			}
+		}	
+
+		/// \brief read currently scanned suffix & lcp elements 
+		///
+		/// \note check empty before calling the function
+		/// \note each element can only be read once
+		std::pair<size_type, size_type>& read() {
+
+			static std::pair<size_type, size_type> cur_res;
+
+			if (rightward) {
+	
+				if (m_cur_l_ch <= m_cur_lms_ch) {
+
+					// retrieve
+					cur_res.first = *m_sa_l_it;
+
+					cur_res.second = *m_lcp_l_it;
+					
+					++total_scanned;
+
+					++m_l_bkt_scanned[m_cur_l_ch];
+	
+					if (m_l_bkt_scanned[m_cur_l_ch] == m_l_bkt_toscan[m_cur_l_ch]) {
+
+						m_sa_l_it += m_s_bkt_size[m_cur_l_ch];
+
+						m_lcp_l_it += m_s_bkt_size[m_cur_l_ch];
+	
+						++m_cur_l_ch;
+
+						while (m_sa_l_it != _sa->cend()) {
+						
+							m_sa_l_it += m_s_bkt_size[m_cur_l_ch];
+
+							m_lcp_l_it += m_s_bkt_size[m_cur_l_ch];
+		
+							++m_cur_l_ch;
+						}
+					}
+					else { // still remains l-type elements to be read in cur bkt
+
+						++m_sa_l_it;
+
+						++m_lcp_l_it;
+					}
+				}
+				else {
+				
+					// retrieve
+					cur_res.first = *m_sa_lms_it;
+
+					if (m_pre_type == L_TYPE && m_pre_ch == m_cur_lms_ch) {
+						
+						// the last scanned is a L-type suffix in the same bucket, then recompute LCP by calling the brute-force method
+
+						// cur_res.second = 
+					}
+					else {
+
+						// otherwise, reuse the valued stored in m_lcp_lms
+						cur_res.second = *m_lcp_lms_it;
+					}
+
+					// forward
+					++m_lms_bkt_scanned[m_cur_lms_ch];
+
+					while (m_lms_bkt_scanned[m_cur_lms_ch] == m_lms_bkt_toscan[m_cur_lms_ch]) {
+
+						++m_cur_lms_ch;
+
+					}
+				
+					++m_sa_lms_it;
+
+					++m_lcp_lms_it;
+				}
+	
+			} 
+			else { // leftward
+
+				if (m_cur_s_ch >= m_cur_l_ch) {
+
+					// retrieve
+					cur_res.first = *m_sa_s_rit;
+
+					cur_res.second = *m_lcp_s_rit;
+			
+					// forward
+					++m_s_bkt_scanned[m_cur_s_ch];
+					
+					if (m_s_bkt_scanned[m_cur_s_ch] == m_s_bkt_toscan[m_cur_s_ch]) {
+
+						// reach the leftmost position of the s-type bucket
+						--m_cur_s_ch;
+
+						m_sa_s_rit += m_l_bkt_size[m_cur_s_ch];
+
+						m_lcp_s_rit += m_l_bkt_size[m_cur_s_ch];
+					}
+					else {
+
+						++m_sa_s_rit;
+
+						++m_lcp_s_rit;
+					}
+				}
+				else {
+
+
+					// retrieve
+					cur_res.first = *m_sa_l_rit;
+			
+					cur_res.second = *m_lcp_l_rit;
+
+					// forward
+					++m_l_bkt_scanned[m_cur_l_ch];
+
+					if (m_l_bkt_scanned[m_cur_l_ch] == m_l_bkt_toscan[m_cur_l_ch]) {
+
+						// reach the leftmost position of the l-type bucket
+						--m_cur_l_ch;
+
+						m_sa_l_rit += m_l_bkt_size[m_cur_s_ch];
+
+						m_lcp_l_rit += m_l_bkt_size[m_cur_s_ch];
+					}
+					else {
+
+						++m_sa_l_rit;
+
+						++m_lcp_l_rit;
+					}
+				}
+
+			}
+
+			else { // LMS_TYPE
+
+				if (cur_pos == m_lms_bkt_epos[cur_ch
+			}			
+		}
+	};
 
 	/// \brief retrieve next character
 	///
