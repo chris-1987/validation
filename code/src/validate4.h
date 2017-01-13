@@ -316,10 +316,27 @@ private:
             spos += _bkt_info.get(ch); // offset by bucket size
         }
 
+        typename size_vector_type::const_iterator sa_beg = m_sa->begin();
+
+        typename size_vector_type::const_iterator lcp_beg = m_lcp->begin();
+        	
 				for (alphabet_type ch = 0; ch <= ch_max; ++ch) {
 					
-						if (m_l_bkt_toscan[ch] != 0) {m_cur_l_ch = ch; break;}
-				}
+						if (m_l_bkt_toscan[ch] != 0) {
+							
+							m_cur_l_ch = ch; 
+							
+							m_sa_l_reader = new typename size_vector_type::bufreader_type(sa_beg, sa_beg + m_l_bkt_toscan[ch]);
+
+       				m_lcp_l_reader = new typename size_vector_type::bufreader_type(lcp_beg, lcp_beg + m_l_bkt_toscan[ch]);		
+        	
+							break;
+						}
+							
+						sa_beg += _bkt_info.get(ch);
+						
+						lcp_beg += _bkt_info.get(ch);
+				}			
 					
 				for (alphabet_type ch = 0; ch <= ch_max; ++ch) {
 									
@@ -330,10 +347,6 @@ private:
 
         m_lms_bkt_scanned.resize(ch_max + 1);
 
-        m_sa_l_reader = new typename size_vector_type::bufreader_type(*m_sa);
-
-        m_lcp_l_reader = new typename size_vector_type::bufreader_type(*m_lcp);
-
         m_sa_lms_reader = new typename size_vector_type::bufreader_type(*m_sa_lms);
 
         m_lcp_lms_reader = new typename size_vector_type::bufreader_type(*m_lcp_lms);
@@ -342,9 +355,9 @@ private:
 
         m_lcp_l_bkt_reader.resize(ch_max + 1);
 
-        typename size_vector_type::const_iterator sa_beg = m_sa->begin();
+        sa_beg = m_sa->begin();
 
-        typename size_vector_type::const_iterator lcp_beg = m_lcp->begin();
+        lcp_beg = m_lcp->begin();
 
         for (alphabet_type ch = 0; ch <= ch_max; ++ch) {
 
@@ -460,7 +473,7 @@ private:
 
 		/// \brief fetch the SA-value for currently scanned LMS suffix and the LCP-value for the suffix and its left neighbor in SA_LMS
 		///
-		void fetch_lms_scanned(size_type& _sa_value, size_type& _lcp_value, bool& _is_leftmost_lms_in_bkt) {
+		void fetch_lms_scanned(size_type& _sa_value, size_type& _lcp_value) {
 			
 			_is_leftmost_lms_in_bkt = (m_lms_scanned[m_cur_l_ch] == 0) ? true : false;
 				
@@ -499,14 +512,6 @@ private:
 		
 			return m_cur_lms_ch;
 		}
-		
-		/// \brief validate sa-value
-		template<typename value_type>
-		bool is_euqal(const value_type& _a, const value_type& _b) {
-			
-				return _a == _b;	
-		}
-		
 
 		
 		/// \brief dtor
@@ -770,52 +775,60 @@ private:
   };
 
 
-  /// \brief scan leftward to validate the relative order of S-type suffixes and the LCP-values btw them and their right neighbors in SA.
+  /// \brief valiadte the SA-values of all the S-type suffixes and the LCP-values btw them and their left neighbors in SA.
+  ///
   struct LScan{
 
   private:
 
     const alphabet_type ch_max;
 
-    std::vector<uint64> m_s_bkt_toscan; ///< s-type bkt size
+		alphabet_vector_type* m_t;
+		
+		size_vector_type* m_sa;
+		
+		size_vector_type* m_lcp;
+		
+    std::vector<uint64> m_s_bkt_toscan; ///< number of S-type suffixes to be scanned in aech bucket
 
-    std::vector<uint64> m_s_bkt_scanned;
+    std::vector<uint64> m_s_bkt_scanned; ///< number of S-type suffixes scanned in each bucket
 
-    std::vector<uint64> m_l_bkt_toscan; ///< l-type bkt size
+    std::vector<uint64> m_l_bkt_toscan; ///< number of L-type suffixes to be scanned in each bucket
 
-    std::vector<uint64> m_l_bkt_scanned;
+    std::vector<uint64> m_l_bkt_scanned; ///< numer of L-type suffixes scanned in each bucket
 
-    std::vector<uint64> m_s_bkt_spos; ///< start offset of each S-type bucket in SA (from right to left)
+    std::vector<uint64> m_s_bkt_spos; ///< indicate the starting position of each L-type bucket in SA (from right to left)
 
-    std::vector<uint64> m_l_bkt_spos; ///< start offset of each L-type bucket in SA (from right to left)
+    std::vector<uint64> m_l_bkt_spos; ///< indicate the starting position of each S-type bucket in SA (from right to left)
 
-    uint64 total_s_toscan;
+    uint64 total_s_toscan; ///< total number of S-type suffixes to be scanned
 
-    uint64 total_s_scanned;
+    uint64 total_s_scanned; ///< total number of S-type suffixes already scanned
 
-    uint64 total_l_toscan;
+    uint64 total_l_toscan; ///< total number of L-type suffixes to be scanned
 
-    uint64 total_l_scanned;
+    uint64 total_l_scanned; ///< total number of L-type suffixes already scanned
 
-    typename size_vector_type::bufreader_reverse_type* m_sa_s_reader;
+		alphabet_type m_cur_s_ch; ///< S-type bucket currently being scanned
+		
+		alphabet_type m_cur_l_ch; ///< L-type bucket currently being scanned
+		
+    typename size_vector_type::bufreader_reverse_type* m_sa_reader; ///< for scan, point to the SA-value for currently scanned suffix (retrieve from SA)
 
-    typename size_vector_type::bufreader_reverse_type* m_lcp_s_reader;
+    typename size_vector_type::bufreader_reverse_type* m_lcp_reader; ///< for scan, point to the LCP-value for currently scanned suffix and its right neighbor in SA (retrieve from LCP)
 
-    typename size_vector_type::bufreader_reverse_type* m_sa_l_reader;
+    std::vector<typename size_vector_type::bufreader_reverse_type*> m_sa_s_bkt_reader; ///< for induce, point to the SA-value for the S-type suffix next to be induced in each bucket (retrieve from SA)
 
-    typename size_vector_type::bufreader_reverse_type* m_lcp_l_reader;
-
-    std::vector<typename size_vector_type::bufreader_reverse_type*> m_sa_s_bkt_reader;
-
-    std::vector<typename size_vector_type::bufreader_reverse_type*> m_lcp_s_bkt_reader;
+    std::vector<typename size_vector_type::bufreader_reverse_type*> m_lcp_s_bkt_reader; ///< for induce, point to the LCP-value for the S-type suffix next to be induced in each bucket and its right neighbor in SA (retrieve from LCP) 
 
     /// \brief ctor
     ///
-    RScan(const BktInfo& _bkt_info, size_vector_type* _sa, size_vector_type* _lcp) : ch_max (std::numeric_limits<alphabet_type>::max()) {
+    RScan(const BktInfo& _bkt_info, alphabet_type* _t, size_vector_type* _sa, size_vector_type* _lcp) : 
+    	ch_max (std::numeric_limits<alphabet_type>::max()), m_sa(_sa), m_lcp(_lcp) {
 
-        total_s_toscan = total_s_scanned = 0;
+        m_total_s_toscan = m_total_s_scanned = 0;
 
-        total_l_toscan = total_l_scanned = 0;
+        m_total_l_toscan = m_total_l_scanned = 0;
 
         uint64 spos = 0;
 
@@ -825,9 +838,9 @@ private:
 
             m_l_bkt_toscan.push(_bkt_info.get_l(ch));
 
-            total_s_toscan += m_s_bkt_toscan[ch];
+            m_total_s_toscan += m_s_bkt_toscan[ch];
 
-            total_l_toscan += m_l_bkt_toscan[ch];
+            m_total_l_toscan += m_l_bkt_toscan[ch];
 
             m_s_bkt_spos.push(spos);
 
@@ -838,29 +851,31 @@ private:
             if (ch == 0) break; // break dead loop
         }
 
+				for (alphabet_type ch = ch_max; ch >= 0; --ch) {
+					
+					if (m_l_bkt_toscan[ch] != 0) {m_cur_l_ch = ch; break;}
+						
+					if (ch == 0) break;
+				}
+				
+				for (alphabet_type ch = ch_max; ch >= 0; --ch) {
+					
+					if (m_s_bkt_toscan[ch] != 0) {m_cur_s_ch = ch; break;}
+						
+					if (ch == 0) break;	
+				}
+					
         m_s_bkt_scanned.resize(ch_max + 1);
 
         m_l_bkt_scanned.resize(ch_max + 1);
 
-        m_sa_s_reader = new typename size_vector_type::bufreader_reverse_type(*_sa);
+        m_sa_reader = new typename size_vector_type::bufreader_reverse_type(*m_sa);
 
-        m_lcp_s_reader = new typename size_vector_type::bufreader_reverse_type(*_lcp);
-
-        typename size_vector_type::const_reverse_iterator sa_l_rbeg = xxx;
-
-        m_sa_l_reader = new typename size_vector_type::bufreader_type(*sa_l_rbeg);
-
-        typename size_vector_type::const_reverse_iterator lcp_l_rbeg = xxx;
-
-        m_lcp_l_reader = new typename size_vector_type::bufreader_type(*lcp_l_rbeg);
+        m_lcp_reader = new typename size_vector_type::bufreader_reverse_type(*m_lcp);
 
         m_sa_s_bkt_reader.resize(ch_max + 1);
 
         m_lcp_s_bkt_reader.resize(ch_max + 1);
-
-        m_sa_l_bkt_reader.resize(ch_max + 1);
-
-        m_lcp_l_bkt_reader.resize(ch_max + 1);
 
         typename size_vector_type::const_reverse_iterator sa_rbeg = _sa->rbegin();
 
@@ -873,10 +888,6 @@ private:
             m_sa_s_bkt_reader[ch] = new typename size_vector_type::bufreader_type(sa_rbeg, sa_rbeg + m_s_bkt_toscan[ch]);
 
             m_lcp_s_bkt_reader[ch] = new typename size_vector_type::bufreader_type(lcp_rbeg, lcp_rbeg + m_s_bkt_toscan[ch]);
-
-            sa_rbeg = sa_rbeg + m_s_bkt_toscan[ch];
-
-            lcp_rbeg = lcp_rbeg + m_s_bkt_toscan[ch];
           }
           else {
 
@@ -885,110 +896,155 @@ private:
             m_lcp_s_bkt_reader[ch] = nullptr;
           }
 
-          if (m_l_bkt_toscan[ch] != 0) {
+          sa_rbeg = sa_rbeg + _bkt_info.get(ch);
 
-            m_sa_s_bkt_reader[ch] = new typename size_vector_type::bufreader_type(sa_rbeg, sa_rbeg + m_l_bkt_toscan[ch]);
-
-            m_lcp_s_bkt_reader[ch] = new typename size_vector_type::bufreader_type(lcp_rbeg, lcp_rbeg + m_l_bkt_toscan[ch]);
-
-            sa_rbeg = sa_rbeg + m_l_bkt_toscan[ch];
-
-            lcp_rbeg = lcp_rbeg + m_l_bkt_toscan[ch];
-
-          }
-          else {
-
-            m_sa_l_bkt_reader[ch] = nullptr;
-
-            m_lcp_l_bkt_reader[ch] = nullptr;
-          }
-
+          lcp_rbeg = lcp_rbeg + _bkt_info.get(ch);
+            
           if (ch == 0) break; // break dead loop
         }
     }
 
-    /// \brief no more LMS to be scanned
+    /// \brief check if no more LMS to be scanned
     bool s_is_empty() {
 
-      return total_s_toscan == total_s_scanned;
+      return m_total_s_toscan == 	m_total_s_scanned;
     }
 
-    /// \brief no more L-type to be scanned
+    /// \brief check if no more L-type to be scanned
     ///
     bool l_is_empty() {
 
-      return total_l_toscan == total_l_scanned;
+      return m_total_l_toscan == m_total_l_scanned;
     }
-
-    /// \brief move forward and get the head character of next S-type suffix to scan
+    
+    /// \brief check if no more S-type suffixes to be scanned in current bucket
     ///
-    /// \note guarantee that there still exist S-type suffixes to be scanned
-    void forward_s(alphabet_type& _cur_ch) {
-
-      // jump over curent S-type bucket if finished reading and skip over all the empty S-type buckets
-      while (m_s_bkt_scanned[_cur_ch] == m_s_bkt_toscan[_cur_ch]) {
-
-        --_cur_ch;
-      }
-
-      // start scanning the new S-bucket
-      if (m_s_bkt_scanned[_cur_ch] = 0) {
-
-        delete m_sa_s_reader;
-
-        typename size_vector_type::const_reverse_iterator sa_rbeg = _sa->rbegin() + m_s_bkt_spos[_cur_ch];
-
-        m_sa_s_reader = new typename size_vector_type::bufreader_reverse_type(sa_rbeg, sa_rbeg + m_s_bkt_toscan[_cur_ch]);
-
-        delete m_lcp_s_reader;
-
-        typename size_vector_type::const_reverse_iterator lcp_rbeg = _lcp->rbegin() + m_s_bkt_spo[_cur_ch];
-
-        m_lcp_s_reader = new typename size_vector_type::bufreader_reverse_type(lcp_rbeg, lcp_rbeg + m_s_bkt_toscan[_cur_ch]);
-      }
-
-      ++m_s_bkt_scanned[_cur_ch];
-
-      return;
+    bool s_bkt_is_empty(){
+    
+    	return m_s_bkt_scanned[m_cur_s_ch] == m_s_bkt_toscan[m_cur_s_ch];	
     }
-
-    /// \brief return the head character of next suffix to scan
+    
+    /// \brief check if no more L-type suffixes to be scanned in current bucket
     ///
-    /// \note guarantee that there still exist L-type suffixes to be scanned
-    void forward_l(alphabet_type& _cur_ch) {
+  	bool l_bkt_is_empty() {
+  	
+  		return m_l_bkt_scanned[m_cur_l_ch] == m_l_bkt_toscan[m_cur_l_ch]; 
+  	}
+  	
+  	/// \brief find next non-empty S-bucket
+  	///
+  	/// \note guarantee there remains S-type suffixes to be scanned before calling the function
+		void find_next_s_bkt() {
+		
+				while (s_bkt_is_empty()) --m_cur_s_ch;
+				
+				delete m_sa_s_reader;
+				
+				typename size_vector_type::const_reverse_iterator sa_crbeg = m_sa->crbegin() + m_s_bkt_spos[cur_s_bkt_ch];
+					
+				m_sa_s_reader = new typename size_vector_type::bufreader_type(sa_crbeg, sa_crbeg + m_s_bkt_toscan[cur_s_bkt_ch]);
+					
+				delete m_lcp_s_reader;
+				
+				typename size_vector_type::const_reverse_iterator lcp_crbeg = m_lcp->crbegin() + m_s_bkt_spos[cur_s_bkt_ch];
+					
+				m_lcp_s_reader = new typename size_vector_type::bufreader_type(lcp_crbeg, lcp_crbeg + m_s_bkt_toscan[cur_s_bkt_ch]);
+	
+				return;
+		}
 
-      // jump over current L-type bucket if finished reading and skip all the empty L-type buckets
-      while (m_l_bkt_scanned[_cur_ch] == m_l_bkt_toscan[_cur_ch]) {
+  	/// \brief find next non-empty L-bucket
+  	///
+  	/// \note guarantee there remains L-type suffixes to be scanned before calling the function
+		void find_next_l_bkt() {
+		
+				while (l_bkt_is_empty()) --m_cur_l_ch;
+				
+				delete m_sa_l_reader;
+				
+				typename size_vector_type::const_reverse_iterator sa_crbeg = m_sa->crbegin() + m_l_bkt_spos[cur_l_bkt_ch];
+					
+				m_sa_l_reader = new typename size_vector_type::bufreader_type(sa_crbeg, sa_crbeg + m_l_bkt_toscan[cur_l_bkt_ch]);
+					
+				delete m_lcp_l_reader;
+				
+				typename size_vector_type::const_reverse_iterator lcp_crbeg = m_lcp->crbegin() + m_l_bkt_spos[cur_l_bkt_ch];
+					
+				m_lcp_l_reader = new typename size_vector_type::bufreader_type(lcp_crbeg, lcp_crbeg + m_l_bkt_toscan[cur_l_bkt_ch]);
+	
+				return;
+		}
+		
+		/// \brief fetch the SA-value for currently scanned S-type suffix and the LCP-value of the suffix and its right neighbor in SA
+		///
+		/// \note actually both fetch_s_scanned and fetch_l_scanned retrieve elements from m_sa and m_lcp
+		void fetch_s_scanned(size_type& _sa_value, size_type& _lcp_value) {
+			
+			_sa_value = *(*m_sa_reader), ++(*m_sa_reader);
+			
+			_lcp_value = *(*m_lcp_reader), ++(*m_lcp_reader);
+			
+			++m_s_bkt_scanned[m_cur_s_ch];
+			
+			++total_s_scanned;
+			
+			return;	
+		}
+		
+		
+		/// \brief fetch the SA-value for currently scanned L-type suffix and the LCP-value of the suffix and its right neighbor in SA
+		///
+		/// \note actually both fetch_s_scanned and fetch_l_scanned retrieve elements from m_sa and m_lcp
+		void fetch_l_scanned(size_type& _sa_value, size_type& _lcp_value) {
+			
+			_sa_value = *(*m_sa_reader), ++(*m_sa_reader);
+			
+			_lcp_value = *(*m_lcp_reader), ++(*m_lcp_reader);
+			
+			++m_l_bkt_scanned[m_cur_l_ch];
+			
+			++total_l_scanned;
+			
+			return;	
+		}
+		
+		/// \brief fetch the SA-value for currently induced S-type suffix and the LCP-value for the suffix and its right neighbor in SA 
+		void fetch_s_induced(const alphabet_type _ch, size_type& _sa_value, size_type& _lcp_value) {
+			
+			_sa_value = *(*m_sa_l_bkt_reader[_ch]), ++(*m_sa_l_bkt_reader[_ch]);
+			
+			_lcp_value = *(*m_lcp_l_bkt_reader[_ch]), ++(*m_lcp_l_bkt_reader[_ch]);
+			
+			return;	
+		}
 
-        ++_cur_ch;
-      }
-
-      // start scanning the new L-bucket
-      if (m_l_bkt_scanned[_cur_ch] == 0) {
-
-        delete m_sa_l_reader;
-
-        typename size_vector_type::const_reverse_iterator sa_beg = _sa->rbegin() + m_l_bkt_spos[_cur_ch];
-
-        m_sa_l_reader = new typename size_vector_type::bufreader_reverse_type(sa_beg, sa_beg + m_l_bkt_toscan[_cur_ch]);
-
-        delete m_lcp_l_reader;
-
-        typename size_vector_type::const_reverse_iterator lcp_beg = _lcp->rbegin() + m_l_bkt_spos[_cur_ch];
-
-        m_lcp_l_reader = new typename size_vector_type::bufreader_reverse_type(lcp_beg, lcp_beg + m_l_bkt_toscan[_cur_ch]);
-      }
-
-      ++m_l_bkt_scanned[_cur_ch];
-
-      return;
-    }
-
-
+		/// \brief get ch for the S-type bucket currently being scanned
+		///
+		alphabet_type get_s_bkt_ch() {
+			
+			return m_cur_s_ch;	
+		}
+	
+		/// \brief get ch for the LMS bucket currently being scanned
+		///
+		alphabet_type get_l_bkt_ch() {
+	
+			return m_cur_l_ch;	
+		}
 
     /// \brief de-ctor
     ~LScan() {
+    	
+				delete m_sa_reader; m_sa_reader = nullptr;
+				
+				delete m_lcp_reader; m_lcp_reader = nullptr;
 
+        for (alphabet_type ch = 0; ch <= ch_max; ++ch) {
+        	
+        		delete m_sa_l_bkt_reader[ch]; m_sa_l_bkt_reader[ch] = nullptr;
+        		
+        		delete m_lcp_l_bkt_reader[ch]; m_lcp_l_bkt_reader[ch] = nullptr;
+        }
     }
     
     /// \brief for each S-type suffix, check the SA-value in SA and the LCP-value between the suffix and its right neighbor in SA.
