@@ -438,6 +438,10 @@ private:
         		
         		delete m_lcp_l_bkt_reader[ch]; m_lcp_l_bkt_reader[ch] = nullptr;
         }
+        
+        delete[] m_sa_l_bkt_reader;
+        
+        delete[] m_lcp_l_bkt_reader; m_lcp_l_bkt_reader = nullptr;
     }
 
     /// \brief for each L-type suffix, check the SA-value in SA and the LCP-value between the suffix and its left neighbor in SA.
