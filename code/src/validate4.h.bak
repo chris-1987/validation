@@ -81,7 +81,6 @@ private:
 
 private:
 
-
 	/// \brief record bkt size for L-type, S-type buckets (no matter empty or non-empty) in SA & LCP
 	///
   struct BktInfo{
@@ -183,6 +182,99 @@ private:
   
   BktInfo& m_bkt_info; ///< instance of BktInfo
   
+  
+  /// \brief validate SA_LMS and LCP_LMS
+  struct LMSValidate{
+ 
+	 private:
+
+		/// \brief store (R % P)^1, (R % P)^2, (R % P)^4, ...
+		struct RInterval{
+		
+			fpa_type* m_data;
+		
+			uint64 m_num;
+		
+			/// \brief constructor
+			RInterval(uint64 _len) {
+		
+				m_num = 1;
+		
+				while(_len) {
+		
+					++m_num;
+		
+					_len /= 2;
+				}
+		
+				m_data = new fpa_type[m_num];
+		
+				m_data[0] =  R % P;
+		
+				for(uint64 i = 1; i < m_num; ++i) {
+		
+					m_data[i] = static_cast<fpa_type>((static_cast<fpb_type>(m_data[i - 1]) * m_data[i - 1]) % P);
+				}
+			
+				return;
+			}
+
+			/// \brief get fpInterval
+			fpa_type compute(uint64 _interval) {
+
+				fpa_type ret = 1;
+					
+				for (uint64 i = 0; i < m_num; ++i) {
+		
+					if (_interval % 2) {
+		
+						ret = static_cast<fpa_type>((static_cast<fpb_type>(ret) * m_data[i]) % P);
+					}
+		
+					_interval = _interval / 2;
+		
+					if (_interval == 0) break;
+				}
+		
+				return ret;
+			}	
+		};
+		
+		private:
+  	
+  	alphabet_vector_type* m_t;
+  	
+  	size_vector_type* m_sa;
+  	
+  	size_vector_type* m_lcp;
+  	
+  	uint64 m_len;
+  	
+  	RInterval* m_rinterval;
+  	
+  	LMSValidate(alphabet_vector_type* _t, size_vector_type* _sa, size_vector_type* _lcp) :
+  		m_t(_t), m_sa(_sa), m_lcp(_lcp) {
+  			
+  		m_len = m_t->size();
+  		
+  		m_rinterval = new RInterval(m_len);	
+  	}
+  	
+  	/// \brief retrive SA_LMS and LCP_LMS from SA and LCP
+  	void retrieve_lms();
+  	
+  	/// \brief core part
+  	bool run() {
+  		
+  		// step 1: fetch fp[0, SA[i] - 1]
+  		pair2_less_sorter_type* sorter1	
+  	}
+  	
+  	
+  };
+  
+  
+  
   /// \brief RMQ
   template<bool rightward>
   struct RMQ{
@@ -199,11 +291,6 @@ private:
   	RMQ() ch_max(std::numeric_limits<alphabet_type>::max()), val_max(std::numeric_limits<size_type>::max()) {
   		
   		m_rmq.resize(ch_max + 1);
-  		
-  		for (alphabet_type ch = 0; ch <= ch_max; ++ch) {
-  			
-  			m_rmq[ch] = 0;
-  		}	
   	}
   		
 	  /// \brief get 
@@ -213,21 +300,11 @@ private:
 	  }
 	  
 	  /// \brief update
-	  void update(const alphabet_type _ch, size_type _val) {
+	  void update(size_type _val) {
 	  	
-	  	if (rightward == true) {
-	  
-	    	for (alphabet_type ch = _ch; ch <= ch_max; ++ch) {
-	    		
-	    		if (m_rmq[ch] > _val) m_rmq[ch] = _val;	
-	    	}		
-	  	}
-	  	else {
-	  		
-	  		for (alphabet_type ch = 0; ch <= _ch; ++ch) {
-	  			
-	  			if (m_rmq[ch] > _val) m_rmq[ch] = _val;	
-	  		}		
+	  	for (alphabet_type ch = 0; ch <= ch_max; ++ch) {
+	  	
+	    		if (m_rmq[ch] > _val) m_rmq[ch] = _val;		
 	  	}
 	  }
   	
@@ -575,7 +652,7 @@ private:
 				lv_cur_scanned = 0; // no left neighbor in SA, assumed to be 0
 				
 				// update RMQ
-				rmq_l.update(0, lv_cur_scanned); // update all the entries [0, ch_max] in RMQ
+				rmq_l.update(lv_cur_scanned); // update all the entries [0, ch_max] in RMQ
 				
 				// induce and valiadte
 				auto rit = m_t->rbegin();
@@ -637,7 +714,7 @@ private:
 						}
 						
 						// update RMQ
-						rmq_l.update(cur_bkt_ch, lv_cur_scanned); // update all the entries [0, ch_max] in RMQ
+						rmq_l.update(lv_cur_scanned); // update all the entries [0, ch_max] in RMQ
 
 						// induce and validate
 						pre_ch = *(*pre_l_items).second, pre_t = *(*pre_l_items).third, ++(*pre_l_items);
@@ -697,7 +774,7 @@ private:
 						}
 						
 						// update RMQ
-						rmq_l.update(cur_bkt_ch, lv_cur_scanned); // update all the entries [0, ch_max] in RMQ
+						rmq_l.update(lv_cur_scanned); // update all the entries [0, ch_max] in RMQ
 
 						// induce and validate
 						pre_ch = *(*pre_l_items).second, pre_t = *(*pre_l_items).third, ++(*pre_l_items);
@@ -888,10 +965,6 @@ private:
             m_sa_s_bkt_reader[ch] = new typename size_vector_type::bufreader_type(sa_rbeg, sa_rbeg + m_s_bkt_toscan[ch]);
 
             m_lcp_s_bkt_reader[ch] = new typename size_vector_type::bufreader_type(lcp_rbeg, lcp_rbeg + m_s_bkt_toscan[ch]);
-
-            sa_rbeg = sa_rbeg + _bkt_info.get(ch);
-
-            lcp_rbeg = lcp_rbeg + _bkt_info.get(ch);
           }
           else {
 
@@ -900,7 +973,10 @@ private:
             m_lcp_s_bkt_reader[ch] = nullptr;
           }
 
+          sa_rbeg = sa_rbeg + _bkt_info.get(ch);
 
+          lcp_rbeg = lcp_rbeg + _bkt_info.get(ch);
+            
           if (ch == 0) break; // break dead loop
         }
     }
@@ -1049,179 +1125,249 @@ private:
     }
     
     /// \brief for each S-type suffix, check the SA-value in SA and the LCP-value between the suffix and its right neighbor in SA.
-    ///	
-    /// case 1: scan: if currently scanned suffix is S-type, then the LCP-value of the suffix and its right neighbor in SA can be retrieved from LCP.
-   	///								update RMQ with the LCP-value and then induce the preceding suffix.
-   	///					induce: if the preceding suffix is S-type, then the LCP-value of the suffix and its right neighbor in SA can be calculated following the sub-cases below:
-   	///										sub-case (a): if the preceding suffix is the rightmost S-type suffix in the S-type bucket, then the LCP-value is 0.
-   	///										sub-case (b): otherwise, the LCP-value is 1 + RMQ_VALUE.
+    ///
+    /// case 1: scan: if currently scanned suffix $suf is S-type, then the LCP-value of $suf and its right neighbor in SA can be retrieved following the sub-cases below:
+    ///										sub-case (a): if $suf is the rightmost S-type suffix in the bucket, then perform a literal comparison between $suf and the last scanned suffix to compute their LCP-value and compare the value with the one recorded in LCP for validation.
+    ///										sub-case (b): otherwise, the LCP-value has been verified in the previous iterations and we directly read it from LCP.
+    ///								update RMQ with the LCP-value.
+		///					induce: if the preceding suffix of the last scanned suffix is S-type, then the LCP-value of the suffix and the currently scanned one can be calculated following the sub-cases below:
+		///										sub-case (a): if the preceding suffix is the rightmost S-type suffix in the bucket, then we perform a literal comparison between the suffix and its right neighbor in SA to compute their LCP-value.
+		///										sub-case (b): otherwise, the LCP-value is 1 + RMQ_VALUE.
+		///								validate the correctness of the induced SA-value and the induced LCP-value.
+		///	case 2: scan: if currently scanned suffix $suf is L-type, then the LCP-value of $suf and its right neighbor in SA can be retrieved following the sub-cases below:
+		///										sub-case (a): if $suf is the rightmost suffix in SA, then it does not have a right neighbor in SA, skip it.
+		///										sub-case (b): otherwise, if $suf is the rightmost L-type suffix in the bucket, then perform a literal comparison between $suf and the last scanned suffix to compute their LCP-value and compare the value with the one recorded in LCP for validation.
+		///										sub-case (c): otherwise, the LCP-value has been verified when scanning rightward and we directly read it from LCP.
+		///								update RMQ with the LCP-value.
+		///					induce: if the preceding suffix of the last scanned suffix is S-type, then the LCP-value of the suffix and the currently scanned one can be calculated following the sub-cases below:
+		///										sub-case (a): if the preceding suffix is the rightmost S-type suffix in the bucket, then we perform a literal comparison between the suffix and its right neighbor in SA to compute their LCP-value.
+		///										sub-case (b): otherwise, the LCP-value is 1 + RMQ_VALUE.
     ///								validate the correctness of the induced SA-value and the induced LCP-value.
-    /// case 2: scan: if currently scanned suffix is L-type, then the LCP-value of the suffix and its right neighbor in SA can be retrieved from LCP.
-    ///								update RMQ with the LCP-value and then induce the preceding suffix.
-    ///					induce: if the preceding suffix is L-type, then the LCP-value of the suffix and its right neighbor in SA can be calculated following the sub-cases below:
-    ///										sub-case (a): if the preceding suffix is the rightmost S-type suffix in the L-type bucket, then the LCP-value is 0.
-   	///										sub-case (b): otherwise, the LCP-value is 1 + RMQ_VALUE.
-    ///								validate the correctness of the induced SA-value and the induced LCP-value.    
-  	///	\note In each bucket, the LCP-value of the leftmost S-type suffix and its left neighbor in SA must be verified by performing a literal comparison before starting the rightward scan.
-    void run(const triple2_less_sorter_type* _sorter){
+   void run(const triple2_less_sorter_type* _pre_s_items, const triples2_less_sorter_type* _pre_l_items){
 
-      alphabet_type cur_bkt_ch, cur_l_ch, cur_lms_ch;
+      alphabet_type cur_bkt_ch, cur_l_ch, cur_s_ch, pre_ch_of_last_scanned;
 
-      size_type sv_scanned, lv_scanned;
+			uint8 pre_t_of_last_scanned;
+			
+      size_type sv_cur_scanned, lv_cur_scanned, sv_last_scanned, lv_last_scanned;
+      
+      size_type sv_induced, lv_induced, sv_induced_fetch, lv_induced_fetch;
+      
+      RMQ<false> rmq_s;
+      
+      bool flag = true; // indicate current scanned S-type/L-type suffix is the rightmost suffix in the S-type/L-type bucket
+      	
+      bool flags[ch_max + 1] = {true}; // indicate currently induced S-type suffix is the rightmost suffix in the S-type bucket
+      	
+      { // process the rightmost suffix in SA (which is the largest suffix in T and must be L-type)
+      	      	
+      	cur_bkt_ch = get_l_bkt_ch();
+      	
+      	flag = false;
+      	
+      	//scan 
+      	fetch_l_scanned(sv_cur_scanned, lv_cur_scanned);
+      	
+      	// no right neighbor in SA, thus no need to update RMQ and induce the preceding suffix of the last scanned suffix
+      	
+      	// 
+      	sv_last_scanned = sv_cur_scanned;
+      	
+      	lv_last_scanned = lv_cur_scanned;
+      	
+      	pre_ch_of_last_scanned = *(*pre_l_items).second;
+      	
+      	pre_t_of_last_scanned = *(*pre_l_items).third;
+      	
 
-      size_type sv_induced, lv_induced;
+      }
+      
+      { // process the remaining suffixes
+      	// we suppose there remain at least one suffix to be processed, thus l_is_empty() and s_is_empty() will not be all true
+      	
+      	if (l_bkt_is_empty()) { // currently scanned L-type bucket only contains the rightmost suffix in SA
+      		
+      		flag = true;
+      		
+      		if (!l_is_empty()) { // still remain L-type suffixes to scan
+      			
+      			find_next_l_bkt();
+      			
+      			cur_bkt_ch = get_l_bkt_ch();
+      			
+      			if (!s_is_empty() && get_s_bkt_ch() >= cur_bkt_ch) {
+      				
+      				cur_bkt_ch = get_s_bkt_ch();	
+      			}
+      		}
+					else { // the assumption guarantees that s_is_empty() will not be true if l_is_empty() is true
+							
+						cur_bkt_ch = get_s_bkt_ch();	
+					}
+      	}
+      	
+      	
+      	while (true) {
+      		
+      		while (!s_bkt_is_empty() && get_s_bkt_ch() == cur_bkt_ch) {
+      			
+      			// induce and validate the SA-value for the suffix induced from the last scanned suffix and the LCP-value of this suffix and its right neighbor in SA
+      			if (pre_t_of_last_scanned == S_TYPE) { // the preceding suffix of the last scanned suffix is S-type, must be induced
+      				
+      				fetch_s_induced(pre_ch_of_last_scanned, sv_induced_fetch, lv_induced_fetch); // fetch the corresponding values from SA and LCP
+      				
+      				sv_induced = sv_last_scanned - 1;
+      				
+      				if (sv_induced != sv_induced_fetch) { // check SA-value
+      					
+									std::cerr << "wrong\n"; 
+											
+									exit(0);
+      				}
+      				
+      				if (flags[pre_ch_last_scanned] == true) { // the induced S-type is the rightmost in the S-type bucket
+      					
+      					if (lv_induced_fetch != 0) { // check LCP-value, must be 0
+      						
+									std::cerr << "wrong\n"; 
+											
+									exit(0);      						
+      					}
+      					
+      					flags[pre_ch_last_scanned] = false;
+      				}
+      				else {
+      				
+								lv_induced = rmq_l.get(pre_ch_of_last_scanned) + 1; // RMQ_VALUE + 1
+								
+								if (lv_induced != lv_induced_fetch) { // check LCP-value
+								
+									std::cerr << "wrong\n";
+										
+									exit(0);	
+								}     				
+	      			}     				     				
 
-      while (true) {
+      				//reset RMQ
+							rmq_l.reset(pre_ch_of_last_scanned);
+      			}
+      			
+            // scan 
+      			fetch_s_scanned(sv_cur_scanned, lv_cur_scanned);			
 
-        // scan l-type suffixes
-        while (!l_is_empty() && cur_l_ch == cur_bkt_ch) {
-
-          // retrieve sa-value and lcp-value from sa and lcp
-          size_type sv_scanned = *(*m_sa_l_reader);
-
-          size_type lv_scanned = *(*m_lcp_l_reader);
-
-          // update RMQ
-          rmq_l.update(cur_bkt_ch, lv);
-
-          // retrieve pre_ch & pre_t from m_l_pre;
-          alphabet_type pre_ch = *(*_sorter)->second;
-
-          alphabet_type pre_t = *(*_sorter)->third;
-
-          //
-          if (pre_t == L_TYPE) {
-
-              // induce
-              sv_induced = sv_scanned - 1;
-
-              if () { // first induced into the bucket
-
-                lv_induced = 0;
-              }
-              else {
-
-                lv_induced = rmq_l.get(cur_bkt_ch);
-              }
-
-              // validate
-              if (sa_induced != *(*m_sa_l_bkt_reader[ch]) || lv_induced != *(*m_lcp_l_bkt_reader)) {
-
-                std::cerr << "wrong";
-
-                  exit();
-              }
-          }
-
-          pre_l_ch = cur_l_ch;
-
-          pre_sv_scanned = sv_scanned;
-
-          forward_l(cur_l_ch);
-        }
-
-        // scan leftmost lms suffix in the bucket
-        if (!lms_is_empty() && cur_lms_ch == cur_bkt_ch) {
-
-          // retrieve sa-value and lcp-value from sa_lms and lcp_lms
-          sv_scanned = *(*m_sa_lms_reader); ++(*m_sa_lms_reader);
-
-          lv_scanned = *(*m_lcp_lms_reader); ++(*m_lcp_lms_reader);
-
-          if (pre_l_ch == cur_bkt_ch) { // left neighbor is a L-type suffix in the same bucket, must recompute lv_scanned
-
-            lv_scanned = bruteforce_compute_lcp(sv_scanned, pre_sv_scanned);
-          }
-
-          // update RMQ
-          rmq_l.update(cur_bkt_ch, lv_scanned);
-
-          // induce
-          sv_induced = sv_scanned - 1;
-
-          if () { // first induced into the bucket
-
-            lv_induced = 0;
-          }
-          else {
-
-            lv_induced = rmq_l.get(cur_bkt_ch);
-          }
-
-          // validate
-          if (sa_induced != *(*m_sa_l_bkt_reader[ch]) || lv_induced != *(*m_lcp_l_bkt_reader)) {
-
-            std::cerr << "wrong";
-
-            exit();
-          }
-
-          pre_l_ch = cur_l_ch;
-
-          pre_sv_scanned = sv_scanned;
-
-          next_lms(cur_lms_ch);
-        }
-
-        // scan the remaining lms suffixes
-        while (!lms_is_empty() && cur_lms_ch == cur_bkt_ch) {
-
-          // retrieve sa-value and lcp-value from sa_lms and lcp_lms
-          sv_scanned = *(*m_sa_lms_reader); ++(*m_sa_lms_reader);
-
-          lv_scanned = *(*m_lcp_lms_reader); ++(*m_lcp_lms_reader);
-
-          // update RMQ
-          rmq_l.update(cur_bkt_ch, lv_scanned);
-
-          // induce
-          sv_induce = sv_scanned - 1;
-
-          if () { // first induced into the bucket
-
-            lv_induced = 0;
-          }
-          else {
-
-              lv_induced = rmq_l.get(cur_bkt_ch);
-          }
-
-          // validate
-          if (sa_induced != *(*m_sa_l_bkt_reader[ch]) || lv_induced != *(*m_lcp_l_bkt_reader)) {
-
-            std::cerr << "wrong";
-
-            exit();
-          }
-
-          pre_l_ch = cur_l_ch;
-
-          pre_sv_scanned = sv_scanned;
-
-          next_lms(cur_lms_ch);
-        }
-
-        // determine next bucket
-        if (!l_is_empty()) {
-
-          cur_bkt_ch = cur_lms_ch;
-
-          if (!lms_is_empty() && cur_lms_ch < cur_bkt_ch) {
-
-            cur_bkt_ch = cur_lms_ch;
-          }
-        }
-        else if (!lms_is_empty()) {
-
-          cur_bkt_ch = cur_lms_ch;
-        }
-        else {
-
-          break;
-        }
+       			// update rmq with the LCP-value of currently scanned and last scanned suffixes
+      			if (flag == true) { // rightmost S-type suffix in the bucket, the LCP-value has not been checked
+      				
+      				if (lv_last_scanned != bruteforce_compute_lcp(sv_last_scanned, sv_cur_scanned) { // check if correct
+      					
+      						std::cerr << "wrong\n";
+      							
+      						exit(0);	
+      				}
+      				
+      				flag = false;
+      			}  
+      			else { // the LCP-value has been checked in the previous iterations
+      			
+      				// do nothing	
+      			}  			
+      		
+      			rmq_s.update(lv_last_scanned);
+      						
+      			//
+      			sv_last_scanned = sv_cur_scanned;
+      			
+      			lv_last_scanned = lv_cur_scanned;    			
+      			
+      			pre_ch_of_last_scanned = *(*pre_s_items).second;
+      			
+      			pre_t_of_last_scanned = *(*pre_l_items).third;
+      		}
+      		
+      		flag = true;
+      		
+      		// scan L-type bucket
+      		while (!l_bkt_is_empty() && get_l_bkt_ch() == cur_bkt_ch) {
+      			
+      			// induce and validate
+      			if (pre_t_of_last_scanned == S_TYPE) { // the preceding character of the last scanned suffix is S-type
+      				
+      				fetch_s_induced(pre_ch_last_scanned)
+      				
+      				
+      			}
+      			
+      			// scan
+      			fetch_l_scanned(sv_cur_scanned, lv_cur_scanned);
+      			
+      			//
+      			if (flag == true) { // rightmost L-type suffix in the bucket, the LCP-value of the suffix and its right neighbor in SA has not been verified
+      				
+      				if (lv_last_scanned != bruteforce_compute_lcp(sv_cur_scanned, sv_last_scanned)){
+      					
+      					std::cerr << "wrong\n";
+      						
+      					exit(0);
+      				}
+      				
+      				flag = false; 				
+      			}
+      			else {
+      				
+      				// do nothing
+      			}
+      			
+      			// update rmq
+      			rmq_s.update(lv_last_scanned);      			
+      			
+      			//
+      			sv_last_scanned = sv_cur_scanned;
+      			
+      			lv_last_scanned = lv_cur_scanned;    	
+      			
+      			pre_ch_of_last_scanned = *(*pre_s_items).second;
+      			
+      			pre_t_of_last_scanned = *(*pre_l_items).third;		
+      		}
+      		
+      		// determine the next bucket
+      		if (!s_is_empty()) {
+      			
+      			find_next_s_bkt();
+      			
+      			cur_bkt_ch = get_s_bkt_ch();
+      			
+      			if (!l_is_emtpy()) {
+      				
+      				find_next_l_bkt();	
+      				
+      				if (cur_bkt_ch < get_l_bkt_ch()) {
+      					
+      					cur_bkt_ch = get_l_bkt_ch();	
+      				}	
+      			}
+      			else if (!l_is_empty()) {
+      				
+      				find_next_l_bkt();
+      				
+      				cur_bkt_ch = get_l_bkt_ch();
+      			}
+      			else {
+      				
+      				break;
+      			}
+      		}
+      	}
       }
     }
   };
+  
+  
+  
+  Validate4(alphabet_vector_type& _t, size_vector_type& _sa. size_vector_type& _lcp){}
+  
+  
+  
 };
 
 
