@@ -27,6 +27,8 @@
 
 #include <cassert>
 
+#include <vector>
+
 static const size_t K_512 = 512 * 1024; ///< 512 K
 
 static const size_t M_512 = K_512 * 1024; ///< 512 M
