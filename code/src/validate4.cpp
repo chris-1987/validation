@@ -17,7 +17,19 @@ int main(int argc, char **argv) {
 	std::string lcp_fn(argv[3]);
 
 	//
-	Validate4<uint8, uint40> validate4(t_fn, sa_fn, lcp_fn);
+	stxxl::stats *Stats = stxxl::stats::get_instance();
+
+	stxxl::stats_data stats_begin(*Stats);
+
+	stxxl::block_manager *bm = stxxl::block_manager::get_instance();
+
+	//
+	uint64 len = BasicIO::file_size(t_fn);
+
+	std::cerr << "Corpora Size: " << len << std::endl;
+
+	//
+	Validate4<uint8, uint16, uint40> validate4(t_fn, sa_fn, lcp_fn);
 
 	// check
 	if (false == validate4.run()) {
@@ -28,6 +40,13 @@ int main(int argc, char **argv) {
 	
 		std::cerr << "check--passed\n";
 	}
+
+	std::cerr << (stxxl::stats_data(*Stats) - stats_begin);
+	
+	std::cerr << "Peak disk use: " << bm->get_maximum_allocation() << " per character: " << (double)bm->get_maximum_allocation() / len << std::endl;
+
+	std::cerr << "I/O volume: " << Stats->get_written_volume() + Stats->get_read_volume() << " per character: " << ((double) Stats->get_written_volume() + Stats->get_read_volume()) / len << std::endl;		
+
 }
 
 
