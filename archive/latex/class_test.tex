@@ -1,0 +1,242 @@
+\hypertarget{class_test}{}\section{Test$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$ Class Template Reference}
+\label{class_test}\index{Test$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$@{Test$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$}}
+
+
+{\ttfamily \#include $<$test.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_test_a9ca0652d8678a0c57e321fcc21f9ae39}{Test} (\hyperlink{class_test_aace52a5af52c5d5f457ec201881ab2ab}{alphabet\+\_\+vector\+\_\+type} $\ast$\+\_\+ex\+\_\+s, \hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+ex\+\_\+sa, \hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+ex\+\_\+lcp)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+bool \hyperlink{class_test_ab5d1d239530c9b99ab1732e5d4008b87}{validate\+\_\+lms} (\hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+sa\+\_\+ex\+\_\+lms, \hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+lcp\+\_\+ex\+\_\+lms)
+\begin{DoxyCompactList}\small\item\em validate S\+A\+\_\+\+L\+MS and L\+C\+P\+\_\+\+L\+MS \end{DoxyCompactList}\item 
+bool \hyperlink{class_test_aed94eee4f2a73d02c0abbe448efe2095}{validate\+\_\+pre\+\_\+item} (\hyperlink{class_test_a1e7fba953871f5eee60eabf8b0e287b7}{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$\+\_\+pre\+\_\+item\+\_\+of\+\_\+l\+\_\+sorter, \hyperlink{class_test_ad87ac75730f80ef0824f0c56ec7db12d}{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$\+\_\+pre\+\_\+item\+\_\+of\+\_\+s\+\_\+sorter, \hyperlink{class_test_aa25f2080d593eb18d6e5e475d99bac17}{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$\+\_\+pre\+\_\+item\+\_\+of\+\_\+lms\+\_\+sorter)
+\begin{DoxyCompactList}\small\item\em vaildate preceding items \end{DoxyCompactList}\item 
+\hyperlink{class_test_acafab99b8fa6756de9998d16fc9e33f4}{$\sim$\+Test} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ alphabet\+\_\+type $>$\+::vector \hyperlink{class_test_aace52a5af52c5d5f457ec201881ab2ab}{alphabet\+\_\+vector\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ size\+\_\+type $>$\+::vector \hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type}
+\item 
+typedef \hyperlink{structtriple}{triple}$<$ size\+\_\+type, \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}, \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} $>$ \hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}
+\item 
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$ \hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type} $>$ \hyperlink{class_test_a8eb2bb639be9c46697c52f77d79703a8}{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$ \hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}, \hyperlink{class_test_a8eb2bb639be9c46697c52f77d79703a8}{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type} $>$\+::sorter \hyperlink{class_test_a1e7fba953871f5eee60eabf8b0e287b7}{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}
+\item 
+typedef \hyperlink{structtuple__great__comparator__1st}{tuple\+\_\+great\+\_\+comparator\+\_\+1st}$<$ \hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type} $>$ \hyperlink{class_test_aeafbf94ce50f60c6c463e2e57a4d43a5}{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$ \hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}, \hyperlink{class_test_aeafbf94ce50f60c6c463e2e57a4d43a5}{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type} $>$\+::sorter \hyperlink{class_test_ad87ac75730f80ef0824f0c56ec7db12d}{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type}
+\item 
+typedef \hyperlink{structpair}{pair}$<$ size\+\_\+type, \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} $>$ \hyperlink{class_test_a9c312a6616c86eaf224d04d298f58ed4}{pair3\+\_\+type}
+\item 
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$ \hyperlink{class_test_a9c312a6616c86eaf224d04d298f58ed4}{pair3\+\_\+type} $>$ \hyperlink{class_test_a5ebabea22d5111680c158fb28c7cc935}{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$ \hyperlink{class_test_a9c312a6616c86eaf224d04d298f58ed4}{pair3\+\_\+type}, \hyperlink{class_test_a5ebabea22d5111680c158fb28c7cc935}{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type} $>$\+::sorter \hyperlink{class_test_aa25f2080d593eb18d6e5e475d99bac17}{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_test_ac0031d768664e62b04aa14acaecdb354}{m\+\_\+len}
+\item 
+alphabet\+\_\+type $\ast$ \hyperlink{class_test_a2992148c8dda566ae4f4ebbdb26bdccd}{m\+\_\+s}
+\item 
+size\+\_\+type $\ast$ \hyperlink{class_test_a38956729bdb63c0bfe7760e827769309}{m\+\_\+sa}
+\item 
+size\+\_\+type $\ast$ \hyperlink{class_test_aba44b9a05184fb5f62f4901fd607da40}{m\+\_\+lcp}
+\item 
+\hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} $\ast$ \hyperlink{class_test_ad5db148e90886fc6524a1f07194df9a9}{m\+\_\+t}
+\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_test_a3a2c92b2ace889d7c98d1188ee2542c5}{m\+\_\+lms\+\_\+num}
+\item 
+size\+\_\+type $\ast$ \hyperlink{class_test_a557862839f4ead2e08d12e7770340ded}{m\+\_\+sa\+\_\+lms}
+\item 
+size\+\_\+type $\ast$ \hyperlink{class_test_a94d43daa04ae5011cc46d8fd3dc8c83b}{m\+\_\+lcp\+\_\+lms}
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_test_aace52a5af52c5d5f457ec201881ab2ab}\label{class_test_aace52a5af52c5d5f457ec201881ab2ab}} 
+\index{Test@{Test}!alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}}
+\index{alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{alphabet\+\_\+vector\+\_\+type}{alphabet\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$alphabet\+\_\+type$>$\+::vector \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_aace52a5af52c5d5f457ec201881ab2ab}{alphabet\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a5ebabea22d5111680c158fb28c7cc935}\label{class_test_a5ebabea22d5111680c158fb28c7cc935}} 
+\index{Test@{Test}!pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type@{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}}
+\index{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type@{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}{pair3\_less\_comparator\_1st\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$\hyperlink{class_test_a9c312a6616c86eaf224d04d298f58ed4}{pair3\+\_\+type}$>$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_a5ebabea22d5111680c158fb28c7cc935}{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_aa25f2080d593eb18d6e5e475d99bac17}\label{class_test_aa25f2080d593eb18d6e5e475d99bac17}} 
+\index{Test@{Test}!pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type@{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}}
+\index{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type@{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}{pair3\_less\_sorter\_1st\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$\hyperlink{class_test_a9c312a6616c86eaf224d04d298f58ed4}{pair3\+\_\+type}, \hyperlink{class_test_a5ebabea22d5111680c158fb28c7cc935}{pair3\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}$>$\+::sorter \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_aa25f2080d593eb18d6e5e475d99bac17}{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a9c312a6616c86eaf224d04d298f58ed4}\label{class_test_a9c312a6616c86eaf224d04d298f58ed4}} 
+\index{Test@{Test}!pair3\+\_\+type@{pair3\+\_\+type}}
+\index{pair3\+\_\+type@{pair3\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{pair3\+\_\+type}{pair3\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{structpair}{pair}$<$size\+\_\+type, \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}$>$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_a9c312a6616c86eaf224d04d298f58ed4}{pair3\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a9290f9f05f2aac6555e7366cf214d186}\label{class_test_a9290f9f05f2aac6555e7366cf214d186}} 
+\index{Test@{Test}!size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}}
+\index{size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{size\+\_\+vector\+\_\+type}{size\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$size\+\_\+type$>$\+::vector \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_aeafbf94ce50f60c6c463e2e57a4d43a5}\label{class_test_aeafbf94ce50f60c6c463e2e57a4d43a5}} 
+\index{Test@{Test}!triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type@{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type}}
+\index{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type@{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type}{triple2\_great\_comparator\_1st\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{structtuple__great__comparator__1st}{tuple\+\_\+great\+\_\+comparator\+\_\+1st}$<$\hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}$>$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_aeafbf94ce50f60c6c463e2e57a4d43a5}{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_ad87ac75730f80ef0824f0c56ec7db12d}\label{class_test_ad87ac75730f80ef0824f0c56ec7db12d}} 
+\index{Test@{Test}!triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type@{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type}}
+\index{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type@{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type}{triple2\_great\_sorter\_1st\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$\hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}, \hyperlink{class_test_aeafbf94ce50f60c6c463e2e57a4d43a5}{triple2\+\_\+great\+\_\+comparator\+\_\+1st\+\_\+type}$>$\+::sorter \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_ad87ac75730f80ef0824f0c56ec7db12d}{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a8eb2bb639be9c46697c52f77d79703a8}\label{class_test_a8eb2bb639be9c46697c52f77d79703a8}} 
+\index{Test@{Test}!triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type@{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}}
+\index{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type@{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}{triple2\_less\_comparator\_1st\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$\hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}$>$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_a8eb2bb639be9c46697c52f77d79703a8}{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a1e7fba953871f5eee60eabf8b0e287b7}\label{class_test_a1e7fba953871f5eee60eabf8b0e287b7}} 
+\index{Test@{Test}!triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type@{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}}
+\index{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type@{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}{triple2\_less\_sorter\_1st\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$\hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}, \hyperlink{class_test_a8eb2bb639be9c46697c52f77d79703a8}{triple2\+\_\+less\+\_\+comparator\+\_\+1st\+\_\+type}$>$\+::sorter \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_a1e7fba953871f5eee60eabf8b0e287b7}{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_ae1d42342f4ec472a724f55af01c3c5ab}\label{class_test_ae1d42342f4ec472a724f55af01c3c5ab}} 
+\index{Test@{Test}!triple2\+\_\+type@{triple2\+\_\+type}}
+\index{triple2\+\_\+type@{triple2\+\_\+type}!Test@{Test}}
+\subsubsection{\texorpdfstring{triple2\+\_\+type}{triple2\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+typedef \hyperlink{structtriple}{triple}$<$size\+\_\+type, \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}, \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}$>$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test_ae1d42342f4ec472a724f55af01c3c5ab}{triple2\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_test_a9ca0652d8678a0c57e321fcc21f9ae39}\label{class_test_a9ca0652d8678a0c57e321fcc21f9ae39}} 
+\index{Test@{Test}!Test@{Test}}
+\index{Test@{Test}!Test@{Test}}
+\subsubsection{\texorpdfstring{Test()}{Test()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+\hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_test}{Test} (\begin{DoxyParamCaption}\item[{\hyperlink{class_test_aace52a5af52c5d5f457ec201881ab2ab}{alphabet\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+ex\+\_\+s,  }\item[{\hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+ex\+\_\+sa,  }\item[{\hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+ex\+\_\+lcp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ctor 
+
+\mbox{\Hypertarget{class_test_acafab99b8fa6756de9998d16fc9e33f4}\label{class_test_acafab99b8fa6756de9998d16fc9e33f4}} 
+\index{Test@{Test}!````~Test@{$\sim$\+Test}}
+\index{````~Test@{$\sim$\+Test}!Test@{Test}}
+\subsubsection{\texorpdfstring{$\sim$\+Test()}{~Test()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+\hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::$\sim$\hyperlink{class_test}{Test} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_test_ab5d1d239530c9b99ab1732e5d4008b87}\label{class_test_ab5d1d239530c9b99ab1732e5d4008b87}} 
+\index{Test@{Test}!validate\+\_\+lms@{validate\+\_\+lms}}
+\index{validate\+\_\+lms@{validate\+\_\+lms}!Test@{Test}}
+\subsubsection{\texorpdfstring{validate\+\_\+lms()}{validate\_lms()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+bool \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::validate\+\_\+lms (\begin{DoxyParamCaption}\item[{\hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+sa\+\_\+ex\+\_\+lms,  }\item[{\hyperlink{class_test_a9290f9f05f2aac6555e7366cf214d186}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+lcp\+\_\+ex\+\_\+lms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+validate S\+A\+\_\+\+L\+MS and L\+C\+P\+\_\+\+L\+MS 
+
+\mbox{\Hypertarget{class_test_aed94eee4f2a73d02c0abbe448efe2095}\label{class_test_aed94eee4f2a73d02c0abbe448efe2095}} 
+\index{Test@{Test}!validate\+\_\+pre\+\_\+item@{validate\+\_\+pre\+\_\+item}}
+\index{validate\+\_\+pre\+\_\+item@{validate\+\_\+pre\+\_\+item}!Test@{Test}}
+\subsubsection{\texorpdfstring{validate\+\_\+pre\+\_\+item()}{validate\_pre\_item()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+bool \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::validate\+\_\+pre\+\_\+item (\begin{DoxyParamCaption}\item[{\hyperlink{class_test_a1e7fba953871f5eee60eabf8b0e287b7}{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$}]{\+\_\+pre\+\_\+item\+\_\+of\+\_\+l\+\_\+sorter,  }\item[{\hyperlink{class_test_ad87ac75730f80ef0824f0c56ec7db12d}{triple2\+\_\+great\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$}]{\+\_\+pre\+\_\+item\+\_\+of\+\_\+s\+\_\+sorter,  }\item[{\hyperlink{class_test_aa25f2080d593eb18d6e5e475d99bac17}{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$}]{\+\_\+pre\+\_\+item\+\_\+of\+\_\+lms\+\_\+sorter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+vaildate preceding items 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_test_aba44b9a05184fb5f62f4901fd607da40}\label{class_test_aba44b9a05184fb5f62f4901fd607da40}} 
+\index{Test@{Test}!m\+\_\+lcp@{m\+\_\+lcp}}
+\index{m\+\_\+lcp@{m\+\_\+lcp}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp}{m\_lcp}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+size\+\_\+type$\ast$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+lcp\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a94d43daa04ae5011cc46d8fd3dc8c83b}\label{class_test_a94d43daa04ae5011cc46d8fd3dc8c83b}} 
+\index{Test@{Test}!m\+\_\+lcp\+\_\+lms@{m\+\_\+lcp\+\_\+lms}}
+\index{m\+\_\+lcp\+\_\+lms@{m\+\_\+lcp\+\_\+lms}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+lms}{m\_lcp\_lms}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+size\+\_\+type$\ast$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+lcp\+\_\+lms\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_ac0031d768664e62b04aa14acaecdb354}\label{class_test_ac0031d768664e62b04aa14acaecdb354}} 
+\index{Test@{Test}!m\+\_\+len@{m\+\_\+len}}
+\index{m\+\_\+len@{m\+\_\+len}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+len}{m\_len}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+len\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a3a2c92b2ace889d7c98d1188ee2542c5}\label{class_test_a3a2c92b2ace889d7c98d1188ee2542c5}} 
+\index{Test@{Test}!m\+\_\+lms\+\_\+num@{m\+\_\+lms\+\_\+num}}
+\index{m\+\_\+lms\+\_\+num@{m\+\_\+lms\+\_\+num}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+lms\+\_\+num}{m\_lms\_num}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+lms\+\_\+num\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a2992148c8dda566ae4f4ebbdb26bdccd}\label{class_test_a2992148c8dda566ae4f4ebbdb26bdccd}} 
+\index{Test@{Test}!m\+\_\+s@{m\+\_\+s}}
+\index{m\+\_\+s@{m\+\_\+s}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+s}{m\_s}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+alphabet\+\_\+type$\ast$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+s\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a38956729bdb63c0bfe7760e827769309}\label{class_test_a38956729bdb63c0bfe7760e827769309}} 
+\index{Test@{Test}!m\+\_\+sa@{m\+\_\+sa}}
+\index{m\+\_\+sa@{m\+\_\+sa}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+sa}{m\_sa}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+size\+\_\+type$\ast$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+sa\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_a557862839f4ead2e08d12e7770340ded}\label{class_test_a557862839f4ead2e08d12e7770340ded}} 
+\index{Test@{Test}!m\+\_\+sa\+\_\+lms@{m\+\_\+sa\+\_\+lms}}
+\index{m\+\_\+sa\+\_\+lms@{m\+\_\+sa\+\_\+lms}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+lms}{m\_sa\_lms}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+size\+\_\+type$\ast$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+sa\+\_\+lms\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_test_ad5db148e90886fc6524a1f07194df9a9}\label{class_test_ad5db148e90886fc6524a1f07194df9a9}} 
+\index{Test@{Test}!m\+\_\+t@{m\+\_\+t}}
+\index{m\+\_\+t@{m\+\_\+t}!Test@{Test}}
+\subsubsection{\texorpdfstring{m\+\_\+t}{m\_t}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$ \\
+\hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}$\ast$ \hyperlink{class_test}{Test}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::m\+\_\+t\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{test_8h}{test.\+h}\end{DoxyCompactItemize}

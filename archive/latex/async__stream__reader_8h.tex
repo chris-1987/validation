@@ -1,0 +1,37 @@
+\hypertarget{async__stream__reader_8h}{}\section{code/src/common/async\+\_\+stream\+\_\+reader.h File Reference}
+\label{async__stream__reader_8h}\index{code/src/common/async\+\_\+stream\+\_\+reader.\+h@{code/src/common/async\+\_\+stream\+\_\+reader.\+h}}
+
+
+read elements from disk file using asychronous I/O operations  
+
+
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}basicio.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$mutex$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structbuffer}{buffer$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em read buffer \end{DoxyCompactList}\item 
+struct \hyperlink{structbuffer__queue}{buffer\+\_\+queue$<$ buffer\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em queue of buffers \end{DoxyCompactList}\item 
+class \hyperlink{classasync__stream__reader}{async\+\_\+stream\+\_\+reader$<$ value\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em read data from an external disk file using asynchronous stream \end{DoxyCompactList}\item 
+class \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader$<$ value\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em main thread read multiple disk files simultaneously. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+read elements from disk file using asychronous I/O operations 
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12 
+\end{DoxyDate}

@@ -1,0 +1,136 @@
+\hypertarget{common_8h}{}\section{code/src/common/common.h File Reference}
+\label{common_8h}\index{code/src/common/common.\+h@{code/src/common/common.\+h}}
+
+
+definition of macro, constant and alias for common use  
+
+
+{\ttfamily \#include \char`\"{}namespace.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stxxl/bits/io/syscall\+\_\+file.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stxxl/vector\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$climits$>$}\newline
+{\ttfamily \#include $<$cassert$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} = \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32}
+\item 
+using \hyperlink{common_8h_a6f10cf5b333b34ed4bbf03429a74bcca}{fpb\+\_\+type} = \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const size\+\_\+t \hyperlink{common_8h_a4b1a49a5378e8e0c9aca7501041c8d6d}{K\+\_\+512} = 512 $\ast$ 1024
+\begin{DoxyCompactList}\small\item\em 512 K \end{DoxyCompactList}\item 
+static const size\+\_\+t \hyperlink{common_8h_a260c3735667f0ab08a4c522a2e7bda23}{M\+\_\+512} = \hyperlink{common_8h_a4b1a49a5378e8e0c9aca7501041c8d6d}{K\+\_\+512} $\ast$ 1024
+\begin{DoxyCompactList}\small\item\em 512 M \end{DoxyCompactList}\item 
+static const \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} \hyperlink{common_8h_aecfe9143b353556cb5a466f72c6a513c}{P} = 2047824239
+\item 
+static const \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} \hyperlink{common_8h_a465886396cb5767ddce1163c14db7209}{R} = 1732327371
+\item 
+static const \hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type} \hyperlink{common_8h_ae891a1a9fb20d0711712f6e64864f8ed}{M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL} = 3 $\ast$ 1024 $\ast$ 1024 $\ast$ 1024ull
+\item 
+static const \hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type} \hyperlink{common_8h_aff51988fecf5b6871480b3d91954df7d}{B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL} = 8 $\ast$ 1024 $\ast$ 1024ull
+\item 
+static const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \hyperlink{common_8h_a12286339af3610eed714aba8e56125ea}{L\+\_\+\+T\+Y\+PE} = 0
+\item 
+static const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \hyperlink{common_8h_a726936e5500c7ab70b64cbc308774a97}{S\+\_\+\+T\+Y\+PE} = 1
+\item 
+static const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \hyperlink{common_8h_aceba1d712f3152d9ec9297ba5dd67f1b}{S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE} = 2
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+definition of macro, constant and alias for common use 
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12 
+\end{DoxyDate}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}\label{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}} 
+\index{common.\+h@{common.\+h}!fpa\+\_\+type@{fpa\+\_\+type}}
+\index{fpa\+\_\+type@{fpa\+\_\+type}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{fpa\+\_\+type}{fpa\_type}}
+{\footnotesize\ttfamily using \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} =  \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32}}
+
+\mbox{\Hypertarget{common_8h_a6f10cf5b333b34ed4bbf03429a74bcca}\label{common_8h_a6f10cf5b333b34ed4bbf03429a74bcca}} 
+\index{common.\+h@{common.\+h}!fpb\+\_\+type@{fpb\+\_\+type}}
+\index{fpb\+\_\+type@{fpb\+\_\+type}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{fpb\+\_\+type}{fpb\_type}}
+{\footnotesize\ttfamily using \hyperlink{common_8h_a6f10cf5b333b34ed4bbf03429a74bcca}{fpb\+\_\+type} =  \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{common_8h_aff51988fecf5b6871480b3d91954df7d}\label{common_8h_aff51988fecf5b6871480b3d91954df7d}} 
+\index{common.\+h@{common.\+h}!B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL@{B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL}}
+\index{B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL@{B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL}{BUFF\_MEM\_AVAIL}}
+{\footnotesize\ttfamily const \hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type} B\+U\+F\+F\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL = 8 $\ast$ 1024 $\ast$ 1024ull\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{common_8h_a4b1a49a5378e8e0c9aca7501041c8d6d}\label{common_8h_a4b1a49a5378e8e0c9aca7501041c8d6d}} 
+\index{common.\+h@{common.\+h}!K\+\_\+512@{K\+\_\+512}}
+\index{K\+\_\+512@{K\+\_\+512}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{K\+\_\+512}{K\_512}}
+{\footnotesize\ttfamily const size\+\_\+t K\+\_\+512 = 512 $\ast$ 1024\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+512 K 
+
+\mbox{\Hypertarget{common_8h_a12286339af3610eed714aba8e56125ea}\label{common_8h_a12286339af3610eed714aba8e56125ea}} 
+\index{common.\+h@{common.\+h}!L\+\_\+\+T\+Y\+PE@{L\+\_\+\+T\+Y\+PE}}
+\index{L\+\_\+\+T\+Y\+PE@{L\+\_\+\+T\+Y\+PE}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{L\+\_\+\+T\+Y\+PE}{L\_TYPE}}
+{\footnotesize\ttfamily const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} L\+\_\+\+T\+Y\+PE = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{common_8h_a260c3735667f0ab08a4c522a2e7bda23}\label{common_8h_a260c3735667f0ab08a4c522a2e7bda23}} 
+\index{common.\+h@{common.\+h}!M\+\_\+512@{M\+\_\+512}}
+\index{M\+\_\+512@{M\+\_\+512}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{M\+\_\+512}{M\_512}}
+{\footnotesize\ttfamily const size\+\_\+t M\+\_\+512 = \hyperlink{common_8h_a4b1a49a5378e8e0c9aca7501041c8d6d}{K\+\_\+512} $\ast$ 1024\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+512 M 
+
+\mbox{\Hypertarget{common_8h_ae891a1a9fb20d0711712f6e64864f8ed}\label{common_8h_ae891a1a9fb20d0711712f6e64864f8ed}} 
+\index{common.\+h@{common.\+h}!M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL@{M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL}}
+\index{M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL@{M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL}{MAIN\_MEM\_AVAIL}}
+{\footnotesize\ttfamily const \hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type} M\+A\+I\+N\+\_\+\+M\+E\+M\+\_\+\+A\+V\+A\+IL = 3 $\ast$ 1024 $\ast$ 1024 $\ast$ 1024ull\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{common_8h_aecfe9143b353556cb5a466f72c6a513c}\label{common_8h_aecfe9143b353556cb5a466f72c6a513c}} 
+\index{common.\+h@{common.\+h}!P@{P}}
+\index{P@{P}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{P}{P}}
+{\footnotesize\ttfamily const \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} P = 2047824239\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{common_8h_a465886396cb5767ddce1163c14db7209}\label{common_8h_a465886396cb5767ddce1163c14db7209}} 
+\index{common.\+h@{common.\+h}!R@{R}}
+\index{R@{R}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily const \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} R = 1732327371\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{common_8h_a726936e5500c7ab70b64cbc308774a97}\label{common_8h_a726936e5500c7ab70b64cbc308774a97}} 
+\index{common.\+h@{common.\+h}!S\+\_\+\+T\+Y\+PE@{S\+\_\+\+T\+Y\+PE}}
+\index{S\+\_\+\+T\+Y\+PE@{S\+\_\+\+T\+Y\+PE}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{S\+\_\+\+T\+Y\+PE}{S\_TYPE}}
+{\footnotesize\ttfamily const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} S\+\_\+\+T\+Y\+PE = 1\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{common_8h_aceba1d712f3152d9ec9297ba5dd67f1b}\label{common_8h_aceba1d712f3152d9ec9297ba5dd67f1b}} 
+\index{common.\+h@{common.\+h}!S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE@{S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE}}
+\index{S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE@{S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE}!common.\+h@{common.\+h}}
+\subsubsection{\texorpdfstring{S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE}{SENTINEL\_TYPE}}
+{\footnotesize\ttfamily const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+T\+Y\+PE = 2\hspace{0.3cm}{\ttfamily [static]}}
+

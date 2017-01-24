@@ -1,0 +1,57 @@
+\hypertarget{validate_8h}{}\section{code/src/validate.h File Reference}
+\label{validate_8h}\index{code/src/validate.\+h@{code/src/validate.\+h}}
+
+
+first method for validating suffix and L\+CP arrays  
+
+
+{\ttfamily \#include \char`\"{}common/common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/basicio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/widget.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stxxl/timer\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_validate}{Validate$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em validate suffix and L\+CP arrays using Karp-\/\+Rarbin finger-\/printing function \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate_1_1_r_interval}{Validate$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::\+R\+Interval}
+\begin{DoxyCompactList}\small\item\em store (R \% P)$^\wedge$1, (R \% P)$^\wedge$2, (R \% P)$^\wedge$4, ... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{validate_8h_a864a52c772f23a04bcef46a40c9efed4}{T\+E\+S\+T\+\_\+1}
+\item 
+\#define \hyperlink{validate_8h_a1cc15202a800a32df74352e452309c57}{S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+first method for validating suffix and L\+CP arrays 
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+Given suffix and L\+CP arrays, validate their correctness using external memory sorts and Karp-\/\+Rabin Finger-\/printing function.
+
+The alphabet of input string is assumed to be O(1) or O(n).
+
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{validate_8h_a1cc15202a800a32df74352e452309c57}\label{validate_8h_a1cc15202a800a32df74352e452309c57}} 
+\index{validate.\+h@{validate.\+h}!S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON@{S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}}
+\index{S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON@{S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}!validate.\+h@{validate.\+h}}
+\subsubsection{\texorpdfstring{S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}{STATISTICS\_COLLECTION}}
+{\footnotesize\ttfamily \#define S\+T\+A\+T\+I\+S\+T\+I\+C\+S\+\_\+\+C\+O\+L\+L\+E\+C\+T\+I\+ON}
+
+\mbox{\Hypertarget{validate_8h_a864a52c772f23a04bcef46a40c9efed4}\label{validate_8h_a864a52c772f23a04bcef46a40c9efed4}} 
+\index{validate.\+h@{validate.\+h}!T\+E\+S\+T\+\_\+1@{T\+E\+S\+T\+\_\+1}}
+\index{T\+E\+S\+T\+\_\+1@{T\+E\+S\+T\+\_\+1}!validate.\+h@{validate.\+h}}
+\subsubsection{\texorpdfstring{T\+E\+S\+T\+\_\+1}{TEST\_1}}
+{\footnotesize\ttfamily \#define T\+E\+S\+T\+\_\+1}
+

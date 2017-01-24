@@ -1,0 +1,278 @@
+\hypertarget{classasync__multi__stream__writer}{}\section{async\+\_\+multi\+\_\+stream\+\_\+writer$<$ value\+\_\+type $>$ Class Template Reference}
+\label{classasync__multi__stream__writer}\index{async\+\_\+multi\+\_\+stream\+\_\+writer$<$ value\+\_\+type $>$@{async\+\_\+multi\+\_\+stream\+\_\+writer$<$ value\+\_\+type $>$}}
+
+
+multi-\/stream writer  
+
+
+
+
+{\ttfamily \#include $<$async\+\_\+stream\+\_\+writer.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classasync__multi__stream__writer_a7f94653dac5ce376bea3b330942b59b3}{async\+\_\+multi\+\_\+stream\+\_\+writer} (const std\+::string \&\+\_\+fn\+\_\+prefix, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+filenum, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+mem\+\_\+avail=(8ul$<$$<$ 20), const uint64 \&\+\_\+bufnum=4ul)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+void \hyperlink{classasync__multi__stream__writer_a0290b2d5fdf0368559eee905c09863e7}{write} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+id, const value\+\_\+type \&\+\_\+item)
+\begin{DoxyCompactList}\small\item\em write an item \end{DoxyCompactList}\item 
+void \hyperlink{classasync__multi__stream__writer_af44e02f6c2eac01f1022b51105ea9cc0}{write} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+id, const value\+\_\+type $\ast$\+\_\+src, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+num)
+\begin{DoxyCompactList}\small\item\em write a sequence of items \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{std\+::uint64} \hyperlink{classasync__multi__stream__writer_a196cb6d52ef0d06c585f9e6bba4384b5}{bytes\+\_\+written} () const
+\begin{DoxyCompactList}\small\item\em return performed I/O in bytes \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__writer_a26ace952cb25e9ec4a0839d0aafc5e5e}{$\sim$async\+\_\+multi\+\_\+stream\+\_\+writer} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{structbuffer}{buffer}$<$ value\+\_\+type $>$ \hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type}
+\item 
+typedef \hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type}$<$ \hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type} $>$ \hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type} $\ast$ \hyperlink{classasync__multi__stream__writer_a2598da84bf94a7576d3910e8fc16a18d}{get\+\_\+free\+\_\+buffer} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx)
+\begin{DoxyCompactList}\small\item\em get a free buffer from the queue \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{classasync__multi__stream__writer_ae0df727c7d673954c263e5b589a8f0c7}{io\+\_\+procedure} (\hyperlink{classasync__stream__writer}{async\+\_\+stream\+\_\+writer}$<$ T $>$ $\ast$\+\_\+caller, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx)
+\begin{DoxyCompactList}\small\item\em I/O thread that flush data into disk. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $\ast$ \hyperlink{classasync__multi__stream__writer_a30c3a9ab1270eaff7fe8b2f1a98873b4}{m\+\_\+bytes\+\_\+written}
+\begin{DoxyCompactList}\small\item\em I/O statistics. \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__writer_ae22c4cf2e0d2e00668294cfa3ab2c0f7}{m\+\_\+filenum}
+\begin{DoxyCompactList}\small\item\em number of files \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__writer_af8bf043c48fb1ad0dfa3e0a562e0e891}{m\+\_\+bufsize}
+\begin{DoxyCompactList}\small\item\em size of buffer \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__writer_a60bb0c6df357c9c9719527d812136ef3}{m\+\_\+bufnum}
+\begin{DoxyCompactList}\small\item\em number of buffers in a buffer queue for each file \end{DoxyCompactList}\item 
+std\+::\+F\+I\+LE $\ast$$\ast$ \hyperlink{classasync__multi__stream__writer_aa5b6be346293202ba59ff0d62f0a1196}{m\+\_\+files}
+\begin{DoxyCompactList}\small\item\em handlers of files \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type} $\ast$ \hyperlink{classasync__multi__stream__writer_af1f19cbe619c771f1786abc038146e72}{cur\+\_\+buffers}
+\begin{DoxyCompactList}\small\item\em pointer to current buffer for each file \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type} $\ast$$\ast$ \hyperlink{classasync__multi__stream__writer_a343172a30658146062d0388b442780f4}{m\+\_\+full\+\_\+buffer\+\_\+queues}
+\begin{DoxyCompactList}\small\item\em full buffer queue \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type} $\ast$$\ast$ \hyperlink{classasync__multi__stream__writer_a892131495e6b74180c6294fe0398301a}{m\+\_\+free\+\_\+buffer\+\_\+queues}
+\begin{DoxyCompactList}\small\item\em free buffer queue \end{DoxyCompactList}\item 
+std\+::thread $\ast$$\ast$ \hyperlink{classasync__multi__stream__writer_a6d7911a0a48ba0fe496b971cdb85369f}{m\+\_\+io\+\_\+threads}
+\begin{DoxyCompactList}\small\item\em queue of io threads \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename value\+\_\+type$>$\newline
+class async\+\_\+multi\+\_\+stream\+\_\+writer$<$ value\+\_\+type $>$}
+
+multi-\/stream writer 
+
+Main thread write data to multiple files at the same time. For each file, create a set of buffer and an I/O thread to write data to disk by aysnchronous I/O operations. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}\label{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!buffer\+\_\+queue\+\_\+type@{buffer\+\_\+queue\+\_\+type}}
+\index{buffer\+\_\+queue\+\_\+type@{buffer\+\_\+queue\+\_\+type}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{buffer\+\_\+queue\+\_\+type}{buffer\_queue\_type}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+typedef \hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type}$<$\hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type}$>$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::\hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}\label{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!buffer\+\_\+type@{buffer\+\_\+type}}
+\index{buffer\+\_\+type@{buffer\+\_\+type}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{buffer\+\_\+type}{buffer\_type}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+typedef \hyperlink{structbuffer}{buffer}$<$value\+\_\+type$>$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::\hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__writer_a7f94653dac5ce376bea3b330942b59b3}\label{classasync__multi__stream__writer_a7f94653dac5ce376bea3b330942b59b3}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{async\+\_\+multi\+\_\+stream\+\_\+writer()}{async\_multi\_stream\_writer()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::\hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+fn\+\_\+prefix,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+filenum,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+mem\+\_\+avail = {\ttfamily (8ul~$<$$<$~20)},  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+bufnum = {\ttfamily 4ul} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a26ace952cb25e9ec4a0839d0aafc5e5e}\label{classasync__multi__stream__writer_a26ace952cb25e9ec4a0839d0aafc5e5e}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!````~async\+\_\+multi\+\_\+stream\+\_\+writer@{$\sim$async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\index{````~async\+\_\+multi\+\_\+stream\+\_\+writer@{$\sim$async\+\_\+multi\+\_\+stream\+\_\+writer}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{$\sim$async\+\_\+multi\+\_\+stream\+\_\+writer()}{~async\_multi\_stream\_writer()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::$\sim$\hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__writer_a196cb6d52ef0d06c585f9e6bba4384b5}\label{classasync__multi__stream__writer_a196cb6d52ef0d06c585f9e6bba4384b5}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!bytes\+\_\+written@{bytes\+\_\+written}}
+\index{bytes\+\_\+written@{bytes\+\_\+written}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{bytes\+\_\+written()}{bytes\_written()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{std\+::uint64} \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::bytes\+\_\+written (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return performed I/O in bytes 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a2598da84bf94a7576d3910e8fc16a18d}\label{classasync__multi__stream__writer_a2598da84bf94a7576d3910e8fc16a18d}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!get\+\_\+free\+\_\+buffer@{get\+\_\+free\+\_\+buffer}}
+\index{get\+\_\+free\+\_\+buffer@{get\+\_\+free\+\_\+buffer}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{get\+\_\+free\+\_\+buffer()}{get\_free\_buffer()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type}$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::get\+\_\+free\+\_\+buffer (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+get a free buffer from the queue 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_ae0df727c7d673954c263e5b589a8f0c7}\label{classasync__multi__stream__writer_ae0df727c7d673954c263e5b589a8f0c7}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!io\+\_\+procedure@{io\+\_\+procedure}}
+\index{io\+\_\+procedure@{io\+\_\+procedure}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{io\+\_\+procedure()}{io\_procedure()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+template$<$typename T $>$ \\
+static void \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::io\+\_\+procedure (\begin{DoxyParamCaption}\item[{\hyperlink{classasync__stream__writer}{async\+\_\+stream\+\_\+writer}$<$ T $>$ $\ast$}]{\+\_\+caller,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+I/O thread that flush data into disk. 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a0290b2d5fdf0368559eee905c09863e7}\label{classasync__multi__stream__writer_a0290b2d5fdf0368559eee905c09863e7}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!write@{write}}
+\index{write@{write}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::write (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+id,  }\item[{const value\+\_\+type \&}]{\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+write an item 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_af44e02f6c2eac01f1022b51105ea9cc0}\label{classasync__multi__stream__writer_af44e02f6c2eac01f1022b51105ea9cc0}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!write@{write}}
+\index{write@{write}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{write()}{write()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::write (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+id,  }\item[{const value\+\_\+type $\ast$}]{\+\_\+src,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+write a sequence of items 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__writer_af1f19cbe619c771f1786abc038146e72}\label{classasync__multi__stream__writer_af1f19cbe619c771f1786abc038146e72}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!cur\+\_\+buffers@{cur\+\_\+buffers}}
+\index{cur\+\_\+buffers@{cur\+\_\+buffers}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{cur\+\_\+buffers}{cur\_buffers}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__writer_ae11c006e394241a9a5b003a30e8c8c92}{buffer\+\_\+type}$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::cur\+\_\+buffers\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to current buffer for each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a60bb0c6df357c9c9719527d812136ef3}\label{classasync__multi__stream__writer_a60bb0c6df357c9c9719527d812136ef3}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+bufnum@{m\+\_\+bufnum}}
+\index{m\+\_\+bufnum@{m\+\_\+bufnum}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+bufnum}{m\_bufnum}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+bufnum\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of buffers in a buffer queue for each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_af8bf043c48fb1ad0dfa3e0a562e0e891}\label{classasync__multi__stream__writer_af8bf043c48fb1ad0dfa3e0a562e0e891}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+bufsize@{m\+\_\+bufsize}}
+\index{m\+\_\+bufsize@{m\+\_\+bufsize}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+bufsize}{m\_bufsize}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+bufsize\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+size of buffer 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a30c3a9ab1270eaff7fe8b2f1a98873b4}\label{classasync__multi__stream__writer_a30c3a9ab1270eaff7fe8b2f1a98873b4}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+bytes\+\_\+written@{m\+\_\+bytes\+\_\+written}}
+\index{m\+\_\+bytes\+\_\+written@{m\+\_\+bytes\+\_\+written}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+bytes\+\_\+written}{m\_bytes\_written}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+bytes\+\_\+written\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+I/O statistics. 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_ae22c4cf2e0d2e00668294cfa3ab2c0f7}\label{classasync__multi__stream__writer_ae22c4cf2e0d2e00668294cfa3ab2c0f7}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+filenum@{m\+\_\+filenum}}
+\index{m\+\_\+filenum@{m\+\_\+filenum}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+filenum}{m\_filenum}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+filenum\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of files 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_aa5b6be346293202ba59ff0d62f0a1196}\label{classasync__multi__stream__writer_aa5b6be346293202ba59ff0d62f0a1196}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+files@{m\+\_\+files}}
+\index{m\+\_\+files@{m\+\_\+files}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+files}{m\_files}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+std\+::\+F\+I\+LE$\ast$$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+files\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+handlers of files 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a892131495e6b74180c6294fe0398301a}\label{classasync__multi__stream__writer_a892131495e6b74180c6294fe0398301a}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+free\+\_\+buffer\+\_\+queues@{m\+\_\+free\+\_\+buffer\+\_\+queues}}
+\index{m\+\_\+free\+\_\+buffer\+\_\+queues@{m\+\_\+free\+\_\+buffer\+\_\+queues}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+free\+\_\+buffer\+\_\+queues}{m\_free\_buffer\_queues}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type}$\ast$$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+free\+\_\+buffer\+\_\+queues\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+free buffer queue 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a343172a30658146062d0388b442780f4}\label{classasync__multi__stream__writer_a343172a30658146062d0388b442780f4}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+full\+\_\+buffer\+\_\+queues@{m\+\_\+full\+\_\+buffer\+\_\+queues}}
+\index{m\+\_\+full\+\_\+buffer\+\_\+queues@{m\+\_\+full\+\_\+buffer\+\_\+queues}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+full\+\_\+buffer\+\_\+queues}{m\_full\_buffer\_queues}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__writer_a1ac00be81314a643563a45cafe6f8660}{buffer\+\_\+queue\+\_\+type}$\ast$$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+full\+\_\+buffer\+\_\+queues\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+full buffer queue 
+
+\mbox{\Hypertarget{classasync__multi__stream__writer_a6d7911a0a48ba0fe496b971cdb85369f}\label{classasync__multi__stream__writer_a6d7911a0a48ba0fe496b971cdb85369f}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}!m\+\_\+io\+\_\+threads@{m\+\_\+io\+\_\+threads}}
+\index{m\+\_\+io\+\_\+threads@{m\+\_\+io\+\_\+threads}!async\+\_\+multi\+\_\+stream\+\_\+writer@{async\+\_\+multi\+\_\+stream\+\_\+writer}}
+\subsubsection{\texorpdfstring{m\+\_\+io\+\_\+threads}{m\_io\_threads}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+std\+::thread$\ast$$\ast$ \hyperlink{classasync__multi__stream__writer}{async\+\_\+multi\+\_\+stream\+\_\+writer}$<$ value\+\_\+type $>$\+::m\+\_\+io\+\_\+threads\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+queue of io threads 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/common/\hyperlink{async__stream__writer_8h}{async\+\_\+stream\+\_\+writer.\+h}\end{DoxyCompactItemize}

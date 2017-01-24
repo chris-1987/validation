@@ -1,0 +1,546 @@
+\hypertarget{struct_validate4_1_1_r_scan}{}\section{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+:\+:R\+Scan Struct Reference}
+\label{struct_validate4_1_1_r_scan}\index{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+Scan@{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+Scan}}
+
+
+scan SA rightward to validate the S\+A-\/values of all the L-\/type suffixes and the L\+C\+P-\/values of them and their left neighbors in SA.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_validate4_1_1_r_scan_a278507de57d05bc31a364a632f3a38ab}{R\+Scan} (\hyperlink{struct_validate4_1_1_bkt_info}{Bkt\+Info} \&\+\_\+bkt\+\_\+info, \hyperlink{class_validate4_a49c80b3d101be19542a4341c2387603a}{alphabet\+\_\+vector\+\_\+type} $\ast$\+\_\+t, \hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+sa, \hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+lcp, \hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+sa\+\_\+lms, \hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$\+\_\+lcp\+\_\+lms)
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+bool \hyperlink{struct_validate4_1_1_r_scan_aee1dcbd2edf03def6f3b3954d5cf0871}{l\+\_\+is\+\_\+empty} ()
+\begin{DoxyCompactList}\small\item\em check if no more L-\/type to be scanned \end{DoxyCompactList}\item 
+bool \hyperlink{struct_validate4_1_1_r_scan_ad24066012dd9441ffab435ce3f02424e}{lms\+\_\+is\+\_\+empty} ()
+\begin{DoxyCompactList}\small\item\em chec if no more L\+MS to be scanned \end{DoxyCompactList}\item 
+bool \hyperlink{struct_validate4_1_1_r_scan_adf0c72967eddde6a6924472a16e92e95}{l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty} ()
+\begin{DoxyCompactList}\small\item\em check if no more L-\/type suffixes to be scanned in current bucket \end{DoxyCompactList}\item 
+bool \hyperlink{struct_validate4_1_1_r_scan_a67647b0b0ef9df76bdcfa85547296a33}{lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty} ()
+\begin{DoxyCompactList}\small\item\em check if no more L\+MS suffixes to be scanned in current bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_scan_a32f26034048e070455cd9b1f56c95b89}{find\+\_\+next\+\_\+l\+\_\+bkt} ()
+\begin{DoxyCompactList}\small\item\em find next non-\/empty L-\/bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_scan_af8a20c45983e2d175f6bbc67dcbef719}{find\+\_\+next\+\_\+lms\+\_\+bkt} ()
+\begin{DoxyCompactList}\small\item\em find next non-\/empty L\+MS bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_scan_af88a27e36780a6b390bc0bd18c253429}{fetch\+\_\+l\+\_\+scanned} (size\+\_\+type \&\+\_\+sa\+\_\+value, size\+\_\+type \&\+\_\+lcp\+\_\+value)
+\begin{DoxyCompactList}\small\item\em fetch the S\+A-\/value of currently scanned L-\/type suffix and the L\+C\+P-\/value of the suffix and its left neighbor in SA \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_scan_aaeb8ae64faa2ab76d7467586f3281d97}{fetch\+\_\+lms\+\_\+scanned} (size\+\_\+type \&\+\_\+sa\+\_\+value, size\+\_\+type \&\+\_\+lcp\+\_\+value)
+\begin{DoxyCompactList}\small\item\em fetch the S\+A-\/value of currently scanned L\+MS suffix and the L\+C\+P-\/value of the suffix and its left neighbor in S\+A\+\_\+\+L\+MS \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_scan_aaa6c6e347bff1c6cb663771646c41826}{fetch\+\_\+l\+\_\+induced} (const alphabet\+\_\+type \+\_\+ch, size\+\_\+type \&\+\_\+sa\+\_\+value, size\+\_\+type \&\+\_\+lcp\+\_\+value)
+\begin{DoxyCompactList}\small\item\em fetch the S\+A-\/value for currently induced L-\/type suffix and the L\+C\+P-\/value for the suffix and its left neighbor in SA \end{DoxyCompactList}\item 
+alphabet\+\_\+type \hyperlink{struct_validate4_1_1_r_scan_a8d691af43c806d0e3279c0121abf6ed7}{get\+\_\+l\+\_\+bkt\+\_\+ch} ()
+\begin{DoxyCompactList}\small\item\em return the initial character of suffixes in current scanned bucket \end{DoxyCompactList}\item 
+alphabet\+\_\+type \hyperlink{struct_validate4_1_1_r_scan_ac53c6318e14f774d956baea8134b5937}{get\+\_\+lms\+\_\+bkt\+\_\+ch} ()
+\begin{DoxyCompactList}\small\item\em return the initial character of suffixes in current scanned bucket \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_r_scan_adc3cb04c1da68e1ac8a544c1eaf7c00c}{bruteforce\+\_\+compute\+\_\+lcp} (const size\+\_\+type \&\+\_\+pos1, const size\+\_\+type \&\+\_\+pos2)
+\begin{DoxyCompactList}\small\item\em literally compare two suffixes pointed to by the starting positions \end{DoxyCompactList}\item 
+\hyperlink{struct_validate4_1_1_r_scan_a853d1a1bbc53a8b1cacf231c0f64bf8a}{$\sim$\+R\+Scan} ()
+\begin{DoxyCompactList}\small\item\em de-\/ctor \end{DoxyCompactList}\item 
+bool \hyperlink{struct_validate4_1_1_r_scan_a963da6ae9411fca7fb05701dd678161f}{run} (\hyperlink{class_validate4_a4c1bcea817e34f96d95c99e0694bbfc8}{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$\+\_\+pre\+\_\+item\+\_\+of\+\_\+l\+\_\+sorter, \hyperlink{class_validate4_aff3135d55f749682df7e0f97c82a6769}{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$\+\_\+pre\+\_\+item\+\_\+of\+\_\+lms\+\_\+sorter)
+\begin{DoxyCompactList}\small\item\em induce and check the order of L-\/type suffixes and their L\+CP values \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const alphabet\+\_\+type \hyperlink{struct_validate4_1_1_r_scan_a3ff6f0be3fd0b25c66913d4d08b2e143}{ch\+\_\+max}
+\begin{DoxyCompactList}\small\item\em maximum character \end{DoxyCompactList}\item 
+\hyperlink{class_validate4_a49c80b3d101be19542a4341c2387603a}{alphabet\+\_\+vector\+\_\+type} $\ast$ \hyperlink{struct_validate4_1_1_r_scan_a9d9ce16aa2eacc32f54cc88e8746a73a}{m\+\_\+t}
+\begin{DoxyCompactList}\small\item\em pointer to input string \end{DoxyCompactList}\item 
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$ \hyperlink{struct_validate4_1_1_r_scan_ab656e7db03298be8ce72f202e5aa5e77}{m\+\_\+sa}
+\begin{DoxyCompactList}\small\item\em pointer to suffix array \end{DoxyCompactList}\item 
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$ \hyperlink{struct_validate4_1_1_r_scan_a5521d8d0a72b169e07da61abd5463634}{m\+\_\+lcp}
+\begin{DoxyCompactList}\small\item\em pointer to L\+CP array \end{DoxyCompactList}\item 
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$ \hyperlink{struct_validate4_1_1_r_scan_a7427660483d5beb9bbf8e6a69c291c25}{m\+\_\+sa\+\_\+lms}
+\begin{DoxyCompactList}\small\item\em pointer to S\+A\+\_\+\+L\+MS \end{DoxyCompactList}\item 
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$ \hyperlink{struct_validate4_1_1_r_scan_adf3e4856d77cd795d6b00b2355bd48bd}{m\+\_\+lcp\+\_\+lms}
+\begin{DoxyCompactList}\small\item\em pointer to L\+C\+P\+\_\+\+L\+MS \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_r_scan_a4ba4d8371cdcc14a4a34b012ee27a7f8}{m\+\_\+len}
+\begin{DoxyCompactList}\small\item\em number of elements in T/\+S\+A/\+L\+CP \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_r_scan_a47335f1e738063b9ddc5ee00be052cfd}{m\+\_\+l\+\_\+bkt\+\_\+toscan}
+\begin{DoxyCompactList}\small\item\em number of L-\/type suffixes to be scanned in each bucket \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_r_scan_ace00679285e1e6082440d2485809f0cf}{m\+\_\+l\+\_\+bkt\+\_\+scanned}
+\begin{DoxyCompactList}\small\item\em number of L-\/type suffixes scanned in each bucket \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_r_scan_a9681af9f2bc82ec9202da5c967f36491}{m\+\_\+lms\+\_\+bkt\+\_\+toscan}
+\begin{DoxyCompactList}\small\item\em number of L\+MS suffixes to be scanned in each bucket \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_r_scan_ab56ecfb052c910af7ed356d5ad11be0b}{m\+\_\+lms\+\_\+bkt\+\_\+scanned}
+\begin{DoxyCompactList}\small\item\em number of L\+MS suffixes scanned in each bucket \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_r_scan_ab9a643ec01afe4e6d3455ff025aeb612}{m\+\_\+l\+\_\+bkt\+\_\+spos}
+\begin{DoxyCompactList}\small\item\em starting position of each L-\/type bucket in SA \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_r_scan_a4cc3c1365b0089fe9d7740fed39dd0a7}{m\+\_\+total\+\_\+l\+\_\+toscan}
+\begin{DoxyCompactList}\small\item\em total number of L-\/type suffixes to be scanned \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_r_scan_ae0c9b8ab74cca6cebf6375cd772f1858}{m\+\_\+total\+\_\+l\+\_\+scanned}
+\begin{DoxyCompactList}\small\item\em total number of L-\/type suffixes already scanned \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_r_scan_ae61305117585d96877b30800ea2479e4}{m\+\_\+total\+\_\+lms\+\_\+toscan}
+\begin{DoxyCompactList}\small\item\em total number of L\+MS suffixes to be scanned \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_r_scan_a6451f758af2853be9d7aafc978001493}{m\+\_\+total\+\_\+lms\+\_\+scanned}
+\begin{DoxyCompactList}\small\item\em total number of L\+MS suffixes already scanned \end{DoxyCompactList}\item 
+alphabet\+\_\+type \hyperlink{struct_validate4_1_1_r_scan_a6ca7516c4fd64e5fe926636ac7197fda}{m\+\_\+cur\+\_\+l\+\_\+ch}
+\begin{DoxyCompactList}\small\item\em L-\/type bucket currently being scanned. \end{DoxyCompactList}\item 
+alphabet\+\_\+type \hyperlink{struct_validate4_1_1_r_scan_a8efbe937773c79d74f444e7f2c71fc8e}{m\+\_\+cur\+\_\+lms\+\_\+ch}
+\begin{DoxyCompactList}\small\item\em L\+MS bucket currently being scanned. \end{DoxyCompactList}\item 
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type $\ast$ \hyperlink{struct_validate4_1_1_r_scan_a02e30a17efa641c20f6b979a21be9082}{m\+\_\+sa\+\_\+l\+\_\+reader}
+\begin{DoxyCompactList}\small\item\em for scan, point to the S\+A-\/value for currently scanned L-\/type suffix (retrieve from SA) \end{DoxyCompactList}\item 
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type $\ast$ \hyperlink{struct_validate4_1_1_r_scan_a9aa4704ec4b22e0ecbec8c1c9687521d}{m\+\_\+lcp\+\_\+l\+\_\+reader}
+\begin{DoxyCompactList}\small\item\em for scan, point to the L\+C\+P-\/value for currently scanned L-\/type suffix and its left neighbor in SA (retrieve from L\+CP) \end{DoxyCompactList}\item 
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type $\ast$ \hyperlink{struct_validate4_1_1_r_scan_a986bdf3f5bc40e0d41939f699ac68c2c}{m\+\_\+sa\+\_\+lms\+\_\+reader}
+\begin{DoxyCompactList}\small\item\em for scan, point to the S\+A-\/value for currently scanned L\+MS suffix (retrieve from S\+A\+\_\+\+L\+MS) \end{DoxyCompactList}\item 
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type $\ast$ \hyperlink{struct_validate4_1_1_r_scan_aa712f18affa902ade5907584476a5003}{m\+\_\+lcp\+\_\+lms\+\_\+reader}
+\begin{DoxyCompactList}\small\item\em for scan, point to the L\+C\+P-\/value for currently scanned L\+MS suffixes and the rightmost L\+MS one on its leftside (retrieve from L\+C\+P\+\_\+\+L\+MS) \end{DoxyCompactList}\item 
+std\+::vector$<$ typename size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type $\ast$ $>$ \hyperlink{struct_validate4_1_1_r_scan_adbffde97174383da7a58437bf76ab0fe}{m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader}
+\item 
+std\+::vector$<$ typename size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type $\ast$ $>$ \hyperlink{struct_validate4_1_1_r_scan_a83351c07dee43e836114a49df9a0ec0a}{m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$\newline
+struct Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+Scan}
+
+scan SA rightward to validate the S\+A-\/values of all the L-\/type suffixes and the L\+C\+P-\/values of them and their left neighbors in SA. 
+
+When scanning rightward, compute the L\+C\+P-\/value of currently scanned suffix and the last scanned one and validate the L\+C\+P-\/value of currently induced suffix and its left neighbor in SA. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a278507de57d05bc31a364a632f3a38ab}\label{struct_validate4_1_1_r_scan_a278507de57d05bc31a364a632f3a38ab}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!R\+Scan@{R\+Scan}}
+\index{R\+Scan@{R\+Scan}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{R\+Scan()}{RScan()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::\+R\+Scan (\begin{DoxyParamCaption}\item[{\hyperlink{struct_validate4_1_1_bkt_info}{Bkt\+Info} \&}]{\+\_\+bkt\+\_\+info,  }\item[{\hyperlink{class_validate4_a49c80b3d101be19542a4341c2387603a}{alphabet\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+t,  }\item[{\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+sa,  }\item[{\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+lcp,  }\item[{\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+sa\+\_\+lms,  }\item[{\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type} $\ast$}]{\+\_\+lcp\+\_\+lms }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ctor 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a853d1a1bbc53a8b1cacf231c0f64bf8a}\label{struct_validate4_1_1_r_scan_a853d1a1bbc53a8b1cacf231c0f64bf8a}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!````~R\+Scan@{$\sim$\+R\+Scan}}
+\index{````~R\+Scan@{$\sim$\+R\+Scan}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{$\sim$\+R\+Scan()}{~RScan()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::$\sim$\+R\+Scan (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+de-\/ctor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_adc3cb04c1da68e1ac8a544c1eaf7c00c}\label{struct_validate4_1_1_r_scan_adc3cb04c1da68e1ac8a544c1eaf7c00c}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!bruteforce\+\_\+compute\+\_\+lcp@{bruteforce\+\_\+compute\+\_\+lcp}}
+\index{bruteforce\+\_\+compute\+\_\+lcp@{bruteforce\+\_\+compute\+\_\+lcp}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{bruteforce\+\_\+compute\+\_\+lcp()}{bruteforce\_compute\_lcp()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::bruteforce\+\_\+compute\+\_\+lcp (\begin{DoxyParamCaption}\item[{const size\+\_\+type \&}]{\+\_\+pos1,  }\item[{const size\+\_\+type \&}]{\+\_\+pos2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+literally compare two suffixes pointed to by the starting positions 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_aaa6c6e347bff1c6cb663771646c41826}\label{struct_validate4_1_1_r_scan_aaa6c6e347bff1c6cb663771646c41826}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!fetch\+\_\+l\+\_\+induced@{fetch\+\_\+l\+\_\+induced}}
+\index{fetch\+\_\+l\+\_\+induced@{fetch\+\_\+l\+\_\+induced}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{fetch\+\_\+l\+\_\+induced()}{fetch\_l\_induced()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::fetch\+\_\+l\+\_\+induced (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch,  }\item[{size\+\_\+type \&}]{\+\_\+sa\+\_\+value,  }\item[{size\+\_\+type \&}]{\+\_\+lcp\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fetch the S\+A-\/value for currently induced L-\/type suffix and the L\+C\+P-\/value for the suffix and its left neighbor in SA 
+
+retrieve the values from SA and L\+CP \mbox{\Hypertarget{struct_validate4_1_1_r_scan_af88a27e36780a6b390bc0bd18c253429}\label{struct_validate4_1_1_r_scan_af88a27e36780a6b390bc0bd18c253429}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!fetch\+\_\+l\+\_\+scanned@{fetch\+\_\+l\+\_\+scanned}}
+\index{fetch\+\_\+l\+\_\+scanned@{fetch\+\_\+l\+\_\+scanned}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{fetch\+\_\+l\+\_\+scanned()}{fetch\_l\_scanned()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::fetch\+\_\+l\+\_\+scanned (\begin{DoxyParamCaption}\item[{size\+\_\+type \&}]{\+\_\+sa\+\_\+value,  }\item[{size\+\_\+type \&}]{\+\_\+lcp\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fetch the S\+A-\/value of currently scanned L-\/type suffix and the L\+C\+P-\/value of the suffix and its left neighbor in SA 
+
+retrieve S\+A-\/value and L\+C\+P-\/value from SA and L\+CP \begin{DoxyNote}{Note}
+before calling the function, check to determine there remains elements to read 
+\end{DoxyNote}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_aaeb8ae64faa2ab76d7467586f3281d97}\label{struct_validate4_1_1_r_scan_aaeb8ae64faa2ab76d7467586f3281d97}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!fetch\+\_\+lms\+\_\+scanned@{fetch\+\_\+lms\+\_\+scanned}}
+\index{fetch\+\_\+lms\+\_\+scanned@{fetch\+\_\+lms\+\_\+scanned}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{fetch\+\_\+lms\+\_\+scanned()}{fetch\_lms\_scanned()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::fetch\+\_\+lms\+\_\+scanned (\begin{DoxyParamCaption}\item[{size\+\_\+type \&}]{\+\_\+sa\+\_\+value,  }\item[{size\+\_\+type \&}]{\+\_\+lcp\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fetch the S\+A-\/value of currently scanned L\+MS suffix and the L\+C\+P-\/value of the suffix and its left neighbor in S\+A\+\_\+\+L\+MS 
+
+retrieve S\+A-\/value and L\+C\+P-\/value from S\+A\+\_\+\+L\+MS and L\+C\+P\+\_\+\+L\+MS \begin{DoxyNote}{Note}
+before calling the function, check to determine there remains elements to read 
+\end{DoxyNote}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a32f26034048e070455cd9b1f56c95b89}\label{struct_validate4_1_1_r_scan_a32f26034048e070455cd9b1f56c95b89}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!find\+\_\+next\+\_\+l\+\_\+bkt@{find\+\_\+next\+\_\+l\+\_\+bkt}}
+\index{find\+\_\+next\+\_\+l\+\_\+bkt@{find\+\_\+next\+\_\+l\+\_\+bkt}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{find\+\_\+next\+\_\+l\+\_\+bkt()}{find\_next\_l\_bkt()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::find\+\_\+next\+\_\+l\+\_\+bkt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+find next non-\/empty L-\/bucket 
+
+\begin{DoxyNote}{Note}
+guarantee that there still exist L-\/type suffixes to be scanned before calling the function 
+\end{DoxyNote}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_af8a20c45983e2d175f6bbc67dcbef719}\label{struct_validate4_1_1_r_scan_af8a20c45983e2d175f6bbc67dcbef719}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!find\+\_\+next\+\_\+lms\+\_\+bkt@{find\+\_\+next\+\_\+lms\+\_\+bkt}}
+\index{find\+\_\+next\+\_\+lms\+\_\+bkt@{find\+\_\+next\+\_\+lms\+\_\+bkt}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{find\+\_\+next\+\_\+lms\+\_\+bkt()}{find\_next\_lms\_bkt()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::find\+\_\+next\+\_\+lms\+\_\+bkt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+find next non-\/empty L\+MS bucket 
+
+\begin{DoxyNote}{Note}
+guarantee that there still exist L\+MS suffixes to be scanned before calling the function 
+\end{DoxyNote}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a8d691af43c806d0e3279c0121abf6ed7}\label{struct_validate4_1_1_r_scan_a8d691af43c806d0e3279c0121abf6ed7}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!get\+\_\+l\+\_\+bkt\+\_\+ch@{get\+\_\+l\+\_\+bkt\+\_\+ch}}
+\index{get\+\_\+l\+\_\+bkt\+\_\+ch@{get\+\_\+l\+\_\+bkt\+\_\+ch}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{get\+\_\+l\+\_\+bkt\+\_\+ch()}{get\_l\_bkt\_ch()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::get\+\_\+l\+\_\+bkt\+\_\+ch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return the initial character of suffixes in current scanned bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ac53c6318e14f774d956baea8134b5937}\label{struct_validate4_1_1_r_scan_ac53c6318e14f774d956baea8134b5937}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!get\+\_\+lms\+\_\+bkt\+\_\+ch@{get\+\_\+lms\+\_\+bkt\+\_\+ch}}
+\index{get\+\_\+lms\+\_\+bkt\+\_\+ch@{get\+\_\+lms\+\_\+bkt\+\_\+ch}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{get\+\_\+lms\+\_\+bkt\+\_\+ch()}{get\_lms\_bkt\_ch()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::get\+\_\+lms\+\_\+bkt\+\_\+ch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return the initial character of suffixes in current scanned bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_adf0c72967eddde6a6924472a16e92e95}\label{struct_validate4_1_1_r_scan_adf0c72967eddde6a6924472a16e92e95}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty@{l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty}}
+\index{l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty@{l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty()}{l\_cur\_bkt\_is\_empty()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::l\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if no more L-\/type suffixes to be scanned in current bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_aee1dcbd2edf03def6f3b3954d5cf0871}\label{struct_validate4_1_1_r_scan_aee1dcbd2edf03def6f3b3954d5cf0871}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!l\+\_\+is\+\_\+empty@{l\+\_\+is\+\_\+empty}}
+\index{l\+\_\+is\+\_\+empty@{l\+\_\+is\+\_\+empty}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{l\+\_\+is\+\_\+empty()}{l\_is\_empty()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::l\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if no more L-\/type to be scanned 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a67647b0b0ef9df76bdcfa85547296a33}\label{struct_validate4_1_1_r_scan_a67647b0b0ef9df76bdcfa85547296a33}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty@{lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty}}
+\index{lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty@{lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty()}{lms\_cur\_bkt\_is\_empty()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::lms\+\_\+cur\+\_\+bkt\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if no more L\+MS suffixes to be scanned in current bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ad24066012dd9441ffab435ce3f02424e}\label{struct_validate4_1_1_r_scan_ad24066012dd9441ffab435ce3f02424e}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!lms\+\_\+is\+\_\+empty@{lms\+\_\+is\+\_\+empty}}
+\index{lms\+\_\+is\+\_\+empty@{lms\+\_\+is\+\_\+empty}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{lms\+\_\+is\+\_\+empty()}{lms\_is\_empty()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::lms\+\_\+is\+\_\+empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+chec if no more L\+MS to be scanned 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a963da6ae9411fca7fb05701dd678161f}\label{struct_validate4_1_1_r_scan_a963da6ae9411fca7fb05701dd678161f}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!run@{run}}
+\index{run@{run}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::run (\begin{DoxyParamCaption}\item[{\hyperlink{class_validate4_a4c1bcea817e34f96d95c99e0694bbfc8}{triple2\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$}]{\+\_\+pre\+\_\+item\+\_\+of\+\_\+l\+\_\+sorter,  }\item[{\hyperlink{class_validate4_aff3135d55f749682df7e0f97c82a6769}{pair3\+\_\+less\+\_\+sorter\+\_\+1st\+\_\+type} $\ast$}]{\+\_\+pre\+\_\+item\+\_\+of\+\_\+lms\+\_\+sorter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+induce and check the order of L-\/type suffixes and their L\+CP values 
+
+The S\+A-\/value of currently scanned suffix (no matter L-\/type or L\+MS) can be directly retrieved from SA or S\+A\+\_\+\+L\+MS. The question is how to retrieve the L\+C\+P-\/value of the suffix and the last scanned one (may not be the neighbor in SA). case 1\+: if currently scanned suffix is L-\/type, then retrieve the L\+C\+P-\/value following one of the two sub-\/cases as below\+: sub-\/case (a)\+: if the suffix is the leftmost in the L-\/type bucket, then perform a literal comparison between the suffix and the last scanned one to obtain their L\+C\+P-\/value. sub-\/case (b)\+: otherwise, the last scanned is also the left neighbor in SA, retrieve the L\+C\+P-\/value from L\+CP. case 2\+: if currently scanned suffix is L\+MS, then retrieve the L\+C\+P-\/value following one of the two sub-\/cases as below\+: sub-\/case (a)\+: if the suffix is the leftmost in the L\+MS bucket and the last scanned is L-\/type, then perform a literal comparison between the suffix and the last scanned to obtain their L\+C\+P-\/value. sub-\/case (b)\+: otherwise, the last scanned is also the left neighbor in S\+A\+\_\+\+L\+MS, retrieve the L\+C\+P-\/value from L\+C\+P\+\_\+\+L\+MS. The S\+A-\/value of currently induced L-\/type suffix can be directly retrieved from SA or S\+A\+\_\+\+L\+MS. The question is how to retrieve the L\+C\+P-\/value of the suffix and the last induced. case 1\+: if currently induced suffix is the leftmost in the L-\/type bucket, then do nothing. case 2\+: otherwise, the L\+C\+P-\/value is 1 + R\+M\+Q\+\_\+\+V\+A\+L\+UE. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a3ff6f0be3fd0b25c66913d4d08b2e143}\label{struct_validate4_1_1_r_scan_a3ff6f0be3fd0b25c66913d4d08b2e143}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!ch\+\_\+max@{ch\+\_\+max}}
+\index{ch\+\_\+max@{ch\+\_\+max}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{ch\+\_\+max}{ch\_max}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+const alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::ch\+\_\+max\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+maximum character 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a6ca7516c4fd64e5fe926636ac7197fda}\label{struct_validate4_1_1_r_scan_a6ca7516c4fd64e5fe926636ac7197fda}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+cur\+\_\+l\+\_\+ch@{m\+\_\+cur\+\_\+l\+\_\+ch}}
+\index{m\+\_\+cur\+\_\+l\+\_\+ch@{m\+\_\+cur\+\_\+l\+\_\+ch}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+cur\+\_\+l\+\_\+ch}{m\_cur\_l\_ch}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+cur\+\_\+l\+\_\+ch\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+L-\/type bucket currently being scanned. 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a8efbe937773c79d74f444e7f2c71fc8e}\label{struct_validate4_1_1_r_scan_a8efbe937773c79d74f444e7f2c71fc8e}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+cur\+\_\+lms\+\_\+ch@{m\+\_\+cur\+\_\+lms\+\_\+ch}}
+\index{m\+\_\+cur\+\_\+lms\+\_\+ch@{m\+\_\+cur\+\_\+lms\+\_\+ch}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+cur\+\_\+lms\+\_\+ch}{m\_cur\_lms\_ch}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+cur\+\_\+lms\+\_\+ch\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+L\+MS bucket currently being scanned. 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ace00679285e1e6082440d2485809f0cf}\label{struct_validate4_1_1_r_scan_ace00679285e1e6082440d2485809f0cf}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+l\+\_\+bkt\+\_\+scanned@{m\+\_\+l\+\_\+bkt\+\_\+scanned}}
+\index{m\+\_\+l\+\_\+bkt\+\_\+scanned@{m\+\_\+l\+\_\+bkt\+\_\+scanned}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+l\+\_\+bkt\+\_\+scanned}{m\_l\_bkt\_scanned}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+l\+\_\+bkt\+\_\+scanned\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of L-\/type suffixes scanned in each bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ab9a643ec01afe4e6d3455ff025aeb612}\label{struct_validate4_1_1_r_scan_ab9a643ec01afe4e6d3455ff025aeb612}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+l\+\_\+bkt\+\_\+spos@{m\+\_\+l\+\_\+bkt\+\_\+spos}}
+\index{m\+\_\+l\+\_\+bkt\+\_\+spos@{m\+\_\+l\+\_\+bkt\+\_\+spos}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+l\+\_\+bkt\+\_\+spos}{m\_l\_bkt\_spos}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+l\+\_\+bkt\+\_\+spos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+starting position of each L-\/type bucket in SA 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a47335f1e738063b9ddc5ee00be052cfd}\label{struct_validate4_1_1_r_scan_a47335f1e738063b9ddc5ee00be052cfd}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+l\+\_\+bkt\+\_\+toscan@{m\+\_\+l\+\_\+bkt\+\_\+toscan}}
+\index{m\+\_\+l\+\_\+bkt\+\_\+toscan@{m\+\_\+l\+\_\+bkt\+\_\+toscan}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+l\+\_\+bkt\+\_\+toscan}{m\_l\_bkt\_toscan}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+l\+\_\+bkt\+\_\+toscan\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of L-\/type suffixes to be scanned in each bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a5521d8d0a72b169e07da61abd5463634}\label{struct_validate4_1_1_r_scan_a5521d8d0a72b169e07da61abd5463634}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lcp@{m\+\_\+lcp}}
+\index{m\+\_\+lcp@{m\+\_\+lcp}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp}{m\_lcp}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type}$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lcp\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to L\+CP array 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a83351c07dee43e836114a49df9a0ec0a}\label{struct_validate4_1_1_r_scan_a83351c07dee43e836114a49df9a0ec0a}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader@{m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader}}
+\index{m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader@{m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader}{m\_lcp\_l\_bkt\_reader}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$typename size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type$\ast$$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lcp\+\_\+l\+\_\+bkt\+\_\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a9aa4704ec4b22e0ecbec8c1c9687521d}\label{struct_validate4_1_1_r_scan_a9aa4704ec4b22e0ecbec8c1c9687521d}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lcp\+\_\+l\+\_\+reader@{m\+\_\+lcp\+\_\+l\+\_\+reader}}
+\index{m\+\_\+lcp\+\_\+l\+\_\+reader@{m\+\_\+lcp\+\_\+l\+\_\+reader}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+l\+\_\+reader}{m\_lcp\_l\_reader}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lcp\+\_\+l\+\_\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+for scan, point to the L\+C\+P-\/value for currently scanned L-\/type suffix and its left neighbor in SA (retrieve from L\+CP) 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_adf3e4856d77cd795d6b00b2355bd48bd}\label{struct_validate4_1_1_r_scan_adf3e4856d77cd795d6b00b2355bd48bd}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lcp\+\_\+lms@{m\+\_\+lcp\+\_\+lms}}
+\index{m\+\_\+lcp\+\_\+lms@{m\+\_\+lcp\+\_\+lms}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+lms}{m\_lcp\_lms}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type}$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lcp\+\_\+lms\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to L\+C\+P\+\_\+\+L\+MS 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_aa712f18affa902ade5907584476a5003}\label{struct_validate4_1_1_r_scan_aa712f18affa902ade5907584476a5003}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lcp\+\_\+lms\+\_\+reader@{m\+\_\+lcp\+\_\+lms\+\_\+reader}}
+\index{m\+\_\+lcp\+\_\+lms\+\_\+reader@{m\+\_\+lcp\+\_\+lms\+\_\+reader}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+lms\+\_\+reader}{m\_lcp\_lms\_reader}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lcp\+\_\+lms\+\_\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+for scan, point to the L\+C\+P-\/value for currently scanned L\+MS suffixes and the rightmost L\+MS one on its leftside (retrieve from L\+C\+P\+\_\+\+L\+MS) 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a4ba4d8371cdcc14a4a34b012ee27a7f8}\label{struct_validate4_1_1_r_scan_a4ba4d8371cdcc14a4a34b012ee27a7f8}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+len@{m\+\_\+len}}
+\index{m\+\_\+len@{m\+\_\+len}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+len}{m\_len}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+len\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of elements in T/\+S\+A/\+L\+CP 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ab56ecfb052c910af7ed356d5ad11be0b}\label{struct_validate4_1_1_r_scan_ab56ecfb052c910af7ed356d5ad11be0b}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lms\+\_\+bkt\+\_\+scanned@{m\+\_\+lms\+\_\+bkt\+\_\+scanned}}
+\index{m\+\_\+lms\+\_\+bkt\+\_\+scanned@{m\+\_\+lms\+\_\+bkt\+\_\+scanned}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lms\+\_\+bkt\+\_\+scanned}{m\_lms\_bkt\_scanned}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lms\+\_\+bkt\+\_\+scanned\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of L\+MS suffixes scanned in each bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a9681af9f2bc82ec9202da5c967f36491}\label{struct_validate4_1_1_r_scan_a9681af9f2bc82ec9202da5c967f36491}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+lms\+\_\+bkt\+\_\+toscan@{m\+\_\+lms\+\_\+bkt\+\_\+toscan}}
+\index{m\+\_\+lms\+\_\+bkt\+\_\+toscan@{m\+\_\+lms\+\_\+bkt\+\_\+toscan}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+lms\+\_\+bkt\+\_\+toscan}{m\_lms\_bkt\_toscan}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+lms\+\_\+bkt\+\_\+toscan\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of L\+MS suffixes to be scanned in each bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ab656e7db03298be8ce72f202e5aa5e77}\label{struct_validate4_1_1_r_scan_ab656e7db03298be8ce72f202e5aa5e77}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+sa@{m\+\_\+sa}}
+\index{m\+\_\+sa@{m\+\_\+sa}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+sa}{m\_sa}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type}$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+sa\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to suffix array 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_adbffde97174383da7a58437bf76ab0fe}\label{struct_validate4_1_1_r_scan_adbffde97174383da7a58437bf76ab0fe}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader@{m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader}}
+\index{m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader@{m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader}{m\_sa\_l\_bkt\_reader}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$typename size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type$\ast$$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+sa\+\_\+l\+\_\+bkt\+\_\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a02e30a17efa641c20f6b979a21be9082}\label{struct_validate4_1_1_r_scan_a02e30a17efa641c20f6b979a21be9082}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+sa\+\_\+l\+\_\+reader@{m\+\_\+sa\+\_\+l\+\_\+reader}}
+\index{m\+\_\+sa\+\_\+l\+\_\+reader@{m\+\_\+sa\+\_\+l\+\_\+reader}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+l\+\_\+reader}{m\_sa\_l\_reader}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+sa\+\_\+l\+\_\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+for scan, point to the S\+A-\/value for currently scanned L-\/type suffix (retrieve from SA) 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a7427660483d5beb9bbf8e6a69c291c25}\label{struct_validate4_1_1_r_scan_a7427660483d5beb9bbf8e6a69c291c25}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+sa\+\_\+lms@{m\+\_\+sa\+\_\+lms}}
+\index{m\+\_\+sa\+\_\+lms@{m\+\_\+sa\+\_\+lms}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+lms}{m\_sa\_lms}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4_a46ea31a0a4b23f583806792160421d15}{size\+\_\+vector\+\_\+type}$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+sa\+\_\+lms\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to S\+A\+\_\+\+L\+MS 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a986bdf3f5bc40e0d41939f699ac68c2c}\label{struct_validate4_1_1_r_scan_a986bdf3f5bc40e0d41939f699ac68c2c}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+sa\+\_\+lms\+\_\+reader@{m\+\_\+sa\+\_\+lms\+\_\+reader}}
+\index{m\+\_\+sa\+\_\+lms\+\_\+reader@{m\+\_\+sa\+\_\+lms\+\_\+reader}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+lms\+\_\+reader}{m\_sa\_lms\_reader}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+size\+\_\+vector\+\_\+type\+::bufreader\+\_\+type$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+sa\+\_\+lms\+\_\+reader\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+for scan, point to the S\+A-\/value for currently scanned L\+MS suffix (retrieve from S\+A\+\_\+\+L\+MS) 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a9d9ce16aa2eacc32f54cc88e8746a73a}\label{struct_validate4_1_1_r_scan_a9d9ce16aa2eacc32f54cc88e8746a73a}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+t@{m\+\_\+t}}
+\index{m\+\_\+t@{m\+\_\+t}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+t}{m\_t}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4_a49c80b3d101be19542a4341c2387603a}{alphabet\+\_\+vector\+\_\+type}$\ast$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+t\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to input string 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ae0c9b8ab74cca6cebf6375cd772f1858}\label{struct_validate4_1_1_r_scan_ae0c9b8ab74cca6cebf6375cd772f1858}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+total\+\_\+l\+\_\+scanned@{m\+\_\+total\+\_\+l\+\_\+scanned}}
+\index{m\+\_\+total\+\_\+l\+\_\+scanned@{m\+\_\+total\+\_\+l\+\_\+scanned}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+total\+\_\+l\+\_\+scanned}{m\_total\_l\_scanned}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+total\+\_\+l\+\_\+scanned\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+total number of L-\/type suffixes already scanned 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a4cc3c1365b0089fe9d7740fed39dd0a7}\label{struct_validate4_1_1_r_scan_a4cc3c1365b0089fe9d7740fed39dd0a7}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+total\+\_\+l\+\_\+toscan@{m\+\_\+total\+\_\+l\+\_\+toscan}}
+\index{m\+\_\+total\+\_\+l\+\_\+toscan@{m\+\_\+total\+\_\+l\+\_\+toscan}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+total\+\_\+l\+\_\+toscan}{m\_total\_l\_toscan}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+total\+\_\+l\+\_\+toscan\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+total number of L-\/type suffixes to be scanned 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_a6451f758af2853be9d7aafc978001493}\label{struct_validate4_1_1_r_scan_a6451f758af2853be9d7aafc978001493}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+total\+\_\+lms\+\_\+scanned@{m\+\_\+total\+\_\+lms\+\_\+scanned}}
+\index{m\+\_\+total\+\_\+lms\+\_\+scanned@{m\+\_\+total\+\_\+lms\+\_\+scanned}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+total\+\_\+lms\+\_\+scanned}{m\_total\_lms\_scanned}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+total\+\_\+lms\+\_\+scanned\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+total number of L\+MS suffixes already scanned 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_scan_ae61305117585d96877b30800ea2479e4}\label{struct_validate4_1_1_r_scan_ae61305117585d96877b30800ea2479e4}} 
+\index{Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}!m\+\_\+total\+\_\+lms\+\_\+toscan@{m\+\_\+total\+\_\+lms\+\_\+toscan}}
+\index{m\+\_\+total\+\_\+lms\+\_\+toscan@{m\+\_\+total\+\_\+lms\+\_\+toscan}!Validate4\+::\+R\+Scan@{Validate4\+::\+R\+Scan}}
+\subsubsection{\texorpdfstring{m\+\_\+total\+\_\+lms\+\_\+toscan}{m\_total\_lms\_toscan}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+Scan\+::m\+\_\+total\+\_\+lms\+\_\+toscan\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+total number of L\+MS suffixes to be scanned 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{validate4_8h}{validate4.\+h}\end{DoxyCompactItemize}

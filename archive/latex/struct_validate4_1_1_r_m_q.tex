@@ -1,0 +1,114 @@
+\hypertarget{struct_validate4_1_1_r_m_q}{}\section{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+:\+:R\+MQ Struct Reference}
+\label{struct_validate4_1_1_r_m_q}\index{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+MQ@{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+MQ}}
+
+
+\hyperlink{struct_validate4_1_1_r_m_q}{R\+MQ}.  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_validate4_1_1_r_m_q_a58a58fb442194bba96116dd76b361882}{R\+MQ} ()
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+size\+\_\+type \hyperlink{struct_validate4_1_1_r_m_q_a25c9ec1cab24c2ea2355b8ce828cf108}{get} (const alphabet\+\_\+type \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em getter \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_m_q_a51f01cfbe100d40fc976fd2e1e8b6d16}{update} (size\+\_\+type \+\_\+val)
+\begin{DoxyCompactList}\small\item\em update \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_r_m_q_a8416e95d49b4b8c05cd814d78017d81f}{reset} (const alphabet\+\_\+type \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em reset the range minimum value to val\+\_\+max \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const alphabet\+\_\+type \hyperlink{struct_validate4_1_1_r_m_q_a0addfc5d1067fca9a97939554cb0cd70}{ch\+\_\+max}
+\item 
+const size\+\_\+type \hyperlink{struct_validate4_1_1_r_m_q_a45aa4f738281304a3f6bd5b9d78ef712}{val\+\_\+max}
+\item 
+std\+::vector$<$ size\+\_\+type $>$ \hyperlink{struct_validate4_1_1_r_m_q_abf525030d892825a6ef20c45eafaae2b}{m\+\_\+rmq}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$\newline
+struct Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+MQ}
+
+\hyperlink{struct_validate4_1_1_r_m_q}{R\+MQ}. 
+
+Given SA\mbox{[}k\mbox{]} and SA\mbox{[}k + 1\mbox{]} respectively induced from SA\mbox{[}i\mbox{]} and SA\mbox{[}j\mbox{]}, the L\+C\+P-\/value of suf(\+S\+A\mbox{[}k\mbox{]}) and suf(SA\mbox{[}k + 1\mbox{]}) is determined by L\+CP\mbox{[}i + 1, j\mbox{]}. The response to the range-\/minimum query for L\+CP\mbox{[}i + 1, j\mbox{]} returns the minimum value among L\+CP\mbox{[}i + 1\mbox{]}, .., L\+CP\mbox{[}j -\/ 1\mbox{]}, L\+CP\mbox{[}j\mbox{]}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_a58a58fb442194bba96116dd76b361882}\label{struct_validate4_1_1_r_m_q_a58a58fb442194bba96116dd76b361882}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!R\+MQ@{R\+MQ}}
+\index{R\+MQ@{R\+MQ}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{R\+M\+Q()}{RMQ()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::\+R\+MQ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ctor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_a25c9ec1cab24c2ea2355b8ce828cf108}\label{struct_validate4_1_1_r_m_q_a25c9ec1cab24c2ea2355b8ce828cf108}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!get@{get}}
+\index{get@{get}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+size\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::get (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+getter 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_a8416e95d49b4b8c05cd814d78017d81f}\label{struct_validate4_1_1_r_m_q_a8416e95d49b4b8c05cd814d78017d81f}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!reset@{reset}}
+\index{reset@{reset}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::reset (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+reset the range minimum value to val\+\_\+max 
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_a51f01cfbe100d40fc976fd2e1e8b6d16}\label{struct_validate4_1_1_r_m_q_a51f01cfbe100d40fc976fd2e1e8b6d16}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!update@{update}}
+\index{update@{update}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::update (\begin{DoxyParamCaption}\item[{size\+\_\+type}]{\+\_\+val }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+update 
+
+scan all the elements in m\+\_\+rmq, update m\+\_\+rmq\mbox{[}ch\mbox{]} as \+\_\+val if m\+\_\+rmq\mbox{[}ch\mbox{]} $>$ \+\_\+val. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_a0addfc5d1067fca9a97939554cb0cd70}\label{struct_validate4_1_1_r_m_q_a0addfc5d1067fca9a97939554cb0cd70}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!ch\+\_\+max@{ch\+\_\+max}}
+\index{ch\+\_\+max@{ch\+\_\+max}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{ch\+\_\+max}{ch\_max}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+const alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::ch\+\_\+max\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_abf525030d892825a6ef20c45eafaae2b}\label{struct_validate4_1_1_r_m_q_abf525030d892825a6ef20c45eafaae2b}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!m\+\_\+rmq@{m\+\_\+rmq}}
+\index{m\+\_\+rmq@{m\+\_\+rmq}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{m\+\_\+rmq}{m\_rmq}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$size\+\_\+type$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::m\+\_\+rmq\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{struct_validate4_1_1_r_m_q_a45aa4f738281304a3f6bd5b9d78ef712}\label{struct_validate4_1_1_r_m_q_a45aa4f738281304a3f6bd5b9d78ef712}} 
+\index{Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}!val\+\_\+max@{val\+\_\+max}}
+\index{val\+\_\+max@{val\+\_\+max}!Validate4\+::\+R\+MQ@{Validate4\+::\+R\+MQ}}
+\subsubsection{\texorpdfstring{val\+\_\+max}{val\_max}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+const size\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::R\+M\+Q\+::val\+\_\+max\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{validate4_8h}{validate4.\+h}\end{DoxyCompactItemize}

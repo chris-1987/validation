@@ -1,0 +1,41 @@
+\hypertarget{widget_8h}{}\section{code/src/common/widget.h File Reference}
+\label{widget_8h}\index{code/src/common/widget.\+h@{code/src/common/widget.\+h}}
+
+
+sort elements in external memory  
+
+
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stxxl/sorter\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_pair_less1st}{Pair\+Less1st$<$ pair\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em sort pair by 1st component in ascending order \end{DoxyCompactList}\item 
+struct \hyperlink{struct_pair_less2nd}{Pair\+Less2nd$<$ pair\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em sort pair by 2nd component in ascending order \end{DoxyCompactList}\item 
+struct \hyperlink{struct_ex_vector}{Ex\+Vector$<$ value\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em template for vector \end{DoxyCompactList}\item 
+struct \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st$<$ tuple\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em function object for comparing tuples by their first component in ascending order \end{DoxyCompactList}\item 
+struct \hyperlink{structtuple__great__comparator__1st}{tuple\+\_\+great\+\_\+comparator\+\_\+1st$<$ tuple\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em function object for comparing tuples by their first component in ascending order \end{DoxyCompactList}\item 
+struct \hyperlink{structtuple__less__comparator__2nd}{tuple\+\_\+less\+\_\+comparator\+\_\+2nd$<$ tuple\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em function object for comparing tuples by their first two component in ascending order \end{DoxyCompactList}\item 
+struct \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter$<$ tuple\+\_\+type, tuple\+\_\+comparator\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em template for sorter \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+sort elements in external memory 
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+Input elements are grouped into multiple blocks. Elements in each block are sorted in R\+AM and the result is stored in external memory. The block-\/wise results are combined into a whole using a heap in R\+AM at last.
+
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12 
+\end{DoxyDate}

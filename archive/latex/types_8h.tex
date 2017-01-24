@@ -1,0 +1,546 @@
+\hypertarget{types_8h}{}\section{code/src/common/types.h File Reference}
+\label{types_8h}\index{code/src/common/types.\+h@{code/src/common/types.\+h}}
+
+
+definition of namespace  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$cstdint$>$}\newline
+{\ttfamily \#include \char`\"{}stxxl/bits/common/uint\+\_\+types.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}namespace.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structchoose__int__types}{choose\+\_\+int\+\_\+types$<$ P\+S $>$}
+\begin{DoxyCompactList}\small\item\em template for choosing int/uint type according to pointer size \end{DoxyCompactList}\item 
+struct \hyperlink{structchoose__int__types_3_014_01_4}{choose\+\_\+int\+\_\+types$<$ 4 $>$}
+\begin{DoxyCompactList}\small\item\em PS = 4, int32/uint32. \end{DoxyCompactList}\item 
+struct \hyperlink{structchoose__int__types_3_018_01_4}{choose\+\_\+int\+\_\+types$<$ 8 $>$}
+\begin{DoxyCompactList}\small\item\em pointer size = 8, 64-\/bit \end{DoxyCompactList}\item 
+class \hyperlink{classuint40}{uint40}
+\item 
+class \hyperlink{classuint128}{uint128}
+\item 
+class \hyperlink{classstd_1_1numeric__limits_3_01uint40_01_4}{std\+::numeric\+\_\+limits$<$ uint40 $>$}
+\item 
+class \hyperlink{classstd_1_1numeric__limits_3_01uint128_01_4}{std\+::numeric\+\_\+limits$<$ uint128 $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacestd}{std}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{types_8h_abd106ada62607d216e5d94926d7ec378}{int8} = std\+::int8\+\_\+t
+\item 
+using \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} = std\+::uint8\+\_\+t
+\item 
+using \hyperlink{types_8h_ac2abd1926482d6e74d1a30ee2ea5d6f8}{int16} = std\+::int16\+\_\+t
+\item 
+using \hyperlink{types_8h_aea9840dd402bd5d5201bef4633398cb3}{uint16} = std\+::uint16\+\_\+t
+\item 
+using \hyperlink{types_8h_a3d594eb72953c94a18a03d929ebd9167}{int32} = std\+::int32\+\_\+t
+\item 
+using \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} = std\+::uint32\+\_\+t
+\item 
+using \hyperlink{types_8h_a552928ab323811c9694f5b7c9f53d0fb}{int64} = std\+::int64\+\_\+t
+\item 
+using \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} = std\+::uint64\+\_\+t
+\item 
+using \hyperlink{types_8h_a848058bb4f500afaf0f954ffa75d3e6b}{int\+\_\+type} = typename \hyperlink{structchoose__int__types}{choose\+\_\+int\+\_\+types}$<$ \hyperlink{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}{my\+\_\+pointer\+\_\+size} $>$\+::\hyperlink{types_8h_a848058bb4f500afaf0f954ffa75d3e6b}{int\+\_\+type}
+\item 
+using \hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type} = typename \hyperlink{structchoose__int__types}{choose\+\_\+int\+\_\+types}$<$ \hyperlink{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}{my\+\_\+pointer\+\_\+size} $>$\+::\hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type}
+\item 
+typedef \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \hyperlink{types_8h_afb0e4a3c06d32e9372ba48a8ebe1861c}{low\+\_\+type}
+\item 
+typedef \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \hyperlink{types_8h_a3d1ab983bb49c4acd2478c5365ce2bbb}{high\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \hyperlink{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}{my\+\_\+pointer\+\_\+size} = sizeof(void$\ast$)
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classuint40}{uint40} \hyperlink{types_8h_aa5073eed52429ca9c68cfeef8163dadb}{\+\_\+\+\_\+attribute\+\_\+\+\_\+} ((packed))
+\item 
+\hyperlink{types_8h_affa82c4225cfcd81baaccd829d3d1c0b}{uint40} ()
+\item 
+\hyperlink{types_8h_a4ba3483a239f25b1c755c75e19475edb}{uint40} (std\+::uint32\+\_\+t l, std\+::uint8\+\_\+t h)
+\item 
+\hyperlink{types_8h_a5e660390adddb6b4c8b4e041f0466e86}{uint40} (const \hyperlink{classuint40}{uint40} \&a)
+\item 
+\hyperlink{types_8h_aaf73c1c2f7134d2c727ccfbc94736b2d}{uint40} (const std\+::int32\+\_\+t \&a)
+\item 
+\hyperlink{types_8h_aeb67d0e1054914c055fd6340c46e9b86}{uint40} (const std\+::uint32\+\_\+t \&a)
+\item 
+\hyperlink{types_8h_ae19857f157c887383d1a7c165ce9519a}{uint40} (const std\+::uint64\+\_\+t \&a)
+\item 
+\hyperlink{types_8h_a42b38cde4ba7cf52ccc3ab60547e002a}{uint40} (const std\+::int64\+\_\+t \&a)
+\item 
+void \hyperlink{types_8h_a1bdb76cf7211909f821911726507fb30}{set\+\_\+high} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \&\+\_\+high)
+\item 
+void \hyperlink{types_8h_ac451e240aa7238b8cdd88c68a4b94c25}{set\+\_\+low} (const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&\+\_\+low)
+\item 
+void \hyperlink{types_8h_a9805ad2d84465b3a1c4aa12235f922c4}{set} (const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&\+\_\+low, const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+high)
+\item 
+\hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \hyperlink{types_8h_a3bac47f21d0c0a8e255bdd0b1dabd2f2}{get\+\_\+low} ()
+\item 
+\hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \hyperlink{types_8h_a20cad26639e8f866e2fcfd01b6e9d0d4}{get\+\_\+high} ()
+\item 
+\hyperlink{types_8h_a8c16775e7e2ad633aae492dd2552ef52}{operator uint64\+\_\+t} () const
+\item 
+bool \hyperlink{types_8h_a7ae67630ef1311127ca10f83158b9b87}{operator==} (const \hyperlink{classuint40}{uint40} \&b) const
+\item 
+bool \hyperlink{types_8h_affababd92753c4880d0c280bdb62633e}{operator!=} (const \hyperlink{classuint40}{uint40} \&b) const
+\item 
+\hyperlink{types_8h_ab620f7af906d024680c89ac9c99d5fae}{uint128} ()
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a38ef652b59a2ba178eff4646c7e5e008}{uint128} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+low, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+high)
+\begin{DoxyCompactList}\small\item\em initialized from lower and higher parts \end{DoxyCompactList}\item 
+\hyperlink{types_8h_af7e6621517578e3fd6d7c26900edc6ef}{uint128} (const \hyperlink{classuint128}{uint128} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em copy ctor \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a5dc4f1787a04c99e251cd68bc631c7b3}{uint128} (const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em initialized from an unsigned int \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a38af0db38b8983c09e453dbb2a423b35}{uint128} (const \hyperlink{types_8h_a3d594eb72953c94a18a03d929ebd9167}{int32} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em initialized from anint, a $>$= 0 \end{DoxyCompactList}\item 
+\hyperlink{types_8h_ab68fd9ef279f5a248fe93b1206cbc559}{uint128} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em initialized from an unsigned long int \end{DoxyCompactList}\item 
+void \hyperlink{types_8h_ad7a7fcf67e0961b6a8fb5116e0964081}{operator$<$$<$=} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+bits)
+\begin{DoxyCompactList}\small\item\em bitwise shift, \+\_\+bits bits leftward, self revision \end{DoxyCompactList}\item 
+void \hyperlink{types_8h_aac289619282f098101aadadeb2cc4025}{operator$\vert$=} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em bitwise or \end{DoxyCompactList}\item 
+\hyperlink{classuint128}{uint128} \hyperlink{types_8h_ac37ecdc1a86d796e924955bcd1db0312}{operator$<$$<$} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+bits)
+\begin{DoxyCompactList}\small\item\em biwise shift, \+\_\+bits bits leftward \end{DoxyCompactList}\item 
+\hyperlink{classuint128}{uint128} \hyperlink{types_8h_a2ada254777d54d622dbeb7d45da92336}{operator\&} (const \hyperlink{classuint128}{uint128} \&\+\_\+b) const
+\begin{DoxyCompactList}\small\item\em bitwise and \end{DoxyCompactList}\item 
+bool \hyperlink{types_8h_a3af85699a8b10f425ac46a48ca949225}{operator==} (const \hyperlink{classuint128}{uint128} \&b) const
+\begin{DoxyCompactList}\small\item\em check equality \end{DoxyCompactList}\item 
+bool \hyperlink{types_8h_ab3a727e5eede21cf30765aa649eb6b9d}{operator!=} (const \hyperlink{classuint128}{uint128} \&b) const
+\begin{DoxyCompactList}\small\item\em check inequality \end{DoxyCompactList}\item 
+static \hyperlink{classuint128}{uint128} \hyperlink{types_8h_ac7d80e29baaa3f8e4eef22cdc851744a}{min} ()
+\item 
+static \hyperlink{classuint128}{uint128} \hyperlink{types_8h_add613a3d2d7eff426907064270db8215}{max} ()
+\item 
+std\+::ostream \& \hyperlink{types_8h_af5c7620c5c09b3c146557179b3a041e8}{operator$<$$<$} (std\+::ostream \&\+\_\+os, const \hyperlink{classuint128}{uint128} \&\+\_\+a)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+enum  \{ ... \}  \hyperlink{types_8h_af03243776893bcf5923a8f446b8d851c}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}
+\item 
+\hyperlink{types_8h_afb0e4a3c06d32e9372ba48a8ebe1861c}{low\+\_\+type} \hyperlink{types_8h_ade07039efd8c0cfca1f9cead48259d4d}{low}
+\begin{DoxyCompactList}\small\item\em lower part, uint64 \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a3d1ab983bb49c4acd2478c5365ce2bbb}{high\+\_\+type} \hyperlink{types_8h_a558f35d10292a79de791071eb8088a8c}{high}
+\begin{DoxyCompactList}\small\item\em higher part, uint64 \end{DoxyCompactList}\item 
+static const size\+\_\+t \hyperlink{types_8h_af113dea6c24342761f00f6b36e99032e}{digits} = 128
+\begin{DoxyCompactList}\small\item\em number of digits/bits, 128 \end{DoxyCompactList}\item 
+static const size\+\_\+t \hyperlink{types_8h_ab09b9b43d1b1783c78e39783e382b3dd}{bytes} = 16
+\begin{DoxyCompactList}\small\item\em number of bytes, 16 \end{DoxyCompactList}\item 
+class std\+::numeric\+\_\+limits$<$ \hyperlink{classuint40}{uint40} $>$ \hyperlink{namespacestd_ade73df0294cb697bb61d5edf0deac7d0}{std\+::\+\_\+\+\_\+attribute\+\_\+\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+definition of namespace 
+
+definition and alias of integer types
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12
+\end{DoxyDate}
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+Partly depends on \char`\"{}types.\+h\char`\"{} in S\+T\+X\+XL
+
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12 
+\end{DoxyDate}
+
+
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{types_8h_a3d1ab983bb49c4acd2478c5365ce2bbb}\label{types_8h_a3d1ab983bb49c4acd2478c5365ce2bbb}} 
+\index{types.\+h@{types.\+h}!high\+\_\+type@{high\+\_\+type}}
+\index{high\+\_\+type@{high\+\_\+type}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{high\+\_\+type}{high\_type}}
+{\footnotesize\ttfamily typedef \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \hyperlink{types_8h_a3d1ab983bb49c4acd2478c5365ce2bbb}{high\+\_\+type}}
+
+\mbox{\Hypertarget{types_8h_ac2abd1926482d6e74d1a30ee2ea5d6f8}\label{types_8h_ac2abd1926482d6e74d1a30ee2ea5d6f8}} 
+\index{types.\+h@{types.\+h}!int16@{int16}}
+\index{int16@{int16}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{int16}{int16}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_ac2abd1926482d6e74d1a30ee2ea5d6f8}{int16} =  std\+::int16\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a3d594eb72953c94a18a03d929ebd9167}\label{types_8h_a3d594eb72953c94a18a03d929ebd9167}} 
+\index{types.\+h@{types.\+h}!int32@{int32}}
+\index{int32@{int32}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{int32}{int32}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a3d594eb72953c94a18a03d929ebd9167}{int32} =  std\+::int32\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a552928ab323811c9694f5b7c9f53d0fb}\label{types_8h_a552928ab323811c9694f5b7c9f53d0fb}} 
+\index{types.\+h@{types.\+h}!int64@{int64}}
+\index{int64@{int64}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{int64}{int64}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a552928ab323811c9694f5b7c9f53d0fb}{int64} =  std\+::int64\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_abd106ada62607d216e5d94926d7ec378}\label{types_8h_abd106ada62607d216e5d94926d7ec378}} 
+\index{types.\+h@{types.\+h}!int8@{int8}}
+\index{int8@{int8}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{int8}{int8}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_abd106ada62607d216e5d94926d7ec378}{int8} =  std\+::int8\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a848058bb4f500afaf0f954ffa75d3e6b}\label{types_8h_a848058bb4f500afaf0f954ffa75d3e6b}} 
+\index{types.\+h@{types.\+h}!int\+\_\+type@{int\+\_\+type}}
+\index{int\+\_\+type@{int\+\_\+type}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{int\+\_\+type}{int\_type}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a848058bb4f500afaf0f954ffa75d3e6b}{int\+\_\+type} =  typename \hyperlink{structchoose__int__types}{choose\+\_\+int\+\_\+types}$<$\hyperlink{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}{my\+\_\+pointer\+\_\+size}$>$\+::\hyperlink{types_8h_a848058bb4f500afaf0f954ffa75d3e6b}{int\+\_\+type}}
+
+\mbox{\Hypertarget{types_8h_afb0e4a3c06d32e9372ba48a8ebe1861c}\label{types_8h_afb0e4a3c06d32e9372ba48a8ebe1861c}} 
+\index{types.\+h@{types.\+h}!low\+\_\+type@{low\+\_\+type}}
+\index{low\+\_\+type@{low\+\_\+type}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{low\+\_\+type}{low\_type}}
+{\footnotesize\ttfamily typedef \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \hyperlink{types_8h_afb0e4a3c06d32e9372ba48a8ebe1861c}{low\+\_\+type}}
+
+\mbox{\Hypertarget{types_8h_aea9840dd402bd5d5201bef4633398cb3}\label{types_8h_aea9840dd402bd5d5201bef4633398cb3}} 
+\index{types.\+h@{types.\+h}!uint16@{uint16}}
+\index{uint16@{uint16}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint16}{uint16}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_aea9840dd402bd5d5201bef4633398cb3}{uint16} =  std\+::uint16\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a8f95e75e58492e87412191fabadd8ca8}\label{types_8h_a8f95e75e58492e87412191fabadd8ca8}} 
+\index{types.\+h@{types.\+h}!uint32@{uint32}}
+\index{uint32@{uint32}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint32}{uint32}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} =  std\+::uint32\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a60e8696a4678cd348e991a1f172e53f7}\label{types_8h_a60e8696a4678cd348e991a1f172e53f7}} 
+\index{types.\+h@{types.\+h}!uint64@{uint64}}
+\index{uint64@{uint64}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint64}{uint64}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} =  std\+::uint64\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a115946cb5fc5879545e9ccea096a6031}\label{types_8h_a115946cb5fc5879545e9ccea096a6031}} 
+\index{types.\+h@{types.\+h}!uint8@{uint8}}
+\index{uint8@{uint8}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint8}{uint8}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} =  std\+::uint8\+\_\+t}
+
+\mbox{\Hypertarget{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}\label{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}} 
+\index{types.\+h@{types.\+h}!uint\+\_\+type@{uint\+\_\+type}}
+\index{uint\+\_\+type@{uint\+\_\+type}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint\+\_\+type}{uint\_type}}
+{\footnotesize\ttfamily using \hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type} =  typename \hyperlink{structchoose__int__types}{choose\+\_\+int\+\_\+types}$<$\hyperlink{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}{my\+\_\+pointer\+\_\+size}$>$\+::\hyperlink{types_8h_a948660ad4bbc6ed2c3e3262a30bac0ff}{uint\+\_\+type}}
+
+
+
+\subsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{types_8h_a06fc87d81c62e9abb8790b6e5713c55b}\label{types_8h_a06fc87d81c62e9abb8790b6e5713c55b}} 
+\subsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{my\+\_\+pointer\+\_\+size@{my\+\_\+pointer\+\_\+size}!types.\+h@{types.\+h}}\index{types.\+h@{types.\+h}!my\+\_\+pointer\+\_\+size@{my\+\_\+pointer\+\_\+size}}}\mbox{\Hypertarget{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}\label{types_8h_a06fc87d81c62e9abb8790b6e5713c55ba8cdfa64b8cdab0fc9fe0e5a9d0192a5c}} 
+my\+\_\+pointer\+\_\+size&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{types_8h_aa5073eed52429ca9c68cfeef8163dadb}\label{types_8h_aa5073eed52429ca9c68cfeef8163dadb}} 
+\index{types.\+h@{types.\+h}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+attribute\+\_\+\+\_\+()}{\_\_attribute\_\_()}}
+{\footnotesize\ttfamily class \hyperlink{classuint40}{uint40} \+\_\+\+\_\+attribute\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{(packed)}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_a20cad26639e8f866e2fcfd01b6e9d0d4}\label{types_8h_a20cad26639e8f866e2fcfd01b6e9d0d4}} 
+\index{types.\+h@{types.\+h}!get\+\_\+high@{get\+\_\+high}}
+\index{get\+\_\+high@{get\+\_\+high}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+high()}{get\_high()}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} get\+\_\+high (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_a3bac47f21d0c0a8e255bdd0b1dabd2f2}\label{types_8h_a3bac47f21d0c0a8e255bdd0b1dabd2f2}} 
+\index{types.\+h@{types.\+h}!get\+\_\+low@{get\+\_\+low}}
+\index{get\+\_\+low@{get\+\_\+low}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{get\+\_\+low()}{get\_low()}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} get\+\_\+low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_add613a3d2d7eff426907064270db8215}\label{types_8h_add613a3d2d7eff426907064270db8215}} 
+\index{types.\+h@{types.\+h}!max@{max}}
+\index{max@{max}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily static \hyperlink{classuint128}{uint128} \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{types_8h_ac7d80e29baaa3f8e4eef22cdc851744a}\label{types_8h_ac7d80e29baaa3f8e4eef22cdc851744a}} 
+\index{types.\+h@{types.\+h}!min@{min}}
+\index{min@{min}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily static \hyperlink{classuint128}{uint128} \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\mbox{\Hypertarget{types_8h_a8c16775e7e2ad633aae492dd2552ef52}\label{types_8h_a8c16775e7e2ad633aae492dd2552ef52}} 
+\index{types.\+h@{types.\+h}!operator uint64\+\_\+t@{operator uint64\+\_\+t}}
+\index{operator uint64\+\_\+t@{operator uint64\+\_\+t}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator uint64\+\_\+t()}{operator uint64\_t()}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator uint64\+\_\+t (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{types_8h_affababd92753c4880d0c280bdb62633e}\label{types_8h_affababd92753c4880d0c280bdb62633e}} 
+\index{types.\+h@{types.\+h}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint40}{uint40} \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{types_8h_ab3a727e5eede21cf30765aa649eb6b9d}\label{types_8h_ab3a727e5eede21cf30765aa649eb6b9d}} 
+\index{types.\+h@{types.\+h}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{b }\end{DoxyParamCaption}) const}
+
+
+
+check inequality 
+
+\mbox{\Hypertarget{types_8h_a2ada254777d54d622dbeb7d45da92336}\label{types_8h_a2ada254777d54d622dbeb7d45da92336}} 
+\index{types.\+h@{types.\+h}!operator\&@{operator\&}}
+\index{operator\&@{operator\&}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator\&()}{operator\&()}}
+{\footnotesize\ttfamily \hyperlink{classuint128}{uint128} \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator \& (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{\+\_\+b }\end{DoxyParamCaption}) const}
+
+
+
+bitwise and 
+
+\mbox{\Hypertarget{types_8h_ac37ecdc1a86d796e924955bcd1db0312}\label{types_8h_ac37ecdc1a86d796e924955bcd1db0312}} 
+\index{types.\+h@{types.\+h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classuint128}{uint128} \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+bits }\end{DoxyParamCaption})}
+
+
+
+biwise shift, \+\_\+bits bits leftward 
+
+\mbox{\Hypertarget{types_8h_af5c7620c5c09b3c146557179b3a041e8}\label{types_8h_af5c7620c5c09b3c146557179b3a041e8}} 
+\index{types.\+h@{types.\+h}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily friend std\+::ostream\& \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os,  }\item[{const \hyperlink{classuint128}{uint128} \&}]{\+\_\+a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_ad7a7fcf67e0961b6a8fb5116e0964081}\label{types_8h_ad7a7fcf67e0961b6a8fb5116e0964081}} 
+\index{types.\+h@{types.\+h}!operator$<$$<$=@{operator$<$$<$=}}
+\index{operator$<$$<$=@{operator$<$$<$=}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator$<$$<$=()}{operator<<=()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator$<$$<$= (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+bits }\end{DoxyParamCaption})}
+
+
+
+bitwise shift, \+\_\+bits bits leftward, self revision 
+
+\mbox{\Hypertarget{types_8h_a7ae67630ef1311127ca10f83158b9b87}\label{types_8h_a7ae67630ef1311127ca10f83158b9b87}} 
+\index{types.\+h@{types.\+h}!operator==@{operator==}}
+\index{operator==@{operator==}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint40}{uint40} \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{types_8h_a3af85699a8b10f425ac46a48ca949225}\label{types_8h_a3af85699a8b10f425ac46a48ca949225}} 
+\index{types.\+h@{types.\+h}!operator==@{operator==}}
+\index{operator==@{operator==}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{b }\end{DoxyParamCaption}) const}
+
+
+
+check equality 
+
+\mbox{\Hypertarget{types_8h_aac289619282f098101aadadeb2cc4025}\label{types_8h_aac289619282f098101aadadeb2cc4025}} 
+\index{types.\+h@{types.\+h}!operator\texttt{"|}=@{operator\texttt{"|}=}}
+\index{operator\texttt{"|}=@{operator\texttt{"|}=}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{operator\texttt{"|}=()}{operator|=()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::operator$\vert$= (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+ch }\end{DoxyParamCaption})}
+
+
+
+bitwise or 
+
+\mbox{\Hypertarget{types_8h_a9805ad2d84465b3a1c4aa12235f922c4}\label{types_8h_a9805ad2d84465b3a1c4aa12235f922c4}} 
+\index{types.\+h@{types.\+h}!set@{set}}
+\index{set@{set}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::set (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&}]{\+\_\+low,  }\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+high }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_a1bdb76cf7211909f821911726507fb30}\label{types_8h_a1bdb76cf7211909f821911726507fb30}} 
+\index{types.\+h@{types.\+h}!set\+\_\+high@{set\+\_\+high}}
+\index{set\+\_\+high@{set\+\_\+high}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+high()}{set\_high()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::set\+\_\+high (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \&}]{\+\_\+high }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_ac451e240aa7238b8cdd88c68a4b94c25}\label{types_8h_ac451e240aa7238b8cdd88c68a4b94c25}} 
+\index{types.\+h@{types.\+h}!set\+\_\+low@{set\+\_\+low}}
+\index{set\+\_\+low@{set\+\_\+low}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{set\+\_\+low()}{set\_low()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::set\+\_\+low (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&}]{\+\_\+low }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_ab620f7af906d024680c89ac9c99d5fae}\label{types_8h_ab620f7af906d024680c89ac9c99d5fae}} 
+\index{types.\+h@{types.\+h}!uint128@{uint128}}
+\index{uint128@{uint128}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint128 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+default ctor 
+
+\mbox{\Hypertarget{types_8h_a38ef652b59a2ba178eff4646c7e5e008}\label{types_8h_a38ef652b59a2ba178eff4646c7e5e008}} 
+\index{types.\+h@{types.\+h}!uint128@{uint128}}
+\index{uint128@{uint128}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+low,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+high }\end{DoxyParamCaption})}
+
+
+
+initialized from lower and higher parts 
+
+\mbox{\Hypertarget{types_8h_af7e6621517578e3fd6d7c26900edc6ef}\label{types_8h_af7e6621517578e3fd6d7c26900edc6ef}} 
+\index{types.\+h@{types.\+h}!uint128@{uint128}}
+\index{uint128@{uint128}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{\+\_\+a }\end{DoxyParamCaption})}
+
+
+
+copy ctor 
+
+\mbox{\Hypertarget{types_8h_a5dc4f1787a04c99e251cd68bc631c7b3}\label{types_8h_a5dc4f1787a04c99e251cd68bc631c7b3}} 
+\index{types.\+h@{types.\+h}!uint128@{uint128}}
+\index{uint128@{uint128}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&}]{\+\_\+a }\end{DoxyParamCaption})}
+
+
+
+initialized from an unsigned int 
+
+\mbox{\Hypertarget{types_8h_a38af0db38b8983c09e453dbb2a423b35}\label{types_8h_a38af0db38b8983c09e453dbb2a423b35}} 
+\index{types.\+h@{types.\+h}!uint128@{uint128}}
+\index{uint128@{uint128}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a3d594eb72953c94a18a03d929ebd9167}{int32} \&}]{\+\_\+a }\end{DoxyParamCaption})}
+
+
+
+initialized from anint, a $>$= 0 
+
+\mbox{\Hypertarget{types_8h_ab68fd9ef279f5a248fe93b1206cbc559}\label{types_8h_ab68fd9ef279f5a248fe93b1206cbc559}} 
+\index{types.\+h@{types.\+h}!uint128@{uint128}}
+\index{uint128@{uint128}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+a }\end{DoxyParamCaption})}
+
+
+
+initialized from an unsigned long int 
+
+\mbox{\Hypertarget{types_8h_affa82c4225cfcd81baaccd829d3d1c0b}\label{types_8h_affa82c4225cfcd81baaccd829d3d1c0b}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_a4ba3483a239f25b1c755c75e19475edb}\label{types_8h_a4ba3483a239f25b1c755c75e19475edb}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}\item[{std\+::uint32\+\_\+t}]{l,  }\item[{std\+::uint8\+\_\+t}]{h }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_a5e660390adddb6b4c8b4e041f0466e86}\label{types_8h_a5e660390adddb6b4c8b4e041f0466e86}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint40}{uint40} \&}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_aaf73c1c2f7134d2c727ccfbc94736b2d}\label{types_8h_aaf73c1c2f7134d2c727ccfbc94736b2d}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t \&}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_aeb67d0e1054914c055fd6340c46e9b86}\label{types_8h_aeb67d0e1054914c055fd6340c46e9b86}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}\item[{const std\+::uint32\+\_\+t \&}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_ae19857f157c887383d1a7c165ce9519a}\label{types_8h_ae19857f157c887383d1a7c165ce9519a}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}\item[{const std\+::uint64\+\_\+t \&}]{a }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{types_8h_a42b38cde4ba7cf52ccc3ab60547e002a}\label{types_8h_a42b38cde4ba7cf52ccc3ab60547e002a}} 
+\index{types.\+h@{types.\+h}!uint40@{uint40}}
+\index{uint40@{uint40}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{uint40()}{uint40()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily \+\_\+\+\_\+attribute\+\_\+\+\_\+\+::uint40 (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t \&}]{a }\end{DoxyParamCaption})}
+
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{types_8h_af03243776893bcf5923a8f446b8d851c}\label{types_8h_af03243776893bcf5923a8f446b8d851c}} 
+\index{types.\+h@{types.\+h}!\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+attribute\+\_\+\+\_\+@{\+\_\+\+\_\+attribute\+\_\+\+\_\+}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+attribute\+\_\+\+\_\+}{\_\_attribute\_\_}}
+{\footnotesize\ttfamily class \hyperlink{classuint128}{uint128} \+\_\+\+\_\+attribute\+\_\+\+\_\+}
+
+\mbox{\Hypertarget{types_8h_ab09b9b43d1b1783c78e39783e382b3dd}\label{types_8h_ab09b9b43d1b1783c78e39783e382b3dd}} 
+\index{types.\+h@{types.\+h}!bytes@{bytes}}
+\index{bytes@{bytes}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{bytes}{bytes}}
+{\footnotesize\ttfamily const size\+\_\+t bytes = 16\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+number of bytes, 16 
+
+\mbox{\Hypertarget{types_8h_af113dea6c24342761f00f6b36e99032e}\label{types_8h_af113dea6c24342761f00f6b36e99032e}} 
+\index{types.\+h@{types.\+h}!digits@{digits}}
+\index{digits@{digits}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{digits}{digits}}
+{\footnotesize\ttfamily const size\+\_\+t digits = 128\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+number of digits/bits, 128 
+
+\mbox{\Hypertarget{types_8h_a558f35d10292a79de791071eb8088a8c}\label{types_8h_a558f35d10292a79de791071eb8088a8c}} 
+\index{types.\+h@{types.\+h}!high@{high}}
+\index{high@{high}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{high}{high}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} high\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+higher part, uint64 
+
+\mbox{\Hypertarget{types_8h_ade07039efd8c0cfca1f9cead48259d4d}\label{types_8h_ade07039efd8c0cfca1f9cead48259d4d}} 
+\index{types.\+h@{types.\+h}!low@{low}}
+\index{low@{low}!types.\+h@{types.\+h}}
+\subsubsection{\texorpdfstring{low}{low}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} low\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+lower part, uint64 
+

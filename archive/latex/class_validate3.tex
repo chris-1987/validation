@@ -1,0 +1,297 @@
+\hypertarget{class_validate3}{}\section{Validate3$<$ alphabet\+\_\+type, size\+\_\+type $>$ Class Template Reference}
+\label{class_validate3}\index{Validate3$<$ alphabet\+\_\+type, size\+\_\+type $>$@{Validate3$<$ alphabet\+\_\+type, size\+\_\+type $>$}}
+
+
+validate sa and lcp using Karp-\/\+Rabin fingerprinting function  
+
+
+
+
+{\ttfamily \#include $<$validate3.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_validate3_1_1_r_interval}{R\+Interval}
+\begin{DoxyCompactList}\small\item\em store (R \% P)$^\wedge$1, (R \% P)$^\wedge$2, (R \% P)$^\wedge$4, ... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_validate3_ab0a59632c6e2b3bfdd0bf89483448d46}{Validate3} (const std\+::string \&\+\_\+t\+\_\+fn, const std\+::string \&\+\_\+sa\+\_\+fn, const std\+::string \&\+\_\+lcp\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+bool \hyperlink{class_validate3_aaa21653a363d5adcc65b93ac34d22253}{run} ()
+\begin{DoxyCompactList}\small\item\em core part of the program \end{DoxyCompactList}\item 
+\hyperlink{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}{pair2\+\_\+sorter\+\_\+type} $\ast$ \hyperlink{class_validate3_ad41c23715467e5201ef2705d38d8f81d}{fetch\+\_\+fp} ()
+\begin{DoxyCompactList}\small\item\em fetch fp\mbox{[}0, sa\mbox{[}i\mbox{]} -\/ 1\mbox{]} \end{DoxyCompactList}\item 
+\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type} $\ast$ \hyperlink{class_validate3_aeace570606a0320e2ad458145b7e16e3}{fetch\+\_\+fp\+\_\+ch\+\_\+cur} ()
+\begin{DoxyCompactList}\small\item\em fetch fp\mbox{[}0, sa\mbox{[}i\mbox{]} + lcp\mbox{[}i\mbox{]} -\/ 1\mbox{]} and t\mbox{[}sa\mbox{[}i\mbox{]} + lcp\mbox{[}i\mbox{]}\mbox{]} \end{DoxyCompactList}\item 
+\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type} $\ast$ \hyperlink{class_validate3_abbf26d49c2f60ea8ecb3ba131f0a61ae}{fetch\+\_\+fp\+\_\+ch\+\_\+pre} ()
+\begin{DoxyCompactList}\small\item\em fetch fp\mbox{[}0, sa\mbox{[}i -\/ 1\mbox{]} + lcp\mbox{[}i\mbox{]} -\/ 1\mbox{]} and t\mbox{[}sa\mbox{[}i -\/ 1\mbox{]} + lcp\mbox{[}i\mbox{]}\mbox{]} \end{DoxyCompactList}\item 
+bool \hyperlink{class_validate3_ade475094c421af71da65620b706dec3f}{check} (\hyperlink{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}{pair2\+\_\+sorter\+\_\+type} $\ast$\+\_\+sorter1, \hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type} $\ast$\+\_\+sorter2, \hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type} $\ast$\+\_\+sorter3)
+\begin{DoxyCompactList}\small\item\em compare range fingerprints and ending characters to check the result \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ alphabet\+\_\+type $>$\+::vector \hyperlink{class_validate3_a7a893a89f745710a34958b37717cb024}{alphabet\+\_\+vector\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ size\+\_\+type $>$\+::vector \hyperlink{class_validate3_a9dcb1d691c20940089a7e6fbf1619069}{size\+\_\+vector\+\_\+type}
+\item 
+typedef \hyperlink{structpair}{pair}$<$ size\+\_\+type, size\+\_\+type $>$ \hyperlink{class_validate3_abecec0e807ea06aac66c60387611e78a}{pair1\+\_\+type}
+\item 
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$ \hyperlink{class_validate3_abecec0e807ea06aac66c60387611e78a}{pair1\+\_\+type} $>$ \hyperlink{class_validate3_ace20fdc998ec6fb2c559aaf7413d464e}{pair1\+\_\+comparator\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$ \hyperlink{class_validate3_abecec0e807ea06aac66c60387611e78a}{pair1\+\_\+type}, \hyperlink{class_validate3_ace20fdc998ec6fb2c559aaf7413d464e}{pair1\+\_\+comparator\+\_\+type} $>$\+::sorter \hyperlink{class_validate3_a6b5f6c01fe108e6c572c52249bf37caa}{pair1\+\_\+sorter\+\_\+type}
+\item 
+typedef \hyperlink{structpair}{pair}$<$ size\+\_\+type, \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} $>$ \hyperlink{class_validate3_aa5a02458227330cbaaf91b58684625f0}{pair2\+\_\+type}
+\item 
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$ \hyperlink{class_validate3_aa5a02458227330cbaaf91b58684625f0}{pair2\+\_\+type} $>$ \hyperlink{class_validate3_a9a5316faa3c44f8f5743fec09cdea491}{pair2\+\_\+comparator\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$ \hyperlink{class_validate3_aa5a02458227330cbaaf91b58684625f0}{pair2\+\_\+type}, \hyperlink{class_validate3_a9a5316faa3c44f8f5743fec09cdea491}{pair2\+\_\+comparator\+\_\+type} $>$\+::sorter \hyperlink{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}{pair2\+\_\+sorter\+\_\+type}
+\item 
+typedef \hyperlink{structtriple}{triple}$<$ size\+\_\+type, \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type}, \hyperlink{types_8h_aea9840dd402bd5d5201bef4633398cb3}{uint16} $>$ \hyperlink{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}{triple\+\_\+type}
+\item 
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$ \hyperlink{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}{triple\+\_\+type} $>$ \hyperlink{class_validate3_a35d0df8691519c4413a99d0e5739be54}{triple\+\_\+comparator\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$ \hyperlink{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}{triple\+\_\+type}, \hyperlink{class_validate3_a35d0df8691519c4413a99d0e5739be54}{triple\+\_\+comparator\+\_\+type} $>$\+::sorter \hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{class_validate3_a6f754bab729d30bd1d600bee9b68c4c4}{m\+\_\+t\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em filename for intput string \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_validate3_a2be6f4b53d68e4cecb67f40d73aec102}{m\+\_\+sa\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em filename for suffix array \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_validate3_a9a5b2ec4499a2ce49c2697e5bc36c953}{m\+\_\+lcp\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em filename for L\+CP array \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate3_a20a6a7a05819b0830e92e78c13954921}{m\+\_\+len}
+\item 
+\hyperlink{struct_validate3_1_1_r_interval}{R\+Interval} $\ast$ \hyperlink{class_validate3_a70a0fb14cda49a88a90c2d426880adf0}{m\+\_\+rinterval}
+\begin{DoxyCompactList}\small\item\em pointer to \hyperlink{struct_validate3_1_1_r_interval}{R\+Interval} object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename alphabet\+\_\+type, typename size\+\_\+type$>$\newline
+class Validate3$<$ alphabet\+\_\+type, size\+\_\+type $>$}
+
+validate sa and lcp using Karp-\/\+Rabin fingerprinting function 
+
+type of elements in the input string and suffix/\+L\+CP array are specified by alphabet\+\_\+type and size\+\_\+type, respectively. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_validate3_a7a893a89f745710a34958b37717cb024}\label{class_validate3_a7a893a89f745710a34958b37717cb024}} 
+\index{Validate3@{Validate3}!alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}}
+\index{alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{alphabet\+\_\+vector\+\_\+type}{alphabet\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$alphabet\+\_\+type$>$\+::vector \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a7a893a89f745710a34958b37717cb024}{alphabet\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_ace20fdc998ec6fb2c559aaf7413d464e}\label{class_validate3_ace20fdc998ec6fb2c559aaf7413d464e}} 
+\index{Validate3@{Validate3}!pair1\+\_\+comparator\+\_\+type@{pair1\+\_\+comparator\+\_\+type}}
+\index{pair1\+\_\+comparator\+\_\+type@{pair1\+\_\+comparator\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{pair1\+\_\+comparator\+\_\+type}{pair1\_comparator\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$\hyperlink{class_validate3_abecec0e807ea06aac66c60387611e78a}{pair1\+\_\+type}$>$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_ace20fdc998ec6fb2c559aaf7413d464e}{pair1\+\_\+comparator\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a6b5f6c01fe108e6c572c52249bf37caa}\label{class_validate3_a6b5f6c01fe108e6c572c52249bf37caa}} 
+\index{Validate3@{Validate3}!pair1\+\_\+sorter\+\_\+type@{pair1\+\_\+sorter\+\_\+type}}
+\index{pair1\+\_\+sorter\+\_\+type@{pair1\+\_\+sorter\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{pair1\+\_\+sorter\+\_\+type}{pair1\_sorter\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$\hyperlink{class_validate3_abecec0e807ea06aac66c60387611e78a}{pair1\+\_\+type}, \hyperlink{class_validate3_ace20fdc998ec6fb2c559aaf7413d464e}{pair1\+\_\+comparator\+\_\+type}$>$\+::sorter \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a6b5f6c01fe108e6c572c52249bf37caa}{pair1\+\_\+sorter\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_abecec0e807ea06aac66c60387611e78a}\label{class_validate3_abecec0e807ea06aac66c60387611e78a}} 
+\index{Validate3@{Validate3}!pair1\+\_\+type@{pair1\+\_\+type}}
+\index{pair1\+\_\+type@{pair1\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{pair1\+\_\+type}{pair1\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{structpair}{pair}$<$size\+\_\+type, size\+\_\+type$>$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_abecec0e807ea06aac66c60387611e78a}{pair1\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a9a5316faa3c44f8f5743fec09cdea491}\label{class_validate3_a9a5316faa3c44f8f5743fec09cdea491}} 
+\index{Validate3@{Validate3}!pair2\+\_\+comparator\+\_\+type@{pair2\+\_\+comparator\+\_\+type}}
+\index{pair2\+\_\+comparator\+\_\+type@{pair2\+\_\+comparator\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{pair2\+\_\+comparator\+\_\+type}{pair2\_comparator\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$\hyperlink{class_validate3_aa5a02458227330cbaaf91b58684625f0}{pair2\+\_\+type}$>$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a9a5316faa3c44f8f5743fec09cdea491}{pair2\+\_\+comparator\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}\label{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}} 
+\index{Validate3@{Validate3}!pair2\+\_\+sorter\+\_\+type@{pair2\+\_\+sorter\+\_\+type}}
+\index{pair2\+\_\+sorter\+\_\+type@{pair2\+\_\+sorter\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{pair2\+\_\+sorter\+\_\+type}{pair2\_sorter\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$\hyperlink{class_validate3_aa5a02458227330cbaaf91b58684625f0}{pair2\+\_\+type}, \hyperlink{class_validate3_a9a5316faa3c44f8f5743fec09cdea491}{pair2\+\_\+comparator\+\_\+type}$>$\+::sorter \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}{pair2\+\_\+sorter\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_aa5a02458227330cbaaf91b58684625f0}\label{class_validate3_aa5a02458227330cbaaf91b58684625f0}} 
+\index{Validate3@{Validate3}!pair2\+\_\+type@{pair2\+\_\+type}}
+\index{pair2\+\_\+type@{pair2\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{pair2\+\_\+type}{pair2\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{structpair}{pair}$<$size\+\_\+type, \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type}$>$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_aa5a02458227330cbaaf91b58684625f0}{pair2\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a9dcb1d691c20940089a7e6fbf1619069}\label{class_validate3_a9dcb1d691c20940089a7e6fbf1619069}} 
+\index{Validate3@{Validate3}!size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}}
+\index{size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{size\+\_\+vector\+\_\+type}{size\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$size\+\_\+type$>$\+::vector \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a9dcb1d691c20940089a7e6fbf1619069}{size\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a35d0df8691519c4413a99d0e5739be54}\label{class_validate3_a35d0df8691519c4413a99d0e5739be54}} 
+\index{Validate3@{Validate3}!triple\+\_\+comparator\+\_\+type@{triple\+\_\+comparator\+\_\+type}}
+\index{triple\+\_\+comparator\+\_\+type@{triple\+\_\+comparator\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{triple\+\_\+comparator\+\_\+type}{triple\_comparator\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{structtuple__less__comparator__1st}{tuple\+\_\+less\+\_\+comparator\+\_\+1st}$<$\hyperlink{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}{triple\+\_\+type}$>$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a35d0df8691519c4413a99d0e5739be54}{triple\+\_\+comparator\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}\label{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}} 
+\index{Validate3@{Validate3}!triple\+\_\+sorter\+\_\+type@{triple\+\_\+sorter\+\_\+type}}
+\index{triple\+\_\+sorter\+\_\+type@{triple\+\_\+sorter\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{triple\+\_\+sorter\+\_\+type}{triple\_sorter\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_tuple_sorter}{Ex\+Tuple\+Sorter}$<$\hyperlink{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}{triple\+\_\+type}, \hyperlink{class_validate3_a35d0df8691519c4413a99d0e5739be54}{triple\+\_\+comparator\+\_\+type}$>$\+::sorter \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}\label{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}} 
+\index{Validate3@{Validate3}!triple\+\_\+type@{triple\+\_\+type}}
+\index{triple\+\_\+type@{triple\+\_\+type}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{triple\+\_\+type}{triple\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{structtriple}{triple}$<$size\+\_\+type, \hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type}, \hyperlink{types_8h_aea9840dd402bd5d5201bef4633398cb3}{uint16}$>$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3_a5f4a1e8af5876ec1bef35bd0c3068203}{triple\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_validate3_ab0a59632c6e2b3bfdd0bf89483448d46}\label{class_validate3_ab0a59632c6e2b3bfdd0bf89483448d46}} 
+\index{Validate3@{Validate3}!Validate3@{Validate3}}
+\index{Validate3@{Validate3}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{Validate3()}{Validate3()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate3}{Validate3} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+t\+\_\+fn,  }\item[{const std\+::string \&}]{\+\_\+sa\+\_\+fn,  }\item[{const std\+::string \&}]{\+\_\+lcp\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+t\+\_\+fn} & input string \\
+\hline
+{\em \+\_\+sa\+\_\+fn} & suffix array \\
+\hline
+{\em \+\_\+lcp\+\_\+fn} & lcp array \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_validate3_ade475094c421af71da65620b706dec3f}\label{class_validate3_ade475094c421af71da65620b706dec3f}} 
+\index{Validate3@{Validate3}!check@{check}}
+\index{check@{check}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{check()}{check()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::check (\begin{DoxyParamCaption}\item[{\hyperlink{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}{pair2\+\_\+sorter\+\_\+type} $\ast$}]{\+\_\+sorter1,  }\item[{\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type} $\ast$}]{\+\_\+sorter2,  }\item[{\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type} $\ast$}]{\+\_\+sorter3 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+compare range fingerprints and ending characters to check the result 
+
+\mbox{\Hypertarget{class_validate3_ad41c23715467e5201ef2705d38d8f81d}\label{class_validate3_ad41c23715467e5201ef2705d38d8f81d}} 
+\index{Validate3@{Validate3}!fetch\+\_\+fp@{fetch\+\_\+fp}}
+\index{fetch\+\_\+fp@{fetch\+\_\+fp}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{fetch\+\_\+fp()}{fetch\_fp()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate3_a3a7778ec3337ed3baf9a7515cf0a94ad}{pair2\+\_\+sorter\+\_\+type}$\ast$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::fetch\+\_\+fp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fetch fp\mbox{[}0, sa\mbox{[}i\mbox{]} -\/ 1\mbox{]} 
+
+\mbox{\Hypertarget{class_validate3_aeace570606a0320e2ad458145b7e16e3}\label{class_validate3_aeace570606a0320e2ad458145b7e16e3}} 
+\index{Validate3@{Validate3}!fetch\+\_\+fp\+\_\+ch\+\_\+cur@{fetch\+\_\+fp\+\_\+ch\+\_\+cur}}
+\index{fetch\+\_\+fp\+\_\+ch\+\_\+cur@{fetch\+\_\+fp\+\_\+ch\+\_\+cur}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{fetch\+\_\+fp\+\_\+ch\+\_\+cur()}{fetch\_fp\_ch\_cur()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type}$\ast$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::fetch\+\_\+fp\+\_\+ch\+\_\+cur (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fetch fp\mbox{[}0, sa\mbox{[}i\mbox{]} + lcp\mbox{[}i\mbox{]} -\/ 1\mbox{]} and t\mbox{[}sa\mbox{[}i\mbox{]} + lcp\mbox{[}i\mbox{]}\mbox{]} 
+
+\mbox{\Hypertarget{class_validate3_abbf26d49c2f60ea8ecb3ba131f0a61ae}\label{class_validate3_abbf26d49c2f60ea8ecb3ba131f0a61ae}} 
+\index{Validate3@{Validate3}!fetch\+\_\+fp\+\_\+ch\+\_\+pre@{fetch\+\_\+fp\+\_\+ch\+\_\+pre}}
+\index{fetch\+\_\+fp\+\_\+ch\+\_\+pre@{fetch\+\_\+fp\+\_\+ch\+\_\+pre}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{fetch\+\_\+fp\+\_\+ch\+\_\+pre()}{fetch\_fp\_ch\_pre()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate3_ab3d4fd99ae8b2967f0b64b71a28efc66}{triple\+\_\+sorter\+\_\+type}$\ast$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::fetch\+\_\+fp\+\_\+ch\+\_\+pre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+fetch fp\mbox{[}0, sa\mbox{[}i -\/ 1\mbox{]} + lcp\mbox{[}i\mbox{]} -\/ 1\mbox{]} and t\mbox{[}sa\mbox{[}i -\/ 1\mbox{]} + lcp\mbox{[}i\mbox{]}\mbox{]} 
+
+\mbox{\Hypertarget{class_validate3_aaa21653a363d5adcc65b93ac34d22253}\label{class_validate3_aaa21653a363d5adcc65b93ac34d22253}} 
+\index{Validate3@{Validate3}!run@{run}}
+\index{run@{run}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+core part of the program 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_validate3_a9a5b2ec4499a2ce49c2697e5bc36c953}\label{class_validate3_a9a5b2ec4499a2ce49c2697e5bc36c953}} 
+\index{Validate3@{Validate3}!m\+\_\+lcp\+\_\+fn@{m\+\_\+lcp\+\_\+fn}}
+\index{m\+\_\+lcp\+\_\+fn@{m\+\_\+lcp\+\_\+fn}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+fn}{m\_lcp\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+lcp\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+filename for L\+CP array 
+
+\mbox{\Hypertarget{class_validate3_a20a6a7a05819b0830e92e78c13954921}\label{class_validate3_a20a6a7a05819b0830e92e78c13954921}} 
+\index{Validate3@{Validate3}!m\+\_\+len@{m\+\_\+len}}
+\index{m\+\_\+len@{m\+\_\+len}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{m\+\_\+len}{m\_len}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+len\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate3_a70a0fb14cda49a88a90c2d426880adf0}\label{class_validate3_a70a0fb14cda49a88a90c2d426880adf0}} 
+\index{Validate3@{Validate3}!m\+\_\+rinterval@{m\+\_\+rinterval}}
+\index{m\+\_\+rinterval@{m\+\_\+rinterval}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{m\+\_\+rinterval}{m\_rinterval}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{struct_validate3_1_1_r_interval}{R\+Interval}$\ast$ \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+rinterval\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to \hyperlink{struct_validate3_1_1_r_interval}{R\+Interval} object 
+
+\mbox{\Hypertarget{class_validate3_a2be6f4b53d68e4cecb67f40d73aec102}\label{class_validate3_a2be6f4b53d68e4cecb67f40d73aec102}} 
+\index{Validate3@{Validate3}!m\+\_\+sa\+\_\+fn@{m\+\_\+sa\+\_\+fn}}
+\index{m\+\_\+sa\+\_\+fn@{m\+\_\+sa\+\_\+fn}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+fn}{m\_sa\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+sa\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+filename for suffix array 
+
+\mbox{\Hypertarget{class_validate3_a6f754bab729d30bd1d600bee9b68c4c4}\label{class_validate3_a6f754bab729d30bd1d600bee9b68c4c4}} 
+\index{Validate3@{Validate3}!m\+\_\+t\+\_\+fn@{m\+\_\+t\+\_\+fn}}
+\index{m\+\_\+t\+\_\+fn@{m\+\_\+t\+\_\+fn}!Validate3@{Validate3}}
+\subsubsection{\texorpdfstring{m\+\_\+t\+\_\+fn}{m\_t\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate3}{Validate3}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+t\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+filename for intput string 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{validate3_8h}{validate3.\+h}\end{DoxyCompactItemize}

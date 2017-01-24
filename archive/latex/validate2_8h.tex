@@ -1,0 +1,36 @@
+\hypertarget{validate2_8h}{}\section{code/src/validate2.h File Reference}
+\label{validate2_8h}\index{code/src/validate2.\+h@{code/src/validate2.\+h}}
+
+
+validate sa and lcp using internal memory sorts and Karp-\/rabin finger-\/print function.  
+
+
+{\ttfamily \#include \char`\"{}common/common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/tuples.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/widget.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/basicio.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_validate2}{Validate2$<$ alphabet\+\_\+type, size\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em a suffix and L\+CP array validater \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate2_1_1_r_interval}{Validate2$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\+R\+Interval}
+\begin{DoxyCompactList}\small\item\em store (R \% P)$^\wedge$1, (R \% P)$^\wedge$2, (R \% P)$^\wedge$4, ... \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+validate sa and lcp using internal memory sorts and Karp-\/rabin finger-\/print function. 
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+\begin{DoxyNote}{Note}
+The alphaber size of the input string is assumed to be O(1) or O(n). 
+
+This method requires multiple sequential scans for the input string. During each scan, all the fingerprints are computed by an iterative way. This has become the bottleneck to the system\textquotesingle{}s running time.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2016.\+12 
+\end{DoxyDate}

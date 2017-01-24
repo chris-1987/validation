@@ -1,0 +1,393 @@
+\hypertarget{classasync__multi__stream__reader}{}\section{async\+\_\+multi\+\_\+stream\+\_\+reader$<$ value\+\_\+type $>$ Class Template Reference}
+\label{classasync__multi__stream__reader}\index{async\+\_\+multi\+\_\+stream\+\_\+reader$<$ value\+\_\+type $>$@{async\+\_\+multi\+\_\+stream\+\_\+reader$<$ value\+\_\+type $>$}}
+
+
+main thread read multiple disk files simultaneously.  
+
+
+
+
+{\ttfamily \#include $<$async\+\_\+stream\+\_\+reader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classasync__multi__stream__reader_af83e5faafb7612b51abc05e8edde52dd}{async\+\_\+multi\+\_\+stream\+\_\+reader} (const std\+::string \&\+\_\+fn\+\_\+prefix, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+filenum, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+mem\+\_\+avail=(8ul$<$$<$ 20), const uint64 \&\+\_\+bufnum=4ul)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+value\+\_\+type \hyperlink{classasync__multi__stream__reader_ae47f5af3e9c0964be88975391631b3d4}{read} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx)
+\begin{DoxyCompactList}\small\item\em read an element \end{DoxyCompactList}\item 
+void \hyperlink{classasync__multi__stream__reader_a1b4db036726c5b33edf9cdca1ccc24d9}{read} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx, value\+\_\+type $\ast$\+\_\+des, \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \+\_\+num)
+\begin{DoxyCompactList}\small\item\em read a sequence of elements \end{DoxyCompactList}\item 
+void \hyperlink{classasync__multi__stream__reader_a620b5917c284dbdb6b1f93ea425b9c0e}{skip} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx, \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \+\_\+num)
+\begin{DoxyCompactList}\small\item\em skip a sequence of elements \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader_ab4ebef1c67d84d3581bc4ddaa0a1cc9b}{bytes\+\_\+read} ()
+\begin{DoxyCompactList}\small\item\em report bytes read \end{DoxyCompactList}\item 
+bool \hyperlink{classasync__multi__stream__reader_aec2bb44c72b149387343e53cf6e65f7d}{empty} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx)
+\begin{DoxyCompactList}\small\item\em check if the stream is empty (reach endofit) \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__reader_a1c178b1a22b1e8853bacd42c1e0c2303}{$\sim$async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{structbuffer}{buffer}$<$ value\+\_\+type $>$ \hyperlink{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}{buffer\+\_\+type}
+\item 
+typedef \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ \hyperlink{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}{buffer\+\_\+type} $>$ \hyperlink{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}{buffer\+\_\+queue\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classasync__multi__stream__reader_afae17e2365e9ed10f30d398a550caa89}{get\+\_\+full\+\_\+buffer} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx)
+\begin{DoxyCompactList}\small\item\em get a full buffer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\static void \hyperlink{classasync__multi__stream__reader_a6e68c1dfe4990e3320f6b03dbf400517}{io\+\_\+procedure} (\hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader} $\ast$\+\_\+caller, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+file\+\_\+idx)
+\begin{DoxyCompactList}\small\item\em start an I/O thread for each disk file \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $\ast$ \hyperlink{classasync__multi__stream__reader_a6486d4f10a3caf9169018d2bb71c4fdc}{m\+\_\+bytes\+\_\+read}
+\begin{DoxyCompactList}\small\item\em io statistics \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader_a4ddb169d2f5eff8499eef88ba091c566}{m\+\_\+bufsize}
+\begin{DoxyCompactList}\small\item\em size of buffer \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader_a24bef59afd1ef00b27d54e00a5f1c39a}{m\+\_\+bufnum}
+\begin{DoxyCompactList}\small\item\em number of buffers in a queue, orgained as an F\+I\+FO queue for each file \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader_aa8447afd5b6caafe60f2c69be4df23ff}{m\+\_\+filenum}
+\begin{DoxyCompactList}\small\item\em number of files \end{DoxyCompactList}\item 
+std\+::\+F\+I\+LE $\ast$$\ast$ \hyperlink{classasync__multi__stream__reader_a9e79f443dd594c3ea539aa97d3f8cb45}{m\+\_\+files}
+\begin{DoxyCompactList}\small\item\em pointers to files \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}{buffer\+\_\+queue\+\_\+type} $\ast$$\ast$ \hyperlink{classasync__multi__stream__reader_a57291593ed44d4c1d2586a438bb4d0d6}{m\+\_\+full\+\_\+buffer\+\_\+queues}
+\begin{DoxyCompactList}\small\item\em pointers to full buffer queues \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}{buffer\+\_\+queue\+\_\+type} $\ast$$\ast$ \hyperlink{classasync__multi__stream__reader_a955fea161fa853f416b372699af70b15}{m\+\_\+free\+\_\+buffer\+\_\+queues}
+\begin{DoxyCompactList}\small\item\em pointers to free buffer queues \end{DoxyCompactList}\item 
+std\+::thread $\ast$$\ast$ \hyperlink{classasync__multi__stream__reader_ae3ef39404dd6b7fbc2d8339d4e2c5748}{m\+\_\+io\+\_\+threads}
+\begin{DoxyCompactList}\small\item\em pointers to I/O threads \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $\ast$ \hyperlink{classasync__multi__stream__reader_a47a94d5e9c912c3d448e8039cc650e64}{m\+\_\+items\+\_\+toread}
+\begin{DoxyCompactList}\small\item\em items to read in each file \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $\ast$ \hyperlink{classasync__multi__stream__reader_acea48aa08da0c9e3065f6c8d00f65ef1}{m\+\_\+items\+\_\+read}
+\begin{DoxyCompactList}\small\item\em items read in each file \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $\ast$ \hyperlink{classasync__multi__stream__reader_a42a6fa935ef4401a70e1ebfff9437d0d}{m\+\_\+cur\+\_\+buffer\+\_\+pos}
+\begin{DoxyCompactList}\small\item\em position of next item to be read in current buffer for each file \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $\ast$ \hyperlink{classasync__multi__stream__reader_a7583fa561610fcc9f620d3ad5539e488}{m\+\_\+cur\+\_\+buffer\+\_\+filled}
+\begin{DoxyCompactList}\small\item\em number of items in current buffer for each file \end{DoxyCompactList}\item 
+\hyperlink{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}{buffer\+\_\+type} $\ast$$\ast$ \hyperlink{classasync__multi__stream__reader_aeedea79263b0e41a5fd3264b26aa39a8}{m\+\_\+cur\+\_\+buffer}
+\begin{DoxyCompactList}\small\item\em pointer to current buffer for each file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename value\+\_\+type$>$\newline
+class async\+\_\+multi\+\_\+stream\+\_\+reader$<$ value\+\_\+type $>$}
+
+main thread read multiple disk files simultaneously. 
+
+For the situation (such as mergesort), a set of buffers are established for each file and an I/O thread is created to continually load data into buffers for fast read by main thread. 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}\label{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!buffer\+\_\+queue\+\_\+type@{buffer\+\_\+queue\+\_\+type}}
+\index{buffer\+\_\+queue\+\_\+type@{buffer\+\_\+queue\+\_\+type}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{buffer\+\_\+queue\+\_\+type}{buffer\_queue\_type}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+typedef \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$\hyperlink{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}{buffer\+\_\+type}$>$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::\hyperlink{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}{buffer\+\_\+queue\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}\label{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!buffer\+\_\+type@{buffer\+\_\+type}}
+\index{buffer\+\_\+type@{buffer\+\_\+type}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{buffer\+\_\+type}{buffer\_type}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+typedef \hyperlink{structbuffer}{buffer}$<$value\+\_\+type$>$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::\hyperlink{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}{buffer\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__reader_af83e5faafb7612b51abc05e8edde52dd}\label{classasync__multi__stream__reader_af83e5faafb7612b51abc05e8edde52dd}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{async\+\_\+multi\+\_\+stream\+\_\+reader()}{async\_multi\_stream\_reader()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::\hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+fn\+\_\+prefix,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+filenum,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+mem\+\_\+avail = {\ttfamily (8ul~$<$$<$~20)},  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+bufnum = {\ttfamily 4ul} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a1c178b1a22b1e8853bacd42c1e0c2303}\label{classasync__multi__stream__reader_a1c178b1a22b1e8853bacd42c1e0c2303}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!````~async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader@{$\sim$async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader}}
+\index{````~async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader@{$\sim$async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{$\sim$async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader()}{~async\_multi\_stream\_vbyte\_reader()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::$\sim$async\+\_\+multi\+\_\+stream\+\_\+vbyte\+\_\+reader (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+destructor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__reader_ab4ebef1c67d84d3581bc4ddaa0a1cc9b}\label{classasync__multi__stream__reader_ab4ebef1c67d84d3581bc4ddaa0a1cc9b}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!bytes\+\_\+read@{bytes\+\_\+read}}
+\index{bytes\+\_\+read@{bytes\+\_\+read}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{bytes\+\_\+read()}{bytes\_read()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::bytes\+\_\+read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+report bytes read 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_aec2bb44c72b149387343e53cf6e65f7d}\label{classasync__multi__stream__reader_aec2bb44c72b149387343e53cf6e65f7d}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!empty@{empty}}
+\index{empty@{empty}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+bool \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::empty (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if the stream is empty (reach endofit) 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_afae17e2365e9ed10f30d398a550caa89}\label{classasync__multi__stream__reader_afae17e2365e9ed10f30d398a550caa89}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!get\+\_\+full\+\_\+buffer@{get\+\_\+full\+\_\+buffer}}
+\index{get\+\_\+full\+\_\+buffer@{get\+\_\+full\+\_\+buffer}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{get\+\_\+full\+\_\+buffer()}{get\_full\_buffer()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::get\+\_\+full\+\_\+buffer (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+get a full buffer 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a6e68c1dfe4990e3320f6b03dbf400517}\label{classasync__multi__stream__reader_a6e68c1dfe4990e3320f6b03dbf400517}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!io\+\_\+procedure@{io\+\_\+procedure}}
+\index{io\+\_\+procedure@{io\+\_\+procedure}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{io\+\_\+procedure()}{io\_procedure()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+template$<$typename T $>$ \\
+static void \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::io\+\_\+procedure (\begin{DoxyParamCaption}\item[{\hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$ $\ast$}]{\+\_\+caller,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+start an I/O thread for each disk file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+caller} & handler managed by main thread \\
+\hline
+{\em \+\_\+file\+\_\+idx} & file index \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classasync__multi__stream__reader_ae47f5af3e9c0964be88975391631b3d4}\label{classasync__multi__stream__reader_ae47f5af3e9c0964be88975391631b3d4}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!read@{read}}
+\index{read@{read}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+value\+\_\+type \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::read (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+read an element 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+\_\+idx} & file index, start from 0 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+check if the stream is empty before calling the function 
+\end{DoxyNote}
+\mbox{\Hypertarget{classasync__multi__stream__reader_a1b4db036726c5b33edf9cdca1ccc24d9}\label{classasync__multi__stream__reader_a1b4db036726c5b33edf9cdca1ccc24d9}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!read@{read}}
+\index{read@{read}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{read()}{read()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::read (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx,  }\item[{value\+\_\+type $\ast$}]{\+\_\+des,  }\item[{\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}]{\+\_\+num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+read a sequence of elements 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+\_\+idx} & file index \\
+\hline
+{\em \+\_\+des} & destination array \\
+\hline
+{\em \+\_\+num} & \+\_\+number of files to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+check if the stream is empty before calling the function 
+\end{DoxyNote}
+\mbox{\Hypertarget{classasync__multi__stream__reader_a620b5917c284dbdb6b1f93ea425b9c0e}\label{classasync__multi__stream__reader_a620b5917c284dbdb6b1f93ea425b9c0e}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!skip@{skip}}
+\index{skip@{skip}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{skip()}{skip()}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::skip (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+file\+\_\+idx,  }\item[{\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}]{\+\_\+num }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+skip a sequence of elements 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+file\+\_\+idx} & file index \\
+\hline
+{\em \+\_\+num} & number of elements to skip \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+check if the stream is empty before calling the function 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classasync__multi__stream__reader_a24bef59afd1ef00b27d54e00a5f1c39a}\label{classasync__multi__stream__reader_a24bef59afd1ef00b27d54e00a5f1c39a}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+bufnum@{m\+\_\+bufnum}}
+\index{m\+\_\+bufnum@{m\+\_\+bufnum}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+bufnum}{m\_bufnum}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+bufnum\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of buffers in a queue, orgained as an F\+I\+FO queue for each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a4ddb169d2f5eff8499eef88ba091c566}\label{classasync__multi__stream__reader_a4ddb169d2f5eff8499eef88ba091c566}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+bufsize@{m\+\_\+bufsize}}
+\index{m\+\_\+bufsize@{m\+\_\+bufsize}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+bufsize}{m\_bufsize}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+bufsize\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+size of buffer 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a6486d4f10a3caf9169018d2bb71c4fdc}\label{classasync__multi__stream__reader_a6486d4f10a3caf9169018d2bb71c4fdc}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+bytes\+\_\+read@{m\+\_\+bytes\+\_\+read}}
+\index{m\+\_\+bytes\+\_\+read@{m\+\_\+bytes\+\_\+read}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+bytes\+\_\+read}{m\_bytes\_read}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+bytes\+\_\+read\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+io statistics 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_aeedea79263b0e41a5fd3264b26aa39a8}\label{classasync__multi__stream__reader_aeedea79263b0e41a5fd3264b26aa39a8}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+cur\+\_\+buffer@{m\+\_\+cur\+\_\+buffer}}
+\index{m\+\_\+cur\+\_\+buffer@{m\+\_\+cur\+\_\+buffer}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+cur\+\_\+buffer}{m\_cur\_buffer}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__reader_ad58ad834dc6d741a12be1fb442b8e5d6}{buffer\+\_\+type}$\ast$$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+cur\+\_\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to current buffer for each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a7583fa561610fcc9f620d3ad5539e488}\label{classasync__multi__stream__reader_a7583fa561610fcc9f620d3ad5539e488}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+cur\+\_\+buffer\+\_\+filled@{m\+\_\+cur\+\_\+buffer\+\_\+filled}}
+\index{m\+\_\+cur\+\_\+buffer\+\_\+filled@{m\+\_\+cur\+\_\+buffer\+\_\+filled}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+cur\+\_\+buffer\+\_\+filled}{m\_cur\_buffer\_filled}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+cur\+\_\+buffer\+\_\+filled\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of items in current buffer for each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a42a6fa935ef4401a70e1ebfff9437d0d}\label{classasync__multi__stream__reader_a42a6fa935ef4401a70e1ebfff9437d0d}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+cur\+\_\+buffer\+\_\+pos@{m\+\_\+cur\+\_\+buffer\+\_\+pos}}
+\index{m\+\_\+cur\+\_\+buffer\+\_\+pos@{m\+\_\+cur\+\_\+buffer\+\_\+pos}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+cur\+\_\+buffer\+\_\+pos}{m\_cur\_buffer\_pos}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+cur\+\_\+buffer\+\_\+pos\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+position of next item to be read in current buffer for each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_aa8447afd5b6caafe60f2c69be4df23ff}\label{classasync__multi__stream__reader_aa8447afd5b6caafe60f2c69be4df23ff}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+filenum@{m\+\_\+filenum}}
+\index{m\+\_\+filenum@{m\+\_\+filenum}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+filenum}{m\_filenum}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+filenum\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+number of files 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a9e79f443dd594c3ea539aa97d3f8cb45}\label{classasync__multi__stream__reader_a9e79f443dd594c3ea539aa97d3f8cb45}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+files@{m\+\_\+files}}
+\index{m\+\_\+files@{m\+\_\+files}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+files}{m\_files}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+std\+::\+F\+I\+LE$\ast$$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+files\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointers to files 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a955fea161fa853f416b372699af70b15}\label{classasync__multi__stream__reader_a955fea161fa853f416b372699af70b15}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+free\+\_\+buffer\+\_\+queues@{m\+\_\+free\+\_\+buffer\+\_\+queues}}
+\index{m\+\_\+free\+\_\+buffer\+\_\+queues@{m\+\_\+free\+\_\+buffer\+\_\+queues}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+free\+\_\+buffer\+\_\+queues}{m\_free\_buffer\_queues}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}{buffer\+\_\+queue\+\_\+type}$\ast$$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+free\+\_\+buffer\+\_\+queues\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointers to free buffer queues 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a57291593ed44d4c1d2586a438bb4d0d6}\label{classasync__multi__stream__reader_a57291593ed44d4c1d2586a438bb4d0d6}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+full\+\_\+buffer\+\_\+queues@{m\+\_\+full\+\_\+buffer\+\_\+queues}}
+\index{m\+\_\+full\+\_\+buffer\+\_\+queues@{m\+\_\+full\+\_\+buffer\+\_\+queues}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+full\+\_\+buffer\+\_\+queues}{m\_full\_buffer\_queues}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{classasync__multi__stream__reader_a0bf4b801f7d874da5cbbe5c6504d0ecc}{buffer\+\_\+queue\+\_\+type}$\ast$$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+full\+\_\+buffer\+\_\+queues\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointers to full buffer queues 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_ae3ef39404dd6b7fbc2d8339d4e2c5748}\label{classasync__multi__stream__reader_ae3ef39404dd6b7fbc2d8339d4e2c5748}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+io\+\_\+threads@{m\+\_\+io\+\_\+threads}}
+\index{m\+\_\+io\+\_\+threads@{m\+\_\+io\+\_\+threads}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+io\+\_\+threads}{m\_io\_threads}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+std\+::thread$\ast$$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+io\+\_\+threads\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointers to I/O threads 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_acea48aa08da0c9e3065f6c8d00f65ef1}\label{classasync__multi__stream__reader_acea48aa08da0c9e3065f6c8d00f65ef1}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+items\+\_\+read@{m\+\_\+items\+\_\+read}}
+\index{m\+\_\+items\+\_\+read@{m\+\_\+items\+\_\+read}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+items\+\_\+read}{m\_items\_read}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+items\+\_\+read\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+items read in each file 
+
+\mbox{\Hypertarget{classasync__multi__stream__reader_a47a94d5e9c912c3d448e8039cc650e64}\label{classasync__multi__stream__reader_a47a94d5e9c912c3d448e8039cc650e64}} 
+\index{async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}!m\+\_\+items\+\_\+toread@{m\+\_\+items\+\_\+toread}}
+\index{m\+\_\+items\+\_\+toread@{m\+\_\+items\+\_\+toread}!async\+\_\+multi\+\_\+stream\+\_\+reader@{async\+\_\+multi\+\_\+stream\+\_\+reader}}
+\subsubsection{\texorpdfstring{m\+\_\+items\+\_\+toread}{m\_items\_toread}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$\ast$ \hyperlink{classasync__multi__stream__reader}{async\+\_\+multi\+\_\+stream\+\_\+reader}$<$ value\+\_\+type $>$\+::m\+\_\+items\+\_\+toread\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+items to read in each file 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/common/\hyperlink{async__stream__reader_8h}{async\+\_\+stream\+\_\+reader.\+h}\end{DoxyCompactItemize}

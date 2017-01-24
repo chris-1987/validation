@@ -1,0 +1,197 @@
+\hypertarget{class_validate}{}\section{Validate$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$ Class Template Reference}
+\label{class_validate}\index{Validate$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$@{Validate$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$}}
+
+
+validate suffix and L\+CP arrays using Karp-\/\+Rarbin finger-\/printing function  
+
+
+
+
+{\ttfamily \#include $<$validate.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_validate_1_1_r_interval}{R\+Interval}
+\begin{DoxyCompactList}\small\item\em store (R \% P)$^\wedge$1, (R \% P)$^\wedge$2, (R \% P)$^\wedge$4, ... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_validate_a93b53c001ce92ccad38fe371e9df77b4}{Validate} (const std\+::string \&\+\_\+t\+\_\+fn, const std\+::string \&\+\_\+sa\+\_\+fn, const std\+::string \&\+\_\+lcp\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{class_validate_a991e319d335c6f666f0058be4f73fc97}{$\sim$\+Validate} ()
+\begin{DoxyCompactList}\small\item\em destrcutor \end{DoxyCompactList}\item 
+bool \hyperlink{class_validate_ab94f0feab53136b137c432332efa1ff3}{run} ()
+\begin{DoxyCompactList}\small\item\em main program portal \end{DoxyCompactList}\item 
+bool \hyperlink{class_validate_a3d560deb2bd3e2984f6f3b8b8b766904}{check\+\_\+block} (\hyperlink{tuples_8h_a80f1b898df1006722612d5ecf89cd4d7}{std\+::pair}$<$ size\+\_\+type, \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} $>$ $\ast$\+\_\+pair1\+\_\+block, \hyperlink{tuples_8h_a80f1b898df1006722612d5ecf89cd4d7}{std\+::pair}$<$ size\+\_\+type, \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} $>$ $\ast$\+\_\+pair2\+\_\+block, \hyperlink{tuples_8h_a80f1b898df1006722612d5ecf89cd4d7}{std\+::pair}$<$ size\+\_\+type, \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} $>$ $\ast$\+\_\+pair3\+\_\+block, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+item\+\_\+num, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+block\+\_\+id, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+block\+\_\+capacity, const bool \+\_\+is\+\_\+rightmost)
+\begin{DoxyCompactList}\small\item\em check an sa/lcp block \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ alphabet\+\_\+type $>$\+::vector \hyperlink{class_validate_a0323dd6f1096806748299dfd4f644b69}{alphabet\+\_\+vector\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ size\+\_\+type $>$\+::vector \hyperlink{class_validate_a3725fcfd4a55e4d8edc8b5d5955c081d}{size\+\_\+vector\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{class_validate_a8038ca0a43b122fd9e08af72d7789611}{m\+\_\+t\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em file name of t array \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_validate_aa7c887cf55845b0214e8db3af1076283}{m\+\_\+sa\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em file name of sa array \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_validate_a8bbe1b0a3990ebae85d352bcce9da755}{m\+\_\+lcp\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em file name of lcp array \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate_a49a048e8046e03c3fbc7251bb9af87fd}{m\+\_\+len}
+\begin{DoxyCompactList}\small\item\em length of input t/sa/lcp \end{DoxyCompactList}\item 
+\hyperlink{struct_validate_1_1_r_interval}{R\+Interval} $\ast$ \hyperlink{class_validate_aaa32f94ddccccccd3d86897996c323cc}{m\+\_\+rinterval}
+\item 
+alphabet\+\_\+type \hyperlink{class_validate_abc933d4475a6b952888ee423c3228fc9}{m\+\_\+pre\+\_\+ch}
+\item 
+\hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} \hyperlink{class_validate_a767b5f07008091d4191201c07ad9a3cd}{m\+\_\+pre\+\_\+fp\+\_\+interval}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename alphabet\+\_\+type, typename size\+\_\+type, typename offset\+\_\+type$>$\newline
+class Validate$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$}
+
+validate suffix and L\+CP arrays using Karp-\/\+Rarbin finger-\/printing function 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_validate_a0323dd6f1096806748299dfd4f644b69}\label{class_validate_a0323dd6f1096806748299dfd4f644b69}} 
+\index{Validate@{Validate}!alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}}
+\index{alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{alphabet\+\_\+vector\+\_\+type}{alphabet\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$alphabet\+\_\+type$>$\+::vector \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::\hyperlink{class_validate_a0323dd6f1096806748299dfd4f644b69}{alphabet\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate_a3725fcfd4a55e4d8edc8b5d5955c081d}\label{class_validate_a3725fcfd4a55e4d8edc8b5d5955c081d}} 
+\index{Validate@{Validate}!size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}}
+\index{size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{size\+\_\+vector\+\_\+type}{size\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$size\+\_\+type$>$\+::vector \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::\hyperlink{class_validate_a3725fcfd4a55e4d8edc8b5d5955c081d}{size\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_validate_a93b53c001ce92ccad38fe371e9df77b4}\label{class_validate_a93b53c001ce92ccad38fe371e9df77b4}} 
+\index{Validate@{Validate}!Validate@{Validate}}
+\index{Validate@{Validate}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{Validate()}{Validate()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+\hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::\hyperlink{class_validate}{Validate} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+t\+\_\+fn,  }\item[{const std\+::string \&}]{\+\_\+sa\+\_\+fn,  }\item[{const std\+::string \&}]{\+\_\+lcp\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+\mbox{\Hypertarget{class_validate_a991e319d335c6f666f0058be4f73fc97}\label{class_validate_a991e319d335c6f666f0058be4f73fc97}} 
+\index{Validate@{Validate}!````~Validate@{$\sim$\+Validate}}
+\index{````~Validate@{$\sim$\+Validate}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{$\sim$\+Validate()}{~Validate()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+\hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::$\sim$\hyperlink{class_validate}{Validate} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+destrcutor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_validate_a3d560deb2bd3e2984f6f3b8b8b766904}\label{class_validate_a3d560deb2bd3e2984f6f3b8b8b766904}} 
+\index{Validate@{Validate}!check\+\_\+block@{check\+\_\+block}}
+\index{check\+\_\+block@{check\+\_\+block}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{check\+\_\+block()}{check\_block()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+bool \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::check\+\_\+block (\begin{DoxyParamCaption}\item[{\hyperlink{tuples_8h_a80f1b898df1006722612d5ecf89cd4d7}{std\+::pair}$<$ size\+\_\+type, \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} $>$ $\ast$}]{\+\_\+pair1\+\_\+block,  }\item[{\hyperlink{tuples_8h_a80f1b898df1006722612d5ecf89cd4d7}{std\+::pair}$<$ size\+\_\+type, \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} $>$ $\ast$}]{\+\_\+pair2\+\_\+block,  }\item[{\hyperlink{tuples_8h_a80f1b898df1006722612d5ecf89cd4d7}{std\+::pair}$<$ size\+\_\+type, \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} $>$ $\ast$}]{\+\_\+pair3\+\_\+block,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+item\+\_\+num,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+block\+\_\+id,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+block\+\_\+capacity,  }\item[{const bool}]{\+\_\+is\+\_\+rightmost }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check an sa/lcp block 
+
+\mbox{\Hypertarget{class_validate_ab94f0feab53136b137c432332efa1ff3}\label{class_validate_ab94f0feab53136b137c432332efa1ff3}} 
+\index{Validate@{Validate}!run@{run}}
+\index{run@{run}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+bool \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+main program portal 
+
+Parition sa and lcp into multiple block Tackle each piece individually. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_validate_a8bbe1b0a3990ebae85d352bcce9da755}\label{class_validate_a8bbe1b0a3990ebae85d352bcce9da755}} 
+\index{Validate@{Validate}!m\+\_\+lcp\+\_\+fn@{m\+\_\+lcp\+\_\+fn}}
+\index{m\+\_\+lcp\+\_\+fn@{m\+\_\+lcp\+\_\+fn}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+fn}{m\_lcp\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+lcp\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file name of lcp array 
+
+\mbox{\Hypertarget{class_validate_a49a048e8046e03c3fbc7251bb9af87fd}\label{class_validate_a49a048e8046e03c3fbc7251bb9af87fd}} 
+\index{Validate@{Validate}!m\+\_\+len@{m\+\_\+len}}
+\index{m\+\_\+len@{m\+\_\+len}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+len}{m\_len}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+len\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+length of input t/sa/lcp 
+
+\mbox{\Hypertarget{class_validate_abc933d4475a6b952888ee423c3228fc9}\label{class_validate_abc933d4475a6b952888ee423c3228fc9}} 
+\index{Validate@{Validate}!m\+\_\+pre\+\_\+ch@{m\+\_\+pre\+\_\+ch}}
+\index{m\+\_\+pre\+\_\+ch@{m\+\_\+pre\+\_\+ch}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+pre\+\_\+ch}{m\_pre\_ch}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+alphabet\+\_\+type \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+pre\+\_\+ch\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate_a767b5f07008091d4191201c07ad9a3cd}\label{class_validate_a767b5f07008091d4191201c07ad9a3cd}} 
+\index{Validate@{Validate}!m\+\_\+pre\+\_\+fp\+\_\+interval@{m\+\_\+pre\+\_\+fp\+\_\+interval}}
+\index{m\+\_\+pre\+\_\+fp\+\_\+interval@{m\+\_\+pre\+\_\+fp\+\_\+interval}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+pre\+\_\+fp\+\_\+interval}{m\_pre\_fp\_interval}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+\hyperlink{common_8h_a7fdaf8b9b3d2f6ae6b10597a8d3f96ee}{fpa\+\_\+type} \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+pre\+\_\+fp\+\_\+interval\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate_aaa32f94ddccccccd3d86897996c323cc}\label{class_validate_aaa32f94ddccccccd3d86897996c323cc}} 
+\index{Validate@{Validate}!m\+\_\+rinterval@{m\+\_\+rinterval}}
+\index{m\+\_\+rinterval@{m\+\_\+rinterval}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+rinterval}{m\_rinterval}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+\hyperlink{struct_validate_1_1_r_interval}{R\+Interval}$\ast$ \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+rinterval\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate_aa7c887cf55845b0214e8db3af1076283}\label{class_validate_aa7c887cf55845b0214e8db3af1076283}} 
+\index{Validate@{Validate}!m\+\_\+sa\+\_\+fn@{m\+\_\+sa\+\_\+fn}}
+\index{m\+\_\+sa\+\_\+fn@{m\+\_\+sa\+\_\+fn}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+fn}{m\_sa\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+sa\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file name of sa array 
+
+\mbox{\Hypertarget{class_validate_a8038ca0a43b122fd9e08af72d7789611}\label{class_validate_a8038ca0a43b122fd9e08af72d7789611}} 
+\index{Validate@{Validate}!m\+\_\+t\+\_\+fn@{m\+\_\+t\+\_\+fn}}
+\index{m\+\_\+t\+\_\+fn@{m\+\_\+t\+\_\+fn}!Validate@{Validate}}
+\subsubsection{\texorpdfstring{m\+\_\+t\+\_\+fn}{m\_t\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type , typename offset\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate}{Validate}$<$ alphabet\+\_\+type, size\+\_\+type, offset\+\_\+type $>$\+::m\+\_\+t\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file name of t array 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{validate_8h}{validate.\+h}\end{DoxyCompactItemize}

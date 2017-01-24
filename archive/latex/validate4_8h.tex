@@ -1,0 +1,51 @@
+\hypertarget{validate4_8h}{}\section{code/src/validate4.h File Reference}
+\label{validate4_8h}\index{code/src/validate4.\+h@{code/src/validate4.\+h}}
+
+
+A two-\/phase validator for suffix and L\+CP arrays verification.  
+
+
+{\ttfamily \#include \char`\"{}common/common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/tuples.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/widget.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}common/basicio.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}test.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_validate4}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$}
+\begin{DoxyCompactList}\small\item\em vaildate SA and L\+CP following the induced-\/sorting principle \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_bkt_info}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+Bkt\+Info}
+\begin{DoxyCompactList}\small\item\em record L-\/type, S-\/type and L\+MS bucket sizes (no matter empty or non-\/empty) in SA \& L\+CP \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_l_m_s_validate}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+L\+M\+S\+Validate}
+\begin{DoxyCompactList}\small\item\em validate S\+A\+\_\+\+L\+MS \& L\+C\+P\+\_\+\+L\+MS \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_l_m_s_validate_1_1_r_interval}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+L\+M\+S\+Validate\+::\+R\+Interval}
+\begin{DoxyCompactList}\small\item\em store (R \% P)$^\wedge$1, (R \% P)$^\wedge$2, (R \% P)$^\wedge$4, ... \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_retrieve_pre}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+Retrieve\+Pre}
+\begin{DoxyCompactList}\small\item\em retrieve preceding items (pre\+\_\+ch \& pre\+\_\+t) for L-\/type, S-\/type and L\+MS suffixes \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_r_m_q}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+MQ}
+\begin{DoxyCompactList}\small\item\em \hyperlink{struct_validate4_1_1_r_m_q}{R\+MQ}. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_r_scan}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+R\+Scan}
+\begin{DoxyCompactList}\small\item\em scan SA rightward to validate the S\+A-\/values of all the L-\/type suffixes and the L\+C\+P-\/values of them and their left neighbors in SA. \end{DoxyCompactList}\item 
+struct \hyperlink{struct_validate4_1_1_l_scan}{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+L\+Scan}
+\begin{DoxyCompactList}\small\item\em scan SA \& L\+CP rightward to validate the S\+A-\/values of all the S-\/type suffixes and the L\+C\+P-\/values of them and their left neighbor in SA. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A two-\/phase validator for suffix and L\+CP arrays verification. 
+
+Copyright (c) 2016, Sun Yat-\/sen University, All rights reserved
+
+A Karp-\/\+Rabin method is employed to check S\+A\+\_\+\+L\+MS \& L\+C\+P\+\_\+\+L\+MS. This method is also applied to the verification for SA and L\+CP, where an implementation can be found in \hyperlink{validate3_8h}{validate3.\+h}/validate3.cpp When finished checking S\+A\+\_\+\+L\+MS \& L\+C\+P\+\_\+\+L\+MS, we validate SA \& L\+CP following the idea of the induced-\/sorting principle and R\+MQ.
+
+\begin{DoxyNote}{Note}
+The alphabet size of the input string is assumed to be constant. 
+
+A description (with more details) is available in our draft attached. 
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Yi Wu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2017.\+1 
+\end{DoxyDate}

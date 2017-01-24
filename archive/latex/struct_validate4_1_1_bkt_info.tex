@@ -1,0 +1,226 @@
+\hypertarget{struct_validate4_1_1_bkt_info}{}\section{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+:\+:Bkt\+Info Struct Reference}
+\label{struct_validate4_1_1_bkt_info}\index{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+Bkt\+Info@{Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+Bkt\+Info}}
+
+
+record L-\/type, S-\/type and L\+MS bucket sizes (no matter empty or non-\/empty) in SA \& L\+CP  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct_validate4_1_1_bkt_info_ac9e39b62bee276f6a9604bff588b6ecc}{Bkt\+Info} ()
+\begin{DoxyCompactList}\small\item\em ctor \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_bkt_info_af55a2b8eee03bfe617ab34759b4ac007}{add\+\_\+l} (const alphabet\+\_\+type \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em count the number of L-\/type suffixes in the specified bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_bkt_info_a9c11b8915349954523623d9e7b0a2c2a}{add\+\_\+s} (const alphabet\+\_\+type \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em count the number of S-\/type suffixes in the specified bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_bkt_info_a5875efc6696925c0932f262174c2cc37}{add\+\_\+lms} (const alphabet\+\_\+type \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em count the number of L\+MS suffixes in the specified bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_bkt_info_ac4fb0eabb194f773cd4ac5f6bcbbe969}{accumulate} ()
+\begin{DoxyCompactList}\small\item\em collect the number of suffixes in the specified bucket \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_bkt_info_ae06c1968c2288d191f59214a0f10e7d7}{get\+\_\+l\+\_\+bkt\+\_\+size} (const alphabet\+\_\+type \+\_\+ch) const
+\begin{DoxyCompactList}\small\item\em return the number of L-\/type suffixes in the specified bucket \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_bkt_info_a0c9a5615bab7f7c22d0d3f2de4b2621c}{get\+\_\+s\+\_\+bkt\+\_\+size} (const alphabet\+\_\+type \+\_\+ch) const
+\begin{DoxyCompactList}\small\item\em return the number of S-\/type suffixes in the specified bucket \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_bkt_info_a0f7a940f516eefaae031ecd75c0fc971}{get\+\_\+lms\+\_\+bkt\+\_\+size} (const alphabet\+\_\+type \+\_\+ch) const
+\begin{DoxyCompactList}\small\item\em return the number of L\+MS suffixes in the specified bucket \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{struct_validate4_1_1_bkt_info_a22256d03bfca21336fa30f2ed9e12d51}{get\+\_\+bkt\+\_\+size} (const alphabet\+\_\+type \+\_\+ch) const
+\begin{DoxyCompactList}\small\item\em return the number of suffixes in the specified bucket \end{DoxyCompactList}\item 
+void \hyperlink{struct_validate4_1_1_bkt_info_ad8bc43e62d48c2f33fc6173f2a1d0840}{display} () const
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const alphabet\+\_\+type \hyperlink{struct_validate4_1_1_bkt_info_a1485e4eceab1832f682e1751d310d2b9}{ch\+\_\+max}
+\begin{DoxyCompactList}\small\item\em maximum value for alphabet\+\_\+type \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_bkt_info_a1659db6479f4667a77043e842b93f3fc}{m\+\_\+bkt\+\_\+size}
+\begin{DoxyCompactList}\small\item\em bucket size \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_bkt_info_a0b44f8a1a308a6fff54cb0d05dd63ec4}{m\+\_\+l\+\_\+bkt\+\_\+size}
+\begin{DoxyCompactList}\small\item\em L-\/type bucket size. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_bkt_info_acf0b824764fc045b9f1ce0f1ed2863ad}{m\+\_\+s\+\_\+bkt\+\_\+size}
+\begin{DoxyCompactList}\small\item\em S-\/type bucket size. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} $>$ \hyperlink{struct_validate4_1_1_bkt_info_ad615aafce19e6e86948b227ad517b3cd}{m\+\_\+lms\+\_\+bkt\+\_\+size}
+\begin{DoxyCompactList}\small\item\em L\+MS bucket size, all the L\+MS suffixes are S-\/type suffixes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename alphabet\+\_\+type, typename alphabet\+\_\+extension\+\_\+type, typename size\+\_\+type$>$\newline
+struct Validate4$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::\+Bkt\+Info}
+
+record L-\/type, S-\/type and L\+MS bucket sizes (no matter empty or non-\/empty) in SA \& L\+CP 
+
+Elements in SA \& L\+CP are naturally divided into multiple buckets and each bucket contains all the suffixes starting with an identical character. Each bucket can be further divided into two parts, whhere the left and right part separately contain the L-\/type and S-\/type suffixes, respectively. For description convenience, we denote the two part as L-\/type bucket and S-\/type bucket, respectively. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_ac9e39b62bee276f6a9604bff588b6ecc}\label{struct_validate4_1_1_bkt_info_ac9e39b62bee276f6a9604bff588b6ecc}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!Bkt\+Info@{Bkt\+Info}}
+\index{Bkt\+Info@{Bkt\+Info}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{Bkt\+Info()}{BktInfo()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::\+Bkt\+Info (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+ctor 
+
+the number of buckets is ch\+\_\+max + 1, indexed by 0, 1, ..., ch\+\_\+max. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_ac4fb0eabb194f773cd4ac5f6bcbbe969}\label{struct_validate4_1_1_bkt_info_ac4fb0eabb194f773cd4ac5f6bcbbe969}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!accumulate@{accumulate}}
+\index{accumulate@{accumulate}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{accumulate()}{accumulate()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::accumulate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+collect the number of suffixes in the specified bucket 
+
+the number of suffixes in a bucket can be obtained by summing up the numbers of L-\/type and S-\/type suffixes. \mbox{\Hypertarget{struct_validate4_1_1_bkt_info_af55a2b8eee03bfe617ab34759b4ac007}\label{struct_validate4_1_1_bkt_info_af55a2b8eee03bfe617ab34759b4ac007}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!add\+\_\+l@{add\+\_\+l}}
+\index{add\+\_\+l@{add\+\_\+l}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{add\+\_\+l()}{add\_l()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::add\+\_\+l (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+count the number of L-\/type suffixes in the specified bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a5875efc6696925c0932f262174c2cc37}\label{struct_validate4_1_1_bkt_info_a5875efc6696925c0932f262174c2cc37}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!add\+\_\+lms@{add\+\_\+lms}}
+\index{add\+\_\+lms@{add\+\_\+lms}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{add\+\_\+lms()}{add\_lms()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::add\+\_\+lms (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+count the number of L\+MS suffixes in the specified bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a9c11b8915349954523623d9e7b0a2c2a}\label{struct_validate4_1_1_bkt_info_a9c11b8915349954523623d9e7b0a2c2a}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!add\+\_\+s@{add\+\_\+s}}
+\index{add\+\_\+s@{add\+\_\+s}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{add\+\_\+s()}{add\_s()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::add\+\_\+s (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+count the number of S-\/type suffixes in the specified bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_ad8bc43e62d48c2f33fc6173f2a1d0840}\label{struct_validate4_1_1_bkt_info_ad8bc43e62d48c2f33fc6173f2a1d0840}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!display@{display}}
+\index{display@{display}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+void \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a22256d03bfca21336fa30f2ed9e12d51}\label{struct_validate4_1_1_bkt_info_a22256d03bfca21336fa30f2ed9e12d51}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!get\+\_\+bkt\+\_\+size@{get\+\_\+bkt\+\_\+size}}
+\index{get\+\_\+bkt\+\_\+size@{get\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{get\+\_\+bkt\+\_\+size()}{get\_bkt\_size()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::get\+\_\+bkt\+\_\+size (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return the number of suffixes in the specified bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_ae06c1968c2288d191f59214a0f10e7d7}\label{struct_validate4_1_1_bkt_info_ae06c1968c2288d191f59214a0f10e7d7}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!get\+\_\+l\+\_\+bkt\+\_\+size@{get\+\_\+l\+\_\+bkt\+\_\+size}}
+\index{get\+\_\+l\+\_\+bkt\+\_\+size@{get\+\_\+l\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{get\+\_\+l\+\_\+bkt\+\_\+size()}{get\_l\_bkt\_size()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::get\+\_\+l\+\_\+bkt\+\_\+size (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return the number of L-\/type suffixes in the specified bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a0f7a940f516eefaae031ecd75c0fc971}\label{struct_validate4_1_1_bkt_info_a0f7a940f516eefaae031ecd75c0fc971}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!get\+\_\+lms\+\_\+bkt\+\_\+size@{get\+\_\+lms\+\_\+bkt\+\_\+size}}
+\index{get\+\_\+lms\+\_\+bkt\+\_\+size@{get\+\_\+lms\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{get\+\_\+lms\+\_\+bkt\+\_\+size()}{get\_lms\_bkt\_size()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::get\+\_\+lms\+\_\+bkt\+\_\+size (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return the number of L\+MS suffixes in the specified bucket 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a0c9a5615bab7f7c22d0d3f2de4b2621c}\label{struct_validate4_1_1_bkt_info_a0c9a5615bab7f7c22d0d3f2de4b2621c}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!get\+\_\+s\+\_\+bkt\+\_\+size@{get\+\_\+s\+\_\+bkt\+\_\+size}}
+\index{get\+\_\+s\+\_\+bkt\+\_\+size@{get\+\_\+s\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{get\+\_\+s\+\_\+bkt\+\_\+size()}{get\_s\_bkt\_size()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::get\+\_\+s\+\_\+bkt\+\_\+size (\begin{DoxyParamCaption}\item[{const alphabet\+\_\+type}]{\+\_\+ch }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return the number of S-\/type suffixes in the specified bucket 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a1485e4eceab1832f682e1751d310d2b9}\label{struct_validate4_1_1_bkt_info_a1485e4eceab1832f682e1751d310d2b9}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!ch\+\_\+max@{ch\+\_\+max}}
+\index{ch\+\_\+max@{ch\+\_\+max}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{ch\+\_\+max}{ch\_max}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+const alphabet\+\_\+type \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::ch\+\_\+max}
+
+
+
+maximum value for alphabet\+\_\+type 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a1659db6479f4667a77043e842b93f3fc}\label{struct_validate4_1_1_bkt_info_a1659db6479f4667a77043e842b93f3fc}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!m\+\_\+bkt\+\_\+size@{m\+\_\+bkt\+\_\+size}}
+\index{m\+\_\+bkt\+\_\+size@{m\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{m\+\_\+bkt\+\_\+size}{m\_bkt\_size}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::m\+\_\+bkt\+\_\+size}
+
+
+
+bucket size 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_a0b44f8a1a308a6fff54cb0d05dd63ec4}\label{struct_validate4_1_1_bkt_info_a0b44f8a1a308a6fff54cb0d05dd63ec4}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!m\+\_\+l\+\_\+bkt\+\_\+size@{m\+\_\+l\+\_\+bkt\+\_\+size}}
+\index{m\+\_\+l\+\_\+bkt\+\_\+size@{m\+\_\+l\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{m\+\_\+l\+\_\+bkt\+\_\+size}{m\_l\_bkt\_size}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::m\+\_\+l\+\_\+bkt\+\_\+size}
+
+
+
+L-\/type bucket size. 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_ad615aafce19e6e86948b227ad517b3cd}\label{struct_validate4_1_1_bkt_info_ad615aafce19e6e86948b227ad517b3cd}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!m\+\_\+lms\+\_\+bkt\+\_\+size@{m\+\_\+lms\+\_\+bkt\+\_\+size}}
+\index{m\+\_\+lms\+\_\+bkt\+\_\+size@{m\+\_\+lms\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{m\+\_\+lms\+\_\+bkt\+\_\+size}{m\_lms\_bkt\_size}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::m\+\_\+lms\+\_\+bkt\+\_\+size}
+
+
+
+L\+MS bucket size, all the L\+MS suffixes are S-\/type suffixes. 
+
+\mbox{\Hypertarget{struct_validate4_1_1_bkt_info_acf0b824764fc045b9f1ce0f1ed2863ad}\label{struct_validate4_1_1_bkt_info_acf0b824764fc045b9f1ce0f1ed2863ad}} 
+\index{Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}!m\+\_\+s\+\_\+bkt\+\_\+size@{m\+\_\+s\+\_\+bkt\+\_\+size}}
+\index{m\+\_\+s\+\_\+bkt\+\_\+size@{m\+\_\+s\+\_\+bkt\+\_\+size}!Validate4\+::\+Bkt\+Info@{Validate4\+::\+Bkt\+Info}}
+\subsubsection{\texorpdfstring{m\+\_\+s\+\_\+bkt\+\_\+size}{m\_s\_bkt\_size}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename alphabet\+\_\+extension\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::vector$<$\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}$>$ \hyperlink{class_validate4}{Validate4}$<$ alphabet\+\_\+type, alphabet\+\_\+extension\+\_\+type, size\+\_\+type $>$\+::Bkt\+Info\+::m\+\_\+s\+\_\+bkt\+\_\+size}
+
+
+
+S-\/type bucket size. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{validate4_8h}{validate4.\+h}\end{DoxyCompactItemize}

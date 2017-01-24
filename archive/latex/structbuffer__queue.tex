@@ -1,0 +1,278 @@
+\hypertarget{structbuffer__queue}{}\section{buffer\+\_\+queue$<$ buffer\+\_\+type $>$ Struct Template Reference}
+\label{structbuffer__queue}\index{buffer\+\_\+queue$<$ buffer\+\_\+type $>$@{buffer\+\_\+queue$<$ buffer\+\_\+type $>$}}
+
+
+queue of buffers  
+
+
+
+
+{\ttfamily \#include $<$async\+\_\+stream\+\_\+reader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbuffer__queue_acd123387742f7cc4e1e418e7864ca2a1}{buffer\+\_\+queue} (\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \+\_\+bufnum=0, \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \+\_\+bufsize=0)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hyperlink{structbuffer__queue_a8dda78874230bead5795e510f315dc2c}{$\sim$buffer\+\_\+queue} ()
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+buffer\+\_\+type $\ast$ \hyperlink{structbuffer__queue_ab26cbb480e9a300a4a021f4be1bb2735}{pop} ()
+\begin{DoxyCompactList}\small\item\em use resource, lock must be obtained before calling the function \end{DoxyCompactList}\item 
+void \hyperlink{structbuffer__queue_a13c104db4054ca0cb59b5e0502267d55}{push} (buffer\+\_\+type $\ast$\+\_\+buf)
+\begin{DoxyCompactList}\small\item\em recycle resource, lock must be obtained during the calling \end{DoxyCompactList}\item 
+void \hyperlink{structbuffer__queue_a487335f8827c09d4d76d588e47d633ac}{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal} ()
+\begin{DoxyCompactList}\small\item\em I/O thread send the signal when it reaches the endofbits. \end{DoxyCompactList}\item 
+bool \hyperlink{structbuffer__queue_a5d618b9b6dd1f700db6f96182cc1ad15}{empty} () const
+\begin{DoxyCompactList}\small\item\em check if queue is empty \end{DoxyCompactList}\item 
+\hyperlink{structbuffer__queue_a4e972bf42989038b6ef7eda7a372d1c3}{buffer\+\_\+queue} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+bufnum=0, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+bufsize=0)
+\begin{DoxyCompactList}\small\item\em a queue of write buffer \end{DoxyCompactList}\item 
+\hyperlink{structbuffer__queue_a8dda78874230bead5795e510f315dc2c}{$\sim$buffer\+\_\+queue} ()
+\begin{DoxyCompactList}\small\item\em dtor \end{DoxyCompactList}\item 
+buffer\+\_\+type $\ast$ \hyperlink{structbuffer__queue_ab26cbb480e9a300a4a021f4be1bb2735}{pop} ()
+\begin{DoxyCompactList}\small\item\em pop the front buffer in the queue \end{DoxyCompactList}\item 
+void \hyperlink{structbuffer__queue_a13c104db4054ca0cb59b5e0502267d55}{push} (buffer\+\_\+type $\ast$\+\_\+buf)
+\begin{DoxyCompactList}\small\item\em push a buffer \end{DoxyCompactList}\item 
+void \hyperlink{structbuffer__queue_a487335f8827c09d4d76d588e47d633ac}{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal} ()
+\begin{DoxyCompactList}\small\item\em stop writting \end{DoxyCompactList}\item 
+bool \hyperlink{structbuffer__queue_a5d618b9b6dd1f700db6f96182cc1ad15}{empty} () const
+\begin{DoxyCompactList}\small\item\em check if empty \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::queue$<$ buffer\+\_\+type $\ast$ $>$ \hyperlink{structbuffer__queue_abac5a752d815ded66d3ab87b5b6649b6}{m\+\_\+queue}
+\begin{DoxyCompactList}\small\item\em F\+I\+FO queue. \end{DoxyCompactList}\item 
+std\+::condition\+\_\+variable \hyperlink{structbuffer__queue_a65f560d9b82c5154044243c21867a773}{m\+\_\+cv}
+\begin{DoxyCompactList}\small\item\em condition variable for the queue \end{DoxyCompactList}\item 
+std\+::mutex \hyperlink{structbuffer__queue_aa554ca5c5cccd9b58ddad9d25fa7f7e8}{m\+\_\+mutex}
+\begin{DoxyCompactList}\small\item\em mutex for the queue \end{DoxyCompactList}\item 
+bool \hyperlink{structbuffer__queue_abcecda21a70871516c9322a4b4f3c6bd}{m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}
+\begin{DoxyCompactList}\small\item\em no more full buffer will be created \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename buffer\+\_\+type$>$\newline
+struct buffer\+\_\+queue$<$ buffer\+\_\+type $>$}
+
+queue of buffers 
+
+buffer queue
+
+Buffers are orgainzed as a queue. Based on the producer-\/consumer mechanism, data are read into buffers and processed in the R\+AM. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structbuffer__queue_acd123387742f7cc4e1e418e7864ca2a1}\label{structbuffer__queue_acd123387742f7cc4e1e418e7864ca2a1}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{buffer\+\_\+queue()}{buffer\_queue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+\hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::\hyperlink{structbuffer__queue}{buffer\+\_\+queue} (\begin{DoxyParamCaption}\item[{\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}]{\+\_\+bufnum = {\ttfamily 0},  }\item[{\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}]{\+\_\+bufsize = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+bufnum} & number of buffers in the queue \\
+\hline
+{\em \+\_\+bufsize} & size of each buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structbuffer__queue_a8dda78874230bead5795e510f315dc2c}\label{structbuffer__queue_a8dda78874230bead5795e510f315dc2c}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!````~buffer\+\_\+queue@{$\sim$buffer\+\_\+queue}}
+\index{````~buffer\+\_\+queue@{$\sim$buffer\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{$\sim$buffer\+\_\+queue()}{~buffer\_queue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+\hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::$\sim$\hyperlink{structbuffer__queue}{buffer\+\_\+queue} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+destructor 
+
+\mbox{\Hypertarget{structbuffer__queue_a4e972bf42989038b6ef7eda7a372d1c3}\label{structbuffer__queue_a4e972bf42989038b6ef7eda7a372d1c3}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{buffer\+\_\+queue()}{buffer\_queue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+\hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::\hyperlink{structbuffer__queue}{buffer\+\_\+queue} (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+bufnum = {\ttfamily 0},  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+bufsize = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+a queue of write buffer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em number} & of buffers \\
+\hline
+{\em size} & of each buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structbuffer__queue_a8dda78874230bead5795e510f315dc2c}\label{structbuffer__queue_a8dda78874230bead5795e510f315dc2c}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!````~buffer\+\_\+queue@{$\sim$buffer\+\_\+queue}}
+\index{````~buffer\+\_\+queue@{$\sim$buffer\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{$\sim$buffer\+\_\+queue()}{~buffer\_queue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+\hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::$\sim$\hyperlink{structbuffer__queue}{buffer\+\_\+queue} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+dtor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structbuffer__queue_a5d618b9b6dd1f700db6f96182cc1ad15}\label{structbuffer__queue_a5d618b9b6dd1f700db6f96182cc1ad15}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!empty@{empty}}
+\index{empty@{empty}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{empty()}{empty()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+bool \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if queue is empty 
+
+\mbox{\Hypertarget{structbuffer__queue_a5d618b9b6dd1f700db6f96182cc1ad15}\label{structbuffer__queue_a5d618b9b6dd1f700db6f96182cc1ad15}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!empty@{empty}}
+\index{empty@{empty}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{empty()}{empty()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+bool \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check if empty 
+
+\mbox{\Hypertarget{structbuffer__queue_ab26cbb480e9a300a4a021f4be1bb2735}\label{structbuffer__queue_ab26cbb480e9a300a4a021f4be1bb2735}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!pop@{pop}}
+\index{pop@{pop}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{pop()}{pop()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+buffer\+\_\+type$\ast$ \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+use resource, lock must be obtained before calling the function 
+
+\mbox{\Hypertarget{structbuffer__queue_ab26cbb480e9a300a4a021f4be1bb2735}\label{structbuffer__queue_ab26cbb480e9a300a4a021f4be1bb2735}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!pop@{pop}}
+\index{pop@{pop}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{pop()}{pop()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+buffer\+\_\+type$\ast$ \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::pop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+pop the front buffer in the queue 
+
+\begin{DoxyNote}{Note}
+lock is obtained before calling the function in the code 
+\end{DoxyNote}
+\mbox{\Hypertarget{structbuffer__queue_a13c104db4054ca0cb59b5e0502267d55}\label{structbuffer__queue_a13c104db4054ca0cb59b5e0502267d55}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!push@{push}}
+\index{push@{push}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{push()}{push()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+void \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::push (\begin{DoxyParamCaption}\item[{buffer\+\_\+type $\ast$}]{\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+recycle resource, lock must be obtained during the calling 
+
+\mbox{\Hypertarget{structbuffer__queue_a13c104db4054ca0cb59b5e0502267d55}\label{structbuffer__queue_a13c104db4054ca0cb59b5e0502267d55}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!push@{push}}
+\index{push@{push}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{push()}{push()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+void \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::push (\begin{DoxyParamCaption}\item[{buffer\+\_\+type $\ast$}]{\+\_\+buf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+push a buffer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ptr} & to buffer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+lock before pushing 
+\end{DoxyNote}
+\mbox{\Hypertarget{structbuffer__queue_a487335f8827c09d4d76d588e47d633ac}\label{structbuffer__queue_a487335f8827c09d4d76d588e47d633ac}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal@{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}}
+\index{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal@{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal()}{send\_no\_more\_full\_buffer\_signal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+void \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+I/O thread send the signal when it reaches the endofbits. 
+
+\mbox{\Hypertarget{structbuffer__queue_a487335f8827c09d4d76d588e47d633ac}\label{structbuffer__queue_a487335f8827c09d4d76d588e47d633ac}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal@{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}}
+\index{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal@{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal()}{send\_no\_more\_full\_buffer\_signal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+void \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::send\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+stop writting 
+
+\begin{DoxyNote}{Note}
+lock before adapting 
+\end{DoxyNote}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structbuffer__queue_a65f560d9b82c5154044243c21867a773}\label{structbuffer__queue_a65f560d9b82c5154044243c21867a773}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!m\+\_\+cv@{m\+\_\+cv}}
+\index{m\+\_\+cv@{m\+\_\+cv}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{m\+\_\+cv}{m\_cv}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+std\+::condition\+\_\+variable \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::m\+\_\+cv}
+
+
+
+condition variable for the queue 
+
+condition variable \mbox{\Hypertarget{structbuffer__queue_aa554ca5c5cccd9b58ddad9d25fa7f7e8}\label{structbuffer__queue_aa554ca5c5cccd9b58ddad9d25fa7f7e8}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!m\+\_\+mutex@{m\+\_\+mutex}}
+\index{m\+\_\+mutex@{m\+\_\+mutex}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{m\+\_\+mutex}{m\_mutex}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+std\+::mutex \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::m\+\_\+mutex}
+
+
+
+mutex for the queue 
+
+mutex \mbox{\Hypertarget{structbuffer__queue_abcecda21a70871516c9322a4b4f3c6bd}\label{structbuffer__queue_abcecda21a70871516c9322a4b4f3c6bd}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal@{m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}}
+\index{m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal@{m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}{m\_no\_more\_full\_buffer\_signal}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+bool \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::m\+\_\+no\+\_\+more\+\_\+full\+\_\+buffer\+\_\+signal}
+
+
+
+no more full buffer will be created 
+
+main thread inform I/O thread \mbox{\Hypertarget{structbuffer__queue_abac5a752d815ded66d3ab87b5b6649b6}\label{structbuffer__queue_abac5a752d815ded66d3ab87b5b6649b6}} 
+\index{buffer\+\_\+queue@{buffer\+\_\+queue}!m\+\_\+queue@{m\+\_\+queue}}
+\index{m\+\_\+queue@{m\+\_\+queue}!buffer\+\_\+queue@{buffer\+\_\+queue}}
+\subsubsection{\texorpdfstring{m\+\_\+queue}{m\_queue}}
+{\footnotesize\ttfamily template$<$typename buffer\+\_\+type $>$ \\
+std\+::queue$<$ buffer\+\_\+type $\ast$ $>$ \hyperlink{structbuffer__queue}{buffer\+\_\+queue}$<$ buffer\+\_\+type $>$\+::m\+\_\+queue}
+
+
+
+F\+I\+FO queue. 
+
+buffer queue 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/src/common/\hyperlink{async__stream__reader_8h}{async\+\_\+stream\+\_\+reader.\+h}\item 
+code/src/common/\hyperlink{async__stream__writer_8h}{async\+\_\+stream\+\_\+writer.\+h}\end{DoxyCompactItemize}

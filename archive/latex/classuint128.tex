@@ -1,0 +1,270 @@
+\hypertarget{classuint128}{}\section{uint128 Class Reference}
+\label{classuint128}\index{uint128@{uint128}}
+
+
+{\ttfamily \#include $<$types.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classuint128_abe535f8ff596b02234d94ab4c8d40933}{uint128} ()
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+\hyperlink{classuint128_a2b3acd15568d628cffb98f5c58f17ea9}{uint128} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+low, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+high)
+\begin{DoxyCompactList}\small\item\em initialized from lower and higher parts \end{DoxyCompactList}\item 
+\hyperlink{classuint128_a228d418fd9f623a4ee7120a7a53e0797}{uint128} (const \hyperlink{classuint128}{uint128} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em copy ctor \end{DoxyCompactList}\item 
+\hyperlink{classuint128_a5820b53a7880e5caf28057ea8bddff4b}{uint128} (const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em initialized from an unsigned int \end{DoxyCompactList}\item 
+\hyperlink{classuint128_af1cf2b32a813dae00ec27cfae5fabf1a}{uint128} (const \hyperlink{types_8h_a3d594eb72953c94a18a03d929ebd9167}{int32} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em initialized from anint, a $>$= 0 \end{DoxyCompactList}\item 
+\hyperlink{classuint128_a655c92ad28efbc6378c95510556475a7}{uint128} (const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+a)
+\begin{DoxyCompactList}\small\item\em initialized from an unsigned long int \end{DoxyCompactList}\item 
+void \hyperlink{classuint128_a09c291d8b7c8f1e2d3a4dd3a763408d9}{operator$<$$<$=} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+bits)
+\begin{DoxyCompactList}\small\item\em bitwise shift, \+\_\+bits bits leftward, self revision \end{DoxyCompactList}\item 
+void \hyperlink{classuint128_a04bf2e2eb85e66ed7c722a8d5494b0a4}{operator$\vert$=} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+ch)
+\begin{DoxyCompactList}\small\item\em bitwise or \end{DoxyCompactList}\item 
+\hyperlink{classuint128}{uint128} \hyperlink{classuint128_a24dc256af129ab352a5d52793dfbe514}{operator$<$$<$} (const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8} \+\_\+bits)
+\begin{DoxyCompactList}\small\item\em biwise shift, \+\_\+bits bits leftward \end{DoxyCompactList}\item 
+\hyperlink{classuint128}{uint128} \hyperlink{classuint128_a227d131e34d73974124c38cfbf0c6cc4}{operator\&} (const \hyperlink{classuint128}{uint128} \&\+\_\+b) const
+\begin{DoxyCompactList}\small\item\em bitwise and \end{DoxyCompactList}\item 
+bool \hyperlink{classuint128_a0f3b16aec08d80f999b17762b15ed0c5}{operator==} (const \hyperlink{classuint128}{uint128} \&b) const
+\begin{DoxyCompactList}\small\item\em check equality \end{DoxyCompactList}\item 
+bool \hyperlink{classuint128_a767bfa81f69c7884cbb9434c37435e50}{operator!=} (const \hyperlink{classuint128}{uint128} \&b) const
+\begin{DoxyCompactList}\small\item\em check inequality \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classuint128_a597036514f1abbbc8626492230f3436f}{get\+\_\+high} () const
+\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classuint128_adeb81ae4b8a8acbf46131e17ff7acc05}{get\+\_\+low} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classuint128}{uint128} \hyperlink{classuint128_a4d43d35f5576c480e4fc1cb63fbfaf78}{min} ()
+\item 
+static \hyperlink{classuint128}{uint128} \hyperlink{classuint128_a8fc47c78cb71d012c6208c150ca4cf3b}{max} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const size\+\_\+t \hyperlink{classuint128_a08388a396904d541e7e921f1f379b4a1}{digits} = 128
+\begin{DoxyCompactList}\small\item\em number of digits/bits, 128 \end{DoxyCompactList}\item 
+static const size\+\_\+t \hyperlink{classuint128_a8ddedda58a986c591392955033f74495}{bytes} = 16
+\begin{DoxyCompactList}\small\item\em number of bytes, 16 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classuint128_a439bdff9b7d8dd4bf99616bb07fc2a5e}{low}
+\begin{DoxyCompactList}\small\item\em lower part, uint64 \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{classuint128_a9f8275501c9a4546f37fae8e85e3ec05}{high}
+\begin{DoxyCompactList}\small\item\em higher part, uint64 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classuint128_a3981a0cf6398b930fa55fa5c5e802a65}{operator$<$$<$} (std\+::ostream \&\+\_\+os, const \hyperlink{classuint128}{uint128} \&\+\_\+a)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classuint128_abe535f8ff596b02234d94ab4c8d40933}\label{classuint128_abe535f8ff596b02234d94ab4c8d40933}} 
+\index{uint128@{uint128}!uint128@{uint128}}
+\index{uint128@{uint128}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily uint128\+::uint128 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+default ctor 
+
+\mbox{\Hypertarget{classuint128_a2b3acd15568d628cffb98f5c58f17ea9}\label{classuint128_a2b3acd15568d628cffb98f5c58f17ea9}} 
+\index{uint128@{uint128}!uint128@{uint128}}
+\index{uint128@{uint128}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily uint128\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+low,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+high }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+initialized from lower and higher parts 
+
+\mbox{\Hypertarget{classuint128_a228d418fd9f623a4ee7120a7a53e0797}\label{classuint128_a228d418fd9f623a4ee7120a7a53e0797}} 
+\index{uint128@{uint128}!uint128@{uint128}}
+\index{uint128@{uint128}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily uint128\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+copy ctor 
+
+\mbox{\Hypertarget{classuint128_a5820b53a7880e5caf28057ea8bddff4b}\label{classuint128_a5820b53a7880e5caf28057ea8bddff4b}} 
+\index{uint128@{uint128}!uint128@{uint128}}
+\index{uint128@{uint128}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily uint128\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a8f95e75e58492e87412191fabadd8ca8}{uint32} \&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+initialized from an unsigned int 
+
+\mbox{\Hypertarget{classuint128_af1cf2b32a813dae00ec27cfae5fabf1a}\label{classuint128_af1cf2b32a813dae00ec27cfae5fabf1a}} 
+\index{uint128@{uint128}!uint128@{uint128}}
+\index{uint128@{uint128}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily uint128\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a3d594eb72953c94a18a03d929ebd9167}{int32} \&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+initialized from anint, a $>$= 0 
+
+\mbox{\Hypertarget{classuint128_a655c92ad28efbc6378c95510556475a7}\label{classuint128_a655c92ad28efbc6378c95510556475a7}} 
+\index{uint128@{uint128}!uint128@{uint128}}
+\index{uint128@{uint128}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{uint128()}{uint128()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily uint128\+::uint128 (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+initialized from an unsigned long int 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classuint128_a597036514f1abbbc8626492230f3436f}\label{classuint128_a597036514f1abbbc8626492230f3436f}} 
+\index{uint128@{uint128}!get\+\_\+high@{get\+\_\+high}}
+\index{get\+\_\+high@{get\+\_\+high}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{get\+\_\+high()}{get\_high()}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} uint128\+::get\+\_\+high (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classuint128_adeb81ae4b8a8acbf46131e17ff7acc05}\label{classuint128_adeb81ae4b8a8acbf46131e17ff7acc05}} 
+\index{uint128@{uint128}!get\+\_\+low@{get\+\_\+low}}
+\index{get\+\_\+low@{get\+\_\+low}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{get\+\_\+low()}{get\_low()}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} uint128\+::get\+\_\+low (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classuint128_a8fc47c78cb71d012c6208c150ca4cf3b}\label{classuint128_a8fc47c78cb71d012c6208c150ca4cf3b}} 
+\index{uint128@{uint128}!max@{max}}
+\index{max@{max}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily static \hyperlink{classuint128}{uint128} uint128\+::max (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classuint128_a4d43d35f5576c480e4fc1cb63fbfaf78}\label{classuint128_a4d43d35f5576c480e4fc1cb63fbfaf78}} 
+\index{uint128@{uint128}!min@{min}}
+\index{min@{min}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{min()}{min()}}
+{\footnotesize\ttfamily static \hyperlink{classuint128}{uint128} uint128\+::min (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classuint128_a767bfa81f69c7884cbb9434c37435e50}\label{classuint128_a767bfa81f69c7884cbb9434c37435e50}} 
+\index{uint128@{uint128}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily bool uint128\+::operator!= (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check inequality 
+
+\mbox{\Hypertarget{classuint128_a227d131e34d73974124c38cfbf0c6cc4}\label{classuint128_a227d131e34d73974124c38cfbf0c6cc4}} 
+\index{uint128@{uint128}!operator\&@{operator\&}}
+\index{operator\&@{operator\&}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator\&()}{operator\&()}}
+{\footnotesize\ttfamily \hyperlink{classuint128}{uint128} uint128\+::operator \& (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{\+\_\+b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+bitwise and 
+
+\mbox{\Hypertarget{classuint128_a24dc256af129ab352a5d52793dfbe514}\label{classuint128_a24dc256af129ab352a5d52793dfbe514}} 
+\index{uint128@{uint128}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily \hyperlink{classuint128}{uint128} uint128\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+bits }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+biwise shift, \+\_\+bits bits leftward 
+
+\mbox{\Hypertarget{classuint128_a09c291d8b7c8f1e2d3a4dd3a763408d9}\label{classuint128_a09c291d8b7c8f1e2d3a4dd3a763408d9}} 
+\index{uint128@{uint128}!operator$<$$<$=@{operator$<$$<$=}}
+\index{operator$<$$<$=@{operator$<$$<$=}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator$<$$<$=()}{operator<<=()}}
+{\footnotesize\ttfamily void uint128\+::operator$<$$<$= (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+bits }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+bitwise shift, \+\_\+bits bits leftward, self revision 
+
+\mbox{\Hypertarget{classuint128_a0f3b16aec08d80f999b17762b15ed0c5}\label{classuint128_a0f3b16aec08d80f999b17762b15ed0c5}} 
+\index{uint128@{uint128}!operator==@{operator==}}
+\index{operator==@{operator==}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool uint128\+::operator== (\begin{DoxyParamCaption}\item[{const \hyperlink{classuint128}{uint128} \&}]{b }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+check equality 
+
+\mbox{\Hypertarget{classuint128_a04bf2e2eb85e66ed7c722a8d5494b0a4}\label{classuint128_a04bf2e2eb85e66ed7c722a8d5494b0a4}} 
+\index{uint128@{uint128}!operator\texttt{"|}=@{operator\texttt{"|}=}}
+\index{operator\texttt{"|}=@{operator\texttt{"|}=}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator\texttt{"|}=()}{operator|=()}}
+{\footnotesize\ttfamily void uint128\+::operator$\vert$= (\begin{DoxyParamCaption}\item[{const \hyperlink{types_8h_a115946cb5fc5879545e9ccea096a6031}{uint8}}]{\+\_\+ch }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+bitwise or 
+
+
+
+\subsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{classuint128_a3981a0cf6398b930fa55fa5c5e802a65}\label{classuint128_a3981a0cf6398b930fa55fa5c5e802a65}} 
+\index{uint128@{uint128}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{\+\_\+os,  }\item[{const \hyperlink{classuint128}{uint128} \&}]{\+\_\+a }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classuint128_a8ddedda58a986c591392955033f74495}\label{classuint128_a8ddedda58a986c591392955033f74495}} 
+\index{uint128@{uint128}!bytes@{bytes}}
+\index{bytes@{bytes}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{bytes}{bytes}}
+{\footnotesize\ttfamily const size\+\_\+t uint128\+::bytes = 16\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+number of bytes, 16 
+
+\mbox{\Hypertarget{classuint128_a08388a396904d541e7e921f1f379b4a1}\label{classuint128_a08388a396904d541e7e921f1f379b4a1}} 
+\index{uint128@{uint128}!digits@{digits}}
+\index{digits@{digits}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{digits}{digits}}
+{\footnotesize\ttfamily const size\+\_\+t uint128\+::digits = 128\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+number of digits/bits, 128 
+
+\mbox{\Hypertarget{classuint128_a9f8275501c9a4546f37fae8e85e3ec05}\label{classuint128_a9f8275501c9a4546f37fae8e85e3ec05}} 
+\index{uint128@{uint128}!high@{high}}
+\index{high@{high}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{high}{high}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} uint128\+::high\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+higher part, uint64 
+
+\mbox{\Hypertarget{classuint128_a439bdff9b7d8dd4bf99616bb07fc2a5e}\label{classuint128_a439bdff9b7d8dd4bf99616bb07fc2a5e}} 
+\index{uint128@{uint128}!low@{low}}
+\index{low@{low}!uint128@{uint128}}
+\subsubsection{\texorpdfstring{low}{low}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} uint128\+::low\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+lower part, uint64 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/common/\hyperlink{types_8h}{types.\+h}\end{DoxyCompactItemize}

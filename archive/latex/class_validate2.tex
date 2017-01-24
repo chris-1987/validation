@@ -1,0 +1,157 @@
+\hypertarget{class_validate2}{}\section{Validate2$<$ alphabet\+\_\+type, size\+\_\+type $>$ Class Template Reference}
+\label{class_validate2}\index{Validate2$<$ alphabet\+\_\+type, size\+\_\+type $>$@{Validate2$<$ alphabet\+\_\+type, size\+\_\+type $>$}}
+
+
+a suffix and L\+CP array validater  
+
+
+
+
+{\ttfamily \#include $<$validate2.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct_validate2_1_1_r_interval}{R\+Interval}
+\begin{DoxyCompactList}\small\item\em store (R \% P)$^\wedge$1, (R \% P)$^\wedge$2, (R \% P)$^\wedge$4, ... \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_validate2_a003e523f9fb81a2d6a465d6cec444c1f}{Validate2} (const std\+::string \&\+\_\+t\+\_\+fn, const std\+::string \&\+\_\+sa\+\_\+fn, const std\+::string \&\+\_\+lcp\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+bool \hyperlink{class_validate2_aa93abe8bbd0bbdaebd1b5a1c5a4c66df}{run} ()
+\begin{DoxyCompactList}\small\item\em run the core part \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ size\+\_\+type $>$\+::vector \hyperlink{class_validate2_a8dab9b86f9c73419431821ebb68852c5}{size\+\_\+vector\+\_\+type}
+\item 
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$ alphabet\+\_\+type $>$\+::vector \hyperlink{class_validate2_a351a2e7bbfdf9b87ecbb4f08cdbc1e64}{alphabet\+\_\+vector\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{class_validate2_aefa1d9c5ac628be8be94f03668782e07}{m\+\_\+t\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em file name of input string \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_validate2_a50d06103a2020809e3e6848732870df1}{m\+\_\+sa\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em file name of suffix array \end{DoxyCompactList}\item 
+std\+::string \hyperlink{class_validate2_abe354af8e4d3c9d59fe1898ca9ee9b45}{m\+\_\+lcp\+\_\+fn}
+\begin{DoxyCompactList}\small\item\em file name of lcp array \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate2_a64e02ffca40be106951a2325bc9d24e6}{m\+\_\+len}
+\begin{DoxyCompactList}\small\item\em length of input string \end{DoxyCompactList}\item 
+\hyperlink{struct_validate2_1_1_r_interval}{R\+Interval} $\ast$ \hyperlink{class_validate2_a1beb0a916dd1ad049b3b59f5058c5bb4}{m\+\_\+rinterval}
+\begin{DoxyCompactList}\small\item\em pointer to an instance of \hyperlink{struct_validate2_1_1_r_interval}{R\+Interval} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename alphabet\+\_\+type, typename size\+\_\+type$>$\newline
+class Validate2$<$ alphabet\+\_\+type, size\+\_\+type $>$}
+
+a suffix and L\+CP array validater 
+
+\subsection{Member Typedef Documentation}
+\mbox{\Hypertarget{class_validate2_a351a2e7bbfdf9b87ecbb4f08cdbc1e64}\label{class_validate2_a351a2e7bbfdf9b87ecbb4f08cdbc1e64}} 
+\index{Validate2@{Validate2}!alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}}
+\index{alphabet\+\_\+vector\+\_\+type@{alphabet\+\_\+vector\+\_\+type}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{alphabet\+\_\+vector\+\_\+type}{alphabet\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$alphabet\+\_\+type$>$\+::vector \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate2_a351a2e7bbfdf9b87ecbb4f08cdbc1e64}{alphabet\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{class_validate2_a8dab9b86f9c73419431821ebb68852c5}\label{class_validate2_a8dab9b86f9c73419431821ebb68852c5}} 
+\index{Validate2@{Validate2}!size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}}
+\index{size\+\_\+vector\+\_\+type@{size\+\_\+vector\+\_\+type}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{size\+\_\+vector\+\_\+type}{size\_vector\_type}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+typedef \hyperlink{struct_ex_vector}{Ex\+Vector}$<$size\+\_\+type$>$\+::vector \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate2_a8dab9b86f9c73419431821ebb68852c5}{size\+\_\+vector\+\_\+type}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_validate2_a003e523f9fb81a2d6a465d6cec444c1f}\label{class_validate2_a003e523f9fb81a2d6a465d6cec444c1f}} 
+\index{Validate2@{Validate2}!Validate2@{Validate2}}
+\index{Validate2@{Validate2}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{Validate2()}{Validate2()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::\hyperlink{class_validate2}{Validate2} (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+t\+\_\+fn,  }\item[{const std\+::string \&}]{\+\_\+sa\+\_\+fn,  }\item[{const std\+::string \&}]{\+\_\+lcp\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_validate2_aa93abe8bbd0bbdaebd1b5a1c5a4c66df}\label{class_validate2_aa93abe8bbd0bbdaebd1b5a1c5a4c66df}} 
+\index{Validate2@{Validate2}!run@{run}}
+\index{run@{run}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+bool \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+run the core part 
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_validate2_abe354af8e4d3c9d59fe1898ca9ee9b45}\label{class_validate2_abe354af8e4d3c9d59fe1898ca9ee9b45}} 
+\index{Validate2@{Validate2}!m\+\_\+lcp\+\_\+fn@{m\+\_\+lcp\+\_\+fn}}
+\index{m\+\_\+lcp\+\_\+fn@{m\+\_\+lcp\+\_\+fn}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{m\+\_\+lcp\+\_\+fn}{m\_lcp\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+lcp\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file name of lcp array 
+
+\mbox{\Hypertarget{class_validate2_a64e02ffca40be106951a2325bc9d24e6}\label{class_validate2_a64e02ffca40be106951a2325bc9d24e6}} 
+\index{Validate2@{Validate2}!m\+\_\+len@{m\+\_\+len}}
+\index{m\+\_\+len@{m\+\_\+len}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{m\+\_\+len}{m\_len}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+len\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+length of input string 
+
+\mbox{\Hypertarget{class_validate2_a1beb0a916dd1ad049b3b59f5058c5bb4}\label{class_validate2_a1beb0a916dd1ad049b3b59f5058c5bb4}} 
+\index{Validate2@{Validate2}!m\+\_\+rinterval@{m\+\_\+rinterval}}
+\index{m\+\_\+rinterval@{m\+\_\+rinterval}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{m\+\_\+rinterval}{m\_rinterval}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+\hyperlink{struct_validate2_1_1_r_interval}{R\+Interval}$\ast$ \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+rinterval\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+pointer to an instance of \hyperlink{struct_validate2_1_1_r_interval}{R\+Interval} 
+
+\mbox{\Hypertarget{class_validate2_a50d06103a2020809e3e6848732870df1}\label{class_validate2_a50d06103a2020809e3e6848732870df1}} 
+\index{Validate2@{Validate2}!m\+\_\+sa\+\_\+fn@{m\+\_\+sa\+\_\+fn}}
+\index{m\+\_\+sa\+\_\+fn@{m\+\_\+sa\+\_\+fn}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{m\+\_\+sa\+\_\+fn}{m\_sa\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+sa\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file name of suffix array 
+
+\mbox{\Hypertarget{class_validate2_aefa1d9c5ac628be8be94f03668782e07}\label{class_validate2_aefa1d9c5ac628be8be94f03668782e07}} 
+\index{Validate2@{Validate2}!m\+\_\+t\+\_\+fn@{m\+\_\+t\+\_\+fn}}
+\index{m\+\_\+t\+\_\+fn@{m\+\_\+t\+\_\+fn}!Validate2@{Validate2}}
+\subsubsection{\texorpdfstring{m\+\_\+t\+\_\+fn}{m\_t\_fn}}
+{\footnotesize\ttfamily template$<$typename alphabet\+\_\+type , typename size\+\_\+type $>$ \\
+std\+::string \hyperlink{class_validate2}{Validate2}$<$ alphabet\+\_\+type, size\+\_\+type $>$\+::m\+\_\+t\+\_\+fn\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+file name of input string 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/\hyperlink{validate2_8h}{validate2.\+h}\end{DoxyCompactItemize}

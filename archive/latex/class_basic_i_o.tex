@@ -1,0 +1,253 @@
+\hypertarget{class_basic_i_o}{}\section{Basic\+IO Class Reference}
+\label{class_basic_i_o}\index{Basic\+IO@{Basic\+IO}}
+
+
+synchronous read operations  
+
+
+
+
+{\ttfamily \#include $<$basicio.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename value\+\_\+type $>$ }\\void \hyperlink{class_basic_i_o_a890e7521a5a2e33eae4d52ec77a196a5}{write\+\_\+to\+\_\+file} (const value\+\_\+type $\ast$\+\_\+src, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+cnt, std\+::\+F\+I\+LE $\ast$\+\_\+f)
+\begin{DoxyCompactList}\small\item\em put data into a disk file specified by the descriptor \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename value\+\_\+type $>$ }\\void \hyperlink{class_basic_i_o_a1bcd7dbe1acd71bafa1b5d6d4fc32e9e}{write\+\_\+to\+\_\+file} (const value\+\_\+type $\ast$\+\_\+src, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+cnt, const std\+::string \&\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em put data into a disk file specified by the name, close the file after the operation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename value\+\_\+type $>$ }\\\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_basic_i_o_a5e1c1be36914e4749f4a4bd0cf1b53d0}{read\+\_\+from\+\_\+file} (value\+\_\+type $\ast$\+\_\+des, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+cnt, const std\+::\+F\+I\+LE $\ast$\+\_\+f)
+\begin{DoxyCompactList}\small\item\em get data from a disk file specified by the descriptor \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename value\+\_\+type $>$ }\\\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_basic_i_o_a7e492b3c92dbb91e7f45cd5ed03365a3}{read\+\_\+from\+\_\+file} (value\+\_\+type $\ast$\+\_\+des, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+cnt, const std\+::string \&\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em read data from a disk file specified by the name, close the file after the operation. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename value\+\_\+type $>$ }\\void \hyperlink{class_basic_i_o_a7aed99607484ece4b385e3fdced47e1c}{read\+\_\+at\+\_\+offset} (value\+\_\+type $\ast$\+\_\+des, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+offset, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+cnt, const std\+::\+F\+I\+LE $\ast$\+\_\+f)
+\begin{DoxyCompactList}\small\item\em read data from a disk file, beginning at the specified offset \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename value\+\_\+type $>$ }\\void \hyperlink{class_basic_i_o_a934ed5d36b8a132b622c59c61b881bdd}{read\+\_\+at\+\_\+offset} (value\+\_\+type $\ast$\+\_\+des, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+offset, const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&\+\_\+cnt, const std\+::string \&\+\_\+fn)
+\begin{DoxyCompactList}\small\item\em read data from a disk file, beginning at the specified offset \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::\+F\+I\+LE $\ast$ \hyperlink{class_basic_i_o_a0a548f83f6d4289239347e8fd2c93a32}{file\+\_\+open} (const std\+::string \+\_\+fn, const std\+::string \+\_\+mode)
+\begin{DoxyCompactList}\small\item\em open file in specific mode \end{DoxyCompactList}\item 
+static std\+::\+F\+I\+LE $\ast$ \hyperlink{class_basic_i_o_ad4ba62659302987f0bf22d5e4a705ab1}{file\+\_\+open\+\_\+nobuf} (const std\+::string \+\_\+fn, const std\+::string \+\_\+mode)
+\begin{DoxyCompactList}\small\item\em open file in specific mode with nobuf option \end{DoxyCompactList}\item 
+static \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{class_basic_i_o_a6cafa2bbf504906e3484bd1c1df10474}{file\+\_\+size} (const std\+::string \+\_\+fn)
+\begin{DoxyCompactList}\small\item\em return file size in bytes \end{DoxyCompactList}\item 
+static bool \hyperlink{class_basic_i_o_a875c4dd065101a3fe469222699a45708}{file\+\_\+exists} (const std\+::string \+\_\+fn)
+\begin{DoxyCompactList}\small\item\em check if exists \end{DoxyCompactList}\item 
+static void \hyperlink{class_basic_i_o_ad47c4d4b9845b01ad4ee0e81e726472c}{file\+\_\+delete} (const std\+::string \+\_\+fn)
+\begin{DoxyCompactList}\small\item\em delete file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+synchronous read operations 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_basic_i_o_ad47c4d4b9845b01ad4ee0e81e726472c}\label{class_basic_i_o_ad47c4d4b9845b01ad4ee0e81e726472c}} 
+\index{Basic\+IO@{Basic\+IO}!file\+\_\+delete@{file\+\_\+delete}}
+\index{file\+\_\+delete@{file\+\_\+delete}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{file\+\_\+delete()}{file\_delete()}}
+{\footnotesize\ttfamily void Basic\+I\+O\+::file\+\_\+delete (\begin{DoxyParamCaption}\item[{const std\+::string}]{\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+delete file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fn} & filename \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a875c4dd065101a3fe469222699a45708}\label{class_basic_i_o_a875c4dd065101a3fe469222699a45708}} 
+\index{Basic\+IO@{Basic\+IO}!file\+\_\+exists@{file\+\_\+exists}}
+\index{file\+\_\+exists@{file\+\_\+exists}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{file\+\_\+exists()}{file\_exists()}}
+{\footnotesize\ttfamily bool Basic\+I\+O\+::file\+\_\+exists (\begin{DoxyParamCaption}\item[{const std\+::string}]{\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+check if exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fn} & filename \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a0a548f83f6d4289239347e8fd2c93a32}\label{class_basic_i_o_a0a548f83f6d4289239347e8fd2c93a32}} 
+\index{Basic\+IO@{Basic\+IO}!file\+\_\+open@{file\+\_\+open}}
+\index{file\+\_\+open@{file\+\_\+open}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{file\+\_\+open()}{file\_open()}}
+{\footnotesize\ttfamily std\+::\+F\+I\+LE $\ast$ Basic\+I\+O\+::file\+\_\+open (\begin{DoxyParamCaption}\item[{const std\+::string}]{\+\_\+fn,  }\item[{const std\+::string}]{\+\_\+mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+open file in specific mode 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fn} & filename \\
+\hline
+{\em \+\_\+mode} & mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_ad4ba62659302987f0bf22d5e4a705ab1}\label{class_basic_i_o_ad4ba62659302987f0bf22d5e4a705ab1}} 
+\index{Basic\+IO@{Basic\+IO}!file\+\_\+open\+\_\+nobuf@{file\+\_\+open\+\_\+nobuf}}
+\index{file\+\_\+open\+\_\+nobuf@{file\+\_\+open\+\_\+nobuf}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{file\+\_\+open\+\_\+nobuf()}{file\_open\_nobuf()}}
+{\footnotesize\ttfamily std\+::\+F\+I\+LE $\ast$ Basic\+I\+O\+::file\+\_\+open\+\_\+nobuf (\begin{DoxyParamCaption}\item[{const std\+::string}]{\+\_\+fn,  }\item[{const std\+::string}]{\+\_\+mode }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+open file in specific mode with nobuf option 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fn} & filename \\
+\hline
+{\em \+\_\+mode} & mode \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a6cafa2bbf504906e3484bd1c1df10474}\label{class_basic_i_o_a6cafa2bbf504906e3484bd1c1df10474}} 
+\index{Basic\+IO@{Basic\+IO}!file\+\_\+size@{file\+\_\+size}}
+\index{file\+\_\+size@{file\+\_\+size}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{file\+\_\+size()}{file\_size()}}
+{\footnotesize\ttfamily \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} Basic\+I\+O\+::file\+\_\+size (\begin{DoxyParamCaption}\item[{const std\+::string}]{\+\_\+fn }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+return file size in bytes 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+fn} & filename \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a7aed99607484ece4b385e3fdced47e1c}\label{class_basic_i_o_a7aed99607484ece4b385e3fdced47e1c}} 
+\index{Basic\+IO@{Basic\+IO}!read\+\_\+at\+\_\+offset@{read\+\_\+at\+\_\+offset}}
+\index{read\+\_\+at\+\_\+offset@{read\+\_\+at\+\_\+offset}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{read\+\_\+at\+\_\+offset()}{read\_at\_offset()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void Basic\+I\+O\+::read\+\_\+at\+\_\+offset (\begin{DoxyParamCaption}\item[{value\+\_\+type $\ast$}]{\+\_\+des,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+offset,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+cnt,  }\item[{const std\+::\+F\+I\+LE $\ast$}]{\+\_\+f }\end{DoxyParamCaption})}
+
+
+
+read data from a disk file, beginning at the specified offset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+des} & destination \\
+\hline
+{\em \+\_\+offset} & offset \\
+\hline
+{\em \+\_\+cnt} & number of elements \\
+\hline
+{\em \+\_\+f} & descriptor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a934ed5d36b8a132b622c59c61b881bdd}\label{class_basic_i_o_a934ed5d36b8a132b622c59c61b881bdd}} 
+\index{Basic\+IO@{Basic\+IO}!read\+\_\+at\+\_\+offset@{read\+\_\+at\+\_\+offset}}
+\index{read\+\_\+at\+\_\+offset@{read\+\_\+at\+\_\+offset}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{read\+\_\+at\+\_\+offset()}{read\_at\_offset()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void Basic\+I\+O\+::read\+\_\+at\+\_\+offset (\begin{DoxyParamCaption}\item[{value\+\_\+type $\ast$}]{\+\_\+des,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+offset,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+cnt,  }\item[{const std\+::string \&}]{\+\_\+fn }\end{DoxyParamCaption})}
+
+
+
+read data from a disk file, beginning at the specified offset 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+des} & destination \\
+\hline
+{\em \+\_\+offset} & offset \\
+\hline
+{\em \+\_\+cnt} & number of elements \\
+\hline
+{\em \+\_\+fn} & filename \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a5e1c1be36914e4749f4a4bd0cf1b53d0}\label{class_basic_i_o_a5e1c1be36914e4749f4a4bd0cf1b53d0}} 
+\index{Basic\+IO@{Basic\+IO}!read\+\_\+from\+\_\+file@{read\+\_\+from\+\_\+file}}
+\index{read\+\_\+from\+\_\+file@{read\+\_\+from\+\_\+file}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{read\+\_\+from\+\_\+file()}{read\_from\_file()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} Basic\+I\+O\+::read\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{value\+\_\+type $\ast$}]{\+\_\+des,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+cnt,  }\item[{const std\+::\+F\+I\+LE $\ast$}]{\+\_\+f }\end{DoxyParamCaption})}
+
+
+
+get data from a disk file specified by the descriptor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+des} & destination \\
+\hline
+{\em \+\_\+cnt} & number of elements \\
+\hline
+{\em \+\_\+f} & descriptor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a7e492b3c92dbb91e7f45cd5ed03365a3}\label{class_basic_i_o_a7e492b3c92dbb91e7f45cd5ed03365a3}} 
+\index{Basic\+IO@{Basic\+IO}!read\+\_\+from\+\_\+file@{read\+\_\+from\+\_\+file}}
+\index{read\+\_\+from\+\_\+file@{read\+\_\+from\+\_\+file}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{read\+\_\+from\+\_\+file()}{read\_from\_file()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} Basic\+I\+O\+::read\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{value\+\_\+type $\ast$}]{\+\_\+des,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+cnt,  }\item[{const std\+::string \&}]{\+\_\+fn }\end{DoxyParamCaption})}
+
+
+
+read data from a disk file specified by the name, close the file after the operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+des} & destination \\
+\hline
+{\em \+\_\+cnt} & number of elements \\
+\hline
+{\em \+\_\+fn} & filename \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a890e7521a5a2e33eae4d52ec77a196a5}\label{class_basic_i_o_a890e7521a5a2e33eae4d52ec77a196a5}} 
+\index{Basic\+IO@{Basic\+IO}!write\+\_\+to\+\_\+file@{write\+\_\+to\+\_\+file}}
+\index{write\+\_\+to\+\_\+file@{write\+\_\+to\+\_\+file}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{write\+\_\+to\+\_\+file()}{write\_to\_file()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void Basic\+I\+O\+::write\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{const value\+\_\+type $\ast$}]{\+\_\+src,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+cnt,  }\item[{std\+::\+F\+I\+LE $\ast$}]{\+\_\+f }\end{DoxyParamCaption})}
+
+
+
+put data into a disk file specified by the descriptor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+src} & source \\
+\hline
+{\em \+\_\+cnt} & number of elements \\
+\hline
+{\em \+\_\+f} & descriptor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_basic_i_o_a1bcd7dbe1acd71bafa1b5d6d4fc32e9e}\label{class_basic_i_o_a1bcd7dbe1acd71bafa1b5d6d4fc32e9e}} 
+\index{Basic\+IO@{Basic\+IO}!write\+\_\+to\+\_\+file@{write\+\_\+to\+\_\+file}}
+\index{write\+\_\+to\+\_\+file@{write\+\_\+to\+\_\+file}!Basic\+IO@{Basic\+IO}}
+\subsubsection{\texorpdfstring{write\+\_\+to\+\_\+file()}{write\_to\_file()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename value\+\_\+type $>$ \\
+void Basic\+I\+O\+::write\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{const value\+\_\+type $\ast$}]{\+\_\+src,  }\item[{const \hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \&}]{\+\_\+cnt,  }\item[{const std\+::string \&}]{\+\_\+fn }\end{DoxyParamCaption})}
+
+
+
+put data into a disk file specified by the name, close the file after the operation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+src} & source \\
+\hline
+{\em \+\_\+cnt} & number of elements \\
+\hline
+{\em \+\_\+fn} & filename \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+code/src/common/\hyperlink{basicio_8h}{basicio.\+h}\end{DoxyCompactItemize}

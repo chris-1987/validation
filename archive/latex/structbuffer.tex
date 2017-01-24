@@ -1,0 +1,229 @@
+\hypertarget{structbuffer}{}\section{buffer$<$ T $>$ Struct Template Reference}
+\label{structbuffer}\index{buffer$<$ T $>$@{buffer$<$ T $>$}}
+
+
+read buffer  
+
+
+
+
+{\ttfamily \#include $<$async\+\_\+stream\+\_\+reader.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structbuffer_aefd0601854f94ec9c18c05986d218c16}{buffer} (\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \+\_\+size)
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+void \hyperlink{structbuffer_a2abf8fde8a3d6a1245f57d698e207b74}{read\+\_\+from\+\_\+file} (std\+::\+F\+I\+LE $\ast$\+\_\+f)
+\begin{DoxyCompactList}\small\item\em read a data block from a disk file \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer_a2b74a935bb50716bba0835781545803d}{size\+\_\+in\+\_\+bytes} () const
+\begin{DoxyCompactList}\small\item\em total size of elements in buffer \end{DoxyCompactList}\item 
+\hyperlink{structbuffer_accefc959744e463ae78a996a2f45f81a}{$\sim$buffer} ()
+\begin{DoxyCompactList}\small\item\em dtor \end{DoxyCompactList}\item 
+\hyperlink{structbuffer_aefd0601854f94ec9c18c05986d218c16}{buffer} (\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \+\_\+size)
+\begin{DoxyCompactList}\small\item\em default ctor \end{DoxyCompactList}\item 
+void \hyperlink{structbuffer_ac31d1516df0036a19bb3e58a4a2fac8a}{write\+\_\+to\+\_\+file} (std\+::\+F\+I\+LE $\ast$\+\_\+f)
+\begin{DoxyCompactList}\small\item\em write to file \end{DoxyCompactList}\item 
+\hyperlink{structbuffer_accefc959744e463ae78a996a2f45f81a}{$\sim$buffer} ()
+\begin{DoxyCompactList}\small\item\em dtor \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer_a2b74a935bb50716bba0835781545803d}{size\+\_\+in\+\_\+bytes} () const
+\begin{DoxyCompactList}\small\item\em return occupied space (in bytes) in buffer \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer_a877157a0ddb2aa0fa10c7273eece00cb}{free\+\_\+space} () const
+\begin{DoxyCompactList}\small\item\em remaing space in the buffer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+T $\ast$ \hyperlink{structbuffer_a51dfd20b289c52f084b6d277c2e4745f}{m\+\_\+content}
+\begin{DoxyCompactList}\small\item\em pointer to buffer payload \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer_a120b15f6f771bc004c80d12eb881623f}{m\+\_\+size}
+\begin{DoxyCompactList}\small\item\em size of buffer \end{DoxyCompactList}\item 
+uiint64 \hyperlink{structbuffer_af3dc3d5097b6de42b637942b1b0cf8bc}{m\+\_\+filled}
+\begin{DoxyCompactList}\small\item\em number of elements in buffer \end{DoxyCompactList}\item 
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer_af5e119495e5a739d01f5d1d109aa39b6}{m\+\_\+filled}
+\begin{DoxyCompactList}\small\item\em number of elements in buffer \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename T$>$\newline
+struct buffer$<$ T $>$}
+
+read buffer 
+
+buffer structure 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structbuffer_aefd0601854f94ec9c18c05986d218c16}\label{structbuffer_aefd0601854f94ec9c18c05986d218c16}} 
+\index{buffer@{buffer}!buffer@{buffer}}
+\index{buffer@{buffer}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{buffer()}{buffer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structbuffer}{buffer}$<$ T $>$\+::\hyperlink{structbuffer}{buffer} (\begin{DoxyParamCaption}\item[{\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & size of buffer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structbuffer_accefc959744e463ae78a996a2f45f81a}\label{structbuffer_accefc959744e463ae78a996a2f45f81a}} 
+\index{buffer@{buffer}!````~buffer@{$\sim$buffer}}
+\index{````~buffer@{$\sim$buffer}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{$\sim$buffer()}{~buffer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structbuffer}{buffer}$<$ T $>$\+::$\sim$\hyperlink{structbuffer}{buffer} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+dtor 
+
+\mbox{\Hypertarget{structbuffer_aefd0601854f94ec9c18c05986d218c16}\label{structbuffer_aefd0601854f94ec9c18c05986d218c16}} 
+\index{buffer@{buffer}!buffer@{buffer}}
+\index{buffer@{buffer}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{buffer()}{buffer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structbuffer}{buffer}$<$ T $>$\+::\hyperlink{structbuffer}{buffer} (\begin{DoxyParamCaption}\item[{\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64}}]{\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+default ctor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+size} & buffer size \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structbuffer_accefc959744e463ae78a996a2f45f81a}\label{structbuffer_accefc959744e463ae78a996a2f45f81a}} 
+\index{buffer@{buffer}!````~buffer@{$\sim$buffer}}
+\index{````~buffer@{$\sim$buffer}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{$\sim$buffer()}{~buffer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{structbuffer}{buffer}$<$ T $>$\+::$\sim$\hyperlink{structbuffer}{buffer} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+dtor 
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{structbuffer_a877157a0ddb2aa0fa10c7273eece00cb}\label{structbuffer_a877157a0ddb2aa0fa10c7273eece00cb}} 
+\index{buffer@{buffer}!free\+\_\+space@{free\+\_\+space}}
+\index{free\+\_\+space@{free\+\_\+space}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{free\+\_\+space()}{free\_space()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer}{buffer}$<$ T $>$\+::free\+\_\+space (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+remaing space in the buffer 
+
+\mbox{\Hypertarget{structbuffer_a2abf8fde8a3d6a1245f57d698e207b74}\label{structbuffer_a2abf8fde8a3d6a1245f57d698e207b74}} 
+\index{buffer@{buffer}!read\+\_\+from\+\_\+file@{read\+\_\+from\+\_\+file}}
+\index{read\+\_\+from\+\_\+file@{read\+\_\+from\+\_\+file}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{read\+\_\+from\+\_\+file()}{read\_from\_file()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{structbuffer}{buffer}$<$ T $>$\+::read\+\_\+from\+\_\+file (\begin{DoxyParamCaption}\item[{std\+::\+F\+I\+LE $\ast$}]{\+\_\+f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+read a data block from a disk file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+f} & file descriptor \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structbuffer_a2b74a935bb50716bba0835781545803d}\label{structbuffer_a2b74a935bb50716bba0835781545803d}} 
+\index{buffer@{buffer}!size\+\_\+in\+\_\+bytes@{size\+\_\+in\+\_\+bytes}}
+\index{size\+\_\+in\+\_\+bytes@{size\+\_\+in\+\_\+bytes}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{size\+\_\+in\+\_\+bytes()}{size\_in\_bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer}{buffer}$<$ T $>$\+::size\+\_\+in\+\_\+bytes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+total size of elements in buffer 
+
+\mbox{\Hypertarget{structbuffer_a2b74a935bb50716bba0835781545803d}\label{structbuffer_a2b74a935bb50716bba0835781545803d}} 
+\index{buffer@{buffer}!size\+\_\+in\+\_\+bytes@{size\+\_\+in\+\_\+bytes}}
+\index{size\+\_\+in\+\_\+bytes@{size\+\_\+in\+\_\+bytes}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{size\+\_\+in\+\_\+bytes()}{size\_in\_bytes()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer}{buffer}$<$ T $>$\+::size\+\_\+in\+\_\+bytes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+return occupied space (in bytes) in buffer 
+
+\mbox{\Hypertarget{structbuffer_ac31d1516df0036a19bb3e58a4a2fac8a}\label{structbuffer_ac31d1516df0036a19bb3e58a4a2fac8a}} 
+\index{buffer@{buffer}!write\+\_\+to\+\_\+file@{write\+\_\+to\+\_\+file}}
+\index{write\+\_\+to\+\_\+file@{write\+\_\+to\+\_\+file}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{write\+\_\+to\+\_\+file()}{write\_to\_file()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+void \hyperlink{structbuffer}{buffer}$<$ T $>$\+::write\+\_\+to\+\_\+file (\begin{DoxyParamCaption}\item[{std\+::\+F\+I\+LE $\ast$}]{\+\_\+f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+write to file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+f} & file descriptor \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structbuffer_a51dfd20b289c52f084b6d277c2e4745f}\label{structbuffer_a51dfd20b289c52f084b6d277c2e4745f}} 
+\index{buffer@{buffer}!m\+\_\+content@{m\+\_\+content}}
+\index{m\+\_\+content@{m\+\_\+content}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{m\+\_\+content}{m\_content}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+T $\ast$ \hyperlink{structbuffer}{buffer}$<$ T $>$\+::m\+\_\+content}
+
+
+
+pointer to buffer payload 
+
+payload \mbox{\Hypertarget{structbuffer_af3dc3d5097b6de42b637942b1b0cf8bc}\label{structbuffer_af3dc3d5097b6de42b637942b1b0cf8bc}} 
+\index{buffer@{buffer}!m\+\_\+filled@{m\+\_\+filled}}
+\index{m\+\_\+filled@{m\+\_\+filled}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{m\+\_\+filled}{m\_filled}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+uiint64 \hyperlink{structbuffer}{buffer}$<$ T $>$\+::m\+\_\+filled}
+
+
+
+number of elements in buffer 
+
+\mbox{\Hypertarget{structbuffer_af5e119495e5a739d01f5d1d109aa39b6}\label{structbuffer_af5e119495e5a739d01f5d1d109aa39b6}} 
+\index{buffer@{buffer}!m\+\_\+filled@{m\+\_\+filled}}
+\index{m\+\_\+filled@{m\+\_\+filled}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{m\+\_\+filled}{m\_filled}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer}{buffer}$<$ T $>$\+::m\+\_\+filled}
+
+
+
+number of elements in buffer 
+
+\mbox{\Hypertarget{structbuffer_a120b15f6f771bc004c80d12eb881623f}\label{structbuffer_a120b15f6f771bc004c80d12eb881623f}} 
+\index{buffer@{buffer}!m\+\_\+size@{m\+\_\+size}}
+\index{m\+\_\+size@{m\+\_\+size}!buffer@{buffer}}
+\subsubsection{\texorpdfstring{m\+\_\+size}{m\_size}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\hyperlink{types_8h_a60e8696a4678cd348e991a1f172e53f7}{uint64} \hyperlink{structbuffer}{buffer}$<$ T $>$\+::m\+\_\+size}
+
+
+
+size of buffer 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+code/src/common/\hyperlink{async__stream__reader_8h}{async\+\_\+stream\+\_\+reader.\+h}\item 
+code/src/common/\hyperlink{async__stream__writer_8h}{async\+\_\+stream\+\_\+writer.\+h}\end{DoxyCompactItemize}
