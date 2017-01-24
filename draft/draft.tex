@@ -81,9 +81,7 @@ As far as we know, the work presented in~\cite{Burkhardt2003} is the only SA che
 
 The contribution in this paper mainly includes two methods for checking the given suffix and LCP arrays in external memory, where both methods work for constant alphabets and the former can be also applied to integer ones. 
 
-In principle, the first method checks the lexical order and the LCP-value of two neighboring suffixes in the suffix array by literally comparing their characters in sequence. To reduce time complexity for the string comparison, we employ a Karp-Rabin fingerprinting function to transform each of the involved comparand into a single integer, called fingerprint, and compare the fingerprints instead to correctly check the equality of their prototypes with a negilible error probability. We will demonstrate that all the fingerprints in need can be calculated using linear time when scanning the input string. The experimental results indicate that the space efficiency remains invaraint with the increasing of input size, while both time and I/O consumptions grows linearly under the same circumstances. 
-
-The second method verifies the two arrays following the induced-sorting principle. 
+In principle, the first method checks the lexical order and the LCP-value of two neighboring suffixes in the suffix array by literally comparing their characters in sequence. To reduce time complexity for the string comparison, a Karp-Rabin fingerprinting function is employed to transform each involved comparand into a single integer, called fingerprint, and the fingerprints are compared to correctly check the equality of their prototypes with a negilible error probability. We will demonstrate that all the fingerprints in need can be calculated using linear time when scanning the input string. The experimental results indicate that both time and I/O consumptions grow linearly with the increasing input size while the space demand remains unchanged under the same circumstances.
 
 
 The second method verifies the two arrays following the induced-sorting principle, which was formerly proposed for building suffix and LCP arrays in both internal and external memory. 
