@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.1.21)  24 JAN 2017 17:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.1.21)  25 JAN 2017 20:47
 entering extended mode
 **./draft.tex
 (draft.tex
@@ -449,6 +449,88 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/sc' in size <11.04124> not available
 (Font)              Font shape `OT1/phv/b/sc' tried instead on input line 68.
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 70.
+
+LaTeX Warning: Citation `Abouelhodaa2004' on page 1 undefined on input line 73.
+
+
+
+LaTeX Warning: Citation `Manber1993' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Karkkainen2003' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Ko2003' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Kim2003' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Nong11' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Dementiev2008' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Ferragina2012' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Manzini2004' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Bingmann12' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Karkkainen2014' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Nong14' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Nong15' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Osipov2012' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Deo2013' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Wang2015' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Karkkainen2015' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Fischer11' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Bingmann12' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Flick2015' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Kasai2001' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Karkkainen2009' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Fischer11' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Puglisi2008' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Puglisi2008' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Deo2013' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `Karkkainen2016' on page 1 undefined on input line 73.
+
 LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 76.
 
 
@@ -457,18 +539,58 @@ LaTeX Warning: Citation `xxx' on page 1 undefined on input line 76.
 
 LaTeX Warning: Citation `xxx' on page 1 undefined on input line 76.
 
+
+LaTeX Warning: Citation `Burkhardt2003' on page 1 undefined on input line 78.
+
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-] [2] [3] [4] [5]
+]
+
+LaTeX Warning: Citation `Karp1987' on page 2 undefined on input line 125.
+
+
+LaTeX Warning: Citation `Karp1987' on page 2 undefined on input line 137.
+
+
+LaTeX Warning: Citation `Bille2013' on page 2 undefined on input line 137.
+
+[2]
+
+LaTeX Warning: Citation `Arge2013' on page 3 undefined on input line 226.
+
+[3]
+
+LaTeX Warning: Citation `Nong11' on page 4 undefined on input line 284.
+
+
+LaTeX Warning: Citation `Fischer11' on page 4 undefined on input line 284.
+
+
+LaTeX Warning: Citation `Fischer11' on page 4 undefined on input line 296.
+
+
+LaTeX Warning: Citation `Fischer11' on page 4 undefined on input line 317.
+
+[4]
 LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <9.53561> not available
-(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 487.
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 460.
+
+
+LaTeX Warning: Citation `Bingmann12' on page 5 undefined on input line 478.
+
+[5]
+
+LaTeX Warning: Citation `Fischer11' on page 6 undefined on input line 544.
 
 [6]
-Underfull \hbox (badness 5504) in paragraph at lines 604--604
+Underfull \hbox (badness 5504) in paragraph at lines 577--577
 []\OT1/ppl/m/n/8.03 UniProt Knowl-edge-base, avail-able at $ftp : / / ftp . exp
 asy . org / databases / . . . /
  []
+
+
+LaTeX Warning: Citation `Dementiev2007' on page 7 undefined on input line 583.
 
 Package epstopdf Info: Source file: <pdu_cmp.eps>
 (epstopdf)                    date: 2016-10-11 22:50:23
@@ -478,13 +600,13 @@ Package epstopdf Info: Source file: <pdu_cmp.eps>
 (epstopdf)                    size: 11769 bytes
 (epstopdf)             Command: <epstopdf --outfile=pdu_cmp-eps-converted-to.pd
 f pdu_cmp.eps>
-(epstopdf)             \includegraphics on input line 622.
+(epstopdf)             \includegraphics on input line 595.
 Package epstopdf Info: Output file is already uptodate.
 <pdu_cmp-eps-converted-to.pdf, id=40, 420.57124pt x 316.18124pt>
 File: pdu_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pdu_cmp-eps-converted-to.pdf>
-Package pdftex.def Info: pdu_cmp-eps-converted-to.pdf used on input line 622.
+Package pdftex.def Info: pdu_cmp-eps-converted-to.pdf used on input line 595.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <io_cmp.eps>
 (epstopdf)                    date: 2016-10-11 22:52:05
@@ -494,14 +616,14 @@ Package epstopdf Info: Source file: <io_cmp.eps>
 (epstopdf)                    size: 12001 bytes
 (epstopdf)             Command: <epstopdf --outfile=io_cmp-eps-converted-to.pdf
  io_cmp.eps>
-(epstopdf)             \includegraphics on input line 627.
+(epstopdf)             \includegraphics on input line 600.
 Package epstopdf Info: Output file is already uptodate.
 
 <io_cmp-eps-converted-to.pdf, id=41, 420.57124pt x 316.18124pt>
 File: io_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use io_cmp-eps-converted-to.pdf>
-Package pdftex.def Info: io_cmp-eps-converted-to.pdf used on input line 627.
+Package pdftex.def Info: io_cmp-eps-converted-to.pdf used on input line 600.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <ct_cmp.eps>
 (epstopdf)                    date: 2016-10-11 22:48:45
@@ -511,14 +633,14 @@ Package epstopdf Info: Source file: <ct_cmp.eps>
 (epstopdf)                    size: 10578 bytes
 (epstopdf)             Command: <epstopdf --outfile=ct_cmp-eps-converted-to.pdf
  ct_cmp.eps>
-(epstopdf)             \includegraphics on input line 632.
+(epstopdf)             \includegraphics on input line 605.
 Package epstopdf Info: Output file is already uptodate.
 
 <ct_cmp-eps-converted-to.pdf, id=42, 420.57124pt x 316.18124pt>
 File: ct_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ct_cmp-eps-converted-to.pdf>
-Package pdftex.def Info: ct_cmp-eps-converted-to.pdf used on input line 632.
+Package pdftex.def Info: ct_cmp-eps-converted-to.pdf used on input line 605.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <pdu_cmp2.eps>
 (epstopdf)                    date: 2016-10-08 16:27:50
@@ -528,14 +650,14 @@ Package epstopdf Info: Source file: <pdu_cmp2.eps>
 (epstopdf)                    size: 3899 bytes
 (epstopdf)             Command: <epstopdf --outfile=pdu_cmp2-eps-converted-to.p
 df pdu_cmp2.eps>
-(epstopdf)             \includegraphics on input line 643.
+(epstopdf)             \includegraphics on input line 616.
 Package epstopdf Info: Output file is already uptodate.
 
 <pdu_cmp2-eps-converted-to.pdf, id=43, 420.57124pt x 316.18124pt>
 File: pdu_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pdu_cmp2-eps-converted-to.pdf>
-Package pdftex.def Info: pdu_cmp2-eps-converted-to.pdf used on input line 643.
+Package pdftex.def Info: pdu_cmp2-eps-converted-to.pdf used on input line 616.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <io_cmp2.eps>
 (epstopdf)                    date: 2016-10-08 16:25:54
@@ -545,14 +667,14 @@ Package epstopdf Info: Source file: <io_cmp2.eps>
 (epstopdf)                    size: 3871 bytes
 (epstopdf)             Command: <epstopdf --outfile=io_cmp2-eps-converted-to.pd
 f io_cmp2.eps>
-(epstopdf)             \includegraphics on input line 648.
+(epstopdf)             \includegraphics on input line 621.
 Package epstopdf Info: Output file is already uptodate.
 
 <io_cmp2-eps-converted-to.pdf, id=44, 420.57124pt x 316.18124pt>
 File: io_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use io_cmp2-eps-converted-to.pdf>
-Package pdftex.def Info: io_cmp2-eps-converted-to.pdf used on input line 648.
+Package pdftex.def Info: io_cmp2-eps-converted-to.pdf used on input line 621.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <ct_cmp2.eps>
 (epstopdf)                    date: 2016-10-11 22:40:52
@@ -562,21 +684,25 @@ Package epstopdf Info: Source file: <ct_cmp2.eps>
 (epstopdf)                    size: 3963 bytes
 (epstopdf)             Command: <epstopdf --outfile=ct_cmp2-eps-converted-to.pd
 f ct_cmp2.eps>
-(epstopdf)             \includegraphics on input line 653.
+(epstopdf)             \includegraphics on input line 626.
 Package epstopdf Info: Output file is already uptodate.
 
 <ct_cmp2-eps-converted-to.pdf, id=45, 420.57124pt x 316.18124pt>
 File: ct_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ct_cmp2-eps-converted-to.pdf>
-Package pdftex.def Info: ct_cmp2-eps-converted-to.pdf used on input line 653.
+Package pdftex.def Info: ct_cmp2-eps-converted-to.pdf used on input line 626.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./pdu_cmp-eps-converted-to.pdf> <./io_cmp-eps-converted-to.pdf> <./ct_cmp-
-eps-converted-to.pdf>] (draft.bbl [8 <./pdu_cmp2-eps-converted-to.pdf> <./io_cm
-p2-eps-converted-to.pdf> <./ct_cmp2-eps-converted-to.pdf>]) [9] (draft.aux)
+LaTeX Warning: Citation `Leischner2010' on page 7 undefined on input line 633.
+
+
+LaTeX Warning: Citation `Davidson2012' on page 7 undefined on input line 633.
+
+[7 <./pdu_cmp-eps-converted-to.pdf> <./io_cmp-eps-converted-to.pdf> <./ct_cmp-e
+ps-converted-to.pdf>] (draft.bbl) [8 <./pdu_cmp2-eps-converted-to.pdf> <./io_cm
+p2-eps-converted-to.pdf> <./ct_cmp2-eps-converted-to.pdf>] (draft.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -586,13 +712,13 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4891 strings out of 493333
- 73880 string characters out of 3139200
- 156314 words of memory out of 3000000
- 8304 multiletter control sequences out of 15000+200000
+ 4884 strings out of 493333
+ 73753 string characters out of 3139200
+ 156203 words of memory out of 3000000
+ 8297 multiletter control sequences out of 15000+200000
  51881 words of font info for 125 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,11n,26p,1615b,3274s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,11n,26p,1618b,3274s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTe
@@ -613,9 +739,9 @@ es/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/palatino/uplbi8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/u
 rw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/up
 lri8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/zapfding/uzdr.pfb>
-Output written on draft.pdf (9 pages, 323878 bytes).
+Output written on draft.pdf (8 pages, 316277 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
+ 142 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

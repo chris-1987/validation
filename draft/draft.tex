@@ -47,7 +47,7 @@
 \IEEEtitleabstractindextext{%
 \begin{abstract}
 
-	For full-text indexing of massive data, the suffix and LCP (longest common prefix) arrays have been recognized as the fundamental data structures and should be verified to ensure their correctness after construction. We propose in this paper two methods to probablisitically check the suffix and LCP arrays in external memory by using a Karp-Rabin fingerprinting function, in terms of that the checking result is wrong with only a negligible probability. The first method checks the lexical order and the LCP-value of two neighboring suffixes in the given suffix array by computing and comparing the fingerprints of their LCPs. The second method first applies the same technique to check a subset of the suffix and LCP arrays, and then checks the remaining when augmenting them from the verified part following the induced-sorting principle. The experimental results indicate that, xxx.
+	For full-text indexing of massive data, the suffix and LCP (longest common prefix) arrays have been recognized as the fundamental data structures and should be verified to ensure their correctness after construction. We propose in this paper two methods to probablisitically check the suffix and LCP arrays in external memory by using a Karp-Rabin fingerprinting function, in terms of that the checking result is wrong with only a negligible probability. The first method checks the lexical order and the LCP-value of two neighboring suffixes in the given suffix array by computing and comparing the fingerprints of their LCPs. The second method first applies the fingerprinting technique to check a subset of the given suffix and LCP arrays, then it produces the whole arrays from the verified parts following the induced-sorting principle and compares the induced and input copies with each other for verification.
 	
 	
 \end{abstract}
@@ -79,51 +79,28 @@ As far as we know, the work presented in~\cite{Burkhardt2003} is the only SA che
 	
 \subsection{Contribution}\label{sec:introduction:contribution}
 
-The contribution in this paper mainly includes two methods for checking the given suffix and LCP arrays in external memory, where both methods work for constant alphabets and the former can be also applied to integer ones. 
+The contribution in this paper mainly includes two methods for checking the given suffix and LCP arrays in external memory. 
 
-In principle, the first method checks the lexical order and the LCP-value of two neighboring suffixes in the suffix array by literally comparing their characters in sequence. To reduce time complexity for the string comparison, a Karp-Rabin fingerprinting function is employed to transform each involved comparand into a single integer, called fingerprint, and the fingerprints are compared to correctly check the equality of their prototypes with a negilible error probability. We will demonstrate that all the fingerprints in need can be calculated using linear time when scanning the input string. The experimental results indicate that both time and I/O consumptions grow linearly with the increasing input size while the space demand remains unchanged under the same circumstances.
+The main idea of the first method is to check the lexical order and the LCP-value of two neighboring suffixes in a suffix array by literally comparing their characters. To reduce time complexity for a comparison between two sequences of characters, a Karp-Rabin fingerprinting function is employed to transform each sequence into a single integer, called fingerprint, such that the equality of two sequences can be correctly checked with a negiligible error probability by comparing their fingerprints in constant time.
 
+The second method first verifies a subset chosen from the given suffix and LCP arrays by using the fingerprinting technique adopted in the prior method. Then, it continues to produce the global suffix and LCP arrays from the verified subset following the induced sorting principle. Given that the inducing process is right, then the given suffix and LCP arrays are correct if they are identical to the induced counterparts. 
 
-The second method verifies the two arrays following the induced-sorting principle, which was formerly proposed for building suffix and LCP arrays in both internal and external memory. 
-
- This technique is also employed in the second method 
-The second method is adapted from the induced-sorting principle.
-
-The second method checks both suffix and LCP arrays based on the induced-sorting principle. The main idea is to first check a subset of the suffix and LCP arrays and then verify the inducing process to ensure the correctness of the final suffix and LCP arrays augmented from the subset. Different from the previous method, it can be also integrated into any algorithm for inducing suffix and LCP arrays to build and check the arrays simultaneously.
-
-The remainder of this paper is organized as follows. We describe the proposed methods and algorithms in Sections~\ref{sec:method1} and~\ref{sec:method2}, then present the experimental results in Section~\ref{sec:experiment}, and give the conclusion in Section~\ref{sec:conclusion}.
-	
-{\color{red}
-
-A suggested paper's framework:
-
-1. The straightforward algorithm for computing and comparing the FPs of each pair of neighboring items in the LCP array, for checking both the SA and the LCP arrays.
-
-The drawback is space consuming, to be overcome by the algorithms proposed in the rest of this article...
-
-2. The method for building and checking simultaneously, for the suffix and LCP arrays constructed by induced sorting.
-
-The principle of induced sorting is explained here.
-
-The drawback is that it is applicable only for an array built by inducd sorting, to be overcome by further extending the idea to check any given array.
-
-3. Extend the 2nd method to check any given suffix or LCP arrays.
-
-4. Experiments
-
-5. Conclusion
-}
+The remainder of this paper is organized as follows. We first describe the proposed two checking methods in Sections~\ref{sec:method1} and~\ref{sec:method2}, then present the experimental results in Section~\ref{sec:experiment},and give the conclusion in Section~\ref{sec:conclusion}.
 
 
-	\section{Method A} \label{sec:method1}
-	
-	\subsection{Notations} \label{sec:method1:notations}
-	Given an input string $x[0, n)$ drawn from an alphabet $\Sigma$, we say $x[i, j]$ is a substring of $x$ that starts with $x[i]$ and ends with $x[j]$. Particularly, $x[i, j]$ is a suffix of $x$ if $j = n - 1$. For short, we denote $x[i, n)$ by ${\sf suf}(i)$.
-	
-	The suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, \dots, n - 1\}$ such that ${\sf suf}(sa[i])$ is lexicographically greater than ${\sf suf}(sa[i - 1])$ for all $i \in [1, n)$.
-	
-	The LCP array of $x$, denoted by $lcp$, is composed of $n$ integers, where $lcp[0] = 0$ and $lcp[i]$ equals to the length of LCP of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i - 1])$ for all $i \in [1, n)$, i.e., the first $lcp[i]$ characters of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i - 1])$ are identical and the $(lcp[i]+1)$-th characters of two suffixes are different. For notation convenience, we refer the length of an LCP as LCP value or LCP length.
-	
+\section{Method A} \label{sec:method1}
+
+\subsection{Preliminaries} \label{sec:method1:notations}
+
+Given an input string $x[0, n)$ drawn from an alphabet $\{\Sigma \cup \$\}$, we suppose $t
+
+suppose $\$$ to be smaller than any other characters and only appears in $x[n - 1]$. We denote by ${\sf sub}(i, j)$ a substring of $x$ starting from $x[i]$ to $x[j]$. Paricularly, if $j = n - 1$, we say ${\sf sub}(i, j)$ is a suffix of $x$ and represent it by ${\sf suf}(i)$ for the sake of description.
+The suffix array of $x$,
+
+The suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, \dots, n - 1\}$ such that ${\sf suf}(sa[i])$ is lexicographically greater than ${\sf suf}(sa[i - 1])$ for all $i \in [1, n)$.
+
+The LCP array of $x$, denoted by $lcp$, is composed of $n$ integers, where $lcp[0] = 0$ and $lcp[i]$ equals to the length of LCP of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i - 1])$ for all $i \in [1, n)$, i.e., the first $lcp[i]$ characters of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i - 1])$ are identical and the $(lcp[i]+1)$-th characters of two suffixes are different. For notation convenience, we refer the length of an LCP as LCP value or LCP length.
+
 
 	\subsection{Main Idea} \label{sec:method1:idea}
 	
