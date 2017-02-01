@@ -79,7 +79,7 @@ As far as we know, the work presented in~\cite{Burkhardt2003} is the only SA che
 	
 \subsection{Contribution}\label{sec:introduction:contribution}
 
-Our contribution mainly includes two checking methods for the given suffix and LCP arrays in external memory. 
+Our contribution includes two checking methods for the given suffix and LCP arrays in external memory. 
 
 The main idea of the first method is to test the lexical order and the LCP-value of two neighboring suffixes in a suffix array by literally comparing their characters. To reduce time complexity for a comparison between two sequences of characters, a Karp-Rabin fingerprinting function is employed to transform each sequence into a single integer, called fingerprint, such that the equality of two sequences can be correctly checked with a negiligible error probability by comparing their fingerprints in constant time. 
 
@@ -93,14 +93,12 @@ The remainder of this paper is organized as follows. We first describe the propo
 
 \subsection{Preliminaries} \label{sec:method1:notations}
 
-Given an input string $x$ drawn from an alphabet $\Sigma$, we assume that $x[n - 1] = \$$ and $\$ \in \Sigma$ is smaller than any other characters in $x$. The suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, ..., n - 1\}$ such that ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$ for all $0 \le i < j < n$, where ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are the suffixes starting with $x[sa[i]]$ and $x[sa[j]]$, respectively. Particularly, we say ${\sf suf}(sa[i])$ is a lexical neighbor of ${\sf suf}(sa[j])$ if $|i - j| = 1$. The LCP array of $x$, denoted by $lcp$, consists of $n$ integers, where $lcp[i]$ records the LCP-value of ${\sf suf}(sa[i])$ and its left neighbor in $sa$ for $i \in [1, n)$. 
+Given an input string $x$ drawn from an alphabet $\Sigma$, we assume that $x[n - 1] = \$$ and $\$ \in \Sigma$ is smaller than any other characters in $x$. The suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, ..., n - 1\}$ such that ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$ for all $0 \le i < j < n$, where ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are the suffixes starting with $x[sa[i]]$ and $x[sa[j]]$, respectively. Particularly, ${\sf suf}(sa[i])$ is a lexical neighbor of ${\sf suf}(sa[j])$ if $|i - j| = 1$. The LCP array of $x$, denoted by $lcp$, consists of $n$ integers, where $lcp[i]$ records the LCP-value of ${\sf suf}(sa[i])$ and its left neighbor in $sa$ for $i \in [1, n)$. 
 
 
 \subsection{Idea} \label{sec:method1:idea}
 
-The lexical order and the LCP-value of two suffixes starting with $x[i]$ and $x[j]$ can be determined by literally comparing their characters rightward with $k$ increasing from $0$. Because all the suffixes differ in length and end with a common character, there must exist $k \in [0, n)$ such that $x[i, i + k) = x[j, j + k)$ and $x[i + k] \ne x[j + k]$. Lemma~\ref{lemma:1} indicates that this method can be also applied to checking suffix and LCP arrays, but it suffers from high time complexity as the two substrings indicated by the LCP-value for each pair of neighboring suffixes in $sa$ takes at most $\mathcal{O}(n)$ character-wise comparisons.
-An alternative is to exploit a perfect hash function~(PHF) to convert each substring into a single integer such that any two substrings have a common hash value if and only if they are literally equal to each other. Then, the equality of two substrings can be tested in constant time by comparing the corresponding hash values instead. 
-
+The lexical order and the LCP-value of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ can be determined by literally comparing their characters from left to right. Because all the suffixes differ in length and end with a common character, there must exist $k \in [0, n)$ such that $x[i, i + k) = x[j, j + k)$ and $x[i + k] \ne x[j + k]$. According to Lemma~\ref{lemma:1}, this method can be also applied to checking suffix and LCP arrays, but it suffers from high time complexity as the two substrings indicated by the LCP-value for each pair of neighboring suffixes in $sa$ take at most $\mathcal{O}(n)$ character-wise comparisons.
 
 \begin{Lemma} \label{lemma:1}
 	Both $sa[0, n)$ and $lcp[0, n)$ are correct if and only if the following conditions are satisfied, for all $i \in [1, n)$:
@@ -118,7 +116,7 @@ An alternative is to exploit a perfect hash function~(PHF) to convert each subst
 	Both the sufficiency and necessity are immediately seen from the definition of suffix and LCP arrays. Specifically, condition (1) demonstrates that all the suffixes in $x$ are sorted in $sa$, while conditions (2)-(3) indicate that the lexical order and the LCP-value of any two neighboring suffixes in $sa$ are both correct.
 \end{IEEEproof}
 
-The key point here is how to efficiently compute the hash values for the involved substrings. Taking into account the high cost of finding a PHF for this requirement, we choose to use the Karp-Rabin fingerprinting function~\cite{Karp1987} for conducting these conversions, where all the substrings can be transformed into their integer forms, called fingerprints, by accessing characters of $x$ sequentially. Specifically, suppose $L$ is a prime and $\delta$ is randomly chosen from $[1, L)$, the fingerprint ${\sf fp}(i, j)$ of substring $x[i, j]$ can be calculated according to the three formulas below, where the first two are for computing ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ when scanning $x$ rightward and the last is for computing their difference. It is worthy of pointing out that two equal substrings always have a common fingerprint, but the inverse is not true. Fortunately, it has been proved that the probability of a false match can be reduced to a negligible level by setting $L$ to a large value~\cite{Karp1987}. This property is utilized in~\cite{Bille2013} to design a probabilistic algorithm for computing a sparse suffix array.
+An alternative is to exploit a perfect hash function~(PHF) to convert each substring into a single integer such that any two substrings have a common hash value if and only if they are literally equal to each other. Hence, the equality of two substrings can be determined by comparing the corresponding hash values instead. The key point here is how to efficiently compute the hash values of $x[sa[i], sa[i] + lcp[i] - 1]$ and $x[sa[i - 1], sa[i - 1] + lcp[i] - 1]$ for all $i \in [1, n)$. Taking into account the high cost of finding a PHF to meet this requirement, we prefer using a Karp-Rabin fingerprinting function~\cite{Karp1987} to transform a substring into its integer form, called fingerprint. Specifically, suppose $L$ is a prime and $\delta$ is randomly chosen from $[1, L)$, the fingerprint ${\sf fp}(i, j)$ of a substring $x[i, j]$ can be calculated according to the formulas listed below: scan $x$ rightward and use Formulas~\ref{formula:1}-\ref{formula:2} to iteratively compute ${\sf fp}(0, k)$ for all $k \in [0, n)$, record ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ during the scan and subtract the former from the latter to obtain ${\sf fp}(i, j)$ following Formula~\ref{formula:3}. 
 
 \begin{Formula} \label{formula:1}
 	${\sf fp}(0, -1) = 0$.
@@ -135,7 +133,7 @@ The key point here is how to efficiently compute the hash values for the involve
 	
 \end{Formula}
 
-The above discussion leads us to Corollary~\ref{corollary:1}. In the rest of this section, we will describe the algorithmic design and implementation of our first checking method based on this conclusion.
+It is worthy of pointing out that two equal substrings always share a common fingerprint, but the inverse is not true. Fortunately, it has been proved in~\cite{Karp1987} that the probability of a false match can be reduced to a negligible level by setting $L$ to a large value\footnote{This property is utilized in~\cite{Bille2013} to design a probabilistic algorithm for computing a sparse suffix array. }. This leads us to the following conclusion.
 
 \begin{Corollary} \label{corollary:1}
 	Both $sa[0, n)$ and $lcp[0, n)$ are correct with a high probability given the following conditions, for all $i \in [1, n)$:
@@ -151,28 +149,44 @@ The above discussion leads us to Corollary~\ref{corollary:1}. In the rest of thi
 		$x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$.
 	\end{enumerate}
 \end{Corollary}
+
+In the rest of this section, we describe the algorithm for checking the given suffix and LCP arrays using external memory based on this conclusion. 
+
+\subsection{Algorithm} \label{sec:method1:algorithm}
+
+Following the discussion in Section~\ref{sec:method1:idea}, the conditions of Corollary~\ref{corollary:1} can be checked using $\mathcal{O}(n)$ time and space in random access models by the 2-step procedure below:
+
+\begin{itemize}
+	\item [S1.]
+	Scan $x$ rightward with $i$ increasing from $0$ to $n - 1$. For each scanned $x[i]$, iteratively compute ${\sf fp}(0, i)$ and set $fp[i] = {\sf fp}(0, i)$.
 	
+	\item [S2.]
+	Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $sa[i]$ and $lcp[i]$, let $u = sa[i], v = lcp[i], w = sa[i - 1]$, then: (1) retrieve $fp[u - 1]$ and $fp[u + v - 1]$ from $fp$ to compute ${\sf fp}(u, u + v - 1)$; (2) retrieve $fp[w - 1]$ and $fp[w + v - 1]$ from $fp$ to compute ${\sf fp}(w, w + v - 1)$; (3) check if ${\sf fp}(u, u + v - 1) = {\sf fp}(w, w + v - 1)$ and $x[u + v] = x[w + v]$.
+
+\end{itemize}
+
+However, when running in external memory models, 
+
+The algorithm  algorithm~\ref{alg:1} to check the suffix and LCP arrays in external memory. This algorithm mainly consists of three steps, where the first two steps 
+
+
+\begin{algorithm*}
 	
+	\SetAlgoNoLine
 	
-	\subsection{Algorithm} \label{sec:method1:algorithm}
+	\KwIn{$x$, $sa$, $lcp$}
 	
-	\begin{algorithm*}
-		
-		\SetAlgoNoLine
-		
-		\KwIn{$x$, $sa$, $lcp$}
-		
-		Step 1. Compute ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ and retrieve $x[sa[i] + lcp[i]]$ for $i \in [1, n)$.
-		
-		Step 2. Compute ${\sf fp}(sa[i], sa[i] + lcp[i + 1] - 1)$ and retrieve $x[sa[i] + lcp[i + 1]]$ for $i \in [0, n - 1)$.
-		
-		Step 3. Check if ${\sf fp}(sa[i], sa[i] + lcp[i] - 1) = {\sf fp}(sa[i - 1], sa[i - 1] + lcp[i] - 1)$ and $x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$ for $i \in [1, n)$.
-		
-		\caption{The algorithm using Method A.}
-		
-		\label{alg:1}
-		
-	\end{algorithm*}
+	Step 1. Compute ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ and retrieve $x[sa[i] + lcp[i]]$ for $i \in [1, n)$.
+	
+	Step 2. Compute ${\sf fp}(sa[i], sa[i] + lcp[i + 1] - 1)$ and retrieve $x[sa[i] + lcp[i + 1]]$ for $i \in [0, n - 1)$.
+	
+	Step 3. Check if ${\sf fp}(sa[i], sa[i] + lcp[i] - 1) = {\sf fp}(sa[i - 1], sa[i - 1] + lcp[i] - 1)$ and $x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$ for $i \in [1, n)$.
+	
+	\caption{The algorithmic framework for Method A.}
+	
+	\label{alg:1}
+	
+\end{algorithm*}
 	
 	We design Algorithm~\ref{alg:1} to check the conditions in Corollary~\ref{corollary:1}. This algorithm mainly consists of three steps and each step is explained detailedly in the following paragraphs.
 	
