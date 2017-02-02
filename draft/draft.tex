@@ -116,7 +116,7 @@ The lexical order and the LCP-value of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$
 	Both the sufficiency and necessity are immediately seen from the definition of suffix and LCP arrays. Specifically, condition (1) demonstrates that all the suffixes in $x$ are sorted in $sa$, while conditions (2)-(3) indicate that the lexical order and the LCP-value of any two neighboring suffixes in $sa$ are both correct.
 \end{IEEEproof}
 
-An alternative is to exploit a perfect hash function~(PHF) to convert each substring into a single integer such that any two substrings have a common hash value if and only if they are literally equal to each other. Hence, the equality of two substrings can be determined by comparing the corresponding hash values instead. The key point here is how to efficiently compute the hash values of $x[sa[i], sa[i] + lcp[i] - 1]$ and $x[sa[i - 1], sa[i - 1] + lcp[i] - 1]$ for all $i \in [1, n)$. Taking into account the high cost of finding a PHF to meet this requirement, we prefer using a Karp-Rabin fingerprinting function~\cite{Karp1987} to transform a substring into its integer form, called fingerprint. Specifically, suppose $L$ is a prime and $\delta$ is randomly chosen from $[1, L)$, the fingerprint ${\sf fp}(i, j)$ of a substring $x[i, j]$ can be calculated according to the formulas listed below: scan $x$ rightward and use Formulas~\ref{formula:1}-\ref{formula:2} to iteratively compute ${\sf fp}(0, k)$ for all $k \in [0, n)$, record ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ during the scan and subtract the former from the latter to obtain ${\sf fp}(i, j)$ following Formula~\ref{formula:3}. 
+An alternative is to exploit a perfect hash function~(PHF) to convert each substring into a single integer such that any two substrings have a common hash value if and only if they are literally equal to each other. Hence, the equality of two substrings can be determined by comparing the corresponding hash values instead. The key point here is how to efficiently compute the hash values of $x[sa[i], sa[i] + lcp[i] - 1]$ and $x[sa[i - 1], sa[i - 1] + lcp[i] - 1]$ for all $i \in [1, n)$. Taking into account the high cost of finding a PHF to meet this requirement, we prefer using a Karp-Rabin fingerprinting function~\cite{Karp1987} to transform a substring into its integer form, called fingerprint. Specifically, suppose $L$ is a prime and $\delta$ is randomly chosen from $[1, L)$, the fingerprint ${\sf fp}(i, j)$ of a substring $x[i, j]$ can be calculated according to the three formulas listed below: scan $x$ rightward and use Formulas~\ref{formula:1}-\ref{formula:2} to iteratively compute ${\sf fp}(0, k)$ for all $k \in [0, n)$, record ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ during the scan and subtract the former from the latter to obtain ${\sf fp}(i, j)$ following Formula~\ref{formula:3}. 
 
 \begin{Formula} \label{formula:1}
 	${\sf fp}(0, -1) = 0$.
@@ -150,25 +150,36 @@ It is worthy of pointing out that two equal substrings always share a common fin
 	\end{enumerate}
 \end{Corollary}
 
-In the rest of this section, we describe the algorithm for checking the given suffix and LCP arrays using external memory based on this conclusion. 
 
 \subsection{Algorithm} \label{sec:method1:algorithm}
 
-Following the discussion in Section~\ref{sec:method1:idea}, the conditions of Corollary~\ref{corollary:1} can be checked using $\mathcal{O}(n)$ time and space in random access models by the 2-step procedure below:
+Following the ideas in Section~\ref{sec:method1:idea}, we can check $sa$ and $lcp$ using the 3-step procedure below.
 
 \begin{itemize}
-	\item [S1.]
+	\item [S1]
 	Scan $x$ rightward with $i$ increasing from $0$ to $n - 1$. For each scanned $x[i]$, iteratively compute ${\sf fp}(0, i)$ and set $fp[i] = {\sf fp}(0, i)$.
 	
-	\item [S2.]
-	Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $sa[i]$ and $lcp[i]$, let $u = sa[i], v = lcp[i], w = sa[i - 1]$, then: (1) retrieve $fp[u - 1]$ and $fp[u + v - 1]$ from $fp$ to compute ${\sf fp}(u, u + v - 1)$; (2) retrieve $fp[w - 1]$ and $fp[w + v - 1]$ from $fp$ to compute ${\sf fp}(w, w + v - 1)$; (3) check if ${\sf fp}(u, u + v - 1) = {\sf fp}(w, w + v - 1)$ and $x[u + v] = x[w + v]$.
+	\item [S2]
+	Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $sa[i]$ and $lcp[i]$, let $u = sa[i], v = lcp[i], w = sa[i - 1]$ and performs the following three substeps in sequence:
+	
+	\begin{itemize}
+		\item [(a)] 
+		Retrieve $fp[u - 1]$ and $fp[u + v - 1]$ from $fp$ to compute ${\sf fp}(u, u + v - 1)$. Set $mk[u] = 1$.
+		
+		\item [(b)] 
+		Retrieve $fp[w - 1]$ and $fp[w + v - 1]$ from $fp$ to compute ${\sf fp}(w, w + v - 1)$. 
+		
+		\item [(c)] 
+		Check if ${\sf fp}(u, u + v - 1) = {\sf fp}(w, w + v - 1)$ and $x[u + v] > x[w + v]$.
+	\end{itemize}
 
+	\item [S3] Set $mk[sa[0]] = 1$. Check if $mk[i] = 1$ for all $i \in [0, n)$.
+	
 \end{itemize}
 
-However, when running in external memory models, 
+Two zero-initialized arrays $fp$ and $mk$ are employed to faciliate the checking process, where the former is for storing the fingerprints of all the prefixes of $x$ and the latter is for indicating the existences of $\{0, 1, ..., n - 1\}$ in $sa$. This procedure consumes $\mathcal{O}(n)$ time and space when running in internal memory. However, if the input can not be wholly accommodated into RAM, it performs random I/O accesses frequently to visit $sa$ and $lcp$ in external memory during the execution of S2, leading to a large performance degradation. 
 
-The algorithm  algorithm~\ref{alg:1} to check the suffix and LCP arrays in external memory. This algorithm mainly consists of three steps, where the first two steps 
-
+In what follows, we describe an external-memory algorithm for checking the conditions of Corollary~\ref{corollary:1} in a disk-friendly way. As shown in Fig.~\ref{fig:xxx}, this algorithm mainly consists of three steps and each step is explained as following.
 
 \begin{algorithm*}
 	
@@ -176,7 +187,11 @@ The algorithm  algorithm~\ref{alg:1} to check the suffix and LCP arrays in exter
 	
 	\KwIn{$x$, $sa$, $lcp$}
 	
-	Step 1. Compute ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ and retrieve $x[sa[i] + lcp[i]]$ for $i \in [1, n)$.
+	Step 1. Sort $sa[i]$ by $i$ for all $i \in [0, n)$. 
+	
+	Step 2.  
+	
+	ompute ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ and retrieve $x[sa[i] + lcp[i]]$ for $i \in [1, n)$.
 	
 	Step 2. Compute ${\sf fp}(sa[i], sa[i] + lcp[i + 1] - 1)$ and retrieve $x[sa[i] + lcp[i + 1]]$ for $i \in [0, n - 1)$.
 	
