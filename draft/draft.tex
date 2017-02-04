@@ -3,7 +3,7 @@
 
 \documentclass[10pt,journal,compsoc]{IEEEtran}
 \usepackage{graphicx}
-\usepackage[ruled, noend]{algorithm2e}
+\usepackage[ruled, linesnumbered, noend]{algorithm2e}
 \usepackage{url}
 \usepackage{epstopdf}
 \usepackage{indentfirst}
@@ -93,12 +93,12 @@ The remainder of this paper is organized as follows. We first describe the propo
 
 \subsection{Preliminaries} \label{sec:method1:notations}
 
-Given an input string $x$ drawn from an alphabet $\Sigma$, we assume that $x[n - 1] = \$$ and $\$ \in \Sigma$ is smaller than any other characters in $x$. The suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, ..., n - 1\}$ such that ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$ for all $0 \le i < j < n$, where ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are the suffixes starting with $x[sa[i]]$ and $x[sa[j]]$, respectively. Particularly, ${\sf suf}(sa[i])$ is a lexical neighbor of ${\sf suf}(sa[j])$ if $|i - j| = 1$. The LCP array of $x$, denoted by $lcp$, consists of $n$ integers, where $lcp[i]$ records the LCP-value of ${\sf suf}(sa[i])$ and its left neighbor in $sa$ for $i \in [1, n)$. 
+Given an input string $x[0, n)$ drawn from an alphabet $\Sigma$, the suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, ..., n - 1\}$ such that ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$ is satisfied for $0 \le i < j < n$, where ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are two suffixes starting with $x[sa[i]]$ and $x[sa[j]]$, respectively. Particularly, we say ${\sf suf}(sa[i - 1])$ and  ${\sf suf}(sa[i + 1])$ are the lexical neighbors of ${\sf suf}(sa[i])$ in $sa$. The LCP array of $x$, denoted by $lcp$, consists of $n$ integers, where $lcp[0]:=0$ and $lcp[i]$ records the LCP-value of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i - 1])$ for $i \in [1, n)$. 
 
 
 \subsection{Idea} \label{sec:method1:idea}
 
-The lexical order and the LCP-value of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ can be determined by literally comparing their characters from left to right. Because all the suffixes differ in length and end with a common character, there must exist $k \in [0, n)$ such that $x[i, i + k) = x[j, j + k)$ and $x[i + k] \ne x[j + k]$. According to Lemma~\ref{lemma:1}, this method can be also applied to checking suffix and LCP arrays, but it suffers from high time complexity as the two substrings indicated by the LCP-value for each pair of neighboring suffixes in $sa$ take at most $\mathcal{O}(n)$ character-wise comparisons.
+The lexical order and the LCP-value of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ can be determined by literally comparing their characters from left to right. Because all the suffixes differ in length and end with a common character, there must exist $k \in [0, n)$ such that $x[i, i + k) = x[j, j + k)$ and $x[i + k] \ne x[j + k]$. According to Lemma~\ref{lemma:1}, this method can be also applied to checking suffix and LCP arrays, but it suffers from high time complexity as the two substrings indicated by the LCP-value for each pair of neighboring suffixes in $sa$ take at worst $\mathcal{O}(n)$ character-wise comparisons.
 
 \begin{Lemma} \label{lemma:1}
 	Both $sa[0, n)$ and $lcp[0, n)$ are correct if and only if the following conditions are satisfied, for all $i \in [1, n)$:
@@ -116,7 +116,7 @@ The lexical order and the LCP-value of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$
 	Both the sufficiency and necessity are immediately seen from the definition of suffix and LCP arrays. Specifically, condition (1) demonstrates that all the suffixes in $x$ are sorted in $sa$, while conditions (2)-(3) indicate that the lexical order and the LCP-value of any two neighboring suffixes in $sa$ are both correct.
 \end{IEEEproof}
 
-An alternative is to exploit a perfect hash function~(PHF) to convert each substring into a single integer such that any two substrings have a common hash value if and only if they are literally equal to each other. Hence, the equality of two substrings can be determined by comparing the corresponding hash values instead. The key point here is how to efficiently compute the hash values of $x[sa[i], sa[i] + lcp[i] - 1]$ and $x[sa[i - 1], sa[i - 1] + lcp[i] - 1]$ for all $i \in [1, n)$. Taking into account the high cost of finding a PHF to meet this requirement, we prefer using a Karp-Rabin fingerprinting function~\cite{Karp1987} to transform a substring into its integer form, called fingerprint. Specifically, suppose $L$ is a prime and $\delta$ is randomly chosen from $[1, L)$, the fingerprint ${\sf fp}(i, j)$ of a substring $x[i, j]$ can be calculated according to the three formulas listed below: scan $x$ rightward and use Formulas~\ref{formula:1}-\ref{formula:2} to iteratively compute ${\sf fp}(0, k)$ for all $k \in [0, n)$, record ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ during the scan and subtract the former from the latter to obtain ${\sf fp}(i, j)$ following Formula~\ref{formula:3}. 
+An alternative is to exploit a perfect hash function~(PHF) to convert each substring into a single integer such that any two substrings have a common hash value if and only if they are literally equal to each other. Hence, the equality of two substrings can be determined by comparing the corresponding hash values instead. The key point here is how to efficiently compute the hash values of $x[sa[i], sa[i] + lcp[i] - 1]$ and $x[sa[i - 1], sa[i - 1] + lcp[i] - 1]$ for all $i \in [1, n)$. Taking into account the high cost of finding a PHF to meet this requirement, we prefer using a Karp-Rabin fingerprinting function~\cite{Karp1987} to transform a substring into its integer form, called fingerprint. Specifically, suppose $L$ is a prime and $\delta$ is randomly chosen from $[1, L)$, the fingerprint ${\sf fp}(i, j)$ of a substring $x[i, j]$ can be calculated by using Formulas~\ref{formula:1}-~\ref{formula:3} as following: scan $x$ rightward to iteratively compute ${\sf fp}(0, k)$ for all $k \in [0, n)$ according to Formulas~\ref{formula:1}-\ref{formula:2}, meanwhile, record ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ and subtract the former from the latter to obtain ${\sf fp}(i, j)$ according to Formula~\ref{formula:3}. 
 
 \begin{Formula} \label{formula:1}
 	${\sf fp}(0, -1) = 0$.
@@ -133,7 +133,7 @@ An alternative is to exploit a perfect hash function~(PHF) to convert each subst
 	
 \end{Formula}
 
-It is worthy of pointing out that two equal substrings always share a common fingerprint, but the inverse is not true. Fortunately, it has been proved in~\cite{Karp1987} that the probability of a false match can be reduced to a negligible level by setting $L$ to a large value\footnote{This property is utilized in~\cite{Bille2013} to design a probabilistic algorithm for computing a sparse suffix array. }. This leads us to the following conclusion.
+It is worthy of mentioning that two equal substrings always share a common fingerprint, but the inverse is not true. Fortunately, it has been proved in~\cite{Karp1987} that the probability of a false match can be reduced to a negligible level by setting $L$ to a large value\footnote{This property is utilized in~\cite{Bille2013} to design a probabilistic algorithm for computing a sparse suffix array. }. This leads us to the following conclusion.
 
 \begin{Corollary} \label{corollary:1}
 	Both $sa[0, n)$ and $lcp[0, n)$ are correct with a high probability given the following conditions, for all $i \in [1, n)$:
@@ -153,14 +153,14 @@ It is worthy of pointing out that two equal substrings always share a common fin
 
 \subsection{Algorithm} \label{sec:method1:algorithm}
 
-Following the ideas in Section~\ref{sec:method1:idea}, we can check $sa$ and $lcp$ using the 3-step procedure below.
+Section~\ref{sec:method1:idea} indicates that we can perform verification for the given suffix and LCP arrays by testing the conditions of Corollary~\ref{corollary:1}. Based on this idea, we introduce below a linear algorithm for checking $sa$ and $lcp$ on random access models.
 
 \begin{itemize}
 	\item [S1]
 	Scan $x$ rightward with $i$ increasing from $0$ to $n - 1$. For each scanned $x[i]$, iteratively compute ${\sf fp}(0, i)$ and set $fp[i] = {\sf fp}(0, i)$.
 	
 	\item [S2]
-	Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $sa[i]$ and $lcp[i]$, let $u = sa[i], v = lcp[i], w = sa[i - 1]$ and performs the following three substeps in sequence:
+	Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $sa[i]$ and $lcp[i]$, let $u = sa[i], v = lcp[i], w = sa[i - 1]$ and performs substeps (a)-(c) sequentially:
 	
 	\begin{itemize}
 		\item [(a)] 
@@ -177,90 +177,101 @@ Following the ideas in Section~\ref{sec:method1:idea}, we can check $sa$ and $lc
 	
 \end{itemize}
 
-Two zero-initialized arrays $fp$ and $mk$ are employed to faciliate the checking process, where the former is for storing the fingerprints of all the prefixes of $x$ and the latter is for indicating the existences of $\{0, 1, ..., n - 1\}$ in $sa$. This procedure consumes $\mathcal{O}(n)$ time and space when running in internal memory. However, if the input can not be wholly accommodated into RAM, it performs random I/O accesses frequently to visit $sa$ and $lcp$ in external memory during the execution of S2, leading to a large performance degradation. 
-
-In what follows, we describe an external-memory algorithm for checking the conditions of Corollary~\ref{corollary:1} in a disk-friendly way. As shown in Fig.~\ref{fig:xxx}, this algorithm mainly consists of three steps and each step is explained as following.
+Two zero-initialized arrays $fp$ and $mk$ are employed to faciliate the checking process, where the former is for storing the fingerprints of all the prefixes in $x$ and the latter is for checking the existence of $\{0, 1, ..., n - 1\}$ in $sa$. Clearly, this algorithm consumes $\mathcal{O}(n)$ time and space when running in internal memory. However, if the input can not be wholly accommodated into RAM, it may suffer from a performance degradation due to frequent random I/O operations for reading elements of $x$, $sa$ and $lcp$ from external memory during the execution of S2. 
 
 \begin{algorithm*}
 	
-	\SetAlgoNoLine
-	
-	\KwIn{$x$, $sa$, $lcp$}
-	
-	Step 1. Sort $sa[i]$ by $i$ for all $i \in [0, n)$. 
-	
-	Step 2.  
-	
-	ompute ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ and retrieve $x[sa[i] + lcp[i]]$ for $i \in [1, n)$.
-	
-	Step 2. Compute ${\sf fp}(sa[i], sa[i] + lcp[i + 1] - 1)$ and retrieve $x[sa[i] + lcp[i + 1]]$ for $i \in [0, n - 1)$.
-	
-	Step 3. Check if ${\sf fp}(sa[i], sa[i] + lcp[i] - 1) = {\sf fp}(sa[i - 1], sa[i - 1] + lcp[i] - 1)$ and $x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$ for $i \in [1, n)$.
-	
-	\caption{The algorithmic framework for Method A.}
+	\caption{The Algorithm for checking the conditions of Corollary~\ref{corollary:1}.}
 	
 	\label{alg:1}
 	
-\end{algorithm*}
+	%\SetAlgoNoLine
 	
-	We design Algorithm~\ref{alg:1} to check the conditions in Corollary~\ref{corollary:1}. This algorithm mainly consists of three steps and each step is explained detailedly in the following paragraphs.
+	\KwIn{$x$, $sa$, $lcp$}
 	
-	\vspace{1ex} \noindent {\bf Step 1.} The first step can be divided into three substeps:
+	$ST_1$ := $[(sa[i], i, null) | i \in [0, n)]$. \label{alg:1:a}
 	
-	\begin{enumerate}
+	$ST_2$ := $[(sa[i] + lcp[i + 1], i, null, null) | i \in [0, n - 1)]$.
 		
-		\item [(1a)]
-		Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $\langle sa[i], lcp[i] \rangle$, create an AITEM with $idx = i, pos = sa[i], lv = lcp[i]$. Sort the items by $pos$ in ascending order.
-		
-		\item [(1b)]
-		Scan $x$ rightward with $p$ increasing from $0$ to $n - 1$. For each scanned $x[p]$, compute ${\sf fp}(0, p)$ and update all the AITEMs with $pos = p + 1$ by setting $fp = {\sf fp}(0, p)$ and $pos = pos + lv$. Sort the items by $pos$ in ascending order.
-		
-		\item [(1c)]
-		Scan $x$ rightward with $p$ increasing from $0$ to $n - 1$. For each scanned $x[p]$, compute ${\sf fp}(0, p)$ and update all the AITEMs with $pos = p + 1$ by setting $fp = {\sf fp}(0, p) - fp \cdot {\delta}^{lv} \, mod \, L $ and $ch = x[p + 1]$. Sort the items by $idx$ in ascending order.
-		
-	\end{enumerate}
+	$ST_3$ := $[(sa[i] + lcp[i], i, null, null) | i \in [1, n)]$.
 	
-	An auxiliary data structure called AITEM is introduced to facilitate the computation of fingerprints, where each AITEM is a 5-tuple $\langle idx, pos, lv, ch, fp\rangle$ for a suffix. To enable fast calculation of ${\sf fp}(sa[i] - 1)/{\sf fp}(sa[i] + lcp[i] - 1)$ for all $i \in [1, n)$, step 2 first sorts the AITEMs by $pos$ and then sequentially retrieves ${\sf fp}(0, pos)$ for each item by iteratively computing $\{{\sf fp}(0, 0), {\sf fp}(0, 1), \dots, {\sf fp}(0, n - 1) \}$ according to Formula~\ref{formula:1}. Given that ${\sf fp}(sa[i] - 1)$ and ${\sf fp}(sa[i] + lcp[i] - 1)$ are already known, ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ is obtained according to Formula~\ref{formula:2}.
+	sort tuples in $ST_1$, $ST_2$ and $ST_3$ by 1st component. \label{alg:1:b}
+	
+	$fp := 0$  \label{alg:1:c}
+	
+	\For{$i \in [0, n]$}{
+		
+		\If{$ST_1.{\sf notEmpty}()$ {\sf and} $ST_1.{\sf top}().1st = i$}{~\label{alg:1:h}
+				
+			$e := ST_1.{\sf top}()$, $ST_1.{\sf pop}()$, $e.3rd := fp$, $ST_1'.{\sf push}(e)$
+		}
+		\Else{
+		
+			\Return false \hspace{5cm} // condition (1) is violated
+		}~\label{alg:1:i}
+	
+		\While{$ST_2.{\sf notEmpty}()$ {\sf and} $ST_2.{\sf top}().1st = i$}{ 
+	
+			
+			$e := ST_2.{\sf top}()$, $ST_2.{\sf pop}()$, $e.3rd := fp$, $e.4th := x[i]$, $ST_2'.{\sf push}(e)$ 
+		}	
+	
+		\While{$ST_3.{\sf notEmpty}()$ {\sf and} $ST_3.{\sf top}().1st = i$}{ 
+			
+			$e := ST_3.{\sf top}()$, $ST_3.{\sf pop}()$, $e.3rd := fp$, $e.4th := x[i]$, $ST_3'.{\sf push}(e)$ 
+		}	
+	
+		$fp := fp \cdot \delta + x[i] \! \mod \! P$
+	} \label{alg:1:d}
+	
+	sort tuples in $ST_1$, $ST_2$ and $ST_3$ by 2nd component.  \label{alg:1:e}
+	
+	\For {$i \in [1, n - 1)$}{  \label{alg:1:f}
+		
+		$fp_1 := ST_1'.{\sf top}().3rd$, $ST_1'.{\sf pop}()$, $fp_2 := ST_2'.{\sf top}().3rd$, $ch_1 := ST_2'.{\sf top}().4th$, $ST_2'.{\sf pop}()$
+		
+		$\hat{fp_1} = fp2 - fp1 \cdot \delta^{lcp[i]} \! \mod \! P$ \label{alg:1:j}
+	
+	 	$fp_1 := ST_1'.{\sf top}().3rd$, $fp_3 := ST_2'.{\sf top}().3rd$, $ch_2 := ST_3'.{\sf top}().4th$, $ST_3'.{\sf pop}()$
+		
+		$\hat{fp_2} = fp3 - fp1 \cdot \delta^{lcp[i]} \! \mod \! P$	\label{alg:1:k}
+		
+		\If{$\hat{fp_1} \ne \hat{fp_2}$ {\sf or} $ch_1 \le ch_2$}{
+			
+			\Return false \hspace{5cm} // condition (2) or (3) is violated
+		}	
+	} \label{alg:1:g}
 
-	Notice that all the AITEMs are sorted by the starting positions of the corresponding suffixes in substep (1a). Thus, we check condition (1) of Corollary~\ref{corollary:1} during the time when sequentially accessing the items in substep (1b).
+	\Return true
 	
-	\vspace{1ex} \noindent {\bf Step 2.} This step computes ${\sf fp}(sa[i], sa[i] + lcp[i + 1] - 1)$ for $i \in [0, n - 1)$ using the following three substeps:
+\end{algorithm*}
+
+
+We propose Algorithm~\ref{alg:1} to perform the checking process in an I/O friendly way, which conducts external-memory sorts to avoid random accesses to external disks. 
+At the very beginning, the algorithm first scans $sa$ and $lcp$ to produce $ST_1, ST_2, ST_3$ and sorts the tuples of them by 1st component in ascending order (lines~\ref{alg:1:a}-\ref{alg:1:b}). 
+Then, it computes the fingerprints of all the prefixes according to Formulas~\ref{formula:1}-\ref{formula:2} and assign them to the sorted tuples in lines~\ref{alg:1:c}-\ref{alg:1:d} as following: when finished computing ${\sf fp}(0, i - 1)$, extract each tuple $e$ with $e.1st = i$ from $ST_1, ST_2, ST_3$  and update them with ${\sf fp}(0, i - 1)$ and $x[i]$ (if required), where the tuples are forwarded to $ST_1', ST_2', ST_3'$ after updating and sorted back to their original order (line~\ref{alg:1:e}). 
+During the process, we determine whether or not the 1st components of all the tuples in $ST_1$ consistute a permutation of $\{0, 1, ..., n - 1\}$ to test the first condition of Corollary~\ref{corollary:1} (lines~\ref{alg:1:h}-\ref{alg:1:i}). 
+Finally, it repeatedly retrieves the top tuples from $ST_1', ST_2', ST_3'$ and applies Formulas~\ref{formula:3} to compute the fingerprints of two substrings specified by their 1st components for ensuring the satisfaction of conditions (2)-(3). A point to be explained here is how to compute $\delta^{lcp[i]}$ in lines~\ref{alg:1:j} and~\ref{alg:1:k}. Let $e := lcp[i]$, our method first decomposes $e$ into $\Sigma_{i = 0}^{\lceil \log2^n \rceil}{k_i \cdot 2^i}$ and then computes $\Pi_{i = 0}^{\lceil \log2^n \rceil}{\delta}^{k_i \cdot 2^i}$ to obtain $\delta^{e}$, where $k_i \in \{0, 1\}$. Following this way, the answer can be returned in $\mathcal{O}(\lceil \log2^n \rceil)$ time using $\mathcal{O}(\lceil \log2^n \rceil)$ space for storing $\{{\delta}^{1}, {\delta}^{2}, \dots, {\delta}^{2^{\lceil \log2^n \rceil}} \}$. 
+
+
+
+\subsection{Analysis} \label{sec:method1:analysis}
+
+Algorithm~\ref{alg:1} performs multiple scans and sorts for arrays of $n$ fixed-size tuples using external memory. Consider an external memory model with RAM size $M$, disk size $D$ and block size $B$, all are in words, then the time and I/O complexities for a scan are $\mathcal{O}(n)$ and $\mathcal{O}(n / B)$, respectively, while those for a sort with an integer key are $\mathcal{O}(n\log_{M/ B}(n / B))$ and $\mathcal{O}((n / B)\log_{M / B}(n / B))$, respectively~\cite{Arge2013}. Besides, the algorithm reaches its peak disk use when sorting tuples in lines~\ref{alg:1:b} and~\ref{alg:1:e}. An optimization for reducing maximum space requirements is to compute the fingeprints indicated by $ST_1, ST_2, ST_3$ separately. This will lead to a small increase in total I/O volume as it needs to compute $\{{\sf fp}(0, 0), {\sf fp}(0, 1), ..., {\sf fp}(0, n - 1)\}$ two more times. 
+
 	
-	\begin{enumerate}
-		
-		\item [(2a)]
-		Scan $sa$ and $lcp$ rightward with $i$ increasing from $0$ to $n - 2$. For each scanned $\langle sa[i], lcp[i + 1] \rangle$, create an AITEM with $idx = i, pos = sa[i], lv = lcp[i + 1]$. Sort the items by $pos$ in ascending order.
-		
-		\item [(2b)]
-		Reuse step (1b) to update and sort AITEMs.
-		
-		\item [(2c)]
-		Reuse step (1c) to update and sort AITEMs.
-		
-	\end{enumerate}
-	
-	The major difference between the first two steps lies in that, the field $lv$ of the AITEMs for ${\sf suf}(sa[i])$ are respectively set as $lcp[i]$ and $lcp[i + 1]$ in substeps (1a) and (2a).
-	
-	
-	\vspace{1ex} \noindent {\bf Step 3.} Let $arrA$ and $arrB$ denote the arrays of AITEMs produced by steps 1 and 2, respectively. Scan $arrA$ and $arrB$ rightward with $i$ increasing from $0$ to $n - 2$. For each pair $\langle arrA[i], arrB[i]\rangle$, check if $arrA[i].fp = arrB[i].fp$ and $arrA[i].ch > arrB[i].ch$ to ensure the correctness of conditions (2)-(3) in Corollary~\ref{corollary:1}.
-	
-	\subsection{Substring Fingerprint} \label{sec:method1:fingerprint}
-	
-	Algorithm~\ref{alg:1} computes ${\sf fp}(i, j)$ from ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ according to Formula~\ref{formula:2}. Let $e$ denote $j - i + 1$, then the coefficient $(\delta^{e} \mod L)$ must be calculated quickly or it will become a performance bottleneck. One approach first decomposes $e$ into $k_1 \cdot m + k_2$ and then computes $\delta^{e}$ by multiplying $\delta^{k_1 \cdot m}$ and $\delta^{k_2}$, where $k_1, k_2$ are integers and $k_1 \in [0, \lceil \frac{n}{m} \rceil], k_2 \in [0, m)$. An alternative first decomposes $e$ into $\Sigma_{i = 0}^{\lceil \log2^n \rceil}{k_i \cdot 2^i}$ and then computes $\Pi_{i = 0}^{\lceil \log2^n \rceil}{\delta}^{k_i \cdot 2^i}$ to obtain $\delta^{e}$, where $k_i \in \{0, 1\}$. The first approach answers in ${O}(1)$ time and consumes $\mathcal{O}(m + \lceil \frac{n}{m} \rceil )$ space to maintain two lookup tables for storing $\{{\delta}^{0}, {\delta}^{m}, \dots, {\delta}^{\lceil \frac{n}{m} \rceil m}\}$ and $\{{\delta}^{0}, {\delta}^{1},\dots,{\delta}^{m - 1} \}$, respectively, while the second approach answers in $\mathcal{O}(\lceil \log2^n \rceil)$ time and consumes $\mathcal{O}(\lceil \log2^n \rceil)$ space to store $\{{\delta}^{1}, {\delta}^{2}, \dots, {\delta}^{2^{\lceil \log2^n \rceil}} \}$. For a better space performance, we adopt the second approach to compute the fingerprints in our implementation for the algorithm.
+\subsection{Example} \label{sec:method1:example}
+
+We demonstrate in this part an example for better understanding. xxx.
 	
 	
-	\subsection{Analysis} \label{sec:method1:analysis}
-	
-	Algorithm~\ref{alg:1} performs multiple scans and sorts for fixed-size objects with integer keys.	Consider an external memory model with RAM size $M$, disk size $D$ and block size $B$, all are in words, then the time and I/O complexities for a scan are $\mathcal{O}(n)$ and $\mathcal{O}(n / B)$, respectively, while those for an integer sort are $\mathcal{O}(n\log_{M/ B}(n / B))$ and $\mathcal{O}((n / B)\log_{M / B}(n / B))$, respectively~\cite{Arge2013}. Besides, the algorithm reaches its peak disk use when sorting $n$ AITEMs in external memory during the second step. Given that each input character occupies $a$ words and each fingerprint occupies $b$ words, the space consumption for each sort is $(a + b + 3)n$ words.
-	
-	\subsection{Example} \label{sec:method1:example}
-	
-	
-	\section{Method B} \label{sec:method2}
-	
-	As we will see from the experimental study in Section~\ref{sec:experiment}, Algorithm~\ref{alg:1} designed by Method A is quite space consuming, the peak disk use is 40 bytes per input character. This motivates us to design a lightweight checker that uses less space. In this section, we propose a method for checking the suffix and LCP arrays using the induced-sorting principle. The experimental results show that Algorithm~\ref{alg:3} designed by this method consumes about 40\% less space than Algorithm~\ref{alg:1} on real-world data.
-	
-	\subsection{Notations} \label{sec:algorithm2:notations}
+\section{Method B} \label{sec:method2}
+
+As will be seen from our experimental study in Section~\ref{sec:experiment}, Algorithm~\ref{alg:1} is quite space consuming, the peak disk use is 40 bytes per input character. This motivates us to design a lightweight checker using less space. In this section, we propose a method for checking the suffix and LCP arrays based on the induced-sorting principle. In comparison with Algorithm~\ref{alg:1}, the algorithm designed by this method only consumes about half space on real-world data sets.
+
+\subsection{Preliminaries} \label{sec:algorithm2:preliminaries}
+
+The induced sorting principle was previously employed to design algorithms on building suffix and LCP arrays in internal and external memory. The basic idea is to induce lexical order and LCP-values of all the suffixes from those of a subset.
 	
 	Assume $x[n - 1]$ is lexicographically the smallest character in $\Sigma$ and appears in $x[0, n)$ only once, we introduce the following notations and symbols for description clarity.
 	
