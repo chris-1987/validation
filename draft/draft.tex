@@ -73,7 +73,7 @@
 Suffix and longest common prefix (LCP) arrays play an important role in various string processing tasks, such as data compression, pattern matching and genome assembly. In dozens of applications, these two data structures are combined to constitute a powerful full-text index for massive data, called enhanced suffix array~\cite{Abouelhodaa2004}, which is more space efficient than suffix tree and applicable to emulating any searching functionalities provided by the latter in the same time complexity. During the past decades, much effort has been put on the development of designing efficient suffix array construction algorithms~(SACAs). Specifically, the first internal-memory algorithm for building SA was introduced in~\cite{Manber1993}. From then on, a plethora of SACAs have been proposed on different computation models, e.g., internal memory~\cite{Karkkainen2003, Ko2003, Kim2003, Nong11}, external memory~\cite{Dementiev2008, Ferragina2012, Manzini2004, Bingmann12, Karkkainen2014, Nong14, Nong15} and shared memory models~\cite{Osipov2012, Deo2013, Wang2015, Karkkainen2015}. In respect of the design on LCP-array construction algorithms~(LACAs), the existing works can be classified into two categories, where the algorithms of the first category compute the suffix and LCP arrays in the same time~\cite{Fischer11, Bingmann12, Flick2015} and that of the second category take the suffix array (SA) and/or Burrows-Wheeler transform (BWT) as input to facilitate the computation~\cite{Kasai2001,Karkkainen2009, Fischer11, Puglisi2008, Puglisi2008, Deo2013, Karkkainen2016}.
 
 
-While the study for efficient construction of suffix and LCP arrays is evolving, the programs implementing the proposed algorithms are commonly provided ``as is", with the purpose only for the performance evaluation experiemnts of the articles where they are reported. That is, these programms give no guarantee that they have correctly implemented the proposed algorithms. The programs for recently proprosed algorithms are becoming much more complicated than before, casuing more difficulties for program verifying and debugging\footnote{In our studies before, we have exprienced problems caused by bugs of the exisitng programs.}. As a common practice, a suffix or LCP array checker is also provided for verifying the correctness of a constructed array. For example, such a checker is provided in the software packages eSAIS \cite{xxx} (DC3, pScan and etc? more and better) for constructing suffix and/or LCP arrays. In addition to help avoid implementation bugs, a checker is also demanded for an array constructed by a probabilistic algorithm \cite{xxx}. In this case, the array is correct with a probability and hence must be verified by a checker to ensure its correctness.
+While the study for efficient construction of suffix and LCP arrays is evolving, the programs implementing the proposed algorithms are commonly provided ``as is", with the purpose only for the performance evaluation experiemnts of the articles where they are reported. That is, these programms give no guarantee that they have correctly implemented the proposed algorithms. The programs for recently proprosed algorithms are becoming much more complicated than before, casuing more difficulties for program verifying and debugging\footnote{In our studies before, we have exprienced problems caused by bugs of the exisitng programs.}. As a common practice, a suffix or LCP array checker is also provided for verifying the correctness of a constructed array. For example, such a checker is provided in the software packages eSAIS \cite{xxx} (DC3, pScan and etc? more and better) for constructing suffix and/or LCP arrays. In addition to help avoid implementation bugs, a checker is also demanded for an array constructed by a probabilistic algorithm \cite{Bille2013}. In this case, the array is correct with a probability and hence must be verified by a checker to ensure its correctness.
 
 As far as we know, the work presented in~\cite{Burkhardt2003} is the only SA checking method that can be found in the existing literature, and no efficient approach for the LCP-array verification has been reported yet. In particular, there is currently no reported solution that can check both the suffix and the LCP arrays in external memory. This motivates our work here to design efficient external memory algorithms for checking the suffix and LCP arrays of massive data.
 	
@@ -179,71 +179,69 @@ Section~\ref{sec:method1:idea} indicates that we can perform verification for th
 
 Two zero-initialized arrays $fp$ and $mk$ are employed to faciliate the checking process, where the former is for storing the fingerprints of all the prefixes in $x$ and the latter is for checking the existence of $\{0, 1, ..., n - 1\}$ in $sa$. Clearly, this algorithm consumes $\mathcal{O}(n)$ time and space when running in internal memory. However, if the input can not be wholly accommodated into RAM, it may suffer from a performance degradation due to frequent random I/O operations for reading elements of $x$, $sa$ and $lcp$ from external memory during the execution of S2. 
 
+
+\SetKwProg{Fn}{Function}{}{}
+
 \begin{algorithm*}
-	
+
 	\caption{The Algorithm for checking the conditions of Corollary~\ref{corollary:1}.}
 	
 	\label{alg:1}
 	
 	%\SetAlgoNoLine
+	\Fn{{\sf CheckByFP}($x$, $sa$, $lcp$, $n$)}{
 	
-	\KwIn{$x$, $sa$, $lcp$}
-	
-	$ST_1$ := $[(sa[i], i, null) | i \in [0, n)]$. \label{alg:1:a}
-	
-	$ST_2$ := $[(sa[i] + lcp[i + 1], i, null, null) | i \in [0, n - 1)]$.
+		$ST_1$ := $[(sa[i], i, null) | i \in [0, n)]$. \label{alg:1:a}
 		
-	$ST_3$ := $[(sa[i] + lcp[i], i, null, null) | i \in [1, n)]$.
-	
-	sort tuples in $ST_1$, $ST_2$ and $ST_3$ by 1st component. \label{alg:1:b}
-	
-	$fp := 0$  \label{alg:1:c}
-	
-	\For{$i \in [0, n]$}{
+		$ST_2$ := $[(sa[i] + lcp[i + 1], i, null, null) | i \in [0, n - 1)]$.
+			
+		$ST_3$ := $[(sa[i] + lcp[i], i, null, null) | i \in [1, n)]$.
 		
-		\If{$ST_1.{\sf notEmpty}()$ {\sf and} $ST_1.{\sf top}().1st = i$}{~\label{alg:1:h}
+		sort tuples in $ST_1$, $ST_2$ and $ST_3$ by 1st component. \label{alg:1:b}
+		
+		$fp := 0$  \label{alg:1:c}
+		
+		\For{$i \in [0, n]$}{
+			
+			\If{$ST_1.{\sf notEmpty}()$ {\sf and} $ST_1.{\sf top}().1st = i$}{~\label{alg:1:h}
+				$e := ST_1.{\sf top}()$, $ST_1.{\sf pop}()$, $e.3rd := fp$, $ST_1'.{\sf push}(e)$
+			}
+			\Else{
+				\Return false \hspace{5cm} // condition (1) is violated
+			}~\label{alg:1:i}
+			\While{$ST_2.{\sf notEmpty}()$ {\sf and} $ST_2.{\sf top}().1st = i$}{ 
 				
-			$e := ST_1.{\sf top}()$, $ST_1.{\sf pop}()$, $e.3rd := fp$, $ST_1'.{\sf push}(e)$
-		}
-		\Else{
+				$e := ST_2.{\sf top}()$, $ST_2.{\sf pop}()$, $e.3rd := fp$, $e.4th := x[i]$, $ST_2'.{\sf push}(e)$ 
+			}	
 		
-			\Return false \hspace{5cm} // condition (1) is violated
-		}~\label{alg:1:i}
-	
-		\While{$ST_2.{\sf notEmpty}()$ {\sf and} $ST_2.{\sf top}().1st = i$}{ 
-	
+			\While{$ST_3.{\sf notEmpty}()$ {\sf and} $ST_3.{\sf top}().1st = i$}{ 
+				
+				$e := ST_3.{\sf top}()$, $ST_3.{\sf pop}()$, $e.3rd := fp$, $e.4th := x[i]$, $ST_3'.{\sf push}(e)$ 
+			}	
+		
+			$fp := fp \cdot \delta + x[i] \! \mod \! P$
+		} \label{alg:1:d}
+		
+		sort tuples in $ST_1$, $ST_2$ and $ST_3$ by 2nd component.  \label{alg:1:e}
+		
+		\For {$i \in [1, n - 1)$}{  \label{alg:1:f}
 			
-			$e := ST_2.{\sf top}()$, $ST_2.{\sf pop}()$, $e.3rd := fp$, $e.4th := x[i]$, $ST_2'.{\sf push}(e)$ 
-		}	
-	
-		\While{$ST_3.{\sf notEmpty}()$ {\sf and} $ST_3.{\sf top}().1st = i$}{ 
+			$fp_1 := ST_1'.{\sf top}().3rd$, $ST_1'.{\sf pop}()$, $fp_2 := ST_2'.{\sf top}().3rd$, $ch_1 := ST_2'.{\sf top}().4th$, $ST_2'.{\sf pop}()$
 			
-			$e := ST_3.{\sf top}()$, $ST_3.{\sf pop}()$, $e.3rd := fp$, $e.4th := x[i]$, $ST_3'.{\sf push}(e)$ 
-		}	
-	
-		$fp := fp \cdot \delta + x[i] \! \mod \! P$
-	} \label{alg:1:d}
-	
-	sort tuples in $ST_1$, $ST_2$ and $ST_3$ by 2nd component.  \label{alg:1:e}
-	
-	\For {$i \in [1, n - 1)$}{  \label{alg:1:f}
+			$\hat{fp_1} = fp2 - fp1 \cdot \delta^{lcp[i]} \! \mod \! P$ \label{alg:1:j}
 		
-		$fp_1 := ST_1'.{\sf top}().3rd$, $ST_1'.{\sf pop}()$, $fp_2 := ST_2'.{\sf top}().3rd$, $ch_1 := ST_2'.{\sf top}().4th$, $ST_2'.{\sf pop}()$
-		
-		$\hat{fp_1} = fp2 - fp1 \cdot \delta^{lcp[i]} \! \mod \! P$ \label{alg:1:j}
-	
-	 	$fp_1 := ST_1'.{\sf top}().3rd$, $fp_3 := ST_2'.{\sf top}().3rd$, $ch_2 := ST_3'.{\sf top}().4th$, $ST_3'.{\sf pop}()$
-		
-		$\hat{fp_2} = fp3 - fp1 \cdot \delta^{lcp[i]} \! \mod \! P$	\label{alg:1:k}
-		
-		\If{$\hat{fp_1} \ne \hat{fp_2}$ {\sf or} $ch_1 \le ch_2$}{
+		 	$fp_1 := ST_1'.{\sf top}().3rd$, $fp_3 := ST_2'.{\sf top}().3rd$, $ch_2 := ST_3'.{\sf top}().4th$, $ST_3'.{\sf pop}()$
 			
-			\Return false \hspace{5cm} // condition (2) or (3) is violated
-		}	
-	} \label{alg:1:g}
+			$\hat{fp_2} = fp3 - fp1 \cdot \delta^{lcp[i]} \! \mod \! P$	\label{alg:1:k}
+			
+			\If{$\hat{fp_1} \ne \hat{fp_2}$ {\sf or} $ch_1 \le ch_2$}{
+				
+				\Return false \hspace{5cm} // condition (2) or (3) is violated
+			}	
+		} \label{alg:1:g}
 
-	\Return true
-	
+		\Return true
+	}
 \end{algorithm*}
 
 
@@ -257,7 +255,7 @@ Finally, it repeatedly retrieves the top tuples from $ST_1', ST_2', ST_3'$ and a
 
 \subsection{Analysis} \label{sec:method1:analysis}
 
-Algorithm~\ref{alg:1} performs multiple scans and sorts for arrays of $n$ fixed-size tuples using external memory. Consider an external memory model with RAM size $M$, disk size $D$ and block size $B$, all are in words, then the time and I/O complexities for a scan are $\mathcal{O}(n)$ and $\mathcal{O}(n / B)$, respectively, while those for a sort with an integer key are $\mathcal{O}(n\log_{M/ B}(n / B))$ and $\mathcal{O}((n / B)\log_{M / B}(n / B))$, respectively~\cite{Arge2013}. Besides, the algorithm reaches its peak disk use when sorting tuples in lines~\ref{alg:1:b} and~\ref{alg:1:e}. An optimization for reducing maximum space requirements is to compute the fingeprints indicated by $ST_1, ST_2, ST_3$ separately. This will lead to a small increase in total I/O volume as it needs to compute $\{{\sf fp}(0, 0), {\sf fp}(0, 1), ..., {\sf fp}(0, n - 1)\}$ two more times. 
+Algorithm~\ref{alg:1} performs multiple scans and sorts for arrays of $n$ fixed-size tuples using external memory. Consider an external memory model with RAM size $M$, disk size $D$ and block size $B$, all are in words, then the time and I/O complexities for a scan are $\mathcal{O}(n)$ and $\mathcal{O}(n / B)$, respectively, while those for a sort with an integer key are $\mathcal{O}(n\log_{M/ B}(n / B))$ and $\mathcal{O}((n / B)\log_{M / B}(n / B))$, respectively~\cite{Arge2013}. Besides, the algorithm reaches its peak disk use when sorting tuples in lines~\ref{alg:1:b} and~\ref{alg:1:e}. An optimization for reducing maximum space requirements is to compute the fingeprints indicated by $ST_1, ST_2, ST_3$ separately. This will lead to a small increase in total I/O volume as it needs to compute $\{{\sf fp}(0, 0), {\sf fp}(0, 1), ..., {\sf fp}(0, n - 1)\}$ two more times.
 
 	
 \subsection{Example} \label{sec:method1:example}
@@ -267,35 +265,115 @@ We demonstrate in this part an example for better understanding. xxx.
 	
 \section{Method B} \label{sec:method2}
 
-As will be seen from our experimental study in Section~\ref{sec:experiment}, Algorithm~\ref{alg:1} is quite space consuming, the peak disk use is 40 bytes per input character. This motivates us to design a lightweight checker using less space. In this section, we propose a method for checking the suffix and LCP arrays based on the induced-sorting principle. In comparison with Algorithm~\ref{alg:1}, the algorithm designed by this method only consumes about half space on real-world data sets.
+As will be seen from our experimental study in Section~\ref{sec:experiment}, Algorithm~\ref{alg:1} is quite space consuming, its peak disk use is 40 bytes per input character. In this section, we describe an alterative based on the induced-sorting principle, where the algorithm designed by this method only takes half space on real-world datasets in comparison with Algorithm~\ref{alg:1}.
 
-\subsection{Preliminaries} \label{sec:algorithm2:preliminaries}
+\subsection{Preliminaries} \label{sec:method2:preliminaries}
 
-The induced sorting principle was previously employed to design algorithms on building suffix and LCP arrays in internal and external memory. The basic idea is to induce lexical order and LCP-values of all the suffixes from those of a subset.
+Before our presentation, we first introduce some notations for description convenience.
+
+{\em L-type/S-type/LMS character and suffix.} All the characters in $x$ are classified into three types, namely L-, S- and S*-type. Detailedly, $x[i]$ is L-type if (1) $i = n - 1$ or (2) $x[i] > x[i + 1]$ or (3) $x[i] = x[i + 1]$ and $x[i + 1]$ is L-type; otherwise, $x[i]$ is S-type. Further, if $x[i]$ and $x[i + 1]$ are S- and L-type respectively, then $x[i]$ is also an S*-type character. Moreover, the type of a suffix is the same as that of its heading character.
+
+{\em Buckets.} Suppose $sa$ is correct, then suffixes in $sa$ are naturally partitioned into multiple buckets and those with an identical heading character are grouped into one bucket occupying a contiguous interval. Further, a bucket can be divided into two parts, where the left and right part contain L- and S-type suffixes, respectively. For short, we use ${\sf sa\_bkt}(c)$ to denote the bucket storing suffixes starting with $c$ and ${\sf sa\_bkt_L}(c)/{\sf sa\_bkt_S}(c)$ to denote its left/right sub-bucket. Accordingly, $lcp$ can be decomposed into multiple buckets as well, where ${\sf lcp\_bkt}(c)/{\sf lcp\_bkt_L}(c)/{\sf lcp\_bkt_S}(c)$ store the LCP-values of suffixes in ${\sf sa\_bkt}(c)/{\sf sa\_bkt_L}(c)/{\sf sa\_bkt_S}(c)$ and their left lexical neighbors.
+
+{\em $sa^*$ and $lcp^*$.} Suppose the total number of S*-type suffixes in $x$ is $n_1$, then $sa^*[0, n_1)$ and $lcp^*[0, n_1)$ indicate their lexical order and the LCP-values, where $x[sa^*[i]]$ is the heading character of the $(i + 1)$-th smallest S*-type suffix.
+
+
+\subsection{Idea} \label{sec:method2:idea}
+
+The induced sorting~(IS) principle has been successfully used to design algorithms for building suffix and LCP arrays in both internal and external memory. These algorithms mainly consist of a reduction phase for computing $sa^*$ and $lcp^*$ followed by an induction phase for inducing $sa$ and $lcp$ from $sa^*$ and $lcp^*$. In other words, suppose $sa^*$ and $lcp^*$ are already known, we can directly compute the suffix and LCP arrays by calling the inducing process of an existing IS-based construction algorithm. This enlightens us to use the following conditions for verification:
 	
-	Assume $x[n - 1]$ is lexicographically the smallest character in $\Sigma$ and appears in $x[0, n)$ only once, we introduce the following notations and symbols for description clarity.
+\begin{Lemma} \label{lemma:2}
+Both $sa[0, n)$ and $lcp[0, n)$ are correct if and only if the conditions below are satisfied:
+
+\begin{enumerate}[(1)]
+	\item
+	$sa^*$ and $lcp^*$ are both correct.
+	\item
+	$sa = sa'$ and $lcp = lcp'$, where $sa'$ and $lcp'$ are induced from $sa^*$ and $lcp^*$ by calling the inducing procedure of an existing IS-based construction algorithm.
+\end{enumerate}
+\end{Lemma}
+
+Similar to Section~\ref{sec:method1:idea}, we draw the conclusion in Corollary~\ref{corollary:2} by using the fingerprinting techinque to check condition (1) in Lemma~\ref{lemma:2}. 
+
+\begin{Corollary} \label{corollary:2}
+Both $sa[0, n)$ and $lcp[0, n)$ are correct with a high probability given the following conditions, for $i \in [0, n)$, $j, k \in [1, n_1)$ and $j \ne k$:
 	
-	{\em L-type/S-type/LMS character and suffix.} All the characters in $x$ are classified into three different types, namely L-type, S-type and LMS. In details, $x[i]$ is S-type if (1) $i = n - 1$ or (2) $x[i] < x[i + 1]$ or (3) $x[i] = x[i+1]$ and $x[i+1]$ is S-type; otherwise, $x[i]$ is L-type. In particular, if $x[i - 1]$ and $x[i]$ are respectively L-type and S-type, then $x[i]$ is LMS. Furthermore, ${\sf suf}(i)$ is L-type, S-type or LMS if $x[i]$ is L-type, S-type or LMS, respectively.
+\begin{enumerate}[(1)]
+	\item 
+	$sa^*[j] \ne sa^*[k]$. 
+	\item
+	${\sf fp}(sa^*[j], sa^*[j] + lcp^*[j] - 1) = {\sf fp}(sa^*[k - 1], sa^*[k - 1] + lcp^*[k] - 1)$.
+	\item
+	$x[sa^*[j] + lcp^*[j]] > x[sa^*[k - 1] + lcp^*[k]]$.
+	\item 
+	$sa[i] = sa'[i]$ and $lcp[i] = lcp'[i]$, where $sa'$ and $lcp'$ are induced from $sa^*$ and $lcp^*$ by calling the inducing procedure of an existing IS-based construction algorithm.
+\end{enumerate}
+
+\end{Corollary}
+
+
+\subsection{Algorithm} \label{sec:method2:algorithm}
+
+The algorithm for checking Corollary~\ref{corollary:2} 	
+The following procedure can b
+For checking the conditions in \ref{corollary:2}, we
+
+\begin{algorithm*}
 	
-	{\em L-type/S-type/LMS substring.} Suppose $x[j]$ is LMS and no characters in $x[i + 1, j - 1]$ are LMS, then substring $x[i, j]$ is an L-type, S-type or LMS substring if $x[i]$ is L-type, S-type or LMS, respectively.
+	\caption{The Algorithm for checking $sa^*$ and $lcp^*$.}
 	
-	{\em Suffix buckets.} Suffixes in $sa$ are naturally grouped into multiple buckets, where each bucket occupies a contiguous interval of $sa$ and contains all the suffixes with an identical heading character. Besides, a bucket can be further divided into two parts, where the left/right part is a subbucket containing only L-type/S-type suffixes. For short, we use ${\sf sa\_bkt}(c)$ to denote the bucket containing all the suffixes with a heading character $c$, and ${\sf sa\_bkt_L}(c)/{\sf sa\_bkt_S}(c)$ to denote the left/right subbucket in ${\sf sa\_bkt}(c)$.
+	\label{alg:2}
 	
-	{\em LCP buckets.} Suppose ${\sf sa\_bkt}(c)$ is a suffix bucket ranging from $sa[i]$ to $sa[j]$, then $lcp[i, j]$ is the corresponding LCP bucket, denoted by ${\sf lcp\_bkt}(c)$, and it can be further divided into two subbuckets ${\sf lcp\_bkt_L}(c)$ and ${\sf lcp\_bkt_S}(c)$ according to ${\sf sa\_bkt_L}(c)$ and ${\sf sa\_bkt_S}(c)$.
+	%\SetAlgoNoLine
 	
-	{\em Character repetition count.} Suppose $x[i] = x[i + 1] = \dots = x[j]$ and $x[j] \ne x[j + 1]$, then $j - i + 1$ is the number of successive repetitions for $x[i]$. Let ${\sf rep}(i)$ denote the value.
+	\KwIn{$x$, $sa$, $lcp$, $n$}
 	
+	$ST_1$ := $[(sa[i], i) | i \in [0, n)]$ \label{alg:2:a}
+		
+	sort tuples in $ST_1$ by 1st component \label{alg:2:b}
 	
-	{\em Inverse suffix array.} The inverse suffix array $isa$ satisfies that $isa[sa[i]] = i$ for $i \in [0, n)$.
+	$j := 0$
 	
-	{\em Reduced string.} The reduced string $x_1$ records the names of LMS suffixes, where each name represents the relative order of the corresponding suffix among all the LMS ones.
+	\For{$i \in (n, 0]$}{
 	
-	{\em Position array.} The position array $pa$ records the starting positions of LMS suffixes.	
+		$e := ST_1.{\sf top}()$, $ST_1.{\sf pop}()$
+		
+		\If{$x[i]$ is S*-type}{
+			
+			$e.1st := j$, $j := j + 1$, $ST_2.{\sf push}(e)$
+		}
+	}
+
+	sort tuples in $ST_2$ by 2nd component
 	
-	{\em Type array.} The type array $t$ records the types of characters in $x$. Let $t[i] = 0$ or $1$ if $x[i]$ is L-type or S-type, respectively.
+	$i := 0, j := 0, lcp_{min} := max\_val$ \hspace{1cm} // use $lcp_{min}$ to trace the LCP-value of two successive S*-type suffixes
 	
-	In addition, we denote the suffix and LCP arrays of LMS suffixes by $sa_{\sf LMS}$ and $lcp_{\sf LMS}$.
+	\While{$ST_2.{\sf NotEmpty()}$}{
 	
+		$e := ST_2.{\sf top}()$, $ST_2.{\sf pop}()$
+	
+		\While {true} {
+			
+			$i:= i + 1$, $lcp_{min} := {\sf min}(lcp_{min}, lcp[i])$
+			
+			\If {$e.2nd = i$} {
+			
+				$sa^*[j] := e.1st$, $lcp^*[j] := lcp_{min}$, $j := j + 1$
+				
+				\textbf{break}
+			}
+		}
+	
+		$lcp_{min} := max\_val$
+	}
+	
+	CheckByFP\_Modified($x, sa^*, lcp^*, n_1$)
+	
+\end{algorithm*}
+
+\end{document}
+
+
 	\subsection{An Overview of Inducing LCP Array} \label{sec:method2:overview}
 	
 	\begin{algorithm*}
@@ -384,16 +462,6 @@ The induced sorting principle was previously employed to design algorithms on bu
 	If the two fingerprints for each bucket are equal, then the condition (2) of Lemma~\ref{lcp:correct} will be seen by the checking process with a high probability.
 	As a result, $lcp$ can be built and probabilistically checked in the same time using this method, for this we have Corollary~\ref{corollary:2}.
 	
-	\begin{Corollary} \label{corollary:2}
-	Given that $sa$ is correct, then $lcp$ is correct with a high probability if and only if these conditions are satisfied for all $c \in \Sigma$:
-		
-		(1) $lcp_{\sf LMS}$ is correct.
-		
-		(2) The fingerprints of $lcp_{\sf L1}(c)$ and $lcp_{\sf L2}(c)$ are equal.
-		
-		(3) The fingerprints of $lcp_{\sf S2}(c)$ and $lcp_{\sf S2}(c)$ are equal.
-		
-	\end{Corollary}
 	
 	For each $c$, $lcp_{\sf L2}(c)/lcp_{\sf S2}(c)$ or $lcp_{\sf L1}(c)/lcp_{\sf S1}(c)$ records the sequences of items in ${\sf lcp\_bkt_L}(c)/{\sf lcp\_bkt_S}(c)$ in their order of being scanned or induced, respectively. We augment S3 and S4 of Algorithm~\ref{alg:2} to compute the fingerprints of these sequences as follows:
 	

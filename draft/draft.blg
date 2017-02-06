@@ -1,11 +1,4 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: draft.aux
-The style file: IEEEtran.bst
-Database file #1: IEEEabrv.bib
-Database file #2: bibfile.bib
-Warning--I didn't find a database entry for "xxx"
--- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
--- http://www.michaelshell.org/tex/ieeetran/bibtex/
--- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-
-Done.
-(There was 1 warning)
+I found no \bibdata command---while reading file draft.aux
+I found no \bibstyle command---while reading file draft.aux
+(There were 2 error messages)
