@@ -144,6 +144,11 @@ S.~J. Puglisi and T.~Andrew, ``{Space-time Tradeoffs for Longest-Common-Prefix
 J.~K\"{a}rkk\"{a}inen and D.~Kempa, ``{Faster External Memory LCP Array
   Construction},'' in \emph{International Proceedings in Informatics}, 2016.
 
+\bibitem{Dementiev08}
+R.~Dementiev, J.~K\"{a}rkk\"{a}inen, J.~Mehnert, and P.~Sanders, ``{Better
+  External Memory Suffix Array Construction},'' \emph{ACM Journal of
+  Experimental Algorithmics}, vol.~12, pp. 3.4:1--3.4:24, August 2008.
+
 \bibitem{Bille2013}
 P.~Bille, J.~Fischer, and et~al., ``{Sparse Suffix Tree construction in Small
   Space},'' in \emph{In proceedings of the International Colloquium on

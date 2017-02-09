@@ -73,7 +73,7 @@
 Suffix and longest common prefix (LCP) arrays play an important role in various string processing tasks, such as data compression, pattern matching and genome assembly. In dozens of applications, these two data structures are combined to constitute a powerful full-text index for massive data, called enhanced suffix array~\cite{Abouelhodaa2004}, which is more space efficient than suffix tree and applicable to emulating any searching functionalities provided by the latter in the same time complexity. During the past decades, much effort has been put on the development of designing efficient suffix array construction algorithms~(SACAs). Specifically, the first internal-memory algorithm for building SA was introduced in~\cite{Manber1993}. From then on, a plethora of SACAs have been proposed on different computation models, e.g., internal memory~\cite{Karkkainen2003, Ko2003, Kim2003, Nong11}, external memory~\cite{Dementiev2008, Ferragina2012, Manzini2004, Bingmann12, Karkkainen2014, Nong14, Nong15} and shared memory models~\cite{Osipov2012, Deo2013, Wang2015, Karkkainen2015}. In respect of the design on LCP-array construction algorithms~(LACAs), the existing works can be classified into two categories, where the algorithms of the first category compute the suffix and LCP arrays in the same time~\cite{Fischer11, Bingmann12, Flick2015} and that of the second category take the suffix array (SA) and/or Burrows-Wheeler transform (BWT) as input to facilitate the computation~\cite{Kasai2001,Karkkainen2009, Fischer11, Puglisi2008, Puglisi2008, Deo2013, Karkkainen2016}.
 
 
-While the study for efficient construction of suffix and LCP arrays is evolving, the programs implementing the proposed algorithms are commonly provided ``as is", with the purpose only for the performance evaluation experiemnts of the articles where they are reported. That is, these programms give no guarantee that they have correctly implemented the proposed algorithms. The programs for recently proprosed algorithms are becoming much more complicated than before, casuing more difficulties for program verifying and debugging\footnote{In our studies before, we have exprienced problems caused by bugs of the exisitng programs.}. As a common practice, a suffix or LCP array checker is also provided for verifying the correctness of a constructed array. For example, such a checker is provided in the software packages eSAIS \cite{xxx} (DC3, pScan and etc? more and better) for constructing suffix and/or LCP arrays. In addition to help avoid implementation bugs, a checker is also demanded for an array constructed by a probabilistic algorithm \cite{Bille2013}. In this case, the array is correct with a probability and hence must be verified by a checker to ensure its correctness.
+While the study for efficient construction of suffix and LCP arrays is evolving, the programs implementing the proposed algorithms are commonly provided ``as is", with the purpose only for the performance evaluation experiemnts of the articles where they are reported. That is, these programms give no guarantee that they have correctly implemented the proposed algorithms. The programs for recently proprosed algorithms are becoming much more complicated than before, casuing more difficulties for program verifying and debugging\footnote{In our studies before, we have exprienced problems caused by bugs of the exisitng programs.}. As a common practice, a suffix or LCP array checker is also provided for verifying the correctness of a constructed array. For example, such a checker is provided in the software packages (like SA-IS~\cite{Nong11}, eSAIS~\cite{Bingmann12} and DC3~\cite{Dementiev08}) for constructing suffix and/or LCP arrays. In addition to help avoid implementation bugs, a checker is also demanded for an array constructed by a probabilistic algorithm~\cite{Bille2013}. In this case, the array is correct with a probability and hence must be verified by a checker to ensure its correctness.
 
 As far as we know, the work presented in~\cite{Burkhardt2003} is the only SA checking method that can be found in the existing literature, and no efficient approach for the LCP-array verification has been reported yet. In particular, there is currently no reported solution that can check both the suffix and the LCP arrays in external memory. This motivates our work here to design efficient external memory algorithms for checking the suffix and LCP arrays of massive data.
 	
@@ -171,14 +171,23 @@ Section~\ref{sec:method1:idea} indicates that we can perform verification for th
 		
 		\item 
 		Check if ${\sf fp}(u, u + v - 1) = {\sf fp}(w, w + v - 1)$ and $x[u + v] > x[w + v]$.
+		
+		\item 
+		Set $mk[sa[0]] = 1$. 
 	\end{enumerate}
 
-	\item [S3] Set $mk[sa[0]] = 1$. Check if $mk[i] = 1$ for all $i \in [0, n)$.
+	\item [S3] Check if $mk[i] = 1$ for all $i \in [0, n)$.
 	
 \end{enumerate}
 
-Two zero-initialized arrays $fp$ and $mk$ are employed to faciliate the checking process, where the former is for storing the fingerprints of all the prefixes in $x$ and the latter is for checking the existence of $\{0, 1, ..., n - 1\}$ in $sa$. Clearly, this algorithm consumes $\mathcal{O}(n)$ time and space when running in internal memory. However, if the input can not be wholly accommodated into RAM, it may suffer from a performance degradation due to frequent random I/O operations for reading elements of $x$, $sa$ and $lcp$ from external memory during the execution of S2. 
+Two zero-initialized arrays $fp$ and $mk$ are used to faciliate the checking process, where the former is for storing the fingerprints of all the prefixes in $x$ and the latter is for checking the existence of $\{0, 1, ..., n - 1\}$ in $sa$. Assume $L = 197$ and $\delta = 101$, we give a small example of S1-S2 in Fig.~\ref{fig:example} for better understanding. Clearly, this algorithm consumes $\mathcal{O}(n)$ time and space when running in internal memory. However, if the input can not be wholly accommodated into RAM, it may suffer from a performance degradation due to frequent random I/O operations for reading elements of $x$, $sa$ and $lcp$ from external memory during the execution of S2. 
 
+\begin{figure*}
+	\centering
+	\label{fig:example}
+	\includegraphics[width = 0.8\textwidth]{example}
+	\caption{An Example for Checking the Suffix and LCP Arrays Using the Karp-Rabin Fingerprinting Functions}	
+\end{figure*}
 
 \SetKwProg{Fn}{Function}{}{}
 
@@ -251,18 +260,12 @@ Then, it computes the fingerprints of all the prefixes according to Formulas~\re
 During the process, we determine whether or not the 1st components of all the tuples in $ST_1$ consistute a permutation of $\{0, 1, ..., n - 1\}$ to test the first condition of Corollary~\ref{corollary:1} (lines~\ref{alg:1:h}-\ref{alg:1:i}). 
 Finally, it repeatedly retrieves the top tuples from $ST_1', ST_2', ST_3'$ and applies Formulas~\ref{formula:3} to compute the fingerprints of two substrings specified by their 1st components for ensuring the satisfaction of conditions (2)-(3). A point to be explained here is how to compute $\delta^{lcp[i]}$ in lines~\ref{alg:1:j} and~\ref{alg:1:k}. Let $e := lcp[i]$, our method first decomposes $e$ into $\Sigma_{i = 0}^{\lceil \log2^n \rceil}{k_i \cdot 2^i}$ and then computes $\Pi_{i = 0}^{\lceil \log2^n \rceil}{\delta}^{k_i \cdot 2^i}$ to obtain $\delta^{e}$, where $k_i \in \{0, 1\}$. Following this way, the answer can be returned in $\mathcal{O}(\lceil \log2^n \rceil)$ time using $\mathcal{O}(\lceil \log2^n \rceil)$ space for storing $\{{\delta}^{1}, {\delta}^{2}, \dots, {\delta}^{2^{\lceil \log2^n \rceil}} \}$. 
 
-
-
-\subsection{Analysis} \label{sec:method1:analysis}
+\subsection{Discussion} \label{sec:method1:discussion}
 
 Algorithm~\ref{alg:1} performs multiple scans and sorts for arrays of $n$ fixed-size tuples using external memory. Consider an external memory model with RAM size $M$, disk size $D$ and block size $B$, all are in words, then the time and I/O complexities for a scan are $\mathcal{O}(n)$ and $\mathcal{O}(n / B)$, respectively, while those for a sort with an integer key are $\mathcal{O}(n\log_{M/ B}(n / B))$ and $\mathcal{O}((n / B)\log_{M / B}(n / B))$, respectively~\cite{Arge2013}. Besides, the algorithm reaches its peak disk use when sorting tuples in lines~\ref{alg:1:b} and~\ref{alg:1:e}. An optimization for reducing maximum space requirements is to compute the fingeprints indicated by $ST_1, ST_2, ST_3$ separately. This will lead to a small increase in total I/O volume as it needs to compute $\{{\sf fp}(0, 0), {\sf fp}(0, 1), ..., {\sf fp}(0, n - 1)\}$ two more times.
+	
+	
 
-	
-\subsection{Example} \label{sec:method1:example}
-
-We demonstrate in this part an example for better understanding. xxx.
-	
-	
 \section{Method B} \label{sec:method2}
 
 Our experimental study in Section~\ref{sec:experiment} shows that Algorithm~\ref{alg:1} is quite space consuming, its peak disk use is 40 bytes per input character. In this section, we describe an alternative based on the induced-sorting principle. Compared with Algorithm~\ref{alg:1}, the algorithm designed by this method only takes half space on real-world datasets.
@@ -380,7 +383,7 @@ Algorithm~\ref{alg:2} checks the conditions in Corollary~\ref{corollary:2} using
 	
 	\For{$i \in [0, n)$}{\label{alg:2:l}
 	
-		\If{$sa[i] \ne sa'[i] || lcp[i] \ne lcp'[i]$}{
+		\If{$sa[i] \ne sa'[i] \parallel lcp[i] \ne lcp'[i]$}{
 		
 			\Return false	// condition (4) is violated
 		}	
@@ -392,112 +395,126 @@ Algorithm~\ref{alg:2} checks the conditions in Corollary~\ref{corollary:2} using
 
 \subsection{Optimization} \label{sec:method2:optimization}
 
-Remember that, Algorithm~\ref{alg:2} produces a copy of the suffix and LCP arrays during the inducing process. Actually, given that $\Sigma$ is of a constant size, we can simply scan $sa/lcp$ to induce and check suffixes/LCP arrays simultaneously without using extra space. The idea is that when a suffix/LCP-value is induced into a suffix/LCP bucket, we directly compare it with the corresponding value in $sa/lcp$. If the latter is equal to the induced one, then we believe it is correct. The key point here is how to retrieve elements from $sa/lcp$ quickly. This can be accomplished by sequential I/O operations if we maintain a file pointer together with a reading buffer for each suffix/LCP sub-bucket. For better understanding, we show more details of the optimized inducing and checking processes below, where $c \in [0, \Sigma)$.
+Algorithm~\ref{alg:2} produces a copy of the suffix and LCP arrays during the inducing process. Actually, given that $\Sigma$ is of a constant size, we can simply scan $sa/lcp$ to induce and check the suffixes/LCP arrays simultaneously without using extra space. The idea is that when a suffix/LCP-value $v_1$ is induced into a suffix/LCP bucket, we directly compare it with the corresponding item $v_2$ in $sa/lcp$. If $v_1 = v_2$, then $v_2$ is correct and can be used to induce subsequent suffixes/LCP-values. The key point here is how to retrieve elements from $sa/lcp$ quickly. This can be accomplished by conducting sequential I/O operations if we maintain a read pointer coupled with a buffer for each suffix/LCP sub-bucket. More details of the optimized inducing and checking processes as below, where $c \in [0, \Sigma)$ and $lp_1, lp_2, sp_1, sp_2$ are read pointer arrays for retrieving items from $sa/lcp$ buckets residing on disks.
 
 \begin{enumerate}
 	\item [S1] 
-	Let $lp1[c]$ and $lp2[c]$ point to the leftmost element of ${\sf sa\_bkt_L}(c)$ and ${\sf lcp\_bkt_L}(c)$, respectively. Induce L-type suffixes and their LCP-values. For each induced L-type suffix $p$ with a heading character $c_0$ and its LCP-value $q$: (1) check $p = lp1[c_0]$ and $q = lp2[c_0]$; (2) let $lp1[c_0]$ and $lp2[c_0]$ point to the next element on the right.
-	\item [S2] 
-	Let $sp1[c]$ and $sp2[c]$ point to the rightmost element of ${\sf sa\_bkt_S}(c)$ and ${\sf lcp\_bkt_S}(c)$, respectively. Induce S-type suffixes and their LCP-values. For each induced S-type suffix $p$ with a heading character $c_0$ and its LCP-value $q$: (1) check $p = sp1[c_0]$ and $q = sp2[c_0]$; (2) let $sp1[c_0]$ and $sp2[c_0]$ point to the next element on the left.
+	Let $lp_1[c]$ and $lp_2[c]$ point to the leftmost element of ${\sf sa\_bkt_L}(c)$ and ${\sf lcp\_bkt_L}(c)$ in $sa$ and $lcp$, respectively. 
+	\item [S2]
+	Induce L-type suffixes and their LCP-values following the induced sorting principle. Meanwhile, for each induced L-type suffix $p$ with a heading character $c_0$ and its LCP-value $q$: (1) check $p = lp_1[c_0]$ and $q = lp_2[c_0]$; (2) let $lp_1[c_0]$ and $lp_2[c_0]$ point to the right neighbor in the same $sa$ and $lcp$ sub-buckets.
+	\item [S3] 
+	Let $sp_1[c]$ and $sp_2[c]$ point to the rightmost element of ${\sf sa\_bkt_S}(c)$ and ${\sf lcp\_bkt_S}(c)$ in $sa$ and $lcp$, respectively. 
+	\item [S4]
+	Induce S-type suffixes and their LCP-values following the induced sorting principle. Meanwhile, for each induced S-type suffix $p$ with a heading character $c_0$ and its LCP-value $q$: (1) check $p = sp_1[c_0]$ and $q = sp_2[c_0]$; (2) let $sp_1[c_0]$ and $sp_2[c_0]$ point to the left neighbor in the same $sa$ and $lcp$ sub-buckets.
 \end{enumerate}
 
-\subsection{Analysis} \label{sec:method2:analysis}
 
-Both Algorithm~\ref{alg:2} can be implemented within sorting complexity. As will be shown in the next section, the space bottleneck of the algorithm occurs when inducing and checking the suffix and LCP arrays in lines~\ref{alg:2:i}-\ref{alg:2:m} due to the space demand for storing BWT. Besides, our implementation of the optimized version has a similar I/O performance to that of Algorithm~\ref{alg:1}, while the former takes only half space in comparison with the latter.
+\subsection{Discussion} \label{sec:method2:discussion}
+
+Both Algorithm~\ref{alg:2} and its optimized version can be implemented within sorting complexity. The space bottleneck occurs when inducing and checking the suffix and LCP arrays. This is because the existing IS-based construction algorithms store BWT to help retrieving preceding characters during the inducing process. We refer the interested readers to~\cite{Karkkainen2013} for more details.
 
 \section{Experiments} \label{sec:experiment}
+
+\subsection{Setup} \label{sec:experiment:setup}
+
+The experimental platform is a work station equipped with an Intel Xeon E3-1220 V2 CPU, 4GiB RAM and 500GiB HD. To achieve high I/O efficiency, we implement the algorithms proposed in the previous sections using the external-memory containers provided by the STXXL library~\cite{Dementiev2007}. All the programs are compiled by gcc/g++ 4.8.4 with -O3 options under ubuntu 14.04 64-bit operating system. For performance analysis, we investigate on real-world datasets in Table~\ref{tbl:1} the following three metrics normalized by the size of input string: 
+
+\begin{itemize}
 	
-	We implement the prototypes of Algorithms~\ref{alg:1} and~\ref{alg:3} in external memory. Our programs for the algorithms are compiled by gcc/g++ 4.8.4 with -O3 options under ubuntu 14.04 64-bit operating system running on a desktop computer, which is equipped with an Intel Xeon E3-1220 V2 CPU, 4GiB RAM and 500GiB HD. The following metrics normalized by the input's size are investigated for performance evaluation on the real-world datasets listed in Table~\ref{tbl:1}:
+	\item RT: running time, in nanoseconds. Measured using the Linux 'time' command.
 	
-	\begin{itemize}
-		
-		\item Running time: the running time in microseconds.
-		
-		\item Peak disk use: the peak use of external memory in bytes.
-		
-		\item I/O volume: the number of bytes read from and written to external memory.
-		
-	\end{itemize}
+	\item PDU: peak disk use of external memory, in bytes.
 	
-	%Table
-	\renewcommand\arraystretch{1.3}
-	\begin{table*}[!t]
-		\caption{Corpus, $n$ in Gi, 1 byte per character}
-		\label{tbl:1}
-		\centering
-		\begin{tabular}{|l|c|c|p{10cm}|}
-			\hline
-			Corpora & \multicolumn{1}{c|}{$n$} & \multicolumn{1}{c|}{$\|\Sigma\|$} & Description \\\hline
-			enwiki & 8 & 256 & The 8-GiB prefix of an XML dump of English Wikipedia, available at \url{https://dumps.wikimedia.org/enwiki}, dated as 16/05/01. \\\hline	
-			uniprot & 2.5 & 96 & UniProt Knowledgebase, available at \url{ftp://ftp.expasy.org/databases/.../complete}, dated as 16/05/11. \\\hline
-			proteins & 1.1 & 27 & Swissprot database, available at \url{http://pizzachili.dcc.uchile.cl/texts/protein}, dated as 06/12/15. \\\hline
-		\end{tabular}
-	\end{table*}
+	\item IOV: amount of data read from and write to external memory, in bytes.
 	
-	\subsection{Results}
-	Some implementation choices in our programs are as follows. First, we use the second approach in Section~\ref{sec:method1:fingerprint} to facilitate the computation of fingerprints in Algorithm~\ref{alg:1}. Second, we employ the external-memory containers~(vector, sorter and priority queue) provided by the STXXL library~\cite{Dementiev2007} to perform scans and sorts on disks. Finally, we use a 32-bit integer to represent each fingerprint and a 40-bit integer to represent each element in the suffix/LCP arrays.
+\end{itemize}
 	
-	For description convenience, we denote the programs for Algorithms~\ref{alg:1} and~\ref{alg:3} by ProgA and ProgB, respectively. As shown in Figure~\ref{fig:performance_analysis}, ProgA runs faster than ProgB on "enwiki", "uniprot" and "proteins" by about 20 percent. The speed gap between them is mainly due to the difference in their I/O efficiencies. Specifically, the I/O volume of ProgB is 190$n$ in average, while that of ProgA is kept at 155$n$ for different corpora. Notice that, although Algorithm~\ref{alg:3} reuses Algorithm~\ref{alg:1} to check $sa_{\sf LMS}$ and $lcp_{\sf LMS}$, the consumption for the verification of $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ in ProgB is at most half of ProgA because the number of LMS suffixes is no more than $\frac{1}{2}n$. It can be also observed that both programs are insensitive to the input corpus in terms of the space requirement. In details, the peak disk uses of ProgA and ProgB are respectively 26$n$ and 40$n$ on the three corpora.
+%Table
+\renewcommand\arraystretch{1.3}
+\begin{table*}[!t]
+	\caption{Corpus, $n$ in Gi, 1 byte per character}
+	\label{tbl:1}
+	\centering
+	\begin{tabular}{|l|c|c|p{10cm}|}
+		\hline
+		Corpora & \multicolumn{1}{c|}{$n$} & \multicolumn{1}{c|}{$\|\Sigma\|$} & Description \\\hline
+		enwiki & 8 & 256 & The 8-GiB prefix of an XML dump of English Wikipedia, available at \url{https://dumps.wikimedia.org/enwiki}, dated as 16/05/01. \\\hline	
+		uniprot & 2.5 & 96 & UniProt Knowledgebase, available at \url{ftp://ftp.expasy.org/databases/.../complete}, dated as 16/05/11. \\\hline
+		proteins & 1.1 & 27 & Swissprot database, available at \url{http://pizzachili.dcc.uchile.cl/texts/protein}, dated as 06/12/15. \\\hline
+	\end{tabular}
+\end{table*}
+
+\subsection{Result} \label{sec:experiments:result}
+
+Fig.~\ref{fig:cmp1} demonstrates the performance comparison between the programs for Algorithms~\ref{alg:1} and~\ref{alg:2}. As depicted, 
+
+
+
+
+
+
+
+The speed gap between them is mainly due to the difference in their I/O efficiencies. Specifically, the I/O volume of ProgB is 190$n$ in average, while that of ProgA is kept at 155$n$ for different corpora. Notice that, although Algorithm~\ref{alg:3} reuses Algorithm~\ref{alg:1} to check $sa_{\sf LMS}$ and $lcp_{\sf LMS}$, the consumption for the verification of $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ in ProgB is at most half of ProgA because the number of LMS suffixes is no more than $\frac{1}{2}n$. It can be also observed that both programs are insensitive to the input corpus in terms of the space requirement. In details, the peak disk uses of ProgA and ProgB are respectively 26$n$ and 40$n$ on the three corpora.
+
+We also investigate the performance trend of the two programs on the prefix of "enwiki" with the length varying on $\{1, 2, 4, 8\}$ GiB. Figure~\ref{fig:performance_analysis2} illustrates that, as the prefix length increases, a performance degradation occurs to ProgB in both time and I/O efficiencies, but the fluctuation of ProgA can be ignored.
+
+%figure
+\begin{figure}[htbp!]
+	\centering
+	\subfigure{
+		\label{subfig:pdu_cmp}
+		\includegraphics[width = 0.8\columnwidth]{pdu_cmp}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:iov_cmp}
+		\includegraphics[width = 0.8\columnwidth]{io_cmp}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:ct_cmp}
+		\includegraphics[width = 0.8\columnwidth]{ct_cmp}
+	}
+	\caption{Experimental results for various corpora.}
+	\label{fig:performance_analysis}
+\end{figure}
+
+%figure
+\begin{figure}[htbp!]
+	\centering
+	\subfigure{
+		\label{subfig:pdu_cmp2}
+		\includegraphics[width = 0.8\columnwidth]{pdu_cmp2}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:iov_cmp2}
+		\includegraphics[width = 0.8\columnwidth]{io_cmp2}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:ct_cmp2}
+		\includegraphics[width = 0.8\columnwidth]{ct_cmp2}
+	}
+	\caption{Experimental results for prefixes of "enwiki".}
+	\label{fig:performance_analysis2}
+\end{figure}
 	
-	We also investigate the performance trend of the two programs on the prefix of "enwiki" with the length varying on $\{1, 2, 4, 8\}$ GiB. Figure~\ref{fig:performance_analysis2} illustrates that, as the prefix length increases, a performance degradation occurs to ProgB in both time and I/O efficiencies, but the fluctuation of ProgA can be ignored.
-	
-	%figure
-	\begin{figure}[htbp!]
-		\centering
-		\subfigure{
-			\label{subfig:pdu_cmp}
-			\includegraphics[width = 0.8\columnwidth]{pdu_cmp}
-		}
-		\hfil
-		\subfigure{
-			\label{subfig:iov_cmp}
-			\includegraphics[width = 0.8\columnwidth]{io_cmp}
-		}
-		\hfil
-		\subfigure{
-			\label{subfig:ct_cmp}
-			\includegraphics[width = 0.8\columnwidth]{ct_cmp}
-		}
-		\caption{Experimental results for various corpora.}
-		\label{fig:performance_analysis}
-	\end{figure}
-	
-	%figure
-	\begin{figure}[htbp!]
-		\centering
-		\subfigure{
-			\label{subfig:pdu_cmp2}
-			\includegraphics[width = 0.8\columnwidth]{pdu_cmp2}
-		}
-		\hfil
-		\subfigure{
-			\label{subfig:iov_cmp2}
-			\includegraphics[width = 0.8\columnwidth]{io_cmp2}
-		}
-		\hfil
-		\subfigure{
-			\label{subfig:ct_cmp2}
-			\includegraphics[width = 0.8\columnwidth]{ct_cmp2}
-		}
-		\caption{Experimental results for prefixes of "enwiki".}
-		\label{fig:performance_analysis2}
-	\end{figure}
-	
-	\subsection{Discussions}
+	\subsection{Discussion}
 	
 	It is identified that both programs heavily rely on the performance of the external memory sorter in use. A potential candidate for improving their speed is to adapt a GPU-based multi-way sorter~(e.g.,~\cite{Leischner2010, Davidson2012}) for sorting massive data using external memory. By the aid of these fast sorting algorithms, the throughputs of the programs are expected to nearly approach the I/O bandwidth. Besides, the first two steps of Algorithm~\ref{alg:1} are independent of each other and thus can be executed in parallel for acceleration. This technique can be also applied to check the suffix and LCP arrays of the LMS suffixes in Algorithm~\ref{alg:3}.
 	
 	Currently, for Algorithm~\ref{alg:3}, step 2 constitutes the space bottleneck. It is worthy of mentioning that this step produces a copy of the suffix and LCP array during the inducing and checking processes. Actually, given that $\Sigma$ is of a constant size and $sa/lcp$ are known already, we can simply scan the input $sa/lcp$ to perform the inducing process and compare each induced suffix/LCP value with that in the given $sa/lcp$ to perform the checking process, resulting in less space consumption. To the end, we must maintain a read pointer for each suffix/LCP bucket in $sa/lcp$ to scan elements in sequence.
 	
-	\section{Conclusions} \label{sec:conclusion}
-	
-	We present two probabilistic methods for checking the suffix and LCP arrays in external memory using the Karp-Rabin fingerprinting function. Both methods can be employed to verify the suffix and LCP arrays after their construction, while the second method can be also integrated into an induced-sorting LACA to perform construction and verification in the same time.
-	
-	We also design the algorithms for these two methods and implement the programs for performance evaluation. An experimental study is conducted to evaluate the time, space and I/O efficiencies.
-	The results indicate that the program for the first method outperforms that for the second method in the running time and I/O volume by about 20 percent, while the peak disk use of the latter is about 26/40 = 0.65 as that of the former. There are still quite some opportunities to improve our algorithms and programs for better performance, for this our work has been undergoing.
-	
-	% Bibliography
-	\bibliographystyle{IEEEtran}
-	\bibliography{IEEEabrv,bibfile}
+\section{Conclusions} \label{sec:conclusion}
+
+In this article, we propose two methods for probablistically checking the give suffix and LCP arrays in external memory using a fingerprinting techinque. As observed from the experimental results, our program for the algorithm designed on Method A outperforms that for the algorithm designed on Method B in both running time and I/O volume by about 20 percent, while the peak disk use of the latter is about 26/40=0.65 as that of the former and can be further reduced to around 21n without a sacrifice in time and I/O performance.
+
+
+
+
+% Bibliography
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,bibfile}
 	
 \end{document}

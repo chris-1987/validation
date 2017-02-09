@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.1.21)  7 FEB 2017 19:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.1.21)  9 FEB 2017 19:33
 entering extended mode
 **./draft.tex
 (draft.tex
@@ -451,44 +451,45 @@ LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9.53561> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 70.
 LaTeX Font Info:    Calculating math sizes for size <9.53561> on input line 76.
 
-
-LaTeX Warning: Citation `xxx' on page 1 undefined on input line 76.
-
 [1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
 ]
+<example.pdf, id=11, 460.72125pt x 562.1pt>
+File: example.pdf Graphic file (type pdf)
+ <use example.pdf>
+Package pdftex.def Info: example.pdf used on input line 188.
+(pdftex.def)             Requested size: 414.34956pt x 505.5251pt.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6.62196> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 245.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 254.
  [2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [3]
-Underfull \hbox (badness 1383) in paragraph at lines 276--277
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3 <./example.pdf>]
+Underfull \hbox (badness 1383) in paragraph at lines 279--280
 \OT1/ppl/m/n/9.53561 be de-com-posed into mul-ti-ple buck-ets as well, where
  []
 
 [4]
 
-LaTeX Warning: Reference `alg:3' on page 5 undefined on input line 410.
+LaTeX Warning: Citation `Karkkainen2013' on page 5 undefined on input line 414.
 
 
-Underfull \hbox (badness 5504) in paragraph at lines 432--432
+[5]
+Underfull \hbox (badness 5504) in paragraph at lines 442--442
 []\OT1/ppl/m/n/8.03 UniProt Knowl-edge-base, avail-able at $ftp : / / ftp . exp
 asy . org / databases / . . . /
  []
 
 
-LaTeX Warning: Reference `sec:method1:fingerprint' on page 5 undefined on input
- line 438.
+LaTeX Warning: Reference `fig:cmp1' on page 6 undefined on input line 449.
 
 
-LaTeX Warning: Reference `alg:3' on page 5 undefined on input line 440.
+LaTeX Warning: Reference `alg:3' on page 6 undefined on input line 457.
 
-
-LaTeX Warning: Reference `alg:3' on page 5 undefined on input line 440.
-
-[5]
 Package epstopdf Info: Source file: <pdu_cmp.eps>
 (epstopdf)                    date: 2016-10-11 22:50:23
 (epstopdf)                    size: 1427871 bytes
@@ -497,13 +498,13 @@ Package epstopdf Info: Source file: <pdu_cmp.eps>
 (epstopdf)                    size: 11769 bytes
 (epstopdf)             Command: <epstopdf --outfile=pdu_cmp-eps-converted-to.pd
 f pdu_cmp.eps>
-(epstopdf)             \includegraphics on input line 450.
+(epstopdf)             \includegraphics on input line 467.
 Package epstopdf Info: Output file is already uptodate.
- <pdu_cmp-eps-converted-to.pdf, id=36, 420.57124pt x 316.18124pt>
+<pdu_cmp-eps-converted-to.pdf, id=67, 420.57124pt x 316.18124pt>
 File: pdu_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pdu_cmp-eps-converted-to.pdf>
-Package pdftex.def Info: pdu_cmp-eps-converted-to.pdf used on input line 450.
+Package pdftex.def Info: pdu_cmp-eps-converted-to.pdf used on input line 467.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <io_cmp.eps>
 (epstopdf)                    date: 2016-10-11 22:52:05
@@ -513,14 +514,14 @@ Package epstopdf Info: Source file: <io_cmp.eps>
 (epstopdf)                    size: 12001 bytes
 (epstopdf)             Command: <epstopdf --outfile=io_cmp-eps-converted-to.pdf
  io_cmp.eps>
-(epstopdf)             \includegraphics on input line 455.
+(epstopdf)             \includegraphics on input line 472.
 Package epstopdf Info: Output file is already uptodate.
 
-<io_cmp-eps-converted-to.pdf, id=37, 420.57124pt x 316.18124pt>
+<io_cmp-eps-converted-to.pdf, id=68, 420.57124pt x 316.18124pt>
 File: io_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use io_cmp-eps-converted-to.pdf>
-Package pdftex.def Info: io_cmp-eps-converted-to.pdf used on input line 455.
+Package pdftex.def Info: io_cmp-eps-converted-to.pdf used on input line 472.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <ct_cmp.eps>
 (epstopdf)                    date: 2016-10-11 22:48:45
@@ -530,14 +531,14 @@ Package epstopdf Info: Source file: <ct_cmp.eps>
 (epstopdf)                    size: 10578 bytes
 (epstopdf)             Command: <epstopdf --outfile=ct_cmp-eps-converted-to.pdf
  ct_cmp.eps>
-(epstopdf)             \includegraphics on input line 460.
+(epstopdf)             \includegraphics on input line 477.
 Package epstopdf Info: Output file is already uptodate.
 
-<ct_cmp-eps-converted-to.pdf, id=38, 420.57124pt x 316.18124pt>
+<ct_cmp-eps-converted-to.pdf, id=69, 420.57124pt x 316.18124pt>
 File: ct_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ct_cmp-eps-converted-to.pdf>
-Package pdftex.def Info: ct_cmp-eps-converted-to.pdf used on input line 460.
+Package pdftex.def Info: ct_cmp-eps-converted-to.pdf used on input line 477.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <pdu_cmp2.eps>
 (epstopdf)                    date: 2016-10-08 16:27:50
@@ -547,14 +548,14 @@ Package epstopdf Info: Source file: <pdu_cmp2.eps>
 (epstopdf)                    size: 3899 bytes
 (epstopdf)             Command: <epstopdf --outfile=pdu_cmp2-eps-converted-to.p
 df pdu_cmp2.eps>
-(epstopdf)             \includegraphics on input line 471.
+(epstopdf)             \includegraphics on input line 488.
 Package epstopdf Info: Output file is already uptodate.
 
-<pdu_cmp2-eps-converted-to.pdf, id=39, 420.57124pt x 316.18124pt>
+<pdu_cmp2-eps-converted-to.pdf, id=70, 420.57124pt x 316.18124pt>
 File: pdu_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pdu_cmp2-eps-converted-to.pdf>
-Package pdftex.def Info: pdu_cmp2-eps-converted-to.pdf used on input line 471.
+Package pdftex.def Info: pdu_cmp2-eps-converted-to.pdf used on input line 488.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <io_cmp2.eps>
 (epstopdf)                    date: 2016-10-08 16:25:54
@@ -564,14 +565,14 @@ Package epstopdf Info: Source file: <io_cmp2.eps>
 (epstopdf)                    size: 3871 bytes
 (epstopdf)             Command: <epstopdf --outfile=io_cmp2-eps-converted-to.pd
 f io_cmp2.eps>
-(epstopdf)             \includegraphics on input line 476.
+(epstopdf)             \includegraphics on input line 493.
 Package epstopdf Info: Output file is already uptodate.
 
-<io_cmp2-eps-converted-to.pdf, id=40, 420.57124pt x 316.18124pt>
+<io_cmp2-eps-converted-to.pdf, id=71, 420.57124pt x 316.18124pt>
 File: io_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use io_cmp2-eps-converted-to.pdf>
-Package pdftex.def Info: io_cmp2-eps-converted-to.pdf used on input line 476.
+Package pdftex.def Info: io_cmp2-eps-converted-to.pdf used on input line 493.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 Package epstopdf Info: Source file: <ct_cmp2.eps>
 (epstopdf)                    date: 2016-10-11 22:40:52
@@ -581,30 +582,26 @@ Package epstopdf Info: Source file: <ct_cmp2.eps>
 (epstopdf)                    size: 3963 bytes
 (epstopdf)             Command: <epstopdf --outfile=ct_cmp2-eps-converted-to.pd
 f ct_cmp2.eps>
-(epstopdf)             \includegraphics on input line 481.
+(epstopdf)             \includegraphics on input line 498.
 Package epstopdf Info: Output file is already uptodate.
 
-<ct_cmp2-eps-converted-to.pdf, id=41, 420.57124pt x 316.18124pt>
+<ct_cmp2-eps-converted-to.pdf, id=72, 420.57124pt x 316.18124pt>
 File: ct_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ct_cmp2-eps-converted-to.pdf>
-Package pdftex.def Info: ct_cmp2-eps-converted-to.pdf used on input line 481.
+Package pdftex.def Info: ct_cmp2-eps-converted-to.pdf used on input line 498.
 (pdftex.def)             Requested size: 202.35675pt x 152.13193pt.
 
 
-LaTeX Warning: Reference `alg:3' on page 6 undefined on input line 488.
+LaTeX Warning: Reference `alg:3' on page 6 undefined on input line 505.
 
+[6] [7 <./pdu_cmp-eps-converted-to.pdf> <./io_cmp-eps-converted-to.pdf> <./ct_c
+mp-eps-converted-to.pdf> <./pdu_cmp2-eps-converted-to.pdf> <./io_cmp2-eps-conve
+rted-to.pdf> <./ct_cmp2-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `alg:3' on page 6 undefined on input line 490.
+LaTeX Warning: Reference `alg:3' on page 8 undefined on input line 507.
 
-[6 <./pdu_cmp-eps-converted-to.pdf> <./io_cmp-eps-converted-to.pdf> <./ct_cmp-e
-ps-converted-to.pdf>] (draft.bbl
-Underfull \vbox (badness 6542) has occurred while \output is active []
-
- [7 <./pdu_cmp2-eps-converted-to.pdf> <./io_cmp2-eps-converted-to.pdf> <./ct_cm
-p2-eps-converted-to.pdf>]) [8
-
-] (draft.aux)
+(draft.bbl) [8] (draft.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -614,10 +611,10 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 4922 strings out of 493333
- 74207 string characters out of 3139200
- 169682 words of memory out of 3000000
- 8335 multiletter control sequences out of 15000+200000
+ 4930 strings out of 493333
+ 74332 string characters out of 3139200
+ 171100 words of memory out of 3000000
+ 8342 multiletter control sequences out of 15000+200000
  52138 words of font info for 126 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  42i,21n,38p,1615b,3424s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -641,9 +638,9 @@ s/MiKTeX 2.9/fonts/type1/urw/palatino/uplbi8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ur
 w/palatino/uplri8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/zapfding/uz
 dr.pfb>
-Output written on draft.pdf (8 pages, 307687 bytes).
+Output written on draft.pdf (8 pages, 561579 bytes).
 PDF statistics:
- 138 PDF objects out of 1000 (max. 8388607)
+ 169 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
