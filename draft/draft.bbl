@@ -88,29 +88,6 @@ G.~Nong, W.~H. Chan, S.~Q. Hu, and Y.~Wu, ``{Induced Sorting Suffixes in
   External Memory},'' \emph{ACM Transactions on Information Systems}, vol.~33,
   no.~3, pp. 12:1--12:15, March 2015.
 
-\bibitem{Osipov2012}
-V.~Osipov, ``{Parallel Suffix Array Construction for Shared Memory
-  architectures.}'' in \emph{International Symposium on String Processing and
-  Information Retrieval}, Cartagena de Indias, Colombia, October 2012, pp.
-  379--384.
-
-\bibitem{Deo2013}
-M.~Deo and S.~Keely, ``{Parallel Suffix Array and Least Common Prefix for the
-  GPU},'' in \emph{Proceedings of the 18th ACM SIGPLAN Symposium on Principles
-  and Practice of Parallel Programming}, New York ,USA, August 2013, pp.
-  197--206.
-
-\bibitem{Wang2015}
-L.~Wang, S.~Baxter, and J.~Owens, ``{Fast Parallel Suffix Array on the GPU},''
-  in \emph{In proceedings of the 21st International Conference on Parallel and
-  Distributed Computing}, August 2015, pp. 573--587.
-
-\bibitem{Karkkainen2015}
-J.~K\"{a}rkk\"{a}inen, D.~Kempa, and S.~J. Puglisi, ``{Parallel External Memory
-  Suffix Sorting},'' in \emph{In proceedings of the 26th Annual Symposium on
-  Combinatorial Pattern Matching}, Ischia Island, Italy, July 2015, pp.
-  329--342.
-
 \bibitem{Fischer11}
 J.~Fischer, ``{Inducing the {LCP}-Array},'' in \emph{Algorithms and Data
   Structures}, ser. Lecture Notes in Computer Science, 2011, vol. 6844, pp.
@@ -139,6 +116,29 @@ S.~J. Puglisi and T.~Andrew, ``{Space-time Tradeoffs for Longest-Common-Prefix
   Array Computation},'' in \emph{In proceedings of the 19th International
   Symposium on Algorithms and Computation}, Gold Coast, Australia 2008, pp.
   124--135.
+
+\bibitem{Deo2013}
+M.~Deo and S.~Keely, ``{Parallel Suffix Array and Least Common Prefix for the
+  GPU},'' in \emph{Proceedings of the 18th ACM SIGPLAN Symposium on Principles
+  and Practice of Parallel Programming}, New York ,USA, August 2013, pp.
+  197--206.
+
+\bibitem{Osipov2012}
+V.~Osipov, ``{Parallel Suffix Array Construction for Shared Memory
+  architectures.}'' in \emph{International Symposium on String Processing and
+  Information Retrieval}, Cartagena de Indias, Colombia, October 2012, pp.
+  379--384.
+
+\bibitem{Wang2015}
+L.~Wang, S.~Baxter, and J.~Owens, ``{Fast Parallel Suffix Array on the GPU},''
+  in \emph{In proceedings of the 21st International Conference on Parallel and
+  Distributed Computing}, August 2015, pp. 573--587.
+
+\bibitem{Karkkainen2015}
+J.~K\"{a}rkk\"{a}inen, D.~Kempa, and S.~J. Puglisi, ``{Parallel External Memory
+  Suffix Sorting},'' in \emph{In proceedings of the 26th Annual Symposium on
+  Combinatorial Pattern Matching}, Ischia Island, Italy, July 2015, pp.
+  329--342.
 
 \bibitem{Karkkainen2016}
 J.~K\"{a}rkk\"{a}inen and D.~Kempa, ``{Faster External Memory LCP Array
