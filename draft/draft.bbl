@@ -173,14 +173,4 @@ R.~Dementiev, L.~Kettner, and P.~Sanders, ``{STXXL: Standard Template Library
   for XXL Data Sets},'' \emph{Software: Practice and Experience}, vol.~38,
   no.~6, pp. 589--637, 2008.
 
-\bibitem{Leischner2010}
-N.~Leischner, V.~Osipov, and P.~Sanders, ``{GPU Sample Sort},'' in \emph{In
-  proceedings of the International Symposium on Parallel and Distributed
-  Processing}, Atlanta, USA, 2010, pp. 1--10.
-
-\bibitem{Davidson2012}
-A.~Davidson, D.~Garland, and et~al., ``{Efficient Parallel Merge Sort for Fixed
-  and Variable Length Keys},'' in \emph{In proceedings of the International
-  Symposium on Innovative Parallel Computing}, California, USA, 2012, pp. 1--9.
-
 \end{thebibliography}
