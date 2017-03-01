@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.1.21)  24 FEB 2017 21:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6100) (preloaded format=pdflatex 2017.1.21)  1 MAR 2017 15:04
 entering extended mode
 **./draft.tex
 (draft.tex
@@ -464,12 +464,18 @@ Package pdftex.def Info: example.pdf used on input line 152.
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <6.62196> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 251.
  [3 <./example.pdf>] [4]
-Underfull \hbox (badness 5504) in paragraph at lines 438--438
-[]\OT1/ppl/m/n/8.03 UniProt Knowl-edge-base, avail-able at $ftp : / / ftp . exp
-asy . org / databases / . . . /
+Underfull \hbox (badness 10000) in paragraph at lines 438--438
+\OT1/ppl/m/n/8.03 ftp : / / ftp . expasy . org / databases / . . . /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
+\OT1/ppl/m/n/8.03 pizzachili . dcc . uchile . cl / texts / protein$,
  []
 
 [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 Package epstopdf Info: Source file: <pdu_cmp.eps>
 (epstopdf)                    date: 2017-02-23 10:42:46
 (epstopdf)                    size: 10761 bytes
@@ -480,12 +486,13 @@ Package epstopdf Info: Source file: <pdu_cmp.eps>
 f pdu_cmp.eps>
 (epstopdf)             \includegraphics on input line 456.
 Package epstopdf Info: Output file is already uptodate.
- <pdu_cmp-eps-converted-to.pdf, id=56, 420.57124pt x 316.18124pt>
+
+<pdu_cmp-eps-converted-to.pdf, id=56, 420.57124pt x 316.18124pt>
 File: pdu_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pdu_cmp-eps-converted-to.pdf>
 Package pdftex.def Info: pdu_cmp-eps-converted-to.pdf used on input line 456.
-(pdftex.def)             Requested size: 240.29697pt x 180.65456pt.
+(pdftex.def)             Requested size: 227.64894pt x 171.1454pt.
 Package epstopdf Info: Source file: <io_cmp.eps>
 (epstopdf)                    date: 2017-02-23 10:43:20
 (epstopdf)                    size: 10702 bytes
@@ -502,7 +509,7 @@ File: io_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use io_cmp-eps-converted-to.pdf>
 Package pdftex.def Info: io_cmp-eps-converted-to.pdf used on input line 461.
-(pdftex.def)             Requested size: 240.29697pt x 180.65456pt.
+(pdftex.def)             Requested size: 227.64894pt x 171.1454pt.
 Package epstopdf Info: Source file: <ct_cmp.eps>
 (epstopdf)                    date: 2017-02-23 10:43:55
 (epstopdf)                    size: 10614 bytes
@@ -519,7 +526,7 @@ File: ct_cmp-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ct_cmp-eps-converted-to.pdf>
 Package pdftex.def Info: ct_cmp-eps-converted-to.pdf used on input line 466.
-(pdftex.def)             Requested size: 240.29697pt x 180.65456pt.
+(pdftex.def)             Requested size: 227.64894pt x 171.1454pt.
 Package epstopdf Info: Source file: <pdu_cmp2.eps>
 (epstopdf)                    date: 2017-02-23 10:44:26
 (epstopdf)                    size: 10765 bytes
@@ -536,7 +543,7 @@ File: pdu_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use pdu_cmp2-eps-converted-to.pdf>
 Package pdftex.def Info: pdu_cmp2-eps-converted-to.pdf used on input line 477.
-(pdftex.def)             Requested size: 240.29697pt x 180.65456pt.
+(pdftex.def)             Requested size: 227.64894pt x 171.1454pt.
 Package epstopdf Info: Source file: <io_cmp2.eps>
 (epstopdf)                    date: 2017-02-23 10:44:56
 (epstopdf)                    size: 10555 bytes
@@ -553,7 +560,7 @@ File: io_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use io_cmp2-eps-converted-to.pdf>
 Package pdftex.def Info: io_cmp2-eps-converted-to.pdf used on input line 482.
-(pdftex.def)             Requested size: 240.29697pt x 180.65456pt.
+(pdftex.def)             Requested size: 227.64894pt x 171.1454pt.
 Package epstopdf Info: Source file: <ct_cmp2.eps>
 (epstopdf)                    date: 2017-02-23 10:45:18
 (epstopdf)                    size: 10659 bytes
@@ -570,33 +577,35 @@ File: ct_cmp2-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ct_cmp2-eps-converted-to.pdf>
 Package pdftex.def Info: ct_cmp2-eps-converted-to.pdf used on input line 487.
-(pdftex.def)             Requested size: 240.29697pt x 180.65456pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+(pdftex.def)             Requested size: 227.64894pt x 171.1454pt.
  [6]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [7] [8 <./pdu_cmp-eps-converted-to.pdf> <./io_cmp-eps-converted-to.pdf> <./ct_c
 mp-eps-converted-to.pdf> <./pdu_cmp2-eps-converted-to.pdf> <./io_cmp2-eps-conve
 rted-to.pdf> <./ct_cmp2-eps-converted-to.pdf>]
 <example2.pdf, id=92, 469.755pt x 608.2725pt>
 File: example2.pdf Graphic file (type pdf)
  <use example2.pdf>
-Package pdftex.def Info: example2.pdf used on input line 554.
+Package pdftex.def Info: example2.pdf used on input line 586.
 (pdftex.def)             Requested size: 227.64894pt x 294.7705pt.
- (draft.bbl)
-[9 <./example2.pdf>] (draft.aux) )
+ (draft.bbl
+[9 <./example2.pdf>]) [10
+
+] (draft.aux) )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  4933 strings out of 493333
- 74370 string characters out of 3139200
- 163500 words of memory out of 3000000
+ 74362 string characters out of 3139200
+ 163498 words of memory out of 3000000
  8344 multiletter control sequences out of 15000+200000
  52138 words of font info for 126 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,21n,38p,2039b,3424s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,21n,38p,2026b,3424s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Program Files/MiKTe
@@ -617,9 +626,9 @@ s/MiKTeX 2.9/fonts/type1/urw/palatino/uplbi8a.pfb><C:/Program Files/MiKTeX 2.9/
 fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/ur
 w/palatino/uplri8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/zapfding/uz
 dr.pfb>
-Output written on draft.pdf (9 pages, 832447 bytes).
+Output written on draft.pdf (10 pages, 837155 bytes).
 PDF statistics:
- 185 PDF objects out of 1000 (max. 8388607)
+ 188 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
