@@ -1,0 +1,1095 @@
+
+%% bare_jrnl_compsoc.tex
+%% V1.4a
+%% 2014/09/17
+%% by Michael Shell
+%% See:
+%% http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8a or later) with an IEEE
+%% Computer Society journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE!
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_conf_compsoc.tex,
+%%                    bare_jrnl_compsoc.tex, bare_jrnl_transmag.tex
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices and paper sizes can       ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[10pt,journal,compsoc]{../sty/IEEEtran}
+\usepackage{graphicx}
+\usepackage[ruled, noend]{algorithm2e}
+\usepackage{url}
+\usepackage{epstopdf}
+\usepackage{indentfirst}
+\usepackage[tight,footnotesize]{subfigure}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+
+\newtheorem{Formula}{Formula}
+\newtheorem{Lemma}{Lemma}
+\newtheorem{Corollary}{Corollary}
+\newtheorem{Property}{Property}
+\newtheorem{Rule}{Rule}
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later. Note also the use of a CLASSOPTION conditional provided by
+% IEEEtran.cls V1.7 and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/tex-archive/info/epslatex/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+%\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+%\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and
+% Axel Sommerfeldt. This package may be useful when used in conjunction with
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{Checking Suffix and LCP Arrays by Probabilistic Methods}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+%
+%\IEEEcompsocitemizethanks is a special \thanks that produces the bulleted
+% lists the Computer Society journals use for "first footnote" author
+% affiliations. Use \IEEEcompsocthanksitem which works much like \item
+% for each affiliation group. When not in compsoc mode,
+% \IEEEcompsocitemizethanks becomes like \thanks and
+% \IEEEcompsocthanksitem becomes a line break with idention. This
+% facilitates dual compilation, although admittedly the differences in the
+% desired content of \author between the different types of papers makes a
+% one-size-fits-all approach a daunting prospect. For instance, compsoc
+% journal papers have the author affiliations above the "Manuscript
+% received ..." text while in non-compsoc journals this is reversed. Sigh.
+
+\author{Yi~Wu,
+        Ge~Nong,
+        Wai~Hong~Chan,
+        Ling~Bo~Han% <-this % stops a space
+\IEEEcompsocitemizethanks{
+\IEEEcompsocthanksitem Y.~Wu, G.~Nong and L.~B.~Han are with the Department of Computer Science, Sun Yat-sen University, Guangzhou, China.
+\IEEEcompsocthanksitem W.~H.~Chan is with the Department of Mathematics and Information Technology, Hong Kong Education University, Hong Kong.
+}}
+
+% note the % following the last \IEEEmembership and also \thanks -
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+%
+% \author{....lastname \thanks{...} \thanks{...} }
+% ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~13, No.~9, September~2014}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Computer Society Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+%
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers. ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+% The publisher's ID mark at the bottom of the page is less important with
+% Computer Society journal papers as those publications place the marks
+% outside of the main text columns and, therefore, unlike regular IEEE
+% journals, the available text space is not reduced by their presence.
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2014 IEEE}
+% or like this to get the Computer Society new two part style.
+%\IEEEpubid{\makebox[\columnwidth]{\hfill 0000--0000/00/\$00.00~\copyright~2014 IEEE}%
+%\hspace{\columnsep}\makebox[\columnwidth]{Published by the IEEE Computer Society\hfill}}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark (Computer Society jorunal
+% papers don't need this extra clearance.)
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+% for Computer Society papers, we must declare the abstract and index terms
+% PRIOR to the title within the \IEEEtitleabstractindextext IEEEtran
+% command as these need to go into the title area created by \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+For full-text indexing of massive data, the suffix and LCP (longest comment prefix) arrays have been recognized as the fundamental data structures, and verifying their correctness is necessary after their construction.
+In this paper, we propose two methods for checking the SA and LCP arrays on the external memory model. Given the suffix and LCP arrays of an input string, both methods check the SA and LCP arrays probabilistically using a Karp-Rabin fingerprinting function in two different ways, in terms of that the checking result is wrong with only a negligible probability. For each pair of neighboring suffixes in SA, the first method computes the fingerprints for the two sequences of characters specified by their LCP value and compares the fingerprints for verification. This method is rather space consuming, the peak disk use is about 40 bytes per input character.
+In order to overcome this drawback, we propose the second method using the induced-sorting principle. In this method, we first verify a subset of the suffix and LCP arrays, and then to ensure the inducing procedure is correct, resulting in the final SA and LCP arrays augmented from the subset are correct. This method can be integrated into any algorithm for inducing SA and LCP arrays to build and check the suffix and LCP arrays simultaneously, i.e. building and checking are done in the same time.
+An experimental study is conducted to examine the time and space performance of two methods, and the results indicate that the first method is about 20\% faster, while the latter consumes about 40\% less space.
+
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Suffix and LCP arrays, construction and verification, Karp-Rabin fingerprinting function.
+\end{IEEEkeywords}}
+
+
+% make the title area
+\maketitle
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when the compsoc
+% or transmag modes are not selected <OR> if conference mode is selected
+% - because all conference papers position the abstract like regular
+% papers do.
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
+
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}\label{sec:introduction}
+
+\subsection{Background} \label{sec:introduction:background}
+
+Suffix and LCP arrays play an important role in various string processing tasks, such as data compression, pattern matching and genome assembly. In dozens of applications, these two data structures are combined to constitute a powerful full-text index, called enhanced suffix array~\cite{Abouelhodaa2004}, which is more space efficient than suffix tree and applicable to emulating any searching functionalities provided by the latter in the same time complexity. During the past decades, much effort has been put on the development of designing efficient suffix array construction algorithms~(SACAs). Specifically, the first internal-memory algorithm for building SA was introduced in~\cite{Manber1993}. From then on, a plethora of SACAs have been proposed on different computation models, e.g., internal memory~\cite{Karkkainen2003, Ko2003, Kim2003, Nong11}, external memory~\cite{Dementiev2008, Ferragina2012, Manzini2004, Bingmann12, Karkkainen2014, Nong14, Nong15} and shared memory models~\cite{Osipov2012, Deo2013, Wang2015, Karkkainen2015}. In respect of the design on LCP-array construction algorithms~(LACAs), existing works can be classified into two categories, where the algorithms of the first category compute the suffix and LCP arrays in the same time~\cite{Fischer11, Bingmann12, Flick2015} and those of the second category take SA/BWT as input to facilitate the computation~\cite{Kasai2001,Karkkainen2009, Fischer11, Puglisi2008, Puglisi2008, Deo2013, Karkkainen2016}. Currently, benefiting from the progress in computation capability of modern computer architectures, both suffix and LCP arrays for human genome datasets can be constructed in several seconds~\cite{Flick2015}.
+
+When finished construction, it is essential to check the suffix and LCP arrays before using them. Till now, less emphasis has been dedicated to their verification. As far as we know, the work presented in~\cite{Burkhardt2003} is the only SA checker that can be found in the literature and no efficient approaches for the LCP-array verification have been reported yet. Some LACAs verify their outputs by comparing them with the results of another LACA. This indicates that designing efficient checking methods for the suffix and LCP arrays is an urgent problem to be solved.
+
+\subsection{Contribution}\label{sec:introduction:contribution}
+
+Our contribution mainly includes the following aspects:
+
+\begin{itemize}
+	
+	\item We present a method for checking both suffix and LCP arrays after their construction. In this method, a key operation is to check the LCP value for two neighboring suffixes in SA by literally comparing their characters. To reduce the time complexity for a string comparison, we employ the Karp-Rabin fingerprinting function to transform a sequence of characters into a single integer, called fingerprint, and compare the fingerprints of two sequences to correctly check their equality with a high probability.
+	
+	\item We present a method for checking both suffix and LCP arrays using the induced-sorting principle. The basic idea is to first check the order and LCP values of the sorted LMS suffixes and then verify the inducing procedure to ensure the correctness of the global suffix and LCP arrays. Different from the previous method, it can be also integrated into any induced-sorting LACA to build and check the suffix and LCP arrays simultaneously.
+
+\end{itemize}
+
+The remainder of this paper is organized as follows. We describe the proposed methods and algorithms in Sections~\ref{sec:method1} and~\ref{sec:method2}, and provide the experimental results in Section~\ref{sec:experiment}. Finally, we draw the conclusion in Section~\ref{sec:conclusion}.
+
+\section{Method A} \label{sec:method1}
+
+\subsection{Notations} \label{sec:method1:notations}
+Given an input string $x[0, n)$ drawn from an alphabet $\Sigma$, we say $x[i, j]$ is a substring of $x$ that starts with $x[i]$ and ends with $x[j]$. Particularly, $x[i, j]$ is a suffix of $x$ if $j = n - 1$. For short, we denote $x[i, n)$ by ${\sf suf}(i)$.
+
+The suffix array of $x$, denoted by $sa$, is a permutation of $\{0, 1, ..., n - 1\}$ such that ${\sf suf}(sa[i])$ is lexicographically greater than ${\sf suf}(sa[i - 1])$ for all $i \in [1, n)$.
+
+The LCP array of $x$, denoted by $lcp$, is composed of $n$ integers, where $lcp[0] = 0$ and $lcp[i]$ equals to the length of LCP of ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i - 1])$ for all $i \in [1, n)$.
+
+\subsection{Main Idea} \label{sec:method1:idea}
+
+We first present in Lemma~\ref{lemma:1} a set of conditions that are sufficient for checking the suffix and LCP arrays. Specifically, condition (1) demonstrates that all the suffixes in $x$ are sorted in $sa$, while conditions (2) and (3) guarantee that the lexicographical order and the LCP value of any two neighboring suffixes in $sa$ are correct.
+
+
+\begin{Lemma} \label{lemma:1}
+Given an input string $x[0, n)$, $sa[0, n)$ and $lcp[0, n)$ are correct if the following conditions are satisfied for all $i \in [1, n)$:
+
+(1) $sa$ is a permutation of $\{0, 1, ..., n - 1\}$.
+
+(2) $x[sa[i], sa[i] + lcp[i] - 1] = x[sa[i - 1], sa[i - 1] + lcp[i] - 1]$.
+
+(3) $x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$. 	
+
+
+
+\end{Lemma}
+
+\begin{IEEEproof}
+Omit.
+   
+\end{IEEEproof}
+
+For each pair of neighboring suffixes in $sa$, say ${\sf suf}(sa[i])$ and ${\sf suf}(sa[i + 1])$, it takes at worst $\mathcal{O}(n)$ time to perform a character-wise string comparison for checking their leftmost $lcp[i]$ characters. An alternative is to compare the two sequences of characters by their hash values in constant time. This can be done by a perfect hash function~(PHF) that maps two strings to an identical integer if and only if they are literally equal to each other. However, the cost of finding a PHF is non-negligible in practice, thus we prefer to use the Karp-Rabin fingerprinting function~\cite{Karp1987} for conducting the string-to-integer transformations mentioned above. Concretely, given a prime $L$ and an integer $\delta \in [1, L)$, the fingerprint of a substring $x[i, j]$, denoted by ${\sf fp}(i, j)$, can be calculated according to the following two formulas:
+
+\begin{Formula} \label{formula:1}
+	${\sf fp}(0, i) = {\sf fp}(0, i - 1) \cdot {\delta} + x[i] \, mod \, L$.
+	
+\end{Formula}
+
+\begin{Formula} \label{formula:2}
+	${\sf fp}(i, j) = {\sf fp}(0, j) - {\sf fp}(0 ,i - 1) \cdot {\delta}^{j - i + 1} \, mod \, L$.
+	
+\end{Formula}
+
+Obviously, two equal substrings always have a common fingerprint, but the inverse is not true. Fortunately, it has been proved that the probability of a false match can be reduced to a negligible level by setting $L$ to a large value. This leads us to Corollary~\ref{corollary:1}.
+
+\begin{Corollary} \label{corollary:1}
+Given an input string $x[0, n)$, $sa[0, n)$ and $lcp[0, n)$ are correct with a high probability if the following conditions are satisfied for all $i \in [1, n)$:
+	
+(1) $sa$ is a permutation of $\{0, 1, ..., n - 1\}$.
+
+(2) ${\sf fp}(sa[i], sa[i] + lcp[i] - 1) = {\sf fp}(sa[i - 1], sa[i - 1] + lcp[i] - 1)$.
+
+(3) $x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$. 	
+
+
+	
+\end{Corollary}
+
+\subsection{Algorithm} \label{sec:method1:algorithm}
+
+\begin{algorithm*}
+	
+	\SetAlgoNoLine
+	
+	\KwIn{$x$, $sa$, $lcp$}
+	
+	S1. Compute ${\sf fp}(sa[i], sa[i] + lcp[i] - 1)$ and retrieve $x[sa[i] + lcp[i]]$ for all $i \in [1, n)$. Meanwhile, check if $sa$ is a permutation.
+	
+	S2. Compute ${\sf fp}(sa[i], sa[i] + lcp[i + 1] - 1)$ and retrieve $x[sa[i] + lcp[i + 1]]$ for all $i \in [0, n - 1)$.
+	
+	S3. Check if ${\sf fp}(sa[i], sa[i] + lcp[i] - 1) = {\sf fp}(sa[i - 1], sa[i - 1] + lcp[i] - 1)$ and $x[sa[i] + lcp[i]] > x[sa[i - 1] + lcp[i]]$ for all $i \in [1, n)$.
+	
+	\caption{The Algorithmic Framework of Method A.}
+	
+	\label{alg:1}
+
+\end{algorithm*}
+
+We design a 3-step algorithm to check the conditions in Corollary~\ref{corollary:1}, where each step is explained in details as below.
+
+\vspace{1ex} \noindent {\bf S1.} The first step can be divided into three substeps:
+
+\begin{itemize}
+
+	\item [(1a)] Scan $sa$ and $lcp$ rightward with $i$ increasing from $1$ to $n - 1$. For each scanned $sa[i]$ and $lcp[i]$, create a CITEM with $idx = i, pos = sa[i] - 1, lv = lcp[i]$. Sort the CITEMs by $pos$ in ascending order.
+		
+	\item [(1b)] Scan $x$ rightward with $p$ increasing from $0$ to $n - 1$. For each scanned $x[p]$, compute ${\sf fp}(0, p)$ and update all CITEMs with $pos = p$ by setting $fp = {\sf fp}(0, p)$ and $pos = p + lv$. Sort the CITEMs by $pos$ in ascending order. 
+		
+	\item [(1c)] Scan $x$ rightward with $p$ increasing from $0$ to $n - 1$. For each scanned $x[p]$, compute ${\sf fp}(0, p)$ and update all CITEMs with $pos = p$ by setting $fp = {\sf fp}(0, p) - fp \cdot {\delta}^{lv} \, mod \, L $ and $ch = x[p + 1]$. Sort the CITEMs by $idx$ in ascending order.
+		
+\end{itemize}
+
+An auxiliary data structure, called CITEM, is employed to facilitate the process of calculating fingerprints, where each item is a quintuple $\langle pos, idx, lv, fp, ch \rangle$ corresponding to a suffix. For instance, the CITEM for ${\sf suf}(sa[i])$ records ${\sf fp}(0, sa[i] - 1)$ in the field $fp$ during substep (1b) and resets the field to ${\sf fp} (sa[i], sa[i] + lcp[i] - 1)$ during substep (1c). It can be observed that the CITEMs produced in substep (1a) are sorted by $pos$ in ascending order, thus we can check condition (1) in Corollary~\ref{corollary:1} when sequentially visiting these items during substep (1b).  
+
+\vspace{1ex} \noindent {\bf S2.} This step also consists of three substeps:
+
+\begin{itemize}
+	
+	\item [(2a)] Scan $sa$ and $lcp$ rightward with $i$ increasing from $0$ to $n - 2$. For each scanned $sa[i]$ and $lcp[i + 1]$, create a CITEM with $idx = i, pos = sa[i] - 1, lv = lcp[i + 1]$. Sort the items by $pos$ in ascending order.
+	
+	\item [(2b)] Reuse step (1b) to update and sort CITEMs.
+	
+	\item [(2c)] Reuse step (1c) to update and sort CITEMs.
+	
+\end{itemize}
+
+The major difference between S1 and S2 is that, the LCP values assigned to the CITEM for ${\sf suf}(sa[i])$ in substeps (1a) and (2a) are $lcp[i]$ and $lcp[i + 1]$, respectively.
+
+\vspace{1ex} \noindent {\bf S3.}  When finished S2, we have two sequences of CITEMs sorted by $idx$ in ascending order. This step scans the two sequences rightward and compares the fields $fp$ and $ch$ of each pair of CITEMs at the same position to verify conditions (2) and (3) in Corollary~\ref{corollary:1}.
+
+\subsection{Substring Fingerprint} \label{sec:method1:fingerprint}
+
+Algorithm~\ref{alg:1} calculates the fingerprint of a substring $x[i, j]$ by employing the two formulas described in Section~\ref{sec:method1:idea}. For instance, S1 first figures out ${\sf fp}(0, i - 1)$ and ${\sf fp}(0, j)$ by Formula~\ref{formula:1} and then ${\sf fp}(i, j)$ by Formula~\ref{formula:2}. When computing ${\sf fp}(i, j)$, a key operation is to determine the value of $(\delta^{lv} \, mod \, L)$ with $lv \in [0, n)$.\footnote{For brevity, we omit $\, mod \, L$ in the following.} There are several ways to do this. One approach decomposes $lv$ into $k_1 * m + k_2$ and multiplies $\delta^{k_1 * m}$ and $\delta^{k_2}$ to obtain $\delta ^{lv}$, where $k_1 \in [0, \lceil \frac{n}{m} \rceil)$ and $k_2 \in [0, m)$. An alternative decomposes $lv$ into $k_0 \cdot {\delta}^{0} + k_1 \cdot {\delta}^{1} + k_2 \cdot {\delta}^{2} + ... + k_{\lceil \log2^n \rceil} \cdot {\delta}^{\lceil \log2^n \rceil}$ and computes $\Pi_{i = 0}^{\lceil \log2^n \rceil} k_i * {\delta}^i$ to obtain $\delta^{lv}$, where $k_0, k_1, k_2, ..., k_{\lceil \log2^n \rceil} \in \{0, 1\}$. In terms of time and space complexities, the first approach returns an answer in ${O}(1)$ time and occupies $\mathcal{O}(m + \lceil \frac{n}{m} \rceil )$ memory space to maintain two lookup tables for storing $\{{\delta}^{m}, {\delta}^{2m},..., {\delta}^{\lceil (n / m) \rceil m - 1}\}$ and $\{{\delta}^{0}, {\delta}^{1},...,{\delta}^{m - 1} \}$, respectively, while the second approach takes $\mathcal{O}(\lceil \log2^n \rceil)$ time to respond a request and consumes $\mathcal{O}(\lceil \log2^n \rceil )$ memory space to store $\{{\delta}^{0}, {\delta}^{1}, {\delta}^{2}, ... ,{\delta}^{\lceil \log2^n \rceil} \}$.
+
+
+\subsection{Complexity Analysis} \label{sec:method1:analysis}
+
+The core part of the algorithm consists of multiple scans and sorts for fixed-size objects with integer keys. By using the first approach introduced in Section~\ref{sec:method1:fingerprint}, all the fingerprints can be obtained in $\mathcal{O}(n)$ time using $\mathcal{O}(m)$ RAM space under the assumption that $m = \mathcal{O}(M)$ and $n = \mathcal{O}(M^2)$. Consider an external memory model with a RAM of size $M$ and a disk of size $N$ divided into blocks of size $B$. We assume $M$ and $N$ are measured in units of $\Theta(logn)$-bit words, then the time and I/O complexities for a scan are $\mathcal{O}(n)$ and $\mathcal{O}(n / B)$, respectively, while those for an integer sort are $\mathcal{O}(n\log_{M/ B}(n / B))$ and $\mathcal{O}((n / B)\log_{M / B}(n / B))$, respectively~\cite{Arge2013}. Besides, the space requirement for sorting elements is $\mathcal{O}(n)$.
+
+\section{Method B} \label{sec:method2}
+
+In this section, we propose a method that can be integrated into an induced-sorting LACA for checking both suffix and LCP arrays when they are being built.
+
+\subsection{Notations} \label{sec:algorithm2:notations}
+
+Assume $x[n - 1]$ is lexicographically the smallest character in $\Sigma$ and appears in $x[0, n)$ only once, we introduce the following notations and symbols for description clarity.
+
+\begin{itemize}
+	
+	\item Character/Suffix/Substring type. All the characters in $x$ are classified into three different types, namely L-type, S-type and LMS. In details, $x[i]$ is S-type if (1) $i = n - 1$ or (2) $x[i] < x[i + 1]$ or (3) $x[i] = x[i+1]$ and $x[i+1]$ is S-type; otherwise, $x[i]$ is L-type. In particular, if $x[i - 1]$ and $x[i]$ are respectively L-type and S-type, then $x[i]$ is LMS. Furthermore, ${\sf suf}(i)$ is L-type, S-type or LMS if $x[i]$ is L-type, S-type or LMS, respectively. Moreover, suppose $x[j]$ is LMS and no characters in $x[i + 1, j - 1]$ are LMS, then substring $x[i, j]$ is an L-type, S-type or LMS substring if $x[i]$ is L-type, S-type or LMS, respectively.
+
+	\item Suffix buckets. Suffixes in $sa$ are naturally grouped into multiple buckets, where each bucket occupies a contiguous interval of $sa$ and contains all the suffixes with an identical head character. Besides, a bucket can be further divided into two parts, where the left/right part is a subbucket that contains only L-type/S-type suffixes. For short, we use ${\sf sa\_bkt}(c)$ to denote the bucket that consists of all the suffixes starting with $c$ in $sa$, and ${\sf sa\_bkt_L}(c)/{\sf sa\_bkt_S}(c)$ to denote the left/right subbucket in ${\sf sa\_bkt}(c)$. 
+	
+	\item LCP buckets. Suppose ${\sf sa\_bkt}(c)$ occupies a contiguous interval $sa[i, j]$, then the elements in $lcp[i, j]$ constitute the corresponding LCP bucket ${\sf lcp\_bkt}(c)$ and it can be further divided into two subbuckets ${\sf lcp\_bkt_L}(c)$ and ${\sf lcp\_bkt_S}(c)$ according to ${\sf sa\_bkt_L}(c)$ and ${\sf sa\_bkt_S}(c)$. 
+
+	\item Character repetitions. Suppose $x[i,j]$ is an interval satisfying that $x[i] = x[i + 1] = ... = x[j]$ and $x[j] \ne x[j + 1]$, then ${\sf rep}(i)$ represents the number of repetitions of $x[i]$ in this interval.
+
+	\item Inverse suffix array. The inverse suffix array $isa$ satisfies that $isa[sa[i]] = i$ for all $i \in [0, n)$.
+	
+	\item Reduced string. The reduced string $x1$ records the names of the LMS suffixes, where the names represent their relative ranks in the lexicographical order.
+	
+	\item Position array. The position array $pa$ records the starting positions of the LMS suffixes.	
+ 
+\end{itemize}
+
+Apart from the aforementioned, we denote the suffix and LCP arrays of the LMS suffixes as $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ in the rest of the paper.
+
+\subsection{An Overview of Induced-sorting LACA} \label{sec:method2:overview}
+
+\begin{algorithm*}
+	
+	\SetAlgoNoLine
+	
+	\KwIn{$x$, $sa1$, $lcp1$}
+	
+	\KwOut{$sa$, $lcp$}
+	
+	S1. Compute $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ from $sa1$ and $lcp1$.
+	
+	S2. Insert elements of $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ into $sa$ and $lcp$. \label{alg:2:step:1}
+	
+	S3. Induce L-type suffixes of $x$. Meanwhile, determine the LCP for each L-type suffix and its predecessor in $sa$.
+	
+	S4. Induce S-type suffixes of $x$. Meanwhile, determine the LCP for each S-type suffix and its predecessor in $sa$.
+	
+	\caption{The Algorithmic Framework of the Induction Phase for an Induced-sorting LACA.}
+	
+	\label{alg:2}
+	
+\end{algorithm*}
+
+An induced-sorting SACA~(e.g.,~\cite{Nong11}) mainly consists of a reduction phase followed by an induction phase. In brief, it sorts and names the LMS substrings to produce the reduced string $x1$ during the reduction phase and determines whether or not there exist two equal characters in $x1$. If yes, then it recursively performs the reduction phase by replacing $x$ with $x1$; otherwise, it computes $sa1$ from $x1$ and performs the induction phase to induce $sa$ from $sa1$. The work presented in~\cite{Fischer11} shows that an induced-sorting SACA can be modified to design an LACA for constructing the suffix and LCP arrays simultaneously. The main idea is to compute the LCP value of two suffixes placed at the neighboring positions in the same subbucket according to the following properties, where ${\sf suf}(sa[j])$ and ${\sf suf}(sa[k])$ are the suffixes that induce ${\sf suf}(sa[i - 1])$ and ${\sf suf}(sa[i])$ during the induction phase.
+
+
+\begin{Property} \label{property:1}
+	$lcp[i] = 1$ if $x[sa[j]] \ne x[sa[k]]$.
+
+\end{Property}
+
+\begin{Property} \label{property:2}
+	$lcp[i] = 1 + {\sf min}(lcp[j + 1], lcp[j + 2], ..., lcp[k])$ if $x[sa[j]] = x[sa[k]]$.
+
+\end{Property}
+
+Algorithm~\ref{alg:2} shows the main steps of the induction phase for an induced-sorting LACA. Suppose ${sa_{\sf LMS}}$ and $lcp_{\sf LMS}$ have been computed and their elements are inserted into the corresponding buckets in $sa$ and $lcp$, we describe S3 and S4 of the algorithm in details as below.
+
+\begin{itemize}
+	
+	\item [S3.] 
+	(1) Scan $sa$ rightward with $i$ increasing from $0$ to $n - 1$. For currently scanned ${\sf suf}(sa[i])$, insert $sa[i] - 1$ into the leftmost empty position of ${\sf sa\_bkt_L}(x[sa[i] - 1])$ if $x[sa[i] - 1]$ is L-type. 
+	
+	(2) For each induced suffix placed at position $i$: set $lcp[i] = 0$ if $x[sa[i]] \ne x[sa[i - 1]]$, or set $lcp[i] = 1$ if $x[sa[j]] \ne x[sa[k]]$; otherwise, set $lcp[i] = 1 + {\sf min}(lcp[j + 1], lcp[j + 2], ..., lcp[k])$.
+	
+	\item [S4.] 
+	
+	(1) Scan $sa$ leftward with $i$ decreasing from $n - 1$ to $0$. For currently scanned ${\sf suf}(sa[i])$, insert $sa[i] - 1$ into the rightmost empty position of ${\sf sa\_bkt_S}(x[sa[i] - 1])$ if $x[sa[i] - 1]$ is S-type. 
+	
+	(2) For each induced suffix placed at position $i - 1$ with $x[sa[i - 1]] = x[sa[i]]$: set $lcp[i] = 1$ if $x[sa[j]] \ne x[sa[k]]$; otherwise, set $lcp[i] = 1 + {\sf min}(lcp[j + 1], lcp[j + 2], ..., lcp[k])$. 
+
+\end{itemize}
+
+There remain two special cases needing to be handled separately. When inducing L-type suffixes in S3, the LCP value of the rightmost L-type and the leftmost LMS suffixes in each bucket must be calculated according to the repetitions of their head characters. For example, suppose ${\sf suf}(sa[i])$ is the leftmost LMS in ${\sf sa\_bkt_S}(c)$ and ${\sf suf}(sa[j])$ is the rightmost L-type in ${\sf sa\_bkt_L}(c)$, then $lcp[i]$ is equal to ${\sf min}({\sf rep}(sa[i]), {\sf rep}(sa[j]))$. Likewise, when inducing S-type suffixes in S4, the LCP value of the rightmost L-type and the leftmost S-type suffixes in each bucket is computed in the same way. Notice that ${\sf min}({\sf rep}(sa[i]), {\sf rep}(sa[j]))$ is calculated by literally comparing the characters of the two involved suffixes rightward. As demonstrated in~\cite{Fischer11}, these comparisons can be done in overall linear running time. 
+
+
+\subsection{Check LCP Array} \label{sec:method2:check_lcp}
+
+We describe how to build and check an LCP array simultaneously using the induced sorting principle, with the assumption that the suffix array is constructed correctly. The idea is to first verify the LCP values of the sorted LMS suffixes, that is $lcp_{\sf LMS}$, and then ensure the correctness of the procedure for inducing $lcp$ from $lcp_{\sf LMS}$. In what follows, we prove that this can be done by checking the conditions in Lemma~\ref{lemma:2} during the induction phase.
+
+\begin{Lemma} \label{lemma:2}
+Given an input string $x[0, n)$, suppose $sa[0, n)$ is correctly built by an induced-sorting LACA, then $lcp[0, n)$ is also correct if the following conditions are satisfied for all $c \in \Sigma$:
+
+(1) $lcp_{\sf LMS}$ are correct.
+
+(2) $lcp_{\sf L1}(c) = lcp_{\sf L2}(c)$.
+
+(3) $lcp_{\sf S2}(c) = lcp_{\sf S2}(c)$.
+
+\end{Lemma}
+
+Notice that $lcp_{\sf L1}(c)/lcp_{\sf L2}(c)$ and $lcp_{\sf S1}(c)/lcp_{\sf S2}(c)$ are sequences of integers produced by augmenting S3 and S4 of Algorithm~\ref{alg:2} as follows:
+
+\begin{itemize}
+	
+	\item [S3'.] 
+	
+	(1) For currently scanned L-type suffix ${\sf suf}(sa[i])$, append $lcp[i]$ to $lcp_{\sf L2}(x[sa[i]])$.
+		
+	(2) For each induced suffix placed at position $i$, append the calculated LCP value to $lcp_{\sf L1}(x[sa[i]])$. 
+	
+	\item [S4'.] 
+	
+	(1) For currently scanned S-type suffix ${\sf suf}(sa[i])$, append $lcp[i]$ to $lcp_{\sf S2}(x[sa[i]])$ if it is not the leftmost suffix in the subbucket.
+	
+	(2) For each induced suffix placed at position $i - 1$ with $x[sa[i - 1]] = x[sa[i]]$, append the calculated LCP value to $lcp_{\sf S1}(x[sa[i]])$. 
+
+
+\end{itemize}
+
+The proof of Lemma~\ref{lemma:2} is based on the properties described in Section~\ref{sec:method2:overview}.
+
+\begin{IEEEproof}
+Assume the longest-common-prefix length of ${\sf suf}(sa[i])$ and its predecessor in $sa$ equals to $h$ but $lcp[i] \ne h$.
+
+Situation 1. ${\sf suf}(sa[i])$ is L-type and $lcp[i]$ is computed in S3 of Algorithm~\ref{alg:2}. 
+
+case (1a): ${\sf suf}(sa[i])$ is the leftmost suffix in the bucket. In this case, $lcp[i]$ is determined when comparing the head characters of ${\sf suf}(sa[i])$ and its predecessor. Because $sa$ is correct, then $lcp[i] = h = 0$ and this violates the assumption.
+
+case (1b): $x[sa[i - 1]] = x[sa[i]]$ and $x[sa[j]] \ne x[sa[k]]$. In this case, $lcp[i]$ is determined when comparing $x[sa[j]]$ and $x[sa[k]]$ following Property~\ref{property:1}. Because $sa$ is correct, then $lcp[i] = h = 1$ and this violates the assumption.
+
+case (1c): $x[sa[i - 1]] = x[sa[i]]$ and $x[sa[j]] = x[sa[k]]$. In this case, $lcp[i]$ is determined by the minimum of $\{lcp[j + 1], lcp[j + 2], ..., lcp[k] \}$ following Property~\ref{property:2}. Because $lcp[i] \ne h$, then there exists $\hat{i} \in [j + 1, k]$ such that $lcp[\hat{i}]$ is wrong. Notice that ${\sf suf}(sa[\hat{i}])$ must be an L-type suffix. This can be explained as follows: if ${\sf suf}(sa[\hat{i}])$ is the leftmost LMS suffix in ${\sf sa\_bkt_S}(x[sa[\hat{i}]])$, then $lcp[\hat{i}]$ is calculated by literally comparing the characters of the two involved suffixes and the value is right as $sa$ is correct; otherwise, $lcp[\hat{i}]$ is copied from $lcp_{\sf LMS}$ and the value is also right as $lcp_{\sf LMS}$ is correct.
+
+We recursively prove situation 1 by replacing $i$ with $\hat{i}$. Let $i_0$ be the value that minimize $i$, then there exists $\hat{i_0} \in [j_0 + 1, k_0]$ such that ${\sf suf}(sa[\hat{i_0}])$ is L-type and $lcp[\hat{i_0}]$ is wrong according to cases (1a)-(1c). But $\{lcp[j_0 + 1], lcp[j_0 + 2], ..., lcp[k_0] \}$ are right because $k_0 < i_0$. Thereby, $lcp[i_0]$ is wrong only when $lcp_{\sf L1}(x[sa[i_0]]) \ne lcp_{\sf L2}(x[sa[i_0]])$. This violates condition 2 in Lemma~\ref{lemma:2}.
+
+Situation 2. ${\sf suf}(sa[i])$ is S-type and $lcp[i]$ is computed in S4 of Algorithm~\ref{alg:2}.
+
+case (2a): ${\sf suf}(sa[i])$ is the leftmost suffix in the bucket. This case is proved in the same way of case (1a).
+
+case (2b): $x[sa[i - 1]] = x[sa[i]]$ and ${\sf suf}(sa[i - 1])$ is L-type. In this case, $lcp[i]$ is calculated by literally comparing their characters and the value is right as $sa$ is correct.
+
+case (2c): $x[sa[i - 1]] = x[sa[i]]$, ${\sf suf}(sa[i - 1])$ is S-type and $x[sa[j]] \ne x[sa[k]]$. This case is proved in the same way of case (1b).
+
+case (2d): $x[sa[i - 1]] = x[sa[i]]$, ${\sf suf}(sa[i - 1])$ is S-type and $x[sa[j]] = x[sa[k]]$. In this case, $lcp[i]$ is determined by the minimum of $\{lcp[j + 1], lcp[j + 2], ..., lcp[k] \}$ following Property~\ref{property:2}. Because $lcp[i] \ne h$, then there exists $\hat{i} \in [j + 1, k]$ such that $lcp[\hat{i}]$ is wrong. Notice that ${\sf suf}(sa[\hat{i}])$ must be an S-type suffix, otherwise ${\sf suf}(sa[\hat{i}])$ is L-type and thus there exists $c \in \Sigma$ such that $lcp_{\sf L1}(c) \ne lcp_{\sf L2}(c)$ according the proof of Situation 1.
+
+We recursively prove situation 2 by replacing $i$ with $\hat{i}$. Let $i_0$ be the value that maximize $i$, then there exists $\hat{i_0} \in [j_0 + 1, k_0]$ such that ${\sf suf}(sa[\hat{i_0}])$ is S-type and $lcp(\hat{i_0})$ is wrong according to cases (2a)-(2d). But $\{lcp[j_0 + 1], lcp[j_0 + 2], ..., lcp[k_0] \}$ are right because $j_0 + 1 > i_0$. Thereby, $lcp[i_0]$ is wrong only when $lcp_{\sf S1}(x[sa[i_0]]) \ne lcp_{\sf S2}(x[sa[i_0]])$. This violates  condition 3 in Lemma~\ref{lemma:2}.
+
+\end{IEEEproof}
+
+One solution for checking conditions (2) and (3) is to store elements of $lcp_{\sf L1}(c)/lcp_{\sf L2}(c)$ and $lcp_{\sf S1}(c)/lcp_{\sf S2}(c)$ in arrays and compare them later. This approach takes $\mathcal{O}(n)$ time and space. A more space efficient alternative is to iteratively calculate the fingerprints of these sequences by using the Karp-Rabin fingerprinting function during the time when they are produced. The RAM space required by this approach is bounded by $\mathcal{O}(\Sigma)$. Following the discussion, we draw the conclusion in Corollary~\ref{corollary:2}.
+
+\begin{Corollary} \label{corollary:2}
+Given an input string $x[0, n)$, suppose $sa[0, n)$ is correctly built by an induced-sorting LACA, then $lcp[0, n)$ is correct with a high probability if the following conditions are satisfied for all $c \in \Sigma$:
+	
+	(1) $lcp_{\sf LMS}$ is correct.
+		
+	(4) The fingerprints of $lcp_{\sf L1}(c)$ and $lcp_{\sf L2}(c)$ are equal.
+	
+	(5) The fingerprints of $lcp_{\sf S2}(c)$ and $lcp_{\sf S2}(c)$ are equal.
+
+\end{Corollary}
+
+\subsection{Check Suffix Array} \label{sec:method2:check_sa}
+
+We describe how to check an SA when it is being built by an induced-sorting LACA. The idea is to first verify the lexicographical order of the LMS suffixes, that is $sa_{\sf LMS}$, and then ensure the correctness of the procedure for inducing $sa$ from $sa_{\sf LMS}$. In what follows, we prove that this can done by checking the conditions in Lemma~\ref{lemma:3} during the induction phase.
+
+\begin{Lemma} \label{lemma:3}
+Given an input string $x[0, n)$, $sa[0, n)$ is correctly built by an induced-sorting LACA if the following conditions are satisfied for all $c \in \Sigma$:
+	
+(1) $sa_{\sf LMS}$ is correct.
+	
+(2) $sa_{\sf L1}(c) = sa_{\sf L2}(c)$.
+
+(3) $sa_{\sf S1}(c) = sa_{\sf S2}(c)$.
+
+\end{Lemma}
+
+Notice that $sa_{\sf L1}(c)/sa_{\sf L2}(c)$ and $sa_{\sf S1}(c)/sa_{\sf S2}(c)$ are two sequences of integers produced by augmenting S3 and S4 of Algorithm 2 as follows:
+
+\begin{itemize}
+	
+	\item [S3''.]
+	
+	(1) For currently scanned L-type suffix ${\sf suf}(sa[i])$, append $sa[i]$ to $sa_{\sf L2}(x[sa[i]])$.
+	
+	(2) For each induced L-type suffix placed at position $i$, append $sa[i]$ to $sa_{\sf L1}(x[sa[i]])$. 
+	
+	\item [S4''.]
+	
+	(1)	For currently scanned S-type suffix ${\sf suf}(sa[i])$, append $sa[i]$ to $sa_{\sf S2}(x[sa[i]])$.
+	
+	(2) For each induced S-type suffix placed at position $i$, append $sa[i]$ to $sa_{\sf S1}(x[sa[i]])$.
+ 	
+\end{itemize}
+
+Before describing the proof of Lemma~\ref{lemma:3}, we first introduce a rule that is observed by an induced-sorting LACA:
+
+\begin{Rule} \label{rule:1}
+	For any two suffixes placed at positions $i$ and $j$ in $sa$, $i < j \Leftrightarrow (x[sa[i]], p) < (x[sa[j]], q)$, where ${\sf suf}(sa[p])$ and ${\sf suf}(sa[q])$ are the suffixes that induce ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$, respectively.
+	
+\end{Rule}
+
+We prove the correctness of Lemma~\ref{lemma:3} by using Rule~\ref{rule:1}.
+
+\begin{IEEEproof}
+Assume there exist $i, j \in [0, n)$ such that $i > j$ and ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$.
+
+Situation 1. ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are two suffixes of different types. 
+
+case (1a): $x[sa[i]] \ne x[sa[j]]$. In this case, the two suffixes belong to different buckets. Because ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$, then $x[sa[i]] < x[sa[j]]$ and thus $i < j$. This violates the assumption. 
+
+case (1b): $x[sa[i]] = x[sa[j]]$. In this case, the two suffixes belong to different subbuckets in a single bucket. Because ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$, then $x[sa[i]]$ and $x[sa[j]]$ are respectively L-type and S-type and thus $i < j$. This violates the assumption.
+
+Situation 2. ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are two L-type suffixes that are induced in S3 of Algorithm~\ref{alg:2}. 
+
+case (2a): $x[sa[i]] \ne x[sa[j]]$. This case is proved in the same way of case (1a).
+
+case (2b): $x[sa[i]] = x[sa[j]]$. In this case, because $i > j$, then $p > q$ according Rule~\ref{rule:1}. And we also have ${\sf suf}(sa[p]) < {\sf suf}(sa[q])$ because ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$. Notice that both ${\sf suf}(sa[p])$ and ${\sf suf}(sa[q])$ must be L-type suffixes, otherwise $p < q$. This can be explained as follows. If ${\sf suf}(sa[p])$ and ${\sf suf}(sa[q])$ are both LMS suffixes, then $p < q$ because $sa_{\sf LMS}$ is correct and ${\sf suf}(sa[p]) < {\sf suf}(sa[q])$. Otherwise, one is LMS and the other is L-type, then we also have $p < q$ according to the proof of Situation 1. This leads to a contradiction.
+
+We recursively prove situation 2 by replacing $(i, j)$ with $(p, q)$. Let $(i_0, j_0)$ be the pair that minimize $i + j$, then $x[sa[i_0]] = x[sa[j_0]]$, ${\sf suf}(sa[p_0]) < {\sf suf}(sa[q_0])$, and they are two L-type suffixes according to cases (2a)-(2b). Because $i_0 > j_0$, then $p_0 > q_0$ according to Rule~\ref{rule:1}. But we also have $p_0 < q_0$ as $p_0 + q_0 < i_0 + j_0$. Thus, the lexicographical order of ${\sf suf}(sa[i_0])$ and ${\sf suf}(sa[j_0])$ is wrong only when $sa_{\sf L1}(sa[i_0]) \ne sa_{\sf L2}(sa[i_0])$. This violates condition (2) in Lemma~\ref{lemma:3}.
+
+Situation 3. ${\sf suf}(sa[i])$ and ${\sf suf}(sa[j])$ are two S-type suffixes that are induced in S4 of Algorithm~\ref{alg:2}. 
+
+case (3a): $x[sa[i]] \ne x[sa[j]]$. This case is proved in the same way of case (1a).
+
+case (3b): $x[sa[i]] = x[sa[j]]$. In this case, because $i > j$, then $p > q$ according to Rule~\ref{rule:1}. And we also have ${\sf suf}(sa[p]) < {\sf suf}(sa[q])$ because ${\sf suf}(sa[i]) < {\sf suf}(sa[j])$. Notice that both ${\sf suf}(sa[p])$ and ${\sf suf}(sa[q])$ must be S-type suffixes, otherwise $p < q$. This can be explained as follows. If ${\sf suf}(sa[p])$ and ${\sf suf}(sa[q])$ are both L-type suffixes, then $p < q$ according to the proof of Situation 2. Otherwise, one is L-type and the other is S-type, then $p < q$ according to the proof of Situation 1. This leads to a contradiction.
+
+We recursively prove situation 3 by replacing $(i, j)$ with $(p, q)$. Let $(i_0, j_0)$ be the pair that maximize $i + j$, then $x[sa[i_0]] = x[sa[j_0]]$, ${\sf suf}(sa[p_0]) < {\sf suf}(sa[q_0])$ and they are two S-type suffixes according to cases (3a)-(3b). Because $i_0 > j_0$, then $p_0 > q_0$ according to Rule~\ref{rule:1}. But we also have $p_0 < q_0$ as $p_0 + q_0 > i_0 + j_0$. Thus, the lexicographical order of ${\sf suf}(sa[i_0])$ and ${\sf suf}(sa[j_0])$ is wrong only when $sa_{\sf S1}(sa[i_0]) \ne sa_{\sf S2}(sa[i_0])$. This violates condition (3) in Lemma~\ref{lemma:3}.
+
+\end{IEEEproof}
+
+
+We derive Corollary~\ref{corollary:3} from Lemma~\ref{lemma:3} by exploiting the use of the Karp-Rabin fingerprinting function to probabilistically check conditions (2) and (3) in $\mathcal{O}(n)$ time using $\mathcal{O}(\Sigma)$ RAM space.
+
+\begin{Corollary} \label{corollary:3}
+	Given an input string $x[0, n)$, $sa[0, n)$ is correctly built by an induced-sorting SACA with a high probability if the following conditions are satisfied for all $c \in \Sigma$:
+	
+	(1) $sa_{\sf LMS}$ is correct.
+	
+	(2) The fingerprints of $sa_{\sf L1}(c)$ and $sa_{\sf L2}(c)$ are equal.
+	
+	(3) The fingerprints of $sa_{\sf S1}(c)$ and $sa_{\sf S2}(c)$ are equal.
+	
+\end{Corollary}
+
+\subsection{Algorithm} \label{sec:method2:algorithm}
+
+\begin{algorithm*}
+	
+	\SetAlgoNoLine
+	
+	\KwIn{$x$, $sa_{\sf LMS}$, $lcp_{\sf LMS}$}
+	
+	S1. Check $sa_{\sf LMS}$ and $lcp_{\sf LMS}$.
+	
+	S2. Compute the fingerprints of $sa_{\sf L1}(c)/sa_{\sf L2}(c)$ and $lcp_{\sf L1}(c)/lcp_{\sf L2}(c)$ when inducing L-type suffixes and those of $sa_{\sf S1}(c)/sa_{\sf S2}(c)$ and $lcp_{\sf S1}(c)/lcp_{\sf S2}(c)$ when inducing S-type suffixes.
+
+	S3. Check the equality of the fingerprints computed in S2.
+	
+	\caption{The Algorithmic Framework of Method B.}
+	
+	\label{alg:3}
+	
+\end{algorithm*}
+
+We combine the ideas in Sections~\ref{sec:method2:check_lcp} and~\ref{sec:method2:check_sa} to propose a method for checking both suffix and LCP arrays during the induction phase of an induced-sorting LACA. As shown in Algorithm~\ref{alg:3}, this method mainly consists of three steps. We explain each step in the following paragraphs.
+
+\vspace{1ex} \noindent {\bf S1.} To check the first conditions in both Corollaries~\ref{corollary:1} and~\ref{corollary:2}, the first step verifies $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ following Lemma~\ref{lemma:4}. 
+
+\begin{Lemma} \label{lemma:4}
+	Given an input string $x[0, n)$, $sa_{\sf LMS}[0, n1)$ and $lcp_{\sf LMS}[0,n1)$ are correct if and only if the following conditions are satisfied:
+	
+	(1) $sa_{\sf LMS}[i] \ne sa_{\sf LMS}[j]$ for $j \ne i$ and $i, j \in [0, n1)$.
+	
+	(2) $sa_{\sf LMS}[i]$ is the starting position of an LMS suffix in $x$ for $i \in [0, n1)$.
+	
+	(3) $x[sa_{\sf LMS}[i], sa_{\sf LMS}[i] + lcp_{\sf LMS}[i] - 1] = x[sa_{\sf LMS}[i - 1], sa_{\sf LMS}[i - 1] + lcp_{\sf LMS}[i] - 1]$ for $i \in [1, n1)$
+	
+	(4) $x[sa_{\sf LMS}[i] + lcp_{\sf LMS}[i]] > x[sa_{\sf LMS}[i - 1] + lcp_{\sf LMS}[i]]$ for $i \in [1, n1)$.
+	
+\end{Lemma}
+
+\begin{IEEEproof}
+	Omit.
+	
+\end{IEEEproof}
+
+Conditions (1) and (2) guarantee the verification involves all the LMS suffixes in $x$ and can be checked when computing $sa_{\sf LMS}$ from $pa$ and $sa1$ at the very beginning of the induction phase. Conditions (3) and (4) ensure the correctness of the order and the LCP value of any two neighboring LMS suffixes in $sa_{\sf LMS}$. Clearly, the last two conditions are a generalization of those in Lemma~\ref{lemma:1} and thus we reuse Algorithm~\ref{alg:1} with $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ as input to correctly check them with a high probability.
+
+\vspace{1ex} \noindent {\bf S2.} This step can be divided into three substeps:
+
+\begin{itemize} [\itemindent = 0ex]
+	\item [(a)] Scan $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ leftward with $i$ decreasing from $n1 - 1$ to $0$. For currently scanned $sa_{\sf LMS}[i]$ and $lcp_{\sf LMS}[i]$, insert them into the rightmost empty positions of ${\sf sa\_bkt_S}(x[sa_{\sf LMS}[i]])$ and ${\sf lcp\_bkt_S}(x[sa_{\sf LMS}[i]])$, respectively.
+	
+	\item [(b)] Augment S3 of Algorithm~\ref{alg:2} with S3' and S3'' to compute $lcp_{\sf L1}(c)/lcp_{\sf L2}(c)$ and $sa_{\sf L1}(c)/sa_{\sf L2}(c)$ when inducing L-type suffixes and their LCPs.
+	
+	\item [(c)] Augment S4 of Algorithm~\ref{alg:2} with S4' and S4'' to compute $lcp_{\sf S1}(c)/lcp_{\sf S2}(c)$ and $sa_{\sf S1}(c)/sa_{\sf S2}(c)$ when inducing S-type suffixes and their LCPs.
+	
+\end{itemize}
+ 
+\vspace{1ex} \noindent {\bf S3.} This step compares the fingerprints calculated in S2 to check the last two conditions in both Corollaries~\ref{corollary:1} and~\ref{corollary:2}.
+
+\subsection{A Variant} \label{sec:method2:discussion} 
+
+As shown in Algorithm~\ref{alg:4}, by adding a step for computing $sa_{\sf LMS}$ and $lcp_{\sf LMS}$, Algorithm~\ref{alg:3} can cooperate with any LACA to check the suffix and LCP arrays after their construction. The order and the LCPs of the LMS suffixes can be determined by scanning $sa$ and $lcp$ as follows:
+
+Initialize $v$ to $n + 1$ and scan $sa$ rightward with $i$ increasing from $0$ to $n - 1$. For currently scanned $sa[i]$ and its corresponding LCP value $lcp[i]$: (1) if $lcp[i] < v$, then set $v = lcp[i]$; (2) if $x[sa[i]]$ is LMS, then respectively append $sa[i]$ and $v$ to $sa_{\sf LMS}$ and $lcp_{\sf LMS}$, and reset $v = n + 1$.
+
+\begin{algorithm}
+	
+	\SetAlgoNoLine
+	
+	\KwIn{$x$, $sa$, $lcp$}
+	
+	S1. Compute $sa_{\sf LMS}$ and $lcp_{\sf LMS}$.
+	
+	S2. Use Algorithm~\ref{alg:3} to check $sa$ and $lcp$.
+	
+	\caption{A Variant of Algorithm~\ref{alg:3}.}
+	
+	\label{alg:4}
+	
+\end{algorithm}
+
+\subsection{Complexity Analysis} \label{sec:method2:analysis}
+
+Clearly, the complexity of Algorithm~\ref{alg:3} is dominated by S1 and S2. During the first step, it checks $sa_{\sf LMS}$ and $lcp_{\sf LMS}$ by using Algorithm~\ref{alg:1}, which consists of multiple sorts and each sort involves at most $\frac{1}{2}n$ fixed-size objects. Besides, the core part of the second step is to induce $sa$ and $lcp$ from $sa_{\sf LMS}$ and $lcp_{\sf LMS}$. This can be done by using an external-memory priority queue to emulate the RAM-based inducing produce~\cite{Bingmann12}. Therefore, the algorithm can be implemented within sorting complexity in external memory.
+
+
+ 
+\section{Experiments} \label{sec:experiment}
+
+We implement the prototypes of Algorithms~\ref{alg:1} and~\ref{alg:4} in external memory. Our programs for the algorithms are compiled by gcc/g++ 4.8.4 with -O3 options under ubuntu 14.04 64-bit operating system running on a desktop computer, which is equipped with an Intel Xeon E3-1220 V2 CPU, 4GiB RAM and 500GiB HD. The following metrics are investigated for performance evaluation on the real-world datasets listed in Table~\ref{tbl:1}:
+
+\begin{itemize}
+	
+	\item construction time: the number of microseconds of running time, per character.
+	
+	\item peak disk use: the maximum number of bytes allocated in external memory, per character.
+	
+	\item I/O volume: the number of bytes read from and written to external memory, per character.
+	
+\end{itemize}
+
+%Table
+\renewcommand\arraystretch{1.3}
+\begin{table*}[!t]
+	\caption{Dataset, $n$ in Gi, 1 byte per character}
+	\label{tbl:1}
+	\centering
+	\begin{tabular}{|l|c|c|p{10cm}|}
+		\hline
+		Dataset & \multicolumn{1}{c|}{$n$} & \multicolumn{1}{c|}{$\|\Sigma\|$} & Description \\\hline
+		enwiki & 74.7 & 256 & An XML dump of English Wikipedia, available at \url{https://dumps.wikimedia.org/enwiki}, dated as 16/05/01. \\\hline	
+		uniprot & 2.5 & 96 & UniProt Knowledgebase, available at \url{ftp://ftp.expasy.org/databases/.../complete}, dated as 16/05/11. \\\hline
+		proteins & 1.1 & 27 & Swissprot database, available at \url{http://pizzachili.dcc.uchile.cl/texts/protein}, dated as 06/12/15. \\\hline
+	\end{tabular}
+\end{table*}
+
+\subsection{Results}
+
+We make some implementation decisions in our programs. First, we use the second approach in Section~\ref{sec:method1:fingerprint} to facilitate the computation of fingerprints in Algorithm~\ref{alg:1}. Second, we employ the external-memory containers~(vector, sorter and priority queue) provided by the STXXL library~\cite{Dementiev2007} to perform scans and sorts on disks. Finally, each element in the suffix and LCP arrays is represented by a 40-bit integer.
+
+For description convenience, we denote the programs for Algorithms~\ref{alg:1} and~\ref{alg:4} by ProgA and ProgB, respectively. As shown in Figure~\ref{fig:performance_analysis}, ProgA runs faster than ProgB on "enwiki4g", "uniprot" and "proteins" by about 20 percent, where "enwiki4g" is a 4-GiB prefix truncated from "enwiki". The speed gap between them is mainly due to the difference in their I/O efficiencies. Specifically, the I/O volume of ProgB is 190n in average, while that of ProgA is kept at 155n for different corpora. Notice that, although Algorithm~\ref{alg:4} reuses Algorithm~\ref{alg:1} to check $sa_{\sf LMS}$ and $lcp_{\sf LMS}$, the consumption for the verification in ProgB is at most half of that in ProgA because the number of LMS suffixes is no more than $\frac{1}{2}n$. Therefore, the performance bottleneck of ProgB lies in the procedure for inducing the order of suffixes and their LCPs. It can be also observed that both programs are insensitive to the input corpus in terms of the space requirement. In details, the peak disk use of ProgA and ProgB are respectively 26n and 40n on all the three corpora.
+
+We also investigate the performance trend of the two programs on the prefix of "enwiki" with the length varying on $\{1, 2, 4, 8\}$ GiB. Figure~\ref{fig:performance_analysis2} illustrates that, as the prefix length increases, a performance degradation occurs to ProgB in both time and I/O efficiencies, but the fluctuation of ProgA can be ignored.
+
+%figure
+\begin{figure}[htbp!]
+	\centering
+	\subfigure{
+		\label{subfig:pdu_cmp}
+		\includegraphics[width = \columnwidth]{pdu_cmp}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:iov_cmp}
+		\includegraphics[width = \columnwidth]{io_cmp}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:ct_cmp}
+		\includegraphics[width = \columnwidth]{ct_cmp}
+	}
+	\caption{Experimental results for various corpora.}
+	\label{fig:performance_analysis}
+\end{figure}
+
+%figure
+\begin{figure}[htbp!]
+	\centering
+	\subfigure{
+		\label{subfig:pdu_cmp2}
+		\includegraphics[width = \columnwidth]{pdu_cmp2}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:iov_cmp2}
+		\includegraphics[width = \columnwidth]{io_cmp2}
+	}
+	\hfil
+	\subfigure{
+		\label{subfig:ct_cmp2}
+		\includegraphics[width = \columnwidth]{ct_cmp2}
+	}
+	\caption{Experimental results for prefixes of "enwiki".}
+	\label{fig:performance_analysis2}
+\end{figure}
+
+\subsection{Discussions}
+
+It is identified that both programs heavily rely on the performance of the external memory sorter in use. A potential candidate for improving their speed is to adapt a GPU-based multi-way sorter~(e.g.,~\cite{Leischner2010, Davidson2012}) for sorting massive data using external memory. By the aid of these fast sorting algorithms, the throughput of the programs is expected to nearly approach the I/O bandwidth. Besides, the first two steps of Algorithm~\ref{alg:1} are independent of each other and thus can be executed in parallel to achieve a performance gain in terms of the construction time. This technique can be also applied to checking the suffix and LCP arrays of the LMS suffixes in Algorithms~\ref{alg:3} and~\ref{alg:4}.
+
+It worths mentioning that Algorithm~\ref{alg:4} produces a copy of the suffix and LCP arrays when checking them by using Algorithm~\ref{alg:3}. Indeed, the space can be saved if we perform the inducing procedure on the input suffix and LCP arrays for verification. This may lead to an improvement on the space requirement.
+
+\section{Conclusions} \label{sec:conclusion}
+
+We present two probabilistic methods for checking the suffix and LCP arrays using the Karp-Rabin fingerprinting function. Both methods can be employed to verify the suffix and LCP arrays after their construction, while the second method can be also integrated into an induced-sorting LACA to perform construction and verification in the same time.
+
+We also design the algorithms for the two methods and implement them in external memory. For performance comparison, a series of experiments are conducted to evaluate the time, space and I/O efficiencies. The results indicate that the program of Algorithm~\ref{alg:1}  outperforms that of Algorithm~\ref{alg:4} in the construction time and I/O volume by 20 percent, while the peak disk use of the latter is about 26/40 = 0.65 as that of the former.
+
+
+% Bibliography
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,bibfile}
+
+\end{document}
